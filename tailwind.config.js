@@ -24,12 +24,14 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('../public/image/auth/auth-bg.jpeg')"
+        'authBg': "url('../public/image/authbg.jpeg')"
       }
     },
     colors:{
       primary:'#C26F2D',
       secondary:'#5D3891',
+      darkgray: '#848383',
+      white: '#FFFFFF',
     },
     fontSize: {
       xxs: ['10px', { lineHeight: '20px', letterSpacing: '-0.005em' }],
