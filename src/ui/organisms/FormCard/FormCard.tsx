@@ -16,9 +16,9 @@ const FormCard: React.FC<FormCardProps> = ({children}) => {
             className="flex flex-col items-center tablet:px-16 tablet:pb-11">
                 <Logo
                 fill="#C26F2D"
-                styles="w-12 h-12 tablet:w-20 tablet:h-20"/>
+                styles="w-10 h-10 tablet:w-14 tablet:h-14 desktop:w-16 desktop:h-16 monitor:h-40 monitor:h-40"/>
                 <p
-                className="text-md font-bold tablet:text-xl desktop:text-xl text-primary">
+                className="text-sm font-bold tablet:text-md desktop:text-xl text-primary">
                     Canadian Gel Nails
                 </p>
                 {children}

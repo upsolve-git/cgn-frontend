@@ -24,7 +24,7 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('../public/image/authbg.jpeg')"
+        'authBg': "url('/image/authbg.jpeg')"
       }
     },
     colors:{
@@ -48,9 +48,7 @@ export default {
       sms: ['14px', { lineHeight: '20px', letterSpacing: '0.15em' }],
     },
     fontFamily: {
-      'abhaya': ['Abhaya Libre'],
-      'vietnam': ['Be Vietnam Pro'],
-      'manrope': ['Manrope']
+      'poppins': ['poppins', 'sans-serif']
     },
   },
   plugins: [

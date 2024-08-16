@@ -1,3 +1,4 @@
+// package imports
 import React from "react";
 
 // component imports
@@ -8,12 +9,16 @@ import AuthSubmitButton from "../../ui/atoms/buttons/AuthSubmitButton/AuthSubmit
 import AccountType from "../../ui/molecules/AccountType/AccountType";
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";
 
-// util imports
-import { loginHandler } from "../../utils/handlers/loginHandler";
+// hooks imports
+import { useSignInPage } from "../../utils/hooks/useSignInPage";
+import { AccTypeContext } from "../../utils/hooks/useAccTypeContext";
 
 interface SignInPageProps{}
 
 const SignInPage: React.FC<SignInPageProps> = ()=>{
+
+    let {email, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler} = useSignInPage()
+
     return (
         <div
         className="h-screen flex flex-col items-center justify-center">
@@ -21,24 +26,36 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                 <div id="form-title-wrapper"
                 className="flex flex-col items-center justify-center my-4">
                     <h1
-                    className="text-xl">Log In</h1>
+                    className="text-lg font-medium tablet:text-xl desktop:text-2xl">
+                        Log In
+                    </h1>
                     <p
-                    className="text-xs">Dont have an account? 
-                    <a 
-                    className="underline ml-1">Sign Up</a></p>
+                    className="text-xxs tablet:text-xs desktop:text-sm">
+                        Don't have an account?
+                        <a 
+                        className="underline ml-1">Sign Up</a>
+                    </p>
                 </div>
-                <AccountType />
+                <AccTypeContext.Provider value={{accType, handleAccTypeChange}}>
+                    <AccountType />
+                </AccTypeContext.Provider>
                 <div id="input-container"
                 className="my-3 w-full">
-                    <EmailInput />
+                    <EmailInput 
+                    value={email}
+                    onChange={handleEmailChange}/>
                     <PasswordInput 
-                    label="Password"/>
+                    label="Password"
+                    value={password}
+                    onChange={handlePasswordChange}/>
                 </div>
                 <AuthSubmitButton 
-                content="Login Now!"
+                label="Login Now!"
                 callbackFunc={loginHandler}/>
                 <p
-                className="text-darkgray block text-xs">or continue with </p>
+                className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
+                    or continue with 
+                </p>
                 <GoogleAuthButton />
             </FormCard>
         </div>

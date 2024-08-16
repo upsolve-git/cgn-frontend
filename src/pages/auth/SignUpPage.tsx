@@ -1,5 +1,7 @@
+// package imports
 import React from "react";
 
+// components imports
 import FormCard from "../../ui/organisms/FormCard/FormCard";
 import AccountType from "../../ui/molecules/AccountType/AccountType";
 import EmailInput from "../../ui/atoms/formElements/EmailInput/EmailInput";
@@ -8,11 +10,16 @@ import AuthSubmitButton from "../../ui/atoms/buttons/AuthSubmitButton/AuthSubmit
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";
 import PhoneInput from "../../ui/atoms/formElements/phoneInput/phoneInput";
 
-import { signinHandler } from "../../utils/handlers/signinHandler";
+//  hooks imports
+import { useSignUpPage } from "../../utils/hooks/useSignUpPage";
+import { AccTypeContext } from "../../utils/hooks/useAccTypeContext";
 
 interface SignUpPageProps{}
 
 const SignUpPage: React.FC<SignUpPageProps> = ()=>{
+
+    let {email, handleEmailChange, phone, handlePhoneChange, password, handlePasswordChange, confPassword, handleConfPassword, accType, handleAccTypeChange, signupHandler} = useSignUpPage()
+
     return (
         <div
         className="h-screen flex flex-col items-center justify-center">
@@ -20,25 +27,39 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                 <div id="form-title-wrapper"
                 className="flex flex-col items-center justify-center my-4">
                     <h1
-                    className="text-xl">Create an account</h1>
+                    className="text-md font-medium tablet:text-xl desktop:text-2xl">
+                        Create an account
+                    </h1>
                     <p
-                    className="text-xs">Already have an account? 
-                    <a 
-                    className="underline ml-1">Log In</a></p>
+                    className="text-xxs tablet:text-xs desktop:text-sm">
+                        Already have an account?
+                        <a 
+                        className="underline ml-1">Sign In</a>
+                    </p>
                 </div>
-                <AccountType />
+                <AccTypeContext.Provider value={{accType, handleAccTypeChange}}>
+                    <AccountType />
+                </AccTypeContext.Provider>
                 <div id="input-container"
                 className="my-3 w-full">
-                    <EmailInput />
-                    <PhoneInput />
+                    <EmailInput 
+                    value={email}
+                    onChange={handleEmailChange}/>
+                    <PhoneInput 
+                    value={phone}
+                    onChange={handlePhoneChange}/>
                     <PasswordInput 
-                    label="Password"/>
+                    label="Password"
+                    value={password}
+                    onChange={handlePasswordChange}/>
                     <PasswordInput
-                    label="Confirm Password" />
+                    label="Confirm Password" 
+                    value={confPassword}
+                    onChange={handleConfPassword}/>
                 </div>
                 <AuthSubmitButton 
-                content="Create an account"
-                callbackFunc={signinHandler}/>
+                label="Create an account"
+                callbackFunc={signupHandler}/>
                 <p
                 className="text-darkgray block text-xs">or continue with </p>
                 <GoogleAuthButton />

@@ -5,7 +5,8 @@ interface DefaultLayoutProps {}
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = () =>{
     return (
-        <div>
+        <div
+        className="font-poppins">
             <Outlet />
         </div>
     )

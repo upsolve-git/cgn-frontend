@@ -5,10 +5,10 @@ interface GoogleAuthButtonProps{}
 const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ()=>{
     return(
         <button
-        className="w-full h-fit py-2 bg-white text-sm border rounded-3xl mt-3 mb-6 flex justify-center">
+        className="w-full h-fit py-2 bg-white border rounded-3xl flex justify-center text-xs mt-1 mb-1 tablet:text-sm">
             <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="" 
-            width={25} height={25}
-            className="mr-3"/>
+            
+            className="mr-1 w-4 h-4 tablet:w-6 tablet:h-6"/>
             Continue with Google
         </button>
     )
