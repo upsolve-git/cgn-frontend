@@ -17,7 +17,17 @@ interface SignInPageProps{}
 
 const SignInPage: React.FC<SignInPageProps> = ()=>{
 
-    let {email, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler} = useSignInPage()
+    let {
+        email,
+        emailErr, 
+        handleEmailChange, 
+        password, 
+        passwordErr,
+        handlePasswordChange, 
+        accType, 
+        handleAccTypeChange, 
+        loginHandler
+    } = useSignInPage()
 
     return (
         <div
@@ -43,10 +53,12 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                 className="my-3 w-full">
                     <EmailInput 
                     value={email}
+                    error={emailErr}
                     onChange={handleEmailChange}/>
                     <PasswordInput 
                     label="Password"
                     value={password}
+                    errors={passwordErr}
                     onChange={handlePasswordChange}/>
                 </div>
                 <AuthSubmitButton 

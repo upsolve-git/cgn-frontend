@@ -18,7 +18,21 @@ interface SignUpPageProps{}
 
 const SignUpPage: React.FC<SignUpPageProps> = ()=>{
 
-    let {email, handleEmailChange, phone, handlePhoneChange, password, handlePasswordChange, confPassword, handleConfPassword, accType, handleAccTypeChange, signupHandler} = useSignUpPage()
+    let {email,
+        emailErr, 
+        handleEmailChange, 
+        phone, 
+        handlePhoneChange, 
+        password, 
+        passwordErr,
+        handlePasswordChange, 
+        confPassword, 
+        confPasswordErr,
+        handleConfPassword, 
+        accType, 
+        handleAccTypeChange, 
+        signupHandler
+    } = useSignUpPage()
 
     return (
         <div
@@ -44,17 +58,20 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                 className="my-3 w-full">
                     <EmailInput 
                     value={email}
+                    error={emailErr}
                     onChange={handleEmailChange}/>
                     <PhoneInput 
                     value={phone}
                     onChange={handlePhoneChange}/>
-                    <PasswordInput 
+                    <PasswordInput
                     label="Password"
                     value={password}
+                    errors={passwordErr}
                     onChange={handlePasswordChange}/>
                     <PasswordInput
                     label="Confirm Password" 
                     value={confPassword}
+                    errors={confPasswordErr}
                     onChange={handleConfPassword}/>
                 </div>
                 <AuthSubmitButton 

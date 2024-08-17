@@ -32,6 +32,7 @@ export default {
       secondary:'#5D3891',
       darkgray: '#848383',
       white: '#FFFFFF',
+      red: '#ff2c2c'
     },
     fontSize: {
       xxs: ['10px', { lineHeight: '20px', letterSpacing: '-0.005em' }],
