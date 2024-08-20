@@ -11,7 +11,8 @@ const FormCard: React.FC<FormCardProps> = ({children}) => {
     return (
         <div
         className="w-3/5 bg-white rounded-2xl px-3 py-2 flex flex-col tablet:w-3/5 desktop:w-2/5">
-            <CrossButton />
+            <CrossButton 
+            />
             <div id="content-wrapper"
             className="flex flex-col items-center tablet:px-16 tablet:pb-11">
                 <Logo

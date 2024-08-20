@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { loginReq } from "../../services/login";
 
 import { isEmailValid } from "../../validations/emailValidation";
+import { HOME_PAGE } from "../../constants/routes";
 
 export const useSignInPage = ()=>{
     let [email, setEmail] = useState<string>('')
@@ -10,6 +12,9 @@ export const useSignInPage = ()=>{
     let [password, setPassword] = useState<string>('')
     let [passwordErr, setPasswordErr] = useState<string[]>([])
     let [accType, setAccType] = useState<string>('')
+    let [loginErr, setLoginErr] = useState<string>('')
+
+    const navigate = useNavigate();
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setEmail(e.target.value)
@@ -28,17 +33,29 @@ export const useSignInPage = ()=>{
         setAccType(e.target.value)
     }
 
-    const loginHandler = ()=>{
+    const checkValues = () => {
+        return email == "" || password == "" || accType == ""
+    }
+
+    const loginHandler = async()=>{
         console.log(accType);
         
         // if(!emailErr && !(passwordErr.length>0)){
             console.log('log in');
             
-            loginReq(email, password)
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
+            await loginReq(email, password)
+            .then(res=>{
+                console.log("inside signup success", res)
+                setLoginErr('')
+                navigate(HOME_PAGE)
+            })
+            .catch(err=>{
+                console.log(err)
+                setLoginErr("Error occured, Please try again")
+            })
+
         // }
     }
 
-    return {email, emailErr, handleEmailChange, password, passwordErr, handlePasswordChange, accType, handleAccTypeChange, loginHandler}
+    return {email, emailErr, handleEmailChange, password, passwordErr, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
 }

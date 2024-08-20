@@ -12,6 +12,7 @@ import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuth
 // hooks imports
 import { useSignInPage } from "../../utils/hooks/useSignInPage";
 import { AccTypeContext } from "../../utils/hooks/useAccTypeContext";
+import { log } from "console";
 
 interface SignInPageProps{}
 
@@ -26,7 +27,9 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
         handlePasswordChange, 
         accType, 
         handleAccTypeChange, 
-        loginHandler
+        loginHandler,
+        loginErr,
+        checkValues
     } = useSignInPage()
 
     return (
@@ -62,6 +65,8 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                     onChange={handlePasswordChange}/>
                 </div>
                 <AuthSubmitButton 
+                disabled={checkValues()}
+                error={loginErr}
                 label="Login Now!"
                 callbackFunc={loginHandler}/>
                 <p

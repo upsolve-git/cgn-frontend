@@ -24,7 +24,7 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('/image/authbg.jpeg')"
+        'authBg': "url('../public/image/auth-bg.jpeg')"
       }
     },
     colors:{

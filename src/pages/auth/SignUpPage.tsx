@@ -9,6 +9,7 @@ import PasswordInput from "../../ui/atoms/formElements/PasswordInput/PasswordInp
 import AuthSubmitButton from "../../ui/atoms/buttons/AuthSubmitButton/AuthSubmitButton";
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";
 import PhoneInput from "../../ui/atoms/formElements/phoneInput/phoneInput";
+import TextInput from "../../ui/atoms/formElements/textInput/textInput";
 
 //  hooks imports
 import { useSignUpPage } from "../../utils/hooks/useSignUpPage";
@@ -31,7 +32,15 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
         handleConfPassword, 
         accType, 
         handleAccTypeChange, 
-        signupHandler
+        signupHandler,
+        firstName,
+        handleFirstNameChange,
+        lastName,
+        handleLastNameChange,
+        countryCode,
+        handleCountryCodeChange,
+        signupErr,
+        checkValues
     } = useSignUpPage()
 
     return (
@@ -60,9 +69,19 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                     value={email}
                     error={emailErr}
                     onChange={handleEmailChange}/>
+                    <TextInput
+                    label="First Name"
+                    value={firstName}
+                    onChange={handleFirstNameChange}/>
+                    <TextInput
+                    label="Last Name"
+                    value={lastName}
+                    onChange={handleLastNameChange}/>
                     <PhoneInput 
                     value={phone}
-                    onChange={handlePhoneChange}/>
+                    onChange={handlePhoneChange}
+                    countryCode={countryCode}
+                    onCountryCodeChange={handleCountryCodeChange}/>
                     <PasswordInput
                     label="Password"
                     value={password}
@@ -75,6 +94,8 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                     onChange={handleConfPassword}/>
                 </div>
                 <AuthSubmitButton 
+                disabled={checkValues()}
+                error={signupErr}
                 label="Create an account"
                 callbackFunc={signupHandler}/>
                 <p

@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import { isEmailValid } from "../../validations/emailValidation";
 import { isPasswordValid } from "../../validations/passwordValidation";
+import { signupReq } from "../../services/signup";
+import { useNavigate } from 'react-router-dom';
+import { LOGIN_PAGE } from "../../constants/routes";
 
 export const useSignUpPage = ()=>{
     let [email, setEmail] = useState<string>('')
@@ -11,7 +14,13 @@ export const useSignUpPage = ()=>{
     let [passwordErr, setPasswordErr] = useState<string[]>([])
     let [confPassword, setConfPassword] = useState<string>('')
     let [confPasswordErr, setConfPasswordErr] = useState<string[]>([])
-    let [accType, setAccType] = useState<string>('')
+    let [accType, setAccType] = useState<string>('Personal')
+    let [firstName, setFirstName] = useState<string>('')
+    let [lastName, setLastName] = useState<string>('')
+    let [countryCode, setCountryCode] = useState<string>('+1')
+    let [signupErr, setSignupErr] = useState<string>('')
+
+    const navigate = useNavigate();
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setEmail(e.target.value)
@@ -48,11 +57,44 @@ export const useSignUpPage = ()=>{
         setAccType(e.target.value)
     }
 
-    const signupHandler = ()=>{
-        console.log(phone?phone:null);
-        console.log(accType);
-        console.log('signed up');
+    const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setFirstName(e.target.value)
     }
 
-    return {email, emailErr, handleEmailChange, phone, handlePhoneChange, password, passwordErr, handlePasswordChange, confPassword, confPasswordErr, handleConfPassword, accType, handleAccTypeChange, signupHandler}
+    const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setLastName(e.target.value)
+    } 
+
+    const handleCountryCodeChange = (e: React.ChangeEvent<HTMLSelectElement>)=> {
+        setCountryCode(e.target.value)
+    }
+
+    const checkValues = () => {
+        return email == "" || password == "" || accType == "" || firstName == "" || lastName == "" || phone.length != 10 || countryCode == ""
+    }
+
+    const signupHandler = async ()=>{ 
+        console.log(email)
+        console.log(password)
+        console.log(accType)
+        console.log(firstName)
+        console.log(lastName)
+        console.log(phone)
+        console.log(countryCode)
+        await signupReq(email, password, accType, firstName, lastName, phone, countryCode)
+            .then(res=>{
+                console.log("inside signup success", res)
+                setSignupErr('')
+                navigate(LOGIN_PAGE)
+            })
+            .catch(err=>{
+                console.log(err)
+                setSignupErr("Error occured, Please try again")
+            }) 
+    }
+
+    return {email, emailErr, handleEmailChange, phone, handlePhoneChange, password, passwordErr, handlePasswordChange, confPassword, confPasswordErr, 
+        handleConfPassword, accType, handleAccTypeChange, signupHandler, firstName, 
+        handleFirstNameChange, lastName, handleLastNameChange, countryCode, handleCountryCodeChange,
+        signupErr, checkValues}
 }

@@ -710,7 +710,7 @@ video {
 }
 
 .bg-authBg{
-  background-image: url('/image/authbg.jpeg');
+  background-image: url('../public/image/auth-bg.jpeg');
 }
 
 .bg-cover{
