@@ -24,17 +24,26 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('/image/authbg.jpeg')"
+        'authBg': "url('/image/authbg.jpeg')",
+        'sectionBg': "url('/image/sectionbg.jpeg')",
+        'mainpolishBg':"url('/image/mainpolishbg.png')",
+        'contactusBg':"url('/image/contactusbg.png')",
+        'mobilemainBg':"url('/image/mobilemainsectionbg.png')"
       }
     },
     colors:{
       primary:'#C26F2D',
-      secondary:'#5D3891',
+      secondary:'#FBF6EF',
+      secondarydark: '#D8B192',
+      secondarylight: '#EAD7C3',
       darkgray: '#848383',
       white: '#FFFFFF',
       red: '#ff2c2c'
     },
     fontSize: {
+      '5xs': ['4px', { lineHeight: '8px', letterSpacing: '-0.005em' }],
+      '4xs': ['6px', { lineHeight: '8px', letterSpacing: '-0.005em' }],
+      '3xs': ['8px', { lineHeight: '12px', letterSpacing: '-0.005em' }],
       xxs: ['10px', { lineHeight: '20px', letterSpacing: '-0.005em' }],
       xs: ['12px', { lineHeight: '20px', letterSpacing: '-0.005em' }],
       sm: ['14px', { lineHeight: '24px', letterSpacing: '-0.005em' }],
