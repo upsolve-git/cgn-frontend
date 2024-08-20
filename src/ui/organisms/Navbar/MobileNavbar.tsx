@@ -27,13 +27,24 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
                     </svg>
                 </div>
 
-                {/* Conditional rendering of the menu */}
                 {menuOpen && (
                     <ul className="absolute right-0 top-full mt-2 bg-white shadow-lg p-2 text-xs z-50">
-                        <li className="py-1 px-2 hover:bg-gray-100">Home</li>
-                        <li className="py-1 px-2 hover:bg-gray-100">About</li>
-                        <li className="py-1 px-2 hover:bg-gray-100">Products</li>
-                        <li className="py-1 px-2 hover:bg-gray-100">Contact</li>
+                        <li className="py-1 px-2 ">Home</li>
+                        <li className="py-1 px-2 ">About</li>
+                        <li className="py-1 px-2 ">Products</li>
+                        <li className="py-1 px-2 ">Contact</li>
+                        <li className="py-1 px-2 ">
+                            <button
+                            className="bg-primary text-white rounded-md px-1 text-xxs">
+                                Sign Up
+                            </button>
+                        </li>
+                        <li className="py-1 px-2 ">
+                            <button
+                            className="bg-primary text-white rounded-md px-1 text-xxs">
+                                Sign Up
+                            </button>
+                        </li>
                     </ul>
                 )}
             </div>
