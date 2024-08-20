@@ -44,7 +44,7 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                     <p
                     className="text-xxs tablet:text-xs desktop:text-sm">
                         Don't have an account?
-                        <a 
+                        <a href="/auth/sign-up"
                         className="underline ml-1">Sign Up</a>
                     </p>
                 </div>
