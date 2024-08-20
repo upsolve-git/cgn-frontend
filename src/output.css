@@ -764,9 +764,9 @@ video {
   height: 100vh;
 }
 
-.h-\[\]{
+/* .h-\[\]{
   height: ;
-}
+} */
 
 .h-\[30vh\]{
   height: 30vh;
@@ -886,9 +886,9 @@ video {
   width: 100vw;
 }
 
-.w-\[\]{
+/* .w-\[\]{
   width: ;
-}
+} */
 
 .w-\[80vw\]{
   width: 80vw;
@@ -1132,15 +1132,15 @@ video {
 }
 
 .bg-contactusBg{
-  background-image: url('/image/contactusbg.png');
+  background-image: url('../public/image/contactusbg.png');
 }
 
 .bg-mainpolishBg{
-  background-image: url('/image/mainpolishbg.png');
+  background-image: url('../public/image/mainpolishbg.png');
 }
 
 .bg-mobilemainBg{
-  background-image: url('/image/mobilemainsectionbg.png');
+  background-image: url('../public/image/mobilemainsectionbg.png');
 }
 
 .bg-contain{
@@ -1261,10 +1261,10 @@ video {
   padding-bottom: 5%;
 }
 
-.py-\[\]{
+/* .py-\[\]{
   padding-top: ;
   padding-bottom: ;
-}
+} */
 
 .pb-2{
   padding-bottom: 0.5rem;
@@ -1550,7 +1550,7 @@ html {
   }
 
   .tablet\:bg-sectionBg{
-    background-image: url('/image/sectionbg.jpeg');
+    background-image: url('../public/image/sectionbg.jpeg');
   }
 
   .tablet\:px-16{

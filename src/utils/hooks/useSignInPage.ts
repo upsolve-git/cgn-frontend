@@ -55,5 +55,5 @@ export const useSignInPage = ()=>{
         // }
     }
 
-    return {email, emailErr, handleEmailChange, password, passwordErr, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
+    return {email, emailErr, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
 }
