@@ -6,7 +6,7 @@ import FormCard from "../../ui/organisms/FormCard/FormCard";
 import AccountType from "../../ui/molecules/AccountType/AccountType";
 import EmailInput from "../../ui/atoms/formElements/EmailInput/EmailInput";
 import PasswordInput from "../../ui/atoms/formElements/PasswordInput/PasswordInput";
-import AuthSubmitButton from "../../ui/atoms/buttons/AuthSubmitButton/AuthSubmitButton";
+import ActionButton from "../../ui/atoms/buttons/ActionButton/ActionButton";
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";
 import PhoneInput from "../../ui/atoms/formElements/phoneInput/phoneInput";
 import TextInput from "../../ui/atoms/formElements/textInput/textInput";
@@ -96,6 +96,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                 <AuthSubmitButton 
                 disabled={checkValues()}
                 error={signupErr}
+                <ActionButton 
                 label="Create an account"
                 callbackFunc={signupHandler}/>
                 <p

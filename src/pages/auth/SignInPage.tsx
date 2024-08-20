@@ -5,7 +5,7 @@ import React from "react";
 import FormCard from "../../ui/organisms/FormCard/FormCard";
 import EmailInput from "../../ui/atoms/formElements/EmailInput/EmailInput";
 import PasswordInput from "../../ui/atoms/formElements/PasswordInput/PasswordInput";
-import AuthSubmitButton from "../../ui/atoms/buttons/AuthSubmitButton/AuthSubmitButton";
+import ActionButton from "../../ui/atoms/buttons/ActionButton/ActionButton";
 import AccountType from "../../ui/molecules/AccountType/AccountType";
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";
 
@@ -65,8 +65,6 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                     onChange={handlePasswordChange}/>
                 </div>
                 <AuthSubmitButton 
-                disabled={checkValues()}
-                error={loginErr}
                 label="Login Now!"
                 callbackFunc={loginHandler}/>
                 <p

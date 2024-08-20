@@ -1,0 +1,29 @@
+import React from "react";
+import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
+import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+
+interface ProductPreviewListProps{
+    isBestSeller: boolean
+}
+
+const ProductPreviewList: React.FC<ProductPreviewListProps>= ({
+    isBestSeller
+})=>{
+    let {isTablet} = useMediaWidth()
+    let maxGridItems = isTablet?3:4
+    let items = []
+    for(let i=0;i<maxGridItems;i++){
+        items.push(<ProductPreviewCard isBestSeller={isBestSeller} key={i+1}/>)
+    }
+    
+    return(
+        <div
+        className="grow w-full px-4 py-8 grid place-items-stretch gap-12 grid-cols-2 grid-rows-2 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4">
+            {
+                items.map(e=>e)
+            }
+        </div>
+    )
+}
+
+export default ProductPreviewList

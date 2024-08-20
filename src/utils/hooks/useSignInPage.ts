@@ -10,7 +10,6 @@ export const useSignInPage = ()=>{
     let [email, setEmail] = useState<string>('')
     let [emailErr, setEmailErr] = useState<string>('')
     let [password, setPassword] = useState<string>('')
-    let [passwordErr, setPasswordErr] = useState<string[]>([])
     let [accType, setAccType] = useState<string>('')
     let [loginErr, setLoginErr] = useState<string>('')
 
@@ -40,7 +39,6 @@ export const useSignInPage = ()=>{
     const loginHandler = async()=>{
         console.log(accType);
         
-        // if(!emailErr && !(passwordErr.length>0)){
             console.log('log in');
             
             await loginReq(email, password)

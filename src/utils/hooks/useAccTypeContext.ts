@@ -7,7 +7,7 @@ interface AccTypeProps{
 
 export const AccTypeContext = createContext<AccTypeProps|undefined>(undefined)
 
-export const useAccTypeContext = ()=>{
+export const useAccTypeContext: ()=>AccTypeProps = ()=>{
     let accTypeProps = useContext(AccTypeContext)
 
     if(accTypeProps === undefined){
