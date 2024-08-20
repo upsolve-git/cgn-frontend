@@ -56,7 +56,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                     <p
                     className="text-xxs tablet:text-xs desktop:text-sm">
                         Already have an account?
-                        <a 
+                        <a href="/auth/sign-in"
                         className="underline ml-1">Sign In</a>
                     </p>
                 </div>
