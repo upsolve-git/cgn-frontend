@@ -10,7 +10,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
 })=>{
     return (
         <div
-        className="h-full w-full bg-white rounded-b-lg rounded-t-full ">
+        className="h-full w-[80%] bg-white rounded-b-lg rounded-t-full ">
             <div
             className="w-[100px] h-[150px] m-auto tablet:w-[110px] tablet:h-[160px] tablet:max-w-[20vw] desktop:w-[160px] desktop:h-[220px] desktop:mb-6">
                 <img src="/image/stockpolish.png" alt="" />

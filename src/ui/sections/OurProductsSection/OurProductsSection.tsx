@@ -7,7 +7,7 @@ const OurProductsSection: React.FC<OurProductsSectionProps> = ()=>{
         <div
         className="h-fit w-screen bg-secondary bg-contain flex flex-col items-center pt-4 tablet:bg-sectionBg tablet:pt-8 desktop:py-11 monitor:pt-20">
             <h1
-            className="font-semibold text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
+            className="font-semibold p-20 text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
                 OUR PRODUCTS
             </h1>
             <div

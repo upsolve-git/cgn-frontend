@@ -18,10 +18,10 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
 
     return (
         <div
-        className="h-fit w-screen bg-secondary bg-contain flex flex-col items-center pt-4 tablet:bg-sectionBg tablet:pt-8 desktop:pt-11 monitor:pt-20">
+        className="h-fit w-screen p-20 bg-secondary bg-contain flex flex-col items-center tablet:bg-sectionBg">
             <h1
             className="font-semibold text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
-                OUR BEST SELLING PRODUCT
+                OUR BEST SELLING PRODUCTS
             </h1>
             <ProdListSwitcher 
             isBestSeller={isBestSeller}
@@ -36,7 +36,7 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
                 rotation={'0'}/>}
             </div>
             <div
-            className="w-[40%] mb-3 tablet:w-[20%]">
+            className="w-[40%] mt-10 tablet:w-[20%]">
                 <ActionButton
                 label="View more!"
                 callbackFunc={bestSellerRedirect}/>

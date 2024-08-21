@@ -27,9 +27,9 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
 
     return(
         <div
-        className="bg-secondarylight flex flex-col items-center w-full">
+        className="bg-secondarylight p-20 flex flex-col items-center w-full">
             <h1
-            className="text-black font-semibold text-md mt-3 tablet:text-xl desktop:text-2xl desktop:mt-6 monitor:text-5xl">
+            className="text-black p-14 font-semibold text-md mt-3 tablet:text-xl desktop:text-2xl desktop:mt-6 monitor:text-5xl">
                 TOP SELLING SHADES
             </h1>
             <div
@@ -39,7 +39,7 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
                 }
             </div>
             <div
-            className="mb-3 mt-3 tablet:w-[40%]">
+            className="my-20 tablet:w-[40%]">
                 <ActionButton
                 label="MIX AND MATCH YOUR SHADES NOW!"
                 callbackFunc={topSellingShadesRedirect}/>
