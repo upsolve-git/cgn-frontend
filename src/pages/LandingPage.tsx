@@ -11,6 +11,7 @@ import Navbar from "../ui/organisms/Navbar/Navbar";
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import MobileNavbar from "../ui/organisms/Navbar/MobileNavbar";
 import MobileMainSection from "../ui/sections/MainSection/MobileMainSection";
+import AboutUs from "../ui/sections/AboutUsSection/AboutUsSection";
 
 interface LandingPageProps{}
 
@@ -22,10 +23,14 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
         <div>
             {isMobile?<MobileNavbar/>:<Navbar />}
             {isMobile?<MobileMainSection/>:<MainSection />}
-            <BestSellerSection />
-            <TopSellingShadesSection />
-            <OurProductsSection />
-            <ContactUsSection />
+            <div
+            className="bg-secondary tablet:bg-sectionBg">
+                <BestSellerSection />
+                <TopSellingShadesSection />
+                <OurProductsSection />
+                <AboutUs />
+                <ContactUsSection />
+            </div>
             <FooterSection />
         </div>
     )
