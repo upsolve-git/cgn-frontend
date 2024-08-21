@@ -6,7 +6,7 @@ interface AuthLayoutProps{}
 const AuthLayout: React.FC<AuthLayoutProps> = () =>{
     return (
         <div
-        className="bg-authBg bg-cover h-screen bg-right desktop:bg-cover">
+        className="bg-authBg bg-cover min-h-fit bg-right tablet:py-5 desktop:py-9">
             <Outlet />
         </div>
     )
