@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Logo from "../../atoms/Logo/Logo";
+
+import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
 
 interface MobileNavbarProps {}
 
 const MobileNavbar: React.FC<MobileNavbarProps> = () => {
+    const navigate = useNavigate()
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -35,14 +40,16 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
                         <li className="py-1 px-2 ">Contact</li>
                         <li className="py-1 px-2 ">
                             <button
+                            onClick={() => navigate(SIGNUP_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
                                 Sign Up
                             </button>
                         </li>
                         <li className="py-1 px-2 ">
                             <button
+                            onClick={() => navigate(LOGIN_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
-                                Sign Up
+                                Sign In
                             </button>
                         </li>
                     </ul>

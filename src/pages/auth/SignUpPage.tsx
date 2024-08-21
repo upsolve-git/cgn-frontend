@@ -45,7 +45,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
 
     return (
         <div
-        className="h-screen flex flex-col items-center justify-center">
+        className="h-fit flex flex-col items-center justify-center">
             <FormCard>
                 <div id="form-title-wrapper"
                 className="flex flex-col items-center justify-center my-4">
