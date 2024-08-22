@@ -16,25 +16,25 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         <div
         className="h-full w-fit bg-white rounded-b-lg rounded-t-full font-poppins">
             <div
-            className="w-[100px] h-[150px] m-auto mt-10 tablet:w-[110px] tablet:h-[160px] tablet:max-w-[20vw] desktop:w-[160px] desktop:h-[270px] desktop:mb-6">
+            className="w-[100px] h-[150px] m-auto mt-10 tablet:w-[110px] tablet:h-[160px] tablet:max-w-[20vw] desktop:w-[120px] desktop:h-[200px] desktop:mb-6">
                 <img src="/image/stockpolish.png" alt="" />
             </div>
             <div
-            className="overflow mobile:h-[80px] mobile:w-[150px] desktop:h-[190px] desktop:w-[300px] bg-secondarylight  px-2 pt-1 pb-2 rounded-b-2xl text-3xs tablet:pt-3 desktop:pt-6 flex flex-col">
+            className="mobile:h-[80px] mobile:w-[150px] desktop:h-[160px] desktop:w-[230px] bg-secondarylight  px-2 pt-1 pb-2 rounded-b-2xl text-3xs tablet:pt-3 desktop:pt-6 flex flex-col">
                 <div
                 className="h-[80%] flex  text-3xs tablet:text-xs desktop:text-lg mobile:">
                     <div>
                     <p
-                    className="block font-extrabold">
+                    className="block font-extrabold desktop:text-md">
                         {name}
                     </p>
                     <p
-                    className="line-clamp-1 desktop:text-md">
+                    className="line-clamp-1 desktop:text-sm">
                         {description}
                     </p>
                     </div>
                     <button
-                        className="h-auto w-auto mobile:h-[22px] mobile:w-[34px] desktop:h-[40%] bg-primary text-white px-2 py-1 rounded-2xl text-4xs mb-3 tablet:text-3xs desktop:text-sm">
+                        className="h-auto w-auto mobile:h-[22px] mobile:w-[34px] desktop:h-[40%] bg-primary text-white px-2 py-1 rounded-2xl text-4xs mb-3 tablet:text-3xs desktop:text-s">
                         {isBestSeller ? 'Best Seller' : 'New Product'}
                     </button>
 
