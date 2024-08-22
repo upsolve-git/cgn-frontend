@@ -58,7 +58,8 @@ export default {
       sms: ['14px', { lineHeight: '20px', letterSpacing: '0.15em' }],
     },
     fontFamily: {
-      'poppins': ['poppins', 'sans-serif']
+      'poppins': ['poppins', 'sans-serif'],
+      'montserrat': ['montserrat', 'sans-serif']
     },
   },
   plugins: [

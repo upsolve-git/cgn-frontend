@@ -13,7 +13,7 @@ const ProdListSwitcher: React.FC<ProdListSwitcherProps> = ({
 })=>{
     return (
         <div
-        className="w-[80%] mt-4 bg-white rounded-md flex justify-center items-center tablet:w-[40%]">
+        className="w-[80%] my-16 bg-white rounded-md flex justify-center items-stretch tablet:w-[40%]">
             <CommonButton 
             label="Best-Sellers"
             primaryColor={isBestSeller?"secondarylight":"white"}

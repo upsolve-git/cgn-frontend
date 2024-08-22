@@ -10,7 +10,7 @@ interface FormCardProps{
 const FormCard: React.FC<FormCardProps> = ({children}) => {
     return (
         <div
-        className="w-3/5 bg-white rounded-2xl px-3 py-2 flex flex-col tablet:w-3/5 desktop:w-2/5">
+        className="w-3/5 bg-white rounded-2xl px-12 py-2 flex flex-col tablet:w-3/5 desktop:w-2/5">
             <CrossButton 
             />
             <div id="content-wrapper"

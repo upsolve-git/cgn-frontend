@@ -5,9 +5,7 @@ interface MobileMainSectionProps {}
 const MobileMainSection: React.FC<MobileMainSectionProps> = () => {
     return (
         <div className="flex flex-col items-center p-4">
-            <h1 className="text-black font-semibold text-md mt-3">
-                HOME
-            </h1>
+
             <div className="w-fit h-fit m-auto relative">
                 <img
                     src="/image/mobilemainsectionbg.png"
@@ -18,7 +16,7 @@ const MobileMainSection: React.FC<MobileMainSectionProps> = () => {
                     className="bg-darkgray absolute top-0 left-0 h-[15vh] w-[80vw] bg-opacity-35 rounded-lg text-xs text-white font-semibold flex justify-between items-center pl-4">
                     <p
                     className="max-w-50%">
-                        Lorem ipsum dolor sit amet consectetur.
+                        Radiate Elegance with Every Shade
                     </p>
                     <button
                     className="bg-white rounded-full w-fit h-fit px-1 py-1 mx-4">

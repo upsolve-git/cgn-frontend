@@ -12,13 +12,15 @@ const ProductPreviewList: React.FC<ProductPreviewListProps>= ({
     let {isTablet} = useMediaWidth()
     let maxGridItems = isTablet?3:4
     let items = []
+    let names = ["Radiant Shine Nail Polish", "Matte Velvet Nail Polish", "Elegance Gel Nail Polish",  "Complete Nail Care System"]
+    let description = ["Vibrant, long-lasting color","Elegant, velvety matte look","High-gloss, salon-quality finish","Comprehensive at-home nail care"]
     for(let i=0;i<maxGridItems;i++){
-        items.push(<ProductPreviewCard isBestSeller={isBestSeller} key={i+1}/>)
+        items.push(<ProductPreviewCard name= {names[i]} description = {description[i]} isBestSeller={isBestSeller} key={i+1}/>)
     }
     
     return(
         <div
-        className="grow w-full px-4 py-8 grid place-items-stretch gap-12 grid-cols-2 grid-rows-2 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4">
+        className="grow w-fit  grid place-items-stretch grid-cols-2 grid-rows-2 gap-[8%] tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4 desktop:px-20">
             {
                 items.map(e=>e)
             }
