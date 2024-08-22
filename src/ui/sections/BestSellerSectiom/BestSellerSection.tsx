@@ -18,9 +18,9 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
 
     return (
         <div
-        className="h-fit w-screen p-20 bg-secondary bg-contain flex flex-col items-center tablet:bg-sectionBg">
+        className="h-fit w-screen px-4 py-8 bg-contain flex flex-col items-center">
             <h1
-            className="font-semibold text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
+            className="font-semibold text-center text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
                 OUR BEST SELLING PRODUCTS
             </h1>
             <ProdListSwitcher 

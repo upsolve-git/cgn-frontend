@@ -27,7 +27,7 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
 
     return(
         <div
-        className="bg-secondarylight p-20 flex flex-col items-center w-full">
+        className="bg-secondarylight flex flex-col items-center justify-evenly w-full">
             <h1
             className="text-black p-14 font-semibold text-md mt-3 tablet:text-xl desktop:text-2xl desktop:mt-6 monitor:text-5xl">
                 TOP SELLING SHADES

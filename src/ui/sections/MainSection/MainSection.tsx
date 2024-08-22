@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { assetPaths } from "../../../constants/assetPaths";
+import SleekArrowButton from "../../atoms/buttons/SleekArrow/SleekArrow";
 
 interface MainSectionProps {}
 
@@ -35,14 +36,19 @@ const MainSection: React.FC<MainSectionProps> = () => {
 
     return (
         <div className="w-screen h-fit flex relative">
-            {/* Arrow navigation */}
             <div className="w-screen h-[60vh] absolute flex items-center justify-between px-4 z-20 desktop:h-[80vh]">
-                <button onClick={decreaseIndex} className="w-8 z-20">
+                {/* <button onClick={decreaseIndex} className="w-8 z-20">
                     <img src="/image/sleekarrow.png" alt="Previous" />
-                </button>
-                <button onClick={increaseIndex} className="w-8 rotate-180 z-20">
+                </button> */}
+                <SleekArrowButton 
+                rotation="180"
+                callBackFunc={decreaseIndex}/>
+                {/* <button onClick={increaseIndex} className="w-8 rotate-180 z-20">
                     <img src="/image/sleekarrow.png" alt="Next" />
-                </button>
+                </button> */}
+                <SleekArrowButton 
+                rotation="0"
+                callBackFunc={increaseIndex}/>
             </div>
 
             {item && (

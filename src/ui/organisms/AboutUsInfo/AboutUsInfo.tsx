@@ -9,21 +9,21 @@ const AboutUsInfo: React.FC<AboutUsInfoProps> = ({
 })=>{
     return(
         <div
-        className="grid grid-cols-2 grid-rows-1 px-3 py-4 gap-2 justify-center items-center">
+        className="flex justify-evenly px-3 py-10 items-start">
             <div
-            className={isRight?'order-last':''}>
+            className={`w-[50%] ${isRight?'order-last':''}`}>
                 <div
-                className="text-xs text-primary tablet:text-md desktop:text-xl">
+                className="max-w-full text-xs text-primary tablet:text-md desktop:text-xl">
                     Lorem ipsum dolor sit amet.
                 </div>
                 <hr className="text-primary w-[30%]"/>
                 <div
-                className="w-70% text-xxs tablet:text-xs desktop:text-md">
+                className="max-w-full text-xxs tablet:text-xs desktop:text-md">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit eius, tempora facilis doloremque inventore minus!
                 </div>
             </div>
             <div
-            className="w-[150px] h-[170px] bg-secondarylight rounded-t-full self-center m-auto tablet:w-[160px] tablet:h-[220px] desktop:h-[350px] desktop:w-[320px]">
+            className="min-w-fit px-3 bg-secondarylight rounded-t-full self-center m-auto tablet:w-[160px] tablet:h-[220px] desktop:h-[350px] desktop:w-[320px]">
                 <img src="/image/stockpolish.png" alt="" 
                 className="w-[100px] h-[160px] tablet:w-[140px] tablet:h-[200px] desktop:h-[300px] desktop:w-[210px] m-auto"/>
             </div>

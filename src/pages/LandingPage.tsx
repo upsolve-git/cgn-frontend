@@ -25,13 +25,16 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
             {isMobile?<MobileMainSection/>:<MainSection />}
             <div
             className="bg-secondary tablet:bg-sectionBg">
-                <BestSellerSection />
-                <TopSellingShadesSection />
+                <div
+                className="grid grid-rows-2">
+                    <BestSellerSection />
+                    <TopSellingShadesSection />
+                </div>
                 <OurProductsSection />
                 <AboutUs />
                 <ContactUsSection />
+                <FooterSection />
             </div>
-            <FooterSection />
         </div>
     )
 }

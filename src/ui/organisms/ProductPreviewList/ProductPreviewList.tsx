@@ -18,7 +18,7 @@ const ProductPreviewList: React.FC<ProductPreviewListProps>= ({
     
     return(
         <div
-        className="grow w-full px-4 py-8 grid place-items-stretch gap-12 grid-cols-2 grid-rows-2 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4">
+        className="grow w-full grid place-items-stretch grid-cols-2 grid-rows-2 gap-[6%] tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4">
             {
                 items.map(e=>e)
             }

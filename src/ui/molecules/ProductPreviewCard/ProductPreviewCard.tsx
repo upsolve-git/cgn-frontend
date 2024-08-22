@@ -10,7 +10,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
 })=>{
     return (
         <div
-        className="h-full w-[80%] bg-white rounded-b-lg rounded-t-full ">
+        className="h-full w-fit bg-white rounded-b-lg rounded-t-full font-poppins">
             <div
             className="w-[100px] h-[150px] m-auto tablet:w-[110px] tablet:h-[160px] tablet:max-w-[20vw] desktop:w-[160px] desktop:h-[220px] desktop:mb-6">
                 <img src="/image/stockpolish.png" alt="" />
@@ -45,7 +45,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                     className="w-[30%] h-full flex flex-col items-center justify-between">
                         <button
                         className="bg-primary text-white px-[2px] py-[3px] rounded-2xl text-4xs mb-3 tablet:text-3xs desktop:text-sm">
-                            {isBestSeller?'Best-Seller':'New-Product'}
+                            {isBestSeller?'Best Seller':'New Product'}
                         </button>
                         <PreviewAddToCartButton />
                     </div>
