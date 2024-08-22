@@ -14,10 +14,12 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
     let maxGridItems: number = isMobile? 1:4
 
     let nailPolishes: React.ReactNode[] = []
+    let names = ["Golden Rose", "Luminous Nude", "Soft Pink", "Classic Beige"]
+    let description = ["Warm, luxurious elegance", "Timeless, subtle sophistication", "Romantic, delicate blush", "Versatile, everyday neutral"]
     for(let i=0;i<maxGridItems; i++){
         let element = assetPaths.getElementAt(i)
         if(element){
-            nailPolishes.push(<NailPolish nailPolishPath={element.value.nailPolishPath} key={i}/>)
+            nailPolishes.push(<NailPolish name={names[i]} description={description[i]} nailPolishPath={element.value.nailPolishPath} key={i}/>)
         }
     }
 

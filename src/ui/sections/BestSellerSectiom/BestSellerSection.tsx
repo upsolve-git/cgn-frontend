@@ -20,14 +20,14 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
         <div
         className="h-fit w-screen px-4 py-8 bg-contain flex flex-col items-center">
             <h1
-            className="font-semibold text-center text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
+            className="pt-20 font-semibold text-center text-secondarydark text-md tablet:text-xl desktop:text-2xl monitor:text-5xl">
                 OUR BEST SELLING PRODUCTS
             </h1>
             <ProdListSwitcher 
             isBestSeller={isBestSeller}
             setIsBestSeller={setIsBestSeller}/>
             <div
-            className="flex justify-evenly items-center">
+            className="w-[90%] flex justify-evenly items-center">
                 {!isMobile&&<ArrowButton 
                 rotation={'180'}/>}
                 <ProductPreviewList 

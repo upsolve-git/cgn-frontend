@@ -9,7 +9,8 @@ const MainSection: React.FC<MainSectionProps> = () => {
     const [itemIndex, setItemIndex] = useState<number>(0);
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [item, setItem] = useState<{ nailPolishPath: string; nailsImagePath: string; thumbNailPath: string } | null>(null);
-
+    let names = ["Golden Rose", "Luminous Nude", "Soft Pink", "Classic Beige"]
+    let description = ["Warm, luxurious elegance", "Timeless, subtle sophistication", "Romantic, delicate blush", "Versatile, everyday neutral"]
     const increaseIndex = () => {
         setItemIndex((prevIndex) => (prevIndex + 1) % assetPaths.size());
     };
@@ -69,14 +70,14 @@ const MainSection: React.FC<MainSectionProps> = () => {
                                         alt="Nail Polish"
                                         className="w-[100px] h-[170px] desktop:w-[150px] desktop:h-[250px] -translate-x-[15%]"
                                     />
-                                    <p className="text-xxs text-darkgray text-center desktop:text-sm">Lorem Ipsum</p>
+                                    <p className="text-xxs text-darkgray text-center desktop:text-sm">{names[currIndex]}</p>
                                 </motion.div>
                             </AnimatePresence>
                         </div>
                         <div className="bg-secondarylight text-center text-xxs grid grid-rows-2 grid-cols-3 py-[5%] w-full desktop:text-sm">
-                            <p className="font-medium col-span-3 desktop:text-lg">Lorem Ipsum</p>
+                            <p className="font-medium col-span-3 desktop:text-lg">{names[currIndex]}</p>
                             <p>{`${currIndex + 1}`.padStart(2, '0')}/04</p>
-                            <p>Nulla gravida</p>
+                            <p>{description[currIndex]}</p>
                         </div>
                     </div>
 
