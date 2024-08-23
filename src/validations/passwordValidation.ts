@@ -13,9 +13,6 @@ export const isPasswordValid: (password: string)=>string[] = (password)=>{
     if (!/[0-9]/.test(password)) {
         errors.push('At least one digit required.');
     }
-    if (!/[!@#$%^&*()-,_.?":{}|<>]/.test(password)) {
-        errors.push('At least one special character required.');
-    }
     
     return  errors;
 }
