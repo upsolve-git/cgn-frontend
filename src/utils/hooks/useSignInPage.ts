@@ -43,7 +43,7 @@ export const useSignInPage = ()=>{
             
             await loginReq(email, password)
             .then(res=>{
-                console.log("inside signup success", res)
+                console.log("inside signin success", res)
                 setLoginErr('')
                 navigate(HOME_PAGE)
             })
