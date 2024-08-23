@@ -27,7 +27,7 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
             isBestSeller={isBestSeller}
             setIsBestSeller={setIsBestSeller}/>
             <div
-            className="w-[90%] flex justify-evenly items-center">
+            className="w-[90%] h-fit flex justify-evenly items-center">
                 {!isMobile&&<ArrowButton 
                 rotation={'180'}/>}
                 <ProductPreviewList 
