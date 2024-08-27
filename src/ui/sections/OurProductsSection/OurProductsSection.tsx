@@ -11,7 +11,7 @@ const OurProductsSection: React.FC<OurProductsSectionProps> = ()=>{
                 OUR PRODUCTS
             </h1>
             <div
-            className="grid grid-cols-4 grid-rows-2 gap-4 mx-2 my-3 tablet:mx-5 desktop:px-24">
+            className=" desktop:mx-[10%] grid grid-cols-4 grid-rows-2 gap-4 my-3 tablet:mx-5">
                 <img src="/image/cats/nailpolishes.png" alt="" 
                 className="col-span-2 row-span-2"/>
                 <img src="/image/cats/limitedproducts.png" alt="" />

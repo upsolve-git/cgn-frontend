@@ -672,6 +672,11 @@ video {
   margin-bottom: 2.25rem;
 }
 
+.mx-6{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
 .mb-1{
   margin-bottom: 0.25rem;
 }
@@ -815,8 +820,32 @@ video {
   height: 100vh;
 }
 
+.h-\[22px\]{
+  height: 22px;
+}
+
+.h-\[80px\]{
+  height: 80px;
+}
+
 .max-h-fit{
   max-height: fit-content;
+}
+
+.max-h-\[fit\]{
+  max-height: fit;
+}
+
+.max-h-\[20\]{
+  max-height: 20;
+}
+
+.max-h-\[20\%\]{
+  max-height: 20%;
+}
+
+.max-h-\[50\%\]{
+  max-height: 50%;
 }
 
 .min-h-screen{
@@ -915,6 +944,26 @@ video {
   width: 100vw;
 }
 
+.w-\[34px\]{
+  width: 34px;
+}
+
+.w-\[\]{
+  width: ;
+}
+
+.w-\[70\%\]{
+  width: 70%;
+}
+
+.w-\[1\`00\%\]{
+  width: 1`00%;
+}
+
+.w-\[100\%\]{
+  width: 100%;
+}
+
 .min-w-fit{
   min-width: fit-content;
 }
@@ -933,6 +982,22 @@ video {
 
 .max-w-full{
   max-width: 100%;
+}
+
+.max-w-\[\]{
+  max-width: ;
+}
+
+.max-w-\[200px\]{
+  max-width: 200px;
+}
+
+.max-w-\[2150px\]{
+  max-width: 2150px;
+}
+
+.max-w-\[150px\]{
+  max-width: 150px;
 }
 
 .grow{
@@ -1049,12 +1114,12 @@ video {
   gap: 1rem;
 }
 
-.gap-\[8\%\]{
-  gap: 8%;
-}
-
 .gap-\[6\%\]{
   gap: 6%;
+}
+
+.gap-6{
+  gap: 1.5rem;
 }
 
 .self-center{
@@ -1299,6 +1364,16 @@ video {
   padding-bottom: 5%;
 }
 
+.px-\[2px\]{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.py-\[3px\]{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -1341,6 +1416,12 @@ video {
   letter-spacing: -0.005em;
 }
 
+.text-4xs{
+  font-size: 6px;
+  line-height: 8px;
+  letter-spacing: -0.005em;
+}
+
 .text-lg{
   font-size: 20px;
   line-height: 28px;
@@ -1371,12 +1452,6 @@ video {
   letter-spacing: -0.005em;
 }
 
-.text-4xs{
-  font-size: 6px;
-  line-height: 8px;
-  letter-spacing: -0.005em;
-}
-
 .font-bold{
   font-weight: 700;
 }
@@ -1391,6 +1466,14 @@ video {
 
 .font-semibold{
   font-weight: 600;
+}
+
+.font-thin{
+  font-weight: 100;
+}
+
+.font-light{
+  font-weight: 300;
 }
 
 .uppercase{
@@ -1592,6 +1675,14 @@ html {
     max-width: 20vw;
   }
 
+  .tablet\:max-w-\[200px\]{
+    max-width: 200px;
+  }
+
+  .tablet\:max-w-\[400px\]{
+    max-width: 400px;
+  }
+
   .tablet\:-translate-y-\[52\%\]{
     --tw-translate-y: -52%;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1656,6 +1747,26 @@ html {
     padding-bottom: 3%;
   }
 
+  .tablet\:py-\[\]{
+    padding-top: ;
+    padding-bottom: ;
+  }
+
+  .tablet\:py-\[0\.2rem\]{
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .tablet\:py-\[0\.1rem\]{
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .tablet\:py-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   .tablet\:pb-11{
     padding-bottom: 2.75rem;
   }
@@ -1713,6 +1824,16 @@ html {
   .desktop\:my-14{
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
+  }
+
+  .desktop\:mx-6{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .desktop\:mx-\[10\%\]{
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
   .desktop\:mb-4{
@@ -1823,9 +1944,9 @@ html {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .desktop\:px-20{
-    padding-left: 5rem;
-    padding-right: 5rem;
+  .desktop\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .desktop\:px-\[10\%\]{
@@ -1843,37 +1964,12 @@ html {
     padding-bottom: 2.25rem;
   }
 
-  .desktop\:px-2{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .desktop\:px-4{
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .desktop\:px-6{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .desktop\:px-10{
+  .desktop\:pl-10{
     padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 
-  .desktop\:px-24{
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-
-  .desktop\:pl-16{
-    padding-left: 4rem;
-  }
-
-  .desktop\:pl-20{
-    padding-left: 5rem;
+  .desktop\:pl-8{
+    padding-left: 2rem;
   }
 
   .desktop\:pt-14{
@@ -1882,14 +1978,6 @@ html {
 
   .desktop\:pt-6{
     padding-top: 1.5rem;
-  }
-
-  .desktop\:pl-10{
-    padding-left: 2.5rem;
-  }
-
-  .desktop\:pl-8{
-    padding-left: 2rem;
   }
 
   .desktop\:text-2xl{
@@ -1920,6 +2008,12 @@ html {
     font-size: 24px;
     line-height: 36px;
     letter-spacing: 0.015em;
+  }
+
+  .desktop\:text-xs{
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.005em;
   }
 }
 
