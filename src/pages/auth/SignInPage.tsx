@@ -3,8 +3,8 @@ import React from "react";
 
 // component imports
 import FormCard from "../../ui/organisms/FormCard/FormCard";
-import EmailInput from "../../ui/atoms/formElements/EmailInput/EmailInput";
-import PasswordInput from "../../ui/atoms/formElements/PasswordInput/PasswordInput";
+import EmailInput from "../../ui/atoms/formElements/auth/EmailInput/EmailInput";
+import PasswordInput from "../../ui/atoms/formElements/auth/PasswordInput/PasswordInput";
 import AuthSubmitButton from "../../ui/atoms/buttons/ActionButton/AuthSubmitButton";
 import AccountType from "../../ui/molecules/AccountType/AccountType";
 import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuthButton";

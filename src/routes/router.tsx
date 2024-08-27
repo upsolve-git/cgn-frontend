@@ -9,6 +9,7 @@ import AuthLayout from "../layouts/auth/AuthLayout";
 import LandingPage from "../pages/LandingPage";
 import SignInPage from "../pages/auth/SignInPage";
 import SignUpPage from "../pages/auth/SignUpPage";
+import AdminPage from "../pages/admin/AdminPage";
 
 const router = createBrowserRouter([
 {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
                 element: <SignUpPage />
             }
         ]
+    },
+    {
+        path: "admin-home",
+        element: <AdminPage />
     }
     ],
 },
