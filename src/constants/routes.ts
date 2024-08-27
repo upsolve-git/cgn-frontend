@@ -5,3 +5,4 @@ export const SIGNUP_PAGE = '/auth/sign-up'
 
 export const LOGIN_ENDPOINT = '/login'
 export const SIGNUP_ENDPOINT = '/signup'
+export const ADD_PRODUCT_ENDPOINT = '/addproduct'

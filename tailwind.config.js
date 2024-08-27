@@ -38,7 +38,8 @@ export default {
       secondarylight: '#EAD7C3',
       darkgray: '#848383',
       white: '#FFFFFF',
-      red: '#ff2c2c'
+      red: '#ff2c2c',
+      green: '#4bb543'
     },
     fontSize: {
       '5xs': ['4px', { lineHeight: '8px', letterSpacing: '-0.005em' }],
