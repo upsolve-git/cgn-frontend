@@ -10,7 +10,7 @@ interface PriceRangeSliderProps{}
 
 const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
 
-    let [value, setValue] = useState<number[]>([20,600])
+    let [value, setValue] = useState<number[]>([0,0])
     let [isActive, setIsActive] = useState<boolean>(false)
     const handleSlide = (event: Event, newVal: number | number[])=>{
         setValue(newVal as number[])
