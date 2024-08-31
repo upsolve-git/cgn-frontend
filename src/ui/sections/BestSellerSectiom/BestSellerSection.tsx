@@ -1,10 +1,14 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 import ProdListSwitcher from "../../molecules/ProdListSwitcher/ProdListSwitcher";
 import ProductPreviewList from "../../organisms/ProductPreviewList/ProductPreviewList";
 import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
 import ArrowButton from "../../atoms/buttons/ArrowButton/ArrowButton";
+
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+
+import { PRODUCTS_PAGE } from "../../../constants/routes";
 
 interface BestSellerSectionProps {}
 
@@ -12,9 +16,7 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
     let [isBestSeller, setIsBestSeller] = useState<boolean>(true)
     let {isMobile} = useMediaWidth()
 
-    const bestSellerRedirect = ()=>{
-        console.log('redirected');
-    }
+    const navigate = useNavigate()
 
     return (
         <div
@@ -39,7 +41,7 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
             className="w-[40%] mt-10 tablet:w-[20%]">
                 <ActionButton
                 label="View more!"
-                callbackFunc={bestSellerRedirect}/>
+                callbackFunc={()=> navigate(PRODUCTS_PAGE)}/>
             </div>
         </div>
     )

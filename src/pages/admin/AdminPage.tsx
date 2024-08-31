@@ -1,4 +1,4 @@
-import Navbar from "../../ui/organisms/Navbar/Navbar";
+import Navbar from "../../ui/organisms/Navbar/BigNavbar";
 import { useAdminPage } from "../../utils/hooks/useAdminPage";
 import Menu from "../../ui/organisms/Admin/Menu";
 import AddProducts from "../../ui/sections/AdminSection/AddProductsSection";
