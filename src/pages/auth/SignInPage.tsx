@@ -2,7 +2,7 @@
 import React from "react";
 
 // component imports
-import FormCard from "../../ui/organisms/FormCard/FormCard";
+import FormCard from "../../ui/molecules/FormCard/FormCard";
 import EmailInput from "../../ui/atoms/formElements/auth/EmailInput/EmailInput";
 import PasswordInput from "../../ui/atoms/formElements/auth/PasswordInput/PasswordInput";
 import AuthSubmitButton from "../../ui/atoms/buttons/ActionButton/AuthSubmitButton";

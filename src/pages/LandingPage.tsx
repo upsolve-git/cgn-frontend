@@ -6,10 +6,10 @@ import OurProductsSection from "../ui/sections/OurProductsSection/OurProductsSec
 import ContactUsSection from "../ui/sections/ContactUsSection/ContactUsSection";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import MainSection from "../ui/sections/MainSection/MainSection";
-import Navbar from "../ui/organisms/Navbar/Navbar";
+import Navbar from "../ui/organisms/Navbar/NavBar";
 
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
-import MobileNavbar from "../ui/organisms/Navbar/MobileNavbar";
+
 import MobileMainSection from "../ui/sections/MainSection/MobileMainSection";
 import AboutUs from "../ui/sections/AboutUsSection/AboutUsSection";
 
@@ -21,7 +21,7 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
 
     return (
         <div>
-            {isMobile?<MobileNavbar/>:<Navbar />}
+            <Navbar />
             {isMobile?<MobileMainSection/>:<MainSection />}
             <div
             className="bg-secondary tablet:bg-sectionBg">

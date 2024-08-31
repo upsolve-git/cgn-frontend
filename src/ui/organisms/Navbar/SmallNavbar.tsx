@@ -5,9 +5,9 @@ import Logo from "../../atoms/Logo/Logo";
 
 import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
 
-interface MobileNavbarProps {}
+interface SmallNavbarProps {}
 
-const MobileNavbar: React.FC<MobileNavbarProps> = () => {
+const SmallNavbar: React.FC<SmallNavbarProps> = () => {
     const navigate = useNavigate()
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -59,4 +59,4 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
     );
 };
 
-export default MobileNavbar;
+export default SmallNavbar;
