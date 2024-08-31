@@ -1,7 +1,7 @@
 import React from "react";
 
 import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
-import TextInput from "../../atoms/formElements/textInput/textInput";
+import TextInput from "../../atoms/formElements/TextInput/TextInput";
 
 interface AddCategorySectionProps{
     category : string,

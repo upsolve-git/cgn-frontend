@@ -1,7 +1,7 @@
 import React from "react";
 
 import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
-import TextInput from "../../atoms/formElements/textInput/textInput";
+import TextInput from "../../atoms/formElements/TextInput/TextInput";
 import NumberInput from "../../atoms/formElements/NumberInput/NumberInput";
 import FileInput from "../../atoms/formElements/FileInput/FileInput";
 import { Category } from "../../../interfaces/Category";

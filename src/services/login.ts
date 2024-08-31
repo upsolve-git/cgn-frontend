@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { LOGIN_ENDPOINT } from "../constants/routes";
+import { GET_USERS_ENDPOINT, LOGIN_ENDPOINT } from "../constants/routes";
 
 export const loginReq = async (email: string|undefined, password:string|undefined)=>{
     if(email && password){
@@ -9,4 +9,8 @@ export const loginReq = async (email: string|undefined, password:string|undefine
             "password": password
         });
     }
+} 
+
+export const getUsersReq = async() => {
+    return axios.get(GET_USERS_ENDPOINT)
 }

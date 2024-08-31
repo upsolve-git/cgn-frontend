@@ -1,6 +1,6 @@
 import axios from '../helpers/axios'
 
-import { ADD_PRODUCT_ENDPOINT } from '../constants/routes';
+import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT } from '../constants/routes';
 
 interface AddProdParams{
     name: string,
@@ -13,7 +13,7 @@ interface AddProdParams{
     categoryId: number
 }
 
-export const addProdReq = async (
+export const addProductsReq = async (
     {name, image, type, description, cost, discountPercentage, availableSizes, categoryId}: AddProdParams
 )=>{
     
@@ -34,4 +34,26 @@ export const addProdReq = async (
             }
         });
     }
+} 
+
+export const getProductsReq = async ()=>{
+    return axios.get(GET_PRODUCT_ENDPOINT);
 }
+
+export const addBestSellerReq = async (product_id : number)=>{
+    
+    if(product_id){
+        return axios.post(ADD_BEST_SELLER_ENDPOINT, {
+            "product_id": product_id
+        });
+    }
+} 
+
+export const addNewSellerReq = async (product_id : number)=>{
+    
+    if(product_id){
+        return axios.post(ADD_NEW_SELLER_ENDPOINT, {
+            "product_id": product_id
+        });
+    }
+} 

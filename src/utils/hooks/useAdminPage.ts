@@ -1,26 +1,32 @@
 import { useState, useEffect } from "react";
 import { Category } from "../../interfaces/Category";
 import { addCategoryReq, getCategoryReq } from "../../services/category";
-import { addProdReq } from "../../services/addProduct";
+import { addBestSellerReq, addNewSellerReq, addProductsReq, getProductsReq } from "../../services/product";
+import { Product } from "../../interfaces/Product";
+import { User } from "../../interfaces/User";
+import { getUsersReq } from "../../services/login";
 
 
 export const useAdminPage = ()=>{
-    const menuItems = ["Add Category", "Add Products", "Add Best Selling products", "Add New Products"];
+    const menuItems = ["Add Category", "Add Products", "Add Best Selling products", "Add New Products", "Users"];
     let [selectedMenuItem, setSelectedMenuItem] = useState<string>('') 
     let [category, setCategory] = useState<Category>({category_id:1, category_name:""})
     let [name, setName] = useState<string>('')
     let [description, setDescription] = useState<string>('')
     let [productType, setProductType] = useState<string>('')
-    let [categoryId, setCategoryId] = useState<number>(1)
     let [categoryName, setCategoryName] = useState<string>('')
     let [price, setPrice] = useState<number>(1)
     let [discountedPrice, setDiscountedPrice] = useState<number>(1)
     let [categories, setCategories] = useState<Category[]>([]);
     let [file, setFile] = useState<File | null>()
     let [addProductsError, setAddProductsError]  = useState<string>('')
+    let [products, setproducts] = useState<Product[]>([])
+    let [users, setUsers] = useState<User[]>([])
 
     useEffect(() => {
         getCategories();
+        getProducts();
+        getUsers();
     }, [])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +53,6 @@ export const useAdminPage = ()=>{
     const handleProductTypeChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setProductType(e.target.value)
     } 
-
-    const handleCategoryIdChange = (e: React.ChangeEvent<HTMLSelectElement>)=>{
-        setCategoryId(Number(e.target.value))
-    }
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setPrice(Number(e.target.value))
@@ -81,7 +83,7 @@ export const useAdminPage = ()=>{
             console.log(description)
             console.log(discountedPrice)
             console.log(category)
-            await addProdReq({
+            await addProductsReq({
                 name: name,
                 image: file!,
                 type: productType,
@@ -108,13 +110,50 @@ export const useAdminPage = ()=>{
         ) .catch (err => {
             console.log(err)
         })
+    } 
+
+    const getProducts = async() => {
+        await getProductsReq()
+        .then( res => {
+            setproducts(res.data)
+        }) . catch (err => {
+            console.log(err)
+        })
+    } 
+
+    const addBestSellerhandler = async(product_id : number) => {
+        await addBestSellerReq(product_id)
+        .then(res => {
+            console.log("added best seller succesfully")
+
+        }) .catch(err => {
+            console.log(err)
+        }) 
     }
+
+    const addNewSellerhandler = async(product_id : number) => {
+        await addNewSellerReq(product_id)
+        .then(res => {
+            console.log("added new seller succesfully")
+        }) .catch(err => {
+            console.log(err)
+        }) 
+    } 
+
+    const getUsers = async() => {
+        await getUsersReq()
+        .then(res => {
+            setUsers(res.data)
+        }) .catch(err => {
+            console.log(err)
+        }) 
+    } 
     
-    return {menuItems, 
+    return {menuItems, products, users,
         selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError,
         category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange,
-        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, categoryId, handleCategoryIdChange, price, handlePriceChange,
-        discountedPrice, handleDiscountedPriceChange, addProductHandler, categories
+        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, 
+        price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addBestSellerhandler, addNewSellerhandler
     }
 
 }

@@ -3,6 +3,8 @@ import { useAdminPage } from "../../utils/hooks/useAdminPage";
 import Menu from "../../ui/organisms/Admin/Menu";
 import AddProducts from "../../ui/sections/AdminSection/AddProductsSection";
 import AddCategory from "../../ui/sections/AdminSection/AddCategorySection";
+import ProductPreviewListAdmin from "../../ui/organisms/ProductPreviewList/ProductPreviewListAdmin";
+import UserList from "../../ui/organisms/UsersList/UsersList";
 
 interface AdminPageProps{}
 
@@ -17,11 +19,9 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         addCategoryHandler,
         name,
         productType,
-        categoryId,
         price,
         description,
         discountedPrice,
-        handleCategoryIdChange,
         handleDescriptionChange,
         handleDiscountedPriceChange,
         handleNameChange,
@@ -32,7 +32,11 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         categoryName,
         handleCategoryNameChange,
         handleFileChange,
-        addProductsError
+        addProductsError,
+        products,
+        users,
+        addBestSellerhandler,
+        addNewSellerhandler
     } = useAdminPage()
 
     return (
@@ -74,9 +78,13 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     addProduct={addProductHandler}
                     error={addProductsError}
                     />
-                    : selectedMenuItem == "Add Best Selling products" ? (
-                        <p className="mt-4 text-gray-700">{selectedMenuItem}</p>
-                    ) : <p className="mt-4 text-gray-700">{selectedMenuItem}</p>}
+                    : selectedMenuItem == "Add Best Selling products" ? 
+                    <ProductPreviewListAdmin products={products} onClick={addBestSellerhandler} />
+                    : selectedMenuItem == "Add New Products" ? 
+                    <ProductPreviewListAdmin products={products} onClick={addNewSellerhandler} />
+                    : selectedMenuItem == "Users" ? 
+                    <UserList users={users}/>
+                    : <div></div>}
                 </div>
             </div>
         </div>
