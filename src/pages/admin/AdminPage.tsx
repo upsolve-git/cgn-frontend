@@ -49,7 +49,7 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                 onClick={handleSelectedMenuItemChange}
                 />
 
-                <div className="flex-1 bg-secondarylight p-8">
+                <div className="flex-1 bg-secondary p-8">
                     <h2 className="text-lg text-center font-bold">{selectedMenuItem}</h2>
                     {selectedMenuItem == "Add Category" ? 
                     <AddCategory

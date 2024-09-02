@@ -20,7 +20,7 @@ const UserList: React.FC<UserListProps>= ({
  >
    <AgGridReact
        rowData={users}
-       columnDefs={[{field:'email'}, {field:'accType'}, {field:'firstName'}, {field:'lastName'},{field:'phone'}, {field:'countryCode'}]}
+       columnDefs={[{field:'email'}, {field:'accType'}, {field:'firstName'}, {field:'lastName'}, {field:'countryCode'}, {field:'phone'}]}
    />
  </div>
     )

@@ -19,7 +19,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardAdminProps> = ({
                 <img src="/image/stockpolish.png" alt="" />
             </div>
             <div
-            className="w-full h-full max-w-[150px]  px-2 pt-1 pb-2 rounded-b-2xl text-3xs tablet:pt-3 tablet:max-w-[400px] desktop:pt-6 flex flex-col">
+            className="w-full h-full max-w-[150px] bg-secondarylight px-2 pt-1 pb-2 rounded-b-2xl text-3xs tablet:pt-3 tablet:max-w-[400px] desktop:pt-6 flex flex-col">
                 <div
                 className="h-[80%] flex text-3xs tablet:text-xs desktop:text-lg mobile:">
                     <div>

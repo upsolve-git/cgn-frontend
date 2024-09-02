@@ -12,6 +12,7 @@ import SignUpPage from "../pages/auth/SignUpPage";
 import AdminPage from "../pages/admin/AdminPage";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import Cart from "../pages/CartPage";
 
 const router = createBrowserRouter([
 {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     {
         path: "productDetail",
         element: <ProductDetailPage />
+    },
+    {
+        path: "cart",
+        element: <Cart />
     },
     {
         path:'auth',
