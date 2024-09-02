@@ -10,15 +10,15 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
 
     return(
         <div
-        className="bg-secondary px-6 py-2 flex justify-between items-center">
+        className="bg-secondarylight px-6 py-2 flex justify-between items-center">
             <Logo 
             styles="w-14 h-14 desktop:w-20 desktop:h-20"
             fill="#C26F2D"/>
             <ul
             className="text-xxs flex items-center justify-between text-primary w-[40%] desktop:text-sm">
-                <li>Home</li>
+                <li><a href="/">Home</a></li>
                 <li>About</li>
-                <li>Products</li>
+                <li><a href="/products">Products</a></li>
                 <li>Contact</li>
                 <li>
                     <button 

@@ -9,15 +9,16 @@ import ArrowButton from "../../atoms/buttons/ArrowButton/ArrowButton";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 
 import { PRODUCTS_PAGE } from "../../../constants/routes";
+import { useAdminPage } from "../../../utils/hooks/useAdminPage";
 
 interface BestSellerSectionProps {}
 
 const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
+    let {products} = useAdminPage()
     let [isBestSeller, setIsBestSeller] = useState<boolean>(true)
     let {isMobile} = useMediaWidth()
-
     const navigate = useNavigate()
-
+    console.log(products)
     return (
         <div
         className="h-fit w-screen px-4 py-8 bg-contain flex flex-col items-center">
@@ -32,8 +33,9 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
             className="w-[90%] h-fit flex justify-evenly items-center">
                 {!isMobile&&<ArrowButton 
                 rotation={'180'}/>}
-                <ProductPreviewList 
-                isBestSeller={isBestSeller}/>
+                {products.length && <ProductPreviewList 
+                products={products}
+                isBestSeller={isBestSeller}/>}
                 {!isMobile&&<ArrowButton 
                 rotation={'0'}/>}
             </div>

@@ -1,21 +1,23 @@
 import React from "react";
 import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+import { Product } from "../../../interfaces/Product";
 
 interface ProductPreviewListProps{
+    products : Product[]
     isBestSeller: boolean
 }
 
 const ProductPreviewList: React.FC<ProductPreviewListProps>= ({
+    products,
     isBestSeller
 })=>{
     let {isTablet} = useMediaWidth()
     let maxGridItems = isTablet?3:4
-    let items = []
-    let names = ["Radiant Shine Nail Polish", "Matte Velvet Nail Polish", "Elegance Gel Nail Polish",  "Complete Nail Care System"]
-    let description = ["Vibrant, long-lasting color","Elegant, velvety matte look","High-gloss, salon-quality finish","Comprehensive at-home nail care"]
+    let items = [] 
+    console.log(products)
     for(let i=0;i<maxGridItems;i++){
-        items.push(<ProductPreviewCard name= {names[i]} description = {description[i]} isBestSeller={isBestSeller} key={i+1}/>)
+        items.push(<ProductPreviewCard product={products[10 + i]} isBestSeller={isBestSeller} />)
     }
     
     return(

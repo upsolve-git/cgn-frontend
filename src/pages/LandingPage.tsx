@@ -6,7 +6,7 @@ import OurProductsSection from "../ui/sections/OurProductsSection/OurProductsSec
 import ContactUsSection from "../ui/sections/ContactUsSection/ContactUsSection";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import MainSection from "../ui/sections/MainSection/MainSection";
-import Navbar from "../ui/organisms/Navbar/NavBar";
+import Navbar from "../ui/organisms/Navbar/Navbar";
 
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 

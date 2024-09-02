@@ -10,10 +10,8 @@ const AdSection: React.FC<AdSectionProps> = ()=>{
     }
 
     return(
-        <div
-        className="relative h-fit">
-            <img src="/image/image.png" alt="" 
-            className="w-full h-auto"/>
+        <div>
+            <img src="/image/image.png" alt=""/>
             <div
             className="grid grid-cols-3 h-full absolute inset-0 z-40 text-primary">
                 <div></div>

@@ -3,43 +3,19 @@ import React from "react";
 // import ProductCard from "../../molecules/ProductCard/ProductCard";
 import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
 import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
+import { Product } from "../../../interfaces/Product";
 
-interface ProductsSectionProps{}
+interface ProductsSectionProps{
+    products : Product[]
+}
 
-const ProductsSection: React.FC<ProductsSectionProps> = () => {
-
-    const data = [
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        },
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        },
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        },
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        },
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        },
-        {
-            name:'Lorem',
-            description: "Lorem Ipsum Dolor Sit Amet! Vango vainko pettuko",
-            isBestSeller: true
-        }
-    ]
+const ProductsSection: React.FC<ProductsSectionProps> = ({
+    products
+}) => {
+    let items = []
+    for(let i=0;i<products.length;i++){
+        items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
+    }
 
     return(
         <div
@@ -58,13 +34,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = () => {
                 <div
                 className="mx-4 my-4 grid grid-cols-2 grid-rows-auto gap-4 tablet:grid-cols-3 desktop:grid-cols-4">
                     {
-                        data.map((item, index)=>{
-                            return <ProductPreviewCard
-                                    key={index} 
-                                    name={item.name}
-                                    description={item.description}
-                                    isBestSeller={item.isBestSeller}/>
-                        })
+                        items.map(e=>e)
                     }
                 </div>
             </div>

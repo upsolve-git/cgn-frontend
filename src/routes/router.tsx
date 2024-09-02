@@ -11,6 +11,7 @@ import SignInPage from "../pages/auth/SignInPage";
 import SignUpPage from "../pages/auth/SignUpPage";
 import AdminPage from "../pages/admin/AdminPage";
 import ProductsPage from "../pages/ProductsPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
 
 const router = createBrowserRouter([
 {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     {
         path: "products",
         element: <ProductsPage />
+    },
+    {
+        path: "productDetail",
+        element: <ProductDetailPage />
     },
     {
         path:'auth',
