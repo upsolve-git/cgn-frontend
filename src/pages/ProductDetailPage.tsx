@@ -8,14 +8,18 @@ import ArrowButton from "../ui/atoms/buttons/ArrowButton/ArrowButton";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
+import { useParams } from 'react-router-dom';
+
 
 interface ProductDetailPageProps{}
 
 const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
+    const { id } = useParams<{ id: string }>(); // This will capture the `id` from the URL
+
     let {isMobile} = useMediaWidth()
     let {products} = useAdminPage()
     let colors = ["green", "red"]
-    let product = products[14]
+    let product = products.find(product => product.product_id === Number(id)) || products[1]
     const [quantity, setQuantity] = useState<number>(1);
 
     const increaseQuantity = () => {
@@ -40,7 +44,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     <div className="w-[50%]"> 
                         <div
                         className="h-full w-fit flex bg-secondarylight rounded-t-full px-10 m-auto">
-                            <img src="/image/stockpolish.png" alt="" />
+                            <img src={product.product_imgs_id} alt="" />
                         </div>
                     </div> 
                     <div className="text-left"> 
@@ -109,9 +113,6 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                                 Checkout
                             </button>
                         </div>
-
-
-
                     </div>
                 </div>  
                 <p className="text-primary font-bold text-center my-20">Related products</p>

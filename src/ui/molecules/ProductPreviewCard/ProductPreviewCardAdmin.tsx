@@ -1,5 +1,5 @@
 import React from "react";
-import PreviewAddToCartButton from "../../atoms/buttons/PreviewAddToCartButton/PreviewAddToCartButton";
+import { FiShoppingCart } from "react-icons/fi";
 import { Product } from "../../../interfaces/Product";
 
 interface ProductPreviewCardAdminProps{
@@ -51,7 +51,9 @@ const ProductPreviewCard: React.FC<ProductPreviewCardAdminProps> = ({
                             <s>${product.price}</s>
                         </span>
                     </div>
-                    <PreviewAddToCartButton />
+                    <div className="h-10 w-10 rounded-full bg-white items-center justify-center "> 
+                        <FiShoppingCart className="mt-2 ml-1" style={{fontSize:"1.8rem"}}/>
+                    </div>
                 </div>
             </div>
         </div>

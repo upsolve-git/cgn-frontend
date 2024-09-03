@@ -1,6 +1,7 @@
 import React from "react";
-import PreviewAddToCartButton from "../../atoms/buttons/PreviewAddToCartButton/PreviewAddToCartButton";
 import { Product } from "../../../interfaces/Product";
+import { FiShoppingCart } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 
 interface ProductPreviewCardProps{
@@ -12,6 +13,8 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     product,
     isBestSeller
 })=>{
+    const navigate = useNavigate()
+
     return (
         <div
         className="h-full w-fit flex flex-col bg-white rounded-t-full font-poppins">
@@ -51,7 +54,11 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                             <s>${product.price}</s>
                         </span>
                     </div>
-                    <PreviewAddToCartButton />
+                    <button 
+                    className="h-10 w-10 rounded-full bg-white items-center justify-center"
+                    onClick={()=>navigate(`/productDetail/${product.product_id}`)}> 
+                        <FiShoppingCart className="mt-2 ml-1" style={{fontSize:"1.8rem"}}/>
+                    </button>
                 </div>
             </div>
         </div>
