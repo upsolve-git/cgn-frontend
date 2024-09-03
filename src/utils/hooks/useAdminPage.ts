@@ -5,6 +5,8 @@ import { addBestSellerReq, addNewSellerReq, addProductsReq, getProductsReq } fro
 import { Product } from "../../interfaces/Product";
 import { User } from "../../interfaces/User";
 import { getUsersReq } from "../../services/login";
+import { Cart } from "../../interfaces/Cart";
+import { CartItem } from "../../interfaces/CartItem";
 
 
 export const useAdminPage = ()=>{
@@ -22,6 +24,34 @@ export const useAdminPage = ()=>{
     let [addProductsError, setAddProductsError]  = useState<string>('')
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
+    let [cart, setCart] = useState<Cart>({
+        items : [],
+        total : 0
+    }); 
+
+    const handleAddToCart = async(product:Product, quantity : number) => { 
+        setCart(prevCart => {
+            const newItem: CartItem = {
+                image: product.product_imgs_id,
+                name: product.name,
+                price: product.discounted_price_percentage,
+                quantity: quantity,
+                total: product.discounted_price_percentage * quantity,
+            };
+            const updatedItems = [...prevCart.items, newItem];
+            const updatedTotal = updatedItems.reduce((acc, curr) => acc + curr.total, 0);
+            return {
+                items: updatedItems,
+                total: updatedTotal,
+            };
+        }); 
+        console.log(cart)
+    }
+    console.log("cart in admin page : ", cart)
+
+    useEffect(() => {
+        console.log('Cart from useAdminPage in CartDisplayPage:', cart);
+    }, [cart]);
 
     useEffect(() => {
         getCategories();
@@ -149,7 +179,7 @@ export const useAdminPage = ()=>{
         }) 
     } 
     
-    return {menuItems, products, users,
+    return {menuItems, products, users,cart, handleAddToCart,
         selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError,
         category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange,
         name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, 

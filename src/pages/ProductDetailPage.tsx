@@ -9,23 +9,28 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ProductDetailPageProps{}
 
 const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
     const { id } = useParams<{ id: string }>(); // This will capture the `id` from the URL
+    const navigate = useNavigate()
 
     let {isMobile} = useMediaWidth()
-    let {products} = useAdminPage()
+    let {products, handleAddToCart} = useAdminPage()
     let colors = ["green", "red"]
     let product = products.find(product => product.product_id === Number(id)) || products[1]
     const [quantity, setQuantity] = useState<number>(1);
 
     const increaseQuantity = () => {
-        if (quantity < 14) {
-            setQuantity(quantity + 1);
-        }
+        setQuantity(prevQuantity => {
+            if (prevQuantity < 14) {
+                return prevQuantity + 1;
+            }
+            return prevQuantity;
+        });
     };
 
     const decreaseQuantity = () => {
@@ -104,12 +109,14 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
 
                         <div className="flex space-x-4">
                             <button
-                            className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary">
+                            className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary"
+                            onClick={()=> handleAddToCart(product, quantity)}>
                                 <FaCartPlus style={{color:" rgb(194 111 45)"}} className="mr-2"/>
                                 Add to Cart
                             </button>
                             <button
-                            className="h-full w-[50%] bg-primary flex items-center justify-center text-md text-white">
+                            className="h-full w-[50%] bg-primary flex items-center justify-center text-md text-white"
+                            onClick={()=> navigate('/cart')}>
                                 Checkout
                             </button>
                         </div>

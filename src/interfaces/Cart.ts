@@ -1,6 +1,6 @@
 import { CartItem } from "./CartItem"
 
 export interface Cart {
-    cartItem : CartItem[],
+    items : CartItem[]
     total : number
 }

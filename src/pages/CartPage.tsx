@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import Navbar from "../ui/organisms/Navbar/Navbar";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { LuUserCircle2 } from "react-icons/lu";
+import { useAdminPage } from "../utils/hooks/useAdminPage";
+import { CartItem } from "../interfaces/CartItem";
+import { Product } from "../interfaces/Product";
+import { Cart } from "../interfaces/Cart";
 
 
 interface CartPageProps{}
 
-const Cart:React.FC<CartPageProps> = ()=>{
+export const useCartPage = () => {
+
+}
+
+const CartPage:React.FC<CartPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    
+    let {cart} = useAdminPage();
+    console.log("in cart", cart)
     return(
         <div className="bg-secondary space-y-16">
             <Navbar/>
@@ -24,18 +33,29 @@ const Cart:React.FC<CartPageProps> = ()=>{
                         Order summary 
                     </p> 
                     <div className=" items-center"> 
-                    <table
-                        className="table-auto text-md border-separate border-spacing-4">
+                    <table className="table-auto text-md border-separate border-spacing-4 w-full">
                         <thead>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th></th>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <td></td>
+                            {cart.items.map((item: CartItem, index: number) => (
+                                <tr key={index}>
+                                    <td>
+                                        <img src={item.image} alt={item.name} className="h-16 w-16 object-cover" />
+                                    </td>
+                                    <td>{item.name}</td>
+                                    <td>${item.price.toFixed(2)}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>${item.total.toFixed(2)}</td>
+                                    
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                     </div>
@@ -74,4 +94,4 @@ const Cart:React.FC<CartPageProps> = ()=>{
     )
 }
 
-export default Cart
+export default CartPage
