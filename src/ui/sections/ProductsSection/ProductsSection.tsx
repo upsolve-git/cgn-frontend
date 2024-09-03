@@ -4,8 +4,8 @@ import React from "react";
 import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
 import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
 import { Product } from "../../../interfaces/Product";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { FaSearch } from 'react-icons/fa';
+import { CgSortAz } from "react-icons/cg";
 
 import 'react-tabs/style/react-tabs.css';
 interface ProductsSectionProps{
@@ -22,48 +22,40 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
 
     return(
         <div
-        className="pt-6 pb-10 w-screen flex flex-col items-center">
+        className="py-14 w-screen flex flex-col items-center">
             <h1
-            className="font-lexend text-md font-bold text-primary tablet:text-lg">
+            className="font-lexend text-2xl font-bold text-primary">
                 Products
             </h1> 
             <p
-            className="font-lexend text-darkgray text-xs tablet:text-xs">
+            className="m-2 font-lexend items-center text-darkgray text-xs mb-10">
                 Check the status of recent orders, manage returns, and discover similar products.
             </p> 
-            <div> 
-                <div className="w-[60%]"> 
-                {/* <Tabs>
-                    <TabList>
-                    <Tab>Title 1</Tab>
-                    <Tab>Title 2</Tab>
-                    </TabList>
-
-                    <TabPanel>
-                    <h2>Any content 1</h2>
-                    </TabPanel>
-                    <TabPanel>
-                    <h2>Any content 2</h2>
-                    </TabPanel>
-                </Tabs> */}
+            <div className="flex w-[90%] m-auto"> 
+                <div className="w-[60%] item-lcenter"> 
+                    <button className="p-2 px-8 rounded border bg-white text-primary">All Products</button>
+                    <button className="p-2 px-16 rounded border bg-white text-primary">Nails</button>
+                    <button className="p-2 px-12 rounded border bg-white text-primary">Pedicure</button>
+                    <button className="p-2 px-12 rounded border bg-white text-primary">Manicure</button>
                 </div> 
-                <div className="w-[40%] flex items-center rounded-md p-2">
-                    <FaSearch  style={{color:"red"}}/>
+                <div className="w-[40%] flex items-center rounded-md">
+                    <FaSearch className="bg-white mr-2" style={{color:"rgb(194 111 45)"}}/>
                     <input
                         type="text"
-                        placeholder="Search"
-                        className=""
-                    />
+                        placeholder="Search products ..."
+                        className="p-2 border border-primary rounded w-[50%]"
+                    /> 
+                    <button className="mx-4 p-2 flex rounded bg-lightgray">Sort by <CgSortAz style={{fontSize:"1.5rem"}}/></button>
                 </div>
             </div>
 
             <div
-            className="flex justify-evenly mx-[1%] my-[5%]">
-                <div className="w-[40%]">
-                <BigFiltersBoard />
+            className="w-[90%] flex my-16">
+                <div className="w-[25%]">
+                <BigFiltersBoard/>
                 </div>
                 <div
-                className="w-[70%] mx-4 my-4 grid grid-cols-2 grid-rows-auto gap-4 tablet:grid-cols-3 desktop:grid-cols-4">
+                className="w-[70%] mx-8 my-4 grid grid-cols-2 grid-rows-auto gap-4 tablet:grid-cols-3 desktop:grid-cols-4">
                     {
                         items.map(e=>e)
                     }

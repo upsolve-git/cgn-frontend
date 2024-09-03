@@ -12,7 +12,7 @@ const AdSection: React.FC<AdSectionProps> = ()=>{
     return(
         <div>
             <img src="/image/image.png" alt=""/>
-            <div
+            {/* <div
             className="grid grid-cols-3 h-full absolute inset-0 z-40 text-primary">
                 <div></div>
                 <div></div>
@@ -32,7 +32,7 @@ const AdSection: React.FC<AdSectionProps> = ()=>{
                     secondaryColor="primary"
                     callBack={callback}/>
                 </div>
-            </div>
+            </div> */}
             
         </div>
     )

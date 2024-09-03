@@ -17,8 +17,8 @@ const ProductsPage:React.FC<ProductsPageProps> = ()=>{
     return(
         <div
         className="overflow-scroll bg-secondary">
-            <Navbar />
-            <div className="h-[60%]">{isMobile?<></>:<AdSection />}</div>
+            <Navbar/>
+            <div>{isMobile?<></>:<AdSection />}</div>
             <ProductsSection  products={products}/>
             <FooterSection />
         </div>

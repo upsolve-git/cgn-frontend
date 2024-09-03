@@ -13,9 +13,7 @@ interface ProductDetailPageProps{}
 
 const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {
-        products
-    } = useAdminPage()
+    let {products} = useAdminPage()
     let colors = ["green", "red"]
     let product = products[14]
     const [quantity, setQuantity] = useState<number>(1);
