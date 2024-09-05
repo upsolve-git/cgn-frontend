@@ -4,8 +4,12 @@ import React from "react";
 import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
 import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
 import { Product } from "../../../interfaces/Product";
+
 import { FaSearch } from 'react-icons/fa';
 import { CgSortAz } from "react-icons/cg";
+import { IoFilterSharp } from "react-icons/io5";
+import { BiSortAlt2 } from "react-icons/bi";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 import 'react-tabs/style/react-tabs.css';
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
@@ -45,7 +49,31 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                         <NavButton label="Manicure" isActive={false}/>
                         <NavButton label="Pedicure" isActive={false}/>
                     </div>
-                </div>:
+                    <div
+                    className="w-[90%] m-auto flex justify-between my-4">
+                        <div
+                        className="text-xs flex items-center">
+                            <IoFilterSharp />
+                            <span
+                            className="ml-1">
+                                Filters
+                            </span>
+                        </div>
+                        <div
+                        className="text-xs flex items-center">
+                            <BiSortAlt2 />
+                            <span
+                            className="ml-1">
+                                Price: Lowest to Highest
+                            </span>
+                        </div>
+                        <div
+                        className="text-xs flex items-center">
+                            <TfiMenuAlt />
+                        </div>
+                    </div>
+                </div>
+                :
                 <div className="flex w-[90vw] justify-between items-center m-auto"> 
                     <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]"> 
                         <NavButton label="All products" isActive={true}/>
@@ -76,7 +104,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 
                 {
                     isMobile?
-                    <></>:
+                    <></>
+                    :
                     <div
                     className="w-[30%] h-fit mr-6 justify-between desktop:w-[20%]">
                         <BigFiltersBoard/>
@@ -94,4 +123,4 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     )
 }
 
-export default ProductsSection
+export default ProductsSection

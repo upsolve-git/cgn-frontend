@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { Slider } from "@mui/material";
 
 import ListOpener from "../../../atoms/items/ListOpener/ListOpener";
-import CustomRangeSlider from "../../../atoms/items/CustomRangeSlider/CustomRangeSlider";
-import { log } from "console";
-import { isAccessor } from "typescript";
 
 interface PriceRangeSliderProps{}
 
 const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
 
-    let [value, setValue] = useState<number[]>([0,0])
+    let [value, setValue] = useState<number[]>([10,200])
     let [isActive, setIsActive] = useState<boolean>(false)
     const handleSlide = (event: Event, newVal: number | number[])=>{
         setValue(newVal as number[])

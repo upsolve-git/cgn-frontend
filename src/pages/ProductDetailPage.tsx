@@ -46,35 +46,35 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
             <Navbar />
             {products.length &&  (
             <div>
-                <div className="flex m-20">
-                    <div className="w-[50%]"> 
+                <div className="grid grid-cols-1 place-items-center tablet:grid-cols-2 tablet:m-20">
+                    <div> 
                         <div
-                        className="h-full w-fit flex bg-secondarylight rounded-t-full px-10 m-auto">
-                            <img src={product.product_imgs_id} alt="" />
+                        className="h-full w-fit flex bg-secondarylight rounded-t-full px-10 m-auto p-16">
+                            <img src={product.product_imgs_id} alt="" className="h-[300px] w-auto m-auto"/>
                         </div>
                     </div> 
-                    <div className="text-left"> 
+                    <div className="text-center w-[80%] tablet:text-left"> 
                         <h1 className="font-bold text-xl mb-4">{product.name}</h1>
                         <h2 className="mb-3">{product.description}</h2> 
                         <p className="mb-6">
                         <span
-                        className="text-xs text-primary font-semibold tablet:text-md desktop:text-xl pr-4">
+                        className="text-md text-primary font-semibold desktop:text-xl pr-4">
                             ${product.discounted_price_percentage}
                         </span>
                         <span
-                        className="text-darkgray tablet:text-xs desktop:text-md m">
+                        className="text-darkgray text-xs desktop:text-md m">
                             <s>${product.price}</s>
                         </span>
                         </p> 
 
-                        <p className="flex mb-4">
+                        <p className="flex mb-4 justify-center tablet:justify-start">
                             <p className="font-bold mr-1">368</p> 
                             <p className="text-darkgray mr-24">reviews</p> 
                             <p className="font-bold mr-1">86</p>
                             <p className="text-darkgray mr-24">sold</p> 
                         </p> 
 
-                        <p className="flex mb-4">
+                        <p className="flex mb-4 justify-center tablet:justify-start">
                             <IoIosCheckmarkCircleOutline style={{color:"green", fontSize:"2em"}} className="mr-2"/> 
                             <p className="mt-1">Free shipping on orders over $49USD</p>
                         </p>
@@ -90,7 +90,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         </select> 
 
                         <label className="font-bold text-sm">Quantity</label>
-                        <div className="flex items-center mb-4"> 
+                        <div className="flex items-center justify-center mb-4 tablet:justify-start"> 
                             <button
                                 className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center text-lg font-bold hover:bg-gray-300 disabled:bg-gray-100"
                                 onClick={decreaseQuantity}

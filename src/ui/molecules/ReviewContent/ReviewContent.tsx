@@ -39,7 +39,7 @@ const ReviewContent: React.FC<ReviewContentProps> = ({
                             {username}
                         </span>
                         <span
-                        className="text-xs ">
+                        className="text-xs tablet:md">
                             {reviewDaysAgo} days ago
                         </span>
                     </div>
