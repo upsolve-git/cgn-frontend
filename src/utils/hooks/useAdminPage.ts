@@ -95,7 +95,7 @@ export const useAdminPage = ()=>{
         await addCategoryReq(categoryName)
         .then(res => {
             console.log("Category updated")
-        }). catch(err => {
+        }).catch(err => {
             console.log(err)
         })
     } 
@@ -132,7 +132,7 @@ export const useAdminPage = ()=>{
         .then( res => {
             setCategories(res.data)
         }
-        ) .catch (err => {
+        ).catch (err => {
             console.log(err)
         })
     } 
@@ -141,7 +141,7 @@ export const useAdminPage = ()=>{
         await getProductsReq()
         .then( res => {
             setproducts(res.data)
-        }) . catch (err => {
+        }).catch (err => {
             console.log(err)
         })
     }
@@ -150,7 +150,7 @@ export const useAdminPage = ()=>{
         await getUsersCartReq(1)
         .then( res => {
             setCartItems(res.data)
-        }) . catch (err => {
+        }).catch (err => {
             console.log(err)
         })
     } 
@@ -160,7 +160,7 @@ export const useAdminPage = ()=>{
         .then(res => {
             console.log("added best seller succesfully")
 
-        }) .catch(err => {
+        }).catch(err => {
             console.log(err)
         }) 
     }
@@ -169,7 +169,7 @@ export const useAdminPage = ()=>{
         await addNewSellerReq(product_id)
         .then(res => {
             console.log("added new seller succesfully")
-        }) .catch(err => {
+        }).catch(err => {
             console.log(err)
         }) 
     } 
@@ -178,7 +178,7 @@ export const useAdminPage = ()=>{
         await getUsersReq()
         .then(res => {
             setUsers(res.data)
-        }) .catch(err => {
+        }).catch(err => {
             console.log(err)
         }) 
     } 

@@ -51,7 +51,7 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
 
                 <div className="flex-1 bg-secondary p-8">
                     <h2 className="text-lg text-center font-bold">{selectedMenuItem}</h2>
-                    {selectedMenuItem == "Add Category" ? 
+                    {selectedMenuItem === "Add Category" ? 
                     <AddCategory
                     category={categoryName}
                     setCategory={handleCategoryNameChange}
@@ -59,7 +59,7 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     success={false}
                     error={false}
                     />
-                    : selectedMenuItem == "Add Products" ? 
+                    : selectedMenuItem === "Add Products" ? 
                     <AddProducts
                     categories={categories}
                     prodName={name}
@@ -78,11 +78,11 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     addProduct={addProductHandler}
                     error={addProductsError}
                     />
-                    : selectedMenuItem == "Add Best Selling products" ? 
+                    : selectedMenuItem === "Add Best Selling products" ? 
                     <ProductPreviewListAdmin products={products} onClick={addBestSellerhandler} />
-                    : selectedMenuItem == "Add New Products" ? 
+                    : selectedMenuItem === "Add New Products" ? 
                     <ProductPreviewListAdmin products={products} onClick={addNewSellerhandler} />
-                    : selectedMenuItem == "Users" ? 
+                    : selectedMenuItem === "Users" ? 
                     <UserList users={users}/>
                     : <div></div>}
                 </div>

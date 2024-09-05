@@ -11,7 +11,7 @@ const ContactUsSection: React.FC<ContactUsSectionProps> = ()=>{
     return (
         <div
         className="w-full h-fit py-3 mb-[10vh] relative">
-            <img src="/image/contactusbg.png" 
+            <img src="/image/contactusbg.png" alt="#image"
             className="h-full w-full object-cover"/>
             <div
             className="w-[90%] max-w-[600px] bg-secondary top-[40%] left-1/2 -translate-y-[38%] -translate-x-[50%] absolute z-40 px-6 py-10 font-medium flex flex-col items-center tablet:my-9 tablet:py-6 tablet:-translate-y-[52%] mobile:w-[95%]">

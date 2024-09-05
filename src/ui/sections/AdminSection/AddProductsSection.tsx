@@ -51,14 +51,14 @@ const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, pro
             </div>
             <p>
                 {
-                    error == 'false'&&
+                    error === 'false'&&
                     <span
                     className="text-green font-medium">
                         Added succesfully
                     </span>
                 }
                 {
-                    error != '' && error != 'false' &&
+                    error !== '' && error !== 'false' &&
                     <span
                     className="text-red font-medium">
                         {error}

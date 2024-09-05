@@ -12,7 +12,6 @@ import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuth
 // hooks imports
 import { useSignInPage } from "../../utils/hooks/useSignInPage";
 import { AccTypeContext } from "../../utils/hooks/useAccTypeContext";
-import { log } from "console";
 
 interface SignInPageProps{}
 

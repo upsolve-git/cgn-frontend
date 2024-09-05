@@ -1,7 +1,4 @@
 import React from "react";
-import Logo from "../../atoms/Logo/Logo";
-import { useNavigate } from 'react-router-dom';
-import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
 
 interface MenuProps{
     menuItems : string[],

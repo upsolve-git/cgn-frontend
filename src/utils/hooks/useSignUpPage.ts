@@ -70,7 +70,7 @@ export const useSignUpPage = ()=>{
     }
 
     const checkValues = () => {
-        return email == "" || password == "" || accType == "" || firstName == "" || lastName == "" || phone.length != 10 || countryCode == ""
+        return email === "" || password === "" || accType === "" || firstName === "" || lastName === "" || phone.length !== 10 || countryCode === ""
     }
 
     const signupHandler = async ()=>{ 
