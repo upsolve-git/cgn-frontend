@@ -7,9 +7,9 @@ interface BigFiltersBoardProps{}
 const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ()=>{
     return(
         <div
-        className="text-xs py-4 px-3 w-full h-full rounded-lg border border-primary bg-white">
+        className="text-xs py-4 px-3 w-full h-full rounded-lg border border-primary bg-white desktop:text-md">
             <div
-            className="flex justify-between text-xs mb-[10%]">
+            className="flex justify-between mb-[10%]">
                 <span
                 className="font-medium">
                     Filters

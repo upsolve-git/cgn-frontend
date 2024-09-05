@@ -1,7 +1,6 @@
 import React from "react";
 
-import Star from "../Star/Star";
-import { starGiver } from "../../../../../helpers/starGiver";
+import RatingStars from "../RatingStars/RatingStars";
 
 interface RatingCheckboxProps{
     rateValue: number
@@ -10,16 +9,12 @@ interface RatingCheckboxProps{
 const RatingCheckbox: React.FC<RatingCheckboxProps> = ({
     rateValue
 })=>{
-
-    let starNodes: React.ReactNode[] = starGiver(rateValue)
-
     return(
         <div
         className="flex items-center">
             <input type="checkbox"/>
-            {
-                starNodes.map(star=>star)
-            }
+            <RatingStars
+            rating={rateValue}/>
         </div>
     )
 }

@@ -41,6 +41,8 @@ export default {
       white: '#FFFFFF',
       red: '#ff2c2c',
       lightgray: '#F3F4F6',
+      midgray: '#DEE1E6',
+      gold: '#F3C63F'
     },
     fontSize: {
       '5xs': ['4px', { lineHeight: '8px', letterSpacing: '-0.005em' }],
@@ -62,7 +64,8 @@ export default {
     fontFamily: {
       'poppins': ['poppins', 'sans-serif'],
       'montserrat': ['montserrat', 'sans-serif'],
-      'lexend': ['lexend', 'sans-serif']
+      'lexend': ['lexend', 'sans-serif'],
+      'manrope': ['manrope', 'sans-serif']
     },
   },
   plugins: [

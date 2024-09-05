@@ -14,6 +14,50 @@ const ProductsPage:React.FC<ProductsPageProps> = ()=>{
     let {
         products
     } = useAdminPage()
+
+    // const products = [
+    //     {
+    //         product_id: 12300,
+    //         name: 'Lime Exotic',
+    //         product_type : 'nails',
+    //         description: 'Lorem ipsum dolor sit adem, vattkai sollkai',
+    //         price: 32,
+    //         discounted_price_percentage: 20,
+    //         product_imgs_id: '/image/stockpolish.png',
+    //         category : 'best seller'
+    //     },
+    //     {
+    //         product_id: 12300,
+    //         name: 'Bright Red',
+    //         product_type : 'nails',
+    //         description: 'Lorem ipsum dolor sit adem, vattkai sollkai',
+    //         price: 32,
+    //         discounted_price_percentage: 20,
+    //         product_imgs_id: '/image/stockpolish.png',
+    //         category : 'best seller'
+    //     },
+    //     {
+    //         product_id: 12300,
+    //         name: 'Bright Red',
+    //         product_type : 'nails',
+    //         description: 'Lorem ipsum dolor sit adem, vattkai sollkai',
+    //         price: 32,
+    //         discounted_price_percentage: 20,
+    //         product_imgs_id: '/image/stockpolish.png',
+    //         category : 'best seller'
+    //     },
+    //     {
+    //         product_id: 12300,
+    //         name: 'Bright Red',
+    //         product_type : 'nails',
+    //         description: 'Lorem ipsum dolor sit adem, vattkai sollkai',
+    //         price: 32,
+    //         discounted_price_percentage: 20,
+    //         product_imgs_id: '/image/stockpolish.png',
+    //         category : 'best seller'
+    //     }
+    // ]
+
     return(
         <div
         className="overflow-scroll bg-secondary">

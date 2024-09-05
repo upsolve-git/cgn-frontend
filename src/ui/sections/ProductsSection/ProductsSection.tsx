@@ -8,6 +8,9 @@ import { FaSearch } from 'react-icons/fa';
 import { CgSortAz } from "react-icons/cg";
 
 import 'react-tabs/style/react-tabs.css';
+import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+import NavButton from "../../atoms/navItems/NavButton/NavButton";
+
 interface ProductsSectionProps{
     products : Product[]
 }
@@ -15,6 +18,7 @@ interface ProductsSectionProps{
 const ProductsSection: React.FC<ProductsSectionProps> = ({
     products
 }) => {
+    const {isMobile} = useMediaWidth()
     let items = []
     for(let i=0;i<products.length;i++){
         items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
@@ -24,38 +28,63 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         <div
         className="py-14 w-screen flex flex-col items-center">
             <h1
-            className="font-lexend text-2xl font-bold text-primary">
+            className="font-lexend text-lg font-bold text-primary desktop:text-3xl">
                 Products
             </h1> 
             <p
-            className="m-2 font-lexend items-center text-darkgray text-xs mb-10">
+            className="m-2 font-lexend text-center items-center text-darkgray text-xs mb-10 desktop:text-sm">
                 Check the status of recent orders, manage returns, and discover similar products.
             </p> 
-            <div className="flex w-[90%] m-auto"> 
-                <div className="w-[60%] item-lcenter"> 
-                    <button className="p-2 px-8 rounded border bg-white text-primary">All Products</button>
-                    <button className="p-2 px-16 rounded border bg-white text-primary">Nails</button>
-                    <button className="p-2 px-12 rounded border bg-white text-primary">Pedicure</button>
-                    <button className="p-2 px-12 rounded border bg-white text-primary">Manicure</button>
-                </div> 
-                <div className="w-[40%] flex items-center rounded-md">
-                    <FaSearch className="bg-white mr-2" style={{color:"rgb(194 111 45)"}}/>
-                    <input
-                        type="text"
-                        placeholder="Search products ..."
-                        className="p-2 border border-primary rounded w-[50%]"
-                    /> 
-                    <button className="mx-4 p-2 flex rounded bg-lightgray">Sort by <CgSortAz style={{fontSize:"1.5rem"}}/></button>
+            {
+                isMobile?
+                <div>
+                    <div
+                    className="px-2 flex min-w-fit justify-start">
+                        <NavButton label="All products" isActive={true}/>
+                        <NavButton label="Nails" isActive={false}/>
+                        <NavButton label="Manicure" isActive={false}/>
+                        <NavButton label="Pedicure" isActive={false}/>
+                    </div>
+                </div>:
+                <div className="flex w-[90vw] justify-between items-center m-auto"> 
+                    <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]"> 
+                        <NavButton label="All products" isActive={true}/>
+                        <NavButton label="Nails" isActive={false}/>
+                        <NavButton label="Manicure" isActive={false}/>
+                        <NavButton label="Pedicure" isActive={false}/>
+                    </div> 
+                    <div className="w-[40%] flex items-center rounded-md">
+                        <FaSearch 
+                        className="bg-secondary mr-2 text-sm" 
+                        style={{color:"rgb(194 111 45)"}}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Search product ..."
+                            className="p-2 border border-primary text-xs rounded w-[50%] desktop:text-md"
+                        /> 
+                        <button className="mx-4 p-2 text-xs flex rounded bg-lightgray desktop:text-md">
+                            Sort by 
+                            <CgSortAz style={{fontSize:"1.5rem"}}/>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            }
 
             <div
-            className="w-[90%] flex my-16">
-                <div className="w-[25%]">
-                <BigFiltersBoard/>
-                </div>
+            className="w-[90%] flex my-16 items-start">
+                
+                {
+                    isMobile?
+                    <></>:
+                    <div
+                    className="w-[30%] h-fit mr-6 justify-between desktop:w-[20%]">
+                        <BigFiltersBoard/>
+                    </div>
+                }
+                
                 <div
-                className="w-[70%] mx-8 my-4 grid grid-cols-2 grid-rows-auto gap-4 tablet:grid-cols-3 desktop:grid-cols-4">
+                className="grid grid-cols-2 gap-4 mx-auto tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
                     {
                         items.map(e=>e)
                     }
