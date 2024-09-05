@@ -4,9 +4,8 @@ import { addCategoryReq, getCategoryReq } from "../../services/category";
 import { addBestSellerReq, addNewSellerReq, addProductsReq, getProductsReq } from "../../services/product";
 import { Product } from "../../interfaces/Product";
 import { User } from "../../interfaces/User";
-import { getUsersReq } from "../../services/login";
+import { deleteFromUsersCartReq, getUsersCartReq, getUsersReq, updateUsersCartReq } from "../../services/login";
 import { Cart } from "../../interfaces/Cart";
-import { CartItem } from "../../interfaces/CartItem";
 
 
 export const useAdminPage = ()=>{
@@ -24,39 +23,35 @@ export const useAdminPage = ()=>{
     let [addProductsError, setAddProductsError]  = useState<string>('')
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
-    let [cart, setCart] = useState<Cart>({
-        items : [],
-        total : 0
-    }); 
+    let [cartItems, setCartItems] = useState<Cart[]>([]); 
 
     const handleAddToCart = async(product:Product, quantity : number) => { 
-        setCart(prevCart => {
-            const newItem: CartItem = {
-                image: product.product_imgs_id,
-                name: product.name,
-                price: product.discounted_price_percentage,
-                quantity: quantity,
-                total: product.discounted_price_percentage * quantity,
-            };
-            const updatedItems = [...prevCart.items, newItem];
-            const updatedTotal = updatedItems.reduce((acc, curr) => acc + curr.total, 0);
-            return {
-                items: updatedItems,
-                total: updatedTotal,
-            };
-        }); 
-        console.log(cart)
-    }
-    console.log("cart in admin page : ", cart)
+        console.log(product);
+        console.log(quantity); 
+        await updateUsersCartReq(product.product_id, product.product_imgs_id, product.name, product.discounted_price_percentage, quantity, 1)
+        .then(res => {
+            console.log("added to cart", res) 
+        }).catch (err => {
+            console.log("error in adding product to cart: ", err)
+        })
+    } 
 
-    useEffect(() => {
-        console.log('Cart from useAdminPage in CartDisplayPage:', cart);
-    }, [cart]);
+    const handleDeleteFromCart = async(product_id:number) => {
+        console.log(product_id); 
+        await deleteFromUsersCartReq(product_id, 1)
+        .then(res => {
+            console.log("delete from cart", res) 
+        }).catch (err => {
+            console.log("error in deleting product to cart: ", err)
+        }) 
+        
+    }
 
     useEffect(() => {
         getCategories();
         getProducts();
         getUsers();
+        getCart();
     }, [])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,6 +144,15 @@ export const useAdminPage = ()=>{
         }) . catch (err => {
             console.log(err)
         })
+    }
+
+    const getCart = async() => {
+        await getUsersCartReq(1)
+        .then( res => {
+            setCartItems(res.data)
+        }) . catch (err => {
+            console.log(err)
+        })
     } 
 
     const addBestSellerhandler = async(product_id : number) => {
@@ -179,7 +183,7 @@ export const useAdminPage = ()=>{
         }) 
     } 
     
-    return {menuItems, products, users,cart, handleAddToCart,
+    return {menuItems, products, users, handleAddToCart, cartItems, handleDeleteFromCart,
         selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError,
         category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange,
         name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, 

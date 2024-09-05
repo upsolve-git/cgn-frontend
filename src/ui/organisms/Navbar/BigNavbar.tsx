@@ -2,11 +2,14 @@ import React from "react";
 import Logo from "../../atoms/Logo/Logo";
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
+import { useSignInPage } from "../../../utils/hooks/useSignInPage";
 
 interface BigNavbarProps{}
 
 const BigNavbar: React.FC<BigNavbarProps> = ()=>{
     const navigate = useNavigate()
+
+    let {isAuthenticated,logoutHandler} = useSignInPage()
 
     return(
         <div
@@ -20,20 +23,28 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                 <li>About</li>
                 <li><a href="/products">Products</a></li>
                 <li>Contact</li>
-                <li>
+                { !isAuthenticated && <li>
                     <button 
                     onClick={() => navigate(SIGNUP_PAGE)}
                     className="border border-primary px-2 py-1 rounded-lg">
                         Sign Up
                     </button>
-                </li>
-                <li>
+                </li>}
+                { !isAuthenticated && <li>
                     <button
                     onClick={() => navigate(LOGIN_PAGE)}
                     className="bg-primary text-white px-2 py-1 rounded-lg">
                         Sign In
                     </button>
-                </li>
+                </li> } 
+                { isAuthenticated && <li><a href="/cart">Cart</a></li>}
+                { isAuthenticated && <li>
+                    <button
+                    onClick={() => logoutHandler}
+                    className="bg-primary text-white px-2 py-1 rounded-lg">
+                        Log out
+                    </button>
+                </li> } 
             </ul>
         </div>
     )

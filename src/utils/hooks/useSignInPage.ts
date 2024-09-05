@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { loginReq } from "../../services/login";
+import { getAuthReq, loginReq, logoutReq } from "../../services/login";
 
 import { isEmailValid } from "../../validations/emailValidation";
 import { HOME_PAGE } from "../../constants/routes";
@@ -12,6 +12,11 @@ export const useSignInPage = ()=>{
     let [password, setPassword] = useState<string>('')
     let [accType, setAccType] = useState<string>('')
     let [loginErr, setLoginErr] = useState<string>('')
+    let [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+
+    useEffect(() => {
+      getAuth();
+    }, []) 
 
     const navigate = useNavigate();
 
@@ -36,6 +41,17 @@ export const useSignInPage = ()=>{
         return email == "" || password == "" || accType == ""
     }
 
+    const getAuth = async() => {
+        await getAuthReq()
+        .then( res => {
+            setIsAuthenticated(true);
+        })
+        .catch(err => {
+            console.log("not authenticated")
+            setIsAuthenticated(false);
+        })
+    }
+
     const loginHandler = async()=>{
         console.log(accType);
         
@@ -53,7 +69,18 @@ export const useSignInPage = ()=>{
             })
 
         // }
+    } 
+
+    const logoutHandler = async() => {
+        await logoutReq()
+        .then( res => {
+            setIsAuthenticated(false);
+        })
+        .catch(err => {
+            console.log("not authenticated")
+            setIsAuthenticated(false);
+        })
     }
 
-    return {email, emailErr, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
+    return {logoutHandler, isAuthenticated, email, emailErr, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
 }
