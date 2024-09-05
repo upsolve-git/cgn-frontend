@@ -29,7 +29,7 @@ const ReviewContent: React.FC<ReviewContentProps> = ({
             className="flex my-3">
                 <div
                 className="rounded-full w-fit h-fit mr-2">
-                    <img src={userImg}
+                    <img src={userImg} alt='#image'
                     className="w-[40px] h-auto"/>
                 </div>
                 <div>

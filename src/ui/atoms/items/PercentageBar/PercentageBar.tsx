@@ -8,7 +8,7 @@ const PercentageBar: React.FC<PercentageBarProps> = ({
     percentage
 })=>{
 
-    const wVal = "w-["+percentage.toString()+"%]"
+    // const wVal = "w-["+percentage.toString()+"%]"
 
     return(
         <div

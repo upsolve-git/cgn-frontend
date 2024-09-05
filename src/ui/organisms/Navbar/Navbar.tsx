@@ -5,9 +5,9 @@ import BigNavbar from "./BigNavbar";
 
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 
-interface Navbar{}
+interface NavbarProps{}
 
-const Navbar: React.FC<Navbar> = ()=>{
+const Navbar: React.FC<NavbarProps> = ()=>{
 
     let {isMobile} = useMediaWidth()
 

@@ -1,6 +1,5 @@
 import React from "react";
 
-import { starGiver } from "../../../helpers/starGiver";
 import RatingBreakup from "../../molecules/RatingBreakup/RatingBreakup";
 import RatingStars from "../../atoms/items/ratings/RatingStars/RatingStars";
 
@@ -14,7 +13,7 @@ const ReviewsStats: React.FC<ReviewsStatsProps> = ({
     totalReviews
 })=>{
 
-    let starNodes: React.ReactNode[] = starGiver(averageRating)
+    // let starNodes: React.ReactNode[] = starGiver(averageRating)
 
     return(
         <div

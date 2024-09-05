@@ -38,7 +38,7 @@ export const useSignInPage = ()=>{
     }
 
     const checkValues = () => {
-        return email == "" || password == "" || accType == ""
+        return email === "" || password === "" || accType === ""
     }
 
     const getAuth = async() => {
