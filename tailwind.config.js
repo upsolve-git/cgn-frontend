@@ -28,7 +28,8 @@ export default {
         'sectionBg': "url('../public/image/sectionbg.jpeg')",
         'mainpolishBg':"url('../public/image/mainpolishbg.png')",
         'contactusBg':"url('../public/image/contactusbg.png')",
-        'mobilemainBg':"url('../public/image/mobilemainsectionbg.png')"
+        'mobilemainBg':"url('../public/image/mobilemainsectionbg.png')",
+        'adsectionBg':"url('../public/image/image.png')"
       }
     },
     colors:{
@@ -38,7 +39,10 @@ export default {
       secondarylight: '#EAD7C3',
       darkgray: '#848383',
       white: '#FFFFFF',
-      red: '#ff2c2c'
+      red: '#ff2c2c',
+      lightgray: '#F3F4F6',
+      midgray: '#DEE1E6',
+      gold: '#F3C63F'
     },
     fontSize: {
       '5xs': ['4px', { lineHeight: '8px', letterSpacing: '-0.005em' }],
@@ -59,7 +63,9 @@ export default {
     },
     fontFamily: {
       'poppins': ['poppins', 'sans-serif'],
-      'montserrat': ['montserrat', 'sans-serif']
+      'montserrat': ['montserrat', 'sans-serif'],
+      'lexend': ['lexend', 'sans-serif'],
+      'manrope': ['manrope', 'sans-serif']
     },
   },
   plugins: [

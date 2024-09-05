@@ -1,57 +1,64 @@
 import React from "react";
-import PreviewAddToCartButton from "../../atoms/buttons/PreviewAddToCartButton/PreviewAddToCartButton";
+import { Product } from "../../../interfaces/Product";
+import { FiShoppingCart } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 interface ProductPreviewCardProps{
-    name:string,
-    description:string,
-    isBestSeller: boolean
+    product : Product
+    isBestSeller : boolean
 }
 
 const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
-    name,
-    description,
+    product,
     isBestSeller
 })=>{
+    const navigate = useNavigate()
+
     return (
         <div
-        className="h-full w-fit flex flex-col bg-white rounded-b-lg rounded-t-full font-poppins">
+        className="grid grid-cols-1 font-poppins max-w-[200px] max-h-fit">
             <div
-            className="w-[100px] h-[150px] m-auto mt-10 tablet:w-[110px] tablet:h-[160px] tablet:max-w-[20vw] desktop:w-[120px] desktop:h-[200px] desktop:mb-6">
-                <img src="/image/stockpolish.png" alt="" />
+            className="bg-white rounded-t-full px-3 py-4 desktop:px-6 desktop:py-8">
+                <img src={product.product_imgs_id} alt="" 
+                className="w-auto h-[200px] m-auto tablet:w-[100px] desktop:w-[130px]"/>
             </div>
             <div
-            className="w-full h-full max-w-[150px] bg-secondarylight  px-2 pt-1 pb-2 rounded-b-2xl text-3xs tablet:pt-3 tablet:max-w-[400px] desktop:pt-6 flex flex-col">
+            className="w-full h-full flex flex-col bg-secondarylight  px-2 pt-1 pb-2 rounded-b-2xl">
                 <div
-                className="h-[80%] flex text-3xs tablet:text-xs desktop:text-lg mobile:">
+                className="h-[80%] w-full flex justify-between">
                     <div>
                         <p
-                        className="w-[100%] block font-semibold desktop:text-md">
-                            {name}
+                        className="w-[100%] block font-semibold text-xs line-clamp-2 desktop:text-md">
+                            {product.name}
                         </p>
                         <p
-                        className="w-[70%] line-clamp-1 font-light desktop:text-sm">
-                            {description}
+                        className="w-[100%] line-clamp-1 font-light text-xxs desktop:text-sm">
+                            {product.description}
                         </p>
                     </div>
                     <button
-                        className="max-h-[50%] w-auto desktop:h-[40%] bg-primary text-white px-2 py-1 rounded-2xl text-4xs mb-3 tablet:text-3xs desktop:text-xs">
+                        className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
                         {isBestSeller ? 'Best Seller' : 'New Product'}
                     </button>
                 </div>
                 <div
-                className="h-[10%] flex items-center justify-between">
+                className="h-fit flex items-center justify-between">
                     <div
-                    className="w-[20%] flex justify-between items-center tablet:w-[50%]">
+                    className="w-fit flex justify-between items-center">
                         <span
-                        className="text-xs font-semibold tablet:text-md desktop:text-xl">
-                            $32
+                        className="text-sm font-semibold mr-1 tablet:text-md desktop:text-xl">
+                            ${product.discounted_price_percentage}
                         </span>
                         <span
-                        className="text-darkgray tablet:text-xs desktop:text-md">
-                            <s>$42</s>
+                        className="text-darkgray text-xs tablet:text-xs desktop:text-md">
+                            <s>${product.price}</s>
                         </span>
                     </div>
-                    <PreviewAddToCartButton />
+                    <button 
+                    className="p-1 rounded-full bg-white items-center justify-center desktop:p-2"
+                    onClick={()=>navigate(`/productDetail/${product.product_id}`)}> 
+                        <FiShoppingCart className="text-sm desktop:text-lg" />
+                    </button>
                 </div>
             </div>
         </div>

@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../atoms/Logo/Logo";
 
 import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
+import { useSignInPage } from "../../../utils/hooks/useSignInPage";
 
-interface MobileNavbarProps {}
+interface SmallNavbarProps {}
 
-const MobileNavbar: React.FC<MobileNavbarProps> = () => {
+const SmallNavbar: React.FC<SmallNavbarProps> = () => {
     const navigate = useNavigate()
     const [menuOpen, setMenuOpen] = useState(false);
+    let {isAuthenticated,logoutHandler} = useSignInPage()
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -34,24 +36,32 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 
                 {menuOpen && (
                     <ul className="absolute right-0 top-full mt-2 bg-white shadow-lg p-2 text-xs z-50">
-                        <li className="py-1 px-2 ">Home</li>
+                        <li className="py-1 px-2 "><a href="/">Home</a></li>
                         <li className="py-1 px-2 ">About</li>
-                        <li className="py-1 px-2 ">Products</li>
+                        <li className="py-1 px-2 "><a href="/products">Products</a></li>
                         <li className="py-1 px-2 ">Contact</li>
-                        <li className="py-1 px-2 ">
+                        { !isAuthenticated && <li className="py-1 px-2 ">
                             <button
                             onClick={() => navigate(SIGNUP_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
                                 Sign Up
                             </button>
-                        </li>
-                        <li className="py-1 px-2 ">
+                        </li>}
+                        { !isAuthenticated && <li className="py-1 px-2 ">
                             <button
                             onClick={() => navigate(LOGIN_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
                                 Sign In
                             </button>
-                        </li>
+                        </li>} 
+                        { isAuthenticated && <li className="py-1 px-2 "><a href="/cart">Cart</a></li>}
+                        { isAuthenticated && <li className="py-1 px-2 ">
+                            <button
+                            onClick={() => logoutHandler()}
+                            className="bg-primary text-white rounded-md px-1 text-xxs">
+                                Logout
+                            </button>
+                        </li>}
                     </ul>
                 )}
             </div>
@@ -59,4 +69,4 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
     );
 };
 
-export default MobileNavbar;
+export default SmallNavbar;

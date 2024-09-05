@@ -1,6 +1,6 @@
 import React from "react";
 
-import ChoiceRadioButton from "../../atoms/formElements/ChoiceRadioButton/ChoiceRadioButton";
+import ChoiceRadioButton from "../../atoms/formElements/auth/ChoiceRadioButton/ChoiceRadioButton";
 
 interface AccountTypeProps{}
 

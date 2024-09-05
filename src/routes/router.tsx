@@ -9,6 +9,10 @@ import AuthLayout from "../layouts/auth/AuthLayout";
 import LandingPage from "../pages/LandingPage";
 import SignInPage from "../pages/auth/SignInPage";
 import SignUpPage from "../pages/auth/SignUpPage";
+import AdminPage from "../pages/admin/AdminPage";
+import ProductsPage from "../pages/ProductsPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
+import Cart from "../pages/CartPage";
 
 const router = createBrowserRouter([
 {
@@ -18,6 +22,18 @@ const router = createBrowserRouter([
     {
         path: "",
         element: <LandingPage />,
+    },
+    {
+        path: "products",
+        element: <ProductsPage />
+    },
+    {
+        path: "productDetail/:id",
+        element: <ProductDetailPage />
+    },
+    {
+        path: "cart",
+        element: <Cart />
     },
     {
         path:'auth',
@@ -32,6 +48,10 @@ const router = createBrowserRouter([
                 element: <SignUpPage />
             }
         ]
+    },
+    {
+        path: "admin-home",
+        element: <AdminPage />
     }
     ],
 },

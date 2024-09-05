@@ -1,6 +1,6 @@
 import React from "react";
 
-import NailPolish from "../../atoms/items/NailPolish";
+import NailPolish from "../../atoms/items/NailPolish/NailPolish";
 import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 
