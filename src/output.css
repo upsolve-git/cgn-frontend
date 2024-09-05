@@ -1127,6 +1127,34 @@ video {
   width: 10%;
 }
 
+.w-\[20vw\]{
+  width: 20vw;
+}
+
+.w-\[30vw\]{
+  width: 30vw;
+}
+
+.w-\[25vw\]{
+  width: 25vw;
+}
+
+.w-\[50vw\]{
+  width: 50vw;
+}
+
+.w-\[vw\]{
+  width: vw;
+}
+
+.w-\[70vw\]{
+  width: 70vw;
+}
+
+.w-\[100vw\]{
+  width: 100vw;
+}
+
 .min-w-fit{
   min-width: fit-content;
 }
@@ -1380,6 +1408,10 @@ video {
 
 .place-self-center{
   place-self: center;
+}
+
+.place-self-stretch{
+  place-self: stretch;
 }
 
 .self-center{
@@ -1930,6 +1962,16 @@ html {
     margin-bottom: 2.25rem;
   }
 
+  .tablet\:mx-3{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .tablet\:my-3{
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .tablet\:mb-2{
     margin-bottom: 0.5rem;
   }
@@ -1944,6 +1986,14 @@ html {
 
   .tablet\:mt-4{
     margin-top: 1rem;
+  }
+
+  .tablet\:ml-5{
+    margin-left: 1.25rem;
+  }
+
+  .tablet\:flex{
+    display: flex;
   }
 
   .tablet\:grid{
@@ -1976,6 +2026,10 @@ html {
 
   .tablet\:h-\[220px\]{
     height: 220px;
+  }
+
+  .tablet\:h-fit{
+    height: fit-content;
   }
 
   .tablet\:w-14{
@@ -2024,6 +2078,10 @@ html {
 
   .tablet\:w-\[90px\]{
     width: 90px;
+  }
+
+  .tablet\:w-screen{
+    width: 100vw;
   }
 
   .tablet\:min-w-\[80\%\]{
@@ -2109,6 +2167,10 @@ html {
 
   .tablet\:gap-\[100px\]{
     gap: 100px;
+  }
+
+  .tablet\:place-self-center{
+    place-self: center;
   }
 
   .tablet\:rounded-sm{
@@ -2228,6 +2290,16 @@ html {
     margin-bottom: 3.5rem;
   }
 
+  .desktop\:mx-6{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .desktop\:my-6{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .desktop\:mb-4{
     margin-bottom: 1rem;
   }
@@ -2324,12 +2396,48 @@ html {
     width: 320px;
   }
 
+  .desktop\:w-\[\]{
+    width: ;
+  }
+
+  .desktop\:w-\[15vw\]{
+    width: 15vw;
+  }
+
+  .desktop\:w-\[10vw\]{
+    width: 10vw;
+  }
+
+  .desktop\:w-\[70\%\]{
+    width: 70%;
+  }
+
+  .desktop\:w-\[50vw\]{
+    width: 50vw;
+  }
+
   .desktop\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .desktop\:grid-cols-5{
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .desktop\:grid-cols-\[\]{
+    grid-template-columns: ;
+  }
+
+  .desktop\:grid-cols-\[40\%_\]{
+    grid-template-columns: 40%;
+  }
+
+  .desktop\:grid-cols-\[40\%_60\]{
+    grid-template-columns: 40% 60;
+  }
+
+  .desktop\:grid-cols-\[40\%_60\%\]{
+    grid-template-columns: 40% 60%;
   }
 
   .desktop\:gap-8{

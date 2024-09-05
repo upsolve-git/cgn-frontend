@@ -24,7 +24,7 @@ const ReviewsStats: React.FC<ReviewsStatsProps> = ({
                 <div
                 className="flex items-center pl-[0.5rem] my-5">
                     <p
-                    className="text-xl font-semibold mr-4">
+                    className="text-xl font-semibold mr-4 tablet:">
                         {averageRating}
                     </p>
                     <RatingStars 

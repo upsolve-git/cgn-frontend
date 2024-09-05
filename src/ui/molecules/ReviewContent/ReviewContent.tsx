@@ -28,7 +28,7 @@ const ReviewContent: React.FC<ReviewContentProps> = ({
             <div
             className="flex my-3">
                 <div
-                className="rounded-full w-fit h-fit bg-red mr-2">
+                className="rounded-full w-fit h-fit mr-2">
                     <img src={userImg}
                     className="w-[40px] h-auto"/>
                 </div>
