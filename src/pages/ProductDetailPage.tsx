@@ -10,6 +10,7 @@ import { FaCartPlus } from "react-icons/fa6";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
 
 
 interface ProductDetailPageProps{}
@@ -134,6 +135,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     rotation={'0'}/>}
                 </div>
             </div>)}
+            <ReviewsSection />
             <FooterSection />
         </div>
     )
