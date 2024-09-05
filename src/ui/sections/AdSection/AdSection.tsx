@@ -22,11 +22,11 @@ const AdSection: React.FC<AdSectionProps> = ()=>{
                 className="flex flex-col items-center justify-evenly">
                     <h1
                     className="font-bold text-lg font-lexend desktop:text-3xl">
-                        Lorem
+                        Nail Elegance
                     </h1>
                     <p
                     className="text-center text-md font-thin font-lexend desktop:text-xl">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora eius consequatur tenetur!
+                        Indulge in high-quality products designed to give you the perfect nail care.
                     </p>
                     <CommonButton 
                     label="Shop now!"

@@ -5,15 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 interface ProductPreviewCardProps{
     product : Product
-    isBestSeller : boolean
+    onClick : (product_id : number) => void
 }
 
 const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     product,
-    isBestSeller
+    onClick
 })=>{
-    const navigate = useNavigate()
-
     return (
         <div
         className="grid grid-cols-1 font-poppins max-w-[200px] max-h-fit">
@@ -37,8 +35,9 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                         </p>
                     </div>
                     <button
-                        className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
-                        {isBestSeller ? 'Best Seller' : 'New Product'}
+                        className="max-h-[50%] w-auto desktop:h-[40%] bg-primary text-white px-2 py-1 rounded-2xl text-4xs mb-3 tablet:text-3xs desktop:text-xs"
+                        onClick={()=>onClick(product.product_id)}>
+                        Add
                     </button>
                 </div>
                 <div
@@ -54,11 +53,9 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                             <s>${product.price}</s>
                         </span>
                     </div>
-                    <button 
-                    className="p-1 rounded-full bg-white items-center justify-center desktop:p-2"
-                    onClick={()=>navigate(`/productDetail/${product.product_id}`)}> 
-                        <FiShoppingCart className="text-sm desktop:text-lg" />
-                    </button>
+                    <div className="h-10 w-10 rounded-full bg-white items-center justify-center "> 
+                        <FiShoppingCart className="mt-2 ml-1" style={{fontSize:"1.8rem"}}/>
+                    </div>
                 </div>
             </div>
         </div>

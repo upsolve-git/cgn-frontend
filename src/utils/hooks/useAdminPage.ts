@@ -9,13 +9,13 @@ import { Cart } from "../../interfaces/Cart";
 
 
 export const useAdminPage = ()=>{
-    const menuItems = ["Add Category", "Add Products", "Add Best Selling products", "Add New Products", "Users"];
+    const menuItems = ["Add Products", "Users"];
     let [selectedMenuItem, setSelectedMenuItem] = useState<string>('') 
     let [category, setCategory] = useState<Category>({category_id:1, category_name:""})
     let [name, setName] = useState<string>('')
     let [description, setDescription] = useState<string>('')
     let [productType, setProductType] = useState<string>('')
-    let [categoryName, setCategoryName] = useState<string>('')
+    let [categoryName, setCategoryName] = useState<string>('')  
     let [price, setPrice] = useState<number>(1)
     let [discountedPrice, setDiscountedPrice] = useState<number>(1)
     let [categories, setCategories] = useState<Category[]>([]);
