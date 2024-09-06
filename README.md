@@ -13,4 +13,4 @@ npm run dev
 3. In another terminal window run this command to compile tailwinsd styles on runtime
 ```
 npx tailwindcss -i ./src/index.css -o ./src/output.css --watch
-```
+``` 
