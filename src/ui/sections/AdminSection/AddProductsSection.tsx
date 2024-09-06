@@ -40,7 +40,7 @@ const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, pro
                     <TextInput value={prodDescription} label="Description"  onChange={setProdDescription}/>
                     <Dropdown value={prodCategory} label="Category" options={categories} onChange={setProdCategory}/>
                     <NumberInput value={prodCost} label="Product cost" callbackFunc={setProdCost}/>
-                    <NumberInput value={prodDiscountPercentage} label="Discount percentage" callbackFunc={setProdDiscountPercentage}/>
+                    <NumberInput value={prodDiscountPercentage} label="Price after discount" callbackFunc={setProdDiscountPercentage}/>
                 </tbody>
             </table>
             <div
