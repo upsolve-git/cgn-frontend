@@ -11,7 +11,7 @@ export const useAccTypeContext: ()=>AccTypeProps = ()=>{
     let accTypeProps = useContext(AccTypeContext)
 
     if(accTypeProps === undefined){
-        throw new Error('Context value undefined')
+        throw new Error('AccTypeContext value undefined')
     }
 
     return accTypeProps

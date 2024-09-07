@@ -15,7 +15,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
 
     return(
         <div
-        className="border-t-2 my-[6%] border-lightgray relative">
+        className="tablet:border-t-2 my-[6%] tablet:border-lightgray relative">
             <div
             className="flex justify-between items-center my-[10%]"
             onClick={()=>setIsActive(!isActive)}>
@@ -25,8 +25,10 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
                 </span>
                 {
                     isActive?
-                    <ListOpener rotate=""/>:
-                    <ListOpener rotate="-rotate-90"/>
+                    <ListOpener rotate="" onClick={()=>console.log()}
+                    />:
+                    <ListOpener rotate="-rotate-90" onClick={()=>console.log()}
+                    />
                 }
             </div>
             {

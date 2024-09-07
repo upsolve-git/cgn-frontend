@@ -11,7 +11,7 @@ const RatingFilter: React.FC<RatingFilterProps> = ()=>{
     const ratings = [5,4.5,4,3.5,3,2.5,2,1.5,1,0.5]
     return(
         <div
-        className="border-t-2 my-[6%] border-lightgray relative">
+        className="tablet:border-t-2 my-[6%] tablet:border-lightgray relative">
             <div
             className="flex justify-between items-center my-[10%]"
             onClick={()=>setIsActive(!isActive)}>
@@ -21,8 +21,10 @@ const RatingFilter: React.FC<RatingFilterProps> = ()=>{
                 </span>
                 {
                     isActive?
-                    <ListOpener rotate=""/>:
-                    <ListOpener rotate="-rotate-90"/>
+                    <ListOpener rotate="" onClick={()=>console.log()}
+                    />:
+                    <ListOpener rotate="-rotate-90" onClick={()=>console.log()}
+                    />
                 }
             </div>
             {

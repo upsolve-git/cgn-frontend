@@ -1,9 +1,5 @@
-import React from "react";
-
-// import ProductCard from "../../molecules/ProductCard/ProductCard";
-import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
-import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
-import { Product } from "../../../interfaces/Product";
+import React, { useState } from "react";
+import 'react-tabs/style/react-tabs.css';
 
 import { FaSearch } from 'react-icons/fa';
 import { CgSortAz } from "react-icons/cg";
@@ -11,9 +7,17 @@ import { IoFilterSharp } from "react-icons/io5";
 import { BiSortAlt2 } from "react-icons/bi";
 import { TfiMenuAlt } from "react-icons/tfi";
 
-import 'react-tabs/style/react-tabs.css';
-import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+// import ProductCard from "../../molecules/ProductCard/ProductCard";
+import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
+import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
+import { Product } from "../../../interfaces/Product";
+
+
 import NavButton from "../../atoms/navItems/NavButton/NavButton";
+import SmallFiltersBoard from "../../organisms/FiltersBoard/SmallFiltersBoard";
+
+import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+import { useFilters } from "../../../utils/hooks/useFilters";
 
 interface ProductsSectionProps{
     products : Product[]
@@ -22,7 +26,11 @@ interface ProductsSectionProps{
 const ProductsSection: React.FC<ProductsSectionProps> = ({
     products
 }) => {
+    
     const {isMobile} = useMediaWidth()
+    let [isFilterActive, setIsFilterActive] = useState<boolean>(false)
+    let {priceRange, handlePriceRange} = useFilters()
+
     let items = []
     for(let i=0;i<products.length;i++){
         items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
@@ -42,6 +50,14 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             {
                 isMobile?
                 <div>
+                    {
+                        isFilterActive &&
+                        <div
+                        className="absolute w-screen h-full inset-0">
+                            <SmallFiltersBoard
+                            setIsFilterActive={setIsFilterActive}/>
+                        </div>
+                    }
                     <div
                     className="px-2 flex min-w-fit justify-start">
                         <NavButton label="All products" isActive={true}/>
@@ -52,6 +68,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                     <div
                     className="w-[90%] m-auto flex justify-between my-4">
                         <div
+                        onClick={()=>setIsFilterActive(true)}
                         className="text-xs flex items-center">
                             <IoFilterSharp />
                             <span
@@ -64,7 +81,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                             <BiSortAlt2 />
                             <span
                             className="ml-1">
-                                Price: Lowest to Highest
+                                Sort by
                             </span>
                         </div>
                         <div
