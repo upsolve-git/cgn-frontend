@@ -28,7 +28,7 @@ export const useAdminPage = ()=>{
     const handleAddToCart = async(product:Product, quantity : number) => { 
         console.log(product);
         console.log(quantity); 
-        await updateUsersCartReq(product.product_id, product.product_imgs_id, product.name, product.discounted_price_percentage, quantity, 1)
+        await updateUsersCartReq(product.product_id, product?.product_imgs_id||"/image/stockpolish.png", product.name, product.discounted_price_percentage, quantity, 1)
         .then(res => {
             console.log("added to cart", res) 
         }).catch (err => {

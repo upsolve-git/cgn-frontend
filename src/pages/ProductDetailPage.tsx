@@ -50,7 +50,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     <div> 
                         <div
                         className="h-full w-fit flex bg-secondarylight rounded-t-full px-10 m-auto p-16">
-                            <img src={product?.product_imgs_id||"/image/stockpolish.png"} alt="/image/stockpolish.png" className="h-[300px] w-auto m-auto"/>
+                            <img src={product?.product_imgs_id||"/image/stockpolish.png"} alt="Alt text" className="h-[300px] w-auto m-auto"/>
                         </div>
                     </div> 
                     <div className="text-center w-[80%] tablet:text-left"> 

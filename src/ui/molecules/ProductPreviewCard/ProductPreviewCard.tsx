@@ -29,11 +29,11 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                     <div>
                         <p
                         className="w-[100%] block font-semibold text-xs line-clamp-2 desktop:text-md">
-                            {product.name}
+                            {product?.name||"Lorem Ipsum"}
                         </p>
                         <p
                         className="w-[100%] line-clamp-1 font-light text-xxs desktop:text-sm">
-                            {product.description}
+                            {product?.description||"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut!"}
                         </p>
                     </div>
                     <button
@@ -47,16 +47,16 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                     className="w-fit flex justify-between items-center">
                         <span
                         className="text-sm font-semibold mr-1 tablet:text-md desktop:text-xl">
-                            ${product.discounted_price_percentage}
+                            ${product?.discounted_price_percentage||20}
                         </span>
                         <span
                         className="text-darkgray text-xs tablet:text-xs desktop:text-md">
-                            <s>${product.price}</s>
+                            <s>${product?.price||32}</s>
                         </span>
                     </div>
                     <button 
                     className="p-1 rounded-full bg-white items-center justify-center desktop:p-2"
-                    onClick={()=>navigate(`/productDetail/${product.product_id}`)}> 
+                    onClick={()=>navigate(`/productDetail/${product?.product_id||1}`)}> 
                         <FiShoppingCart className="text-sm desktop:text-lg" />
                     </button>
                 </div>

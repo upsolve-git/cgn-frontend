@@ -5,6 +5,6 @@ export interface Product {
     description:string;
     price:number;
     discounted_price_percentage:number;
-    product_imgs_id:string;
+    product_imgs_id?:string;
     category : string;
 }
