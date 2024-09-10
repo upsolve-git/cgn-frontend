@@ -25,12 +25,12 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     const {isMobile} = useMediaWidth()
     let {priceRange, rating, activeCats, activeCatsChange, sortBy, sortByChange, searchProd, searchProdChange } = useFiltersContext()
     const [showSortOptions, setShowSortOptions] = useState(false);
-    // let {
-    //     products
-    // } = useAdminPage()
+    let {
+        products
+    } = useAdminPage()
     // let products = dummyProducts
-    const products = useMemo(() => {
-        let res = [...dummyProducts];
+    const filteredproducts = useMemo(() => {
+        let res = [...products];
         
         let trueCat = 'allproducts';
         for (let key in activeCats) {
@@ -49,20 +49,21 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             });
         } 
     
-        if (rating && rating.length > 0) {
-            res = res.filter(prod => prod.rating >= rating[0] && prod.rating <= rating[1]);
-        }
+        // if (rating && rating.length > 0) {
+        //     res = res.filter(prod => prod.rating >= rating[0] && prod.rating <= rating[1]);
+        // }
     
         if (sortBy) {
             if (sortBy === 'price-asc') {
                 res.sort((a, b) => a.discounted_price_percentage - b.discounted_price_percentage);
             } else if (sortBy === 'price-desc') {
                 res.sort((a, b) => b.discounted_price_percentage - a.discounted_price_percentage);
-            } else if (sortBy === 'rating-asc') {
-                res.sort((a, b) => a.rating - b.rating);
-            } else if (sortBy === 'rating-desc') {
-                res.sort((a, b) => b.rating - a.rating);
-            }
+            } 
+            // else if (sortBy === 'rating-asc') {
+            //     res.sort((a, b) => a.rating - b.rating);
+            // } else if (sortBy === 'rating-desc') {
+            //     res.sort((a, b) => b.rating - a.rating);
+            // }
         }
 
         if (searchProd) {
