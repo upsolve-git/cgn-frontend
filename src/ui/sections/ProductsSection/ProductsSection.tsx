@@ -78,8 +78,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     
 
     let items = []
-    for(let i=0;i<products.length;i++){
-        items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
+    for(let i=0;i<filteredproducts.length;i++){
+        items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={true} key={i+1}/>)
     }
 
     return(
