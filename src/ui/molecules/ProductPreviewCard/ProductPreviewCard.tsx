@@ -17,53 +17,50 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     const navigate = useNavigate()
 
     return (
-        <div
-        className="grid grid-cols-1 font-poppins max-w-[200px] max-h-fit">
-            <div
-            className="bg-white rounded-t-full px-3 py-4 desktop:px-6 desktop:py-8">
-                <img src={product?.product_imgs_id||"/image/stockpolish.png"} alt="Alt text"
-                className="w-auto h-[200px] m-auto tablet:w-[100px] desktop:w-[130px]"/>
-            </div>
-            <div
-            className="w-full h-full flex flex-col bg-secondarylight  px-2 pt-1 pb-2 rounded-b-2xl">
-                <div
-                className="h-[80%] w-full flex justify-between">
-                    <div>
-                        <p
-                        className="w-[100%] block font-semibold text-xs line-clamp-2 desktop:text-md">
-                            {product?.name||"Lorem Ipsum"}
-                        </p>
-                        <p
-                        className="w-[100%] line-clamp-1 font-light text-xxs desktop:text-sm">
-                            {product?.description||"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut!"}
-                        </p>
-                    </div>
-                    {ishomepage && <button
+        <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
+      <div className="relative h-[65%] overflow-hidden">
+        <img 
+          src={product?.product_imgs_id || "/image/stockpolish.png"} 
+          alt={product?.name || "Product image"}
+          className="absolute p-8 w-full h-full"
+        />
+      </div>
+      <div className="flex-grow bg-secondarylight p-3 flex flex-col justify-between max-h-[35%]">
+        <div>
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="font-semibold text-sm line-clamp-1 flex-1 pr-2">
+              {product?.name || "Lorem Ipsum"}
+            </h3>
+            {/* <span className="text-[10px] text-white bg-primary rounded-full py-1 px-2 whitespace-nowrap ml-2">
+              {isBestSeller ? 'Best Seller' : 'New Product'}
+            </span> */}
+          </div>
+          <p className="text-xs text-black line-clamp-1 mb-2">
+            {product?.description || "Lorem ipsum dolor sit, amet consectetur adipisicing elit."}
+          </p>
+        </div>
+        {ishomepage && <button
                         className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
                         {isBestSeller ? 'Best Seller' : 'New Product'}
                     </button>}
-                </div>
-                <div
-                className="h-fit flex items-center justify-between">
-                    <div
-                    className=" w-fit flex justify-between items-center">
-                        <span
-                        className="text-sm font-semibold mr-1 tablet:text-md desktop:text-xl">
-                            ${product?.discounted_price_percentage||20}
-                        </span>
-                        <span
-                        className="text-darkgray text-xs tablet:text-xs desktop:text-md">
-                            <s>${product?.price||32}</s>
-                        </span>
-                    </div>
-                    <button 
-                    className="p-1 rounded-full bg-white items-center justify-center desktop:p-2"
-                    onClick={()=>navigate(`/productDetail/${product?.product_id||1}`)}> 
-                        <FiShoppingCart className="text-sm desktop:text-lg" />
-                    </button>
-                </div>
-            </div>
+        <div className="grid grid-cols-[1fr,auto] items-end gap-2 mt-auto">
+          <div className="flex flex-col items-start overflow-hidden">
+            <span className="text-lg font-semibold truncate w-full">
+              ${product?.discounted_price_percentage || 20}
+            </span>
+            <span className="text-xs text-darkgray line-through truncate w-full">
+              ${product?.price || 32}
+            </span>
+          </div>
+          <button
+            className="p-2 rounded-full bg-white shadow-sm flex-shrink-0"
+            onClick={() => navigate(`/productDetail/${product?.product_id || 1}`)}
+          >
+            <FiShoppingCart className="text-lg text-primary" />
+          </button>
         </div>
+      </div>
+    </div>
     )
 }
 

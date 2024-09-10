@@ -248,14 +248,14 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                     <></>
                     :
                     <div
-                    className="w-[30%] h-fit mr-6 justify-between desktop:w-[20%]">
+                    className="w-[30%] h-fit justify-between desktop:w-[20%]">
                         <BigFiltersBoard
                         clearAll={clearAll}/>
                     </div>
                 }
                 
                 <div
-                className="grid grid-cols-2 gap-4 mx-auto tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
+                 className="grid grid-cols-2 gap-6 tablet:pl-20 tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
                     {
                         items.map(e=>e)
                     }

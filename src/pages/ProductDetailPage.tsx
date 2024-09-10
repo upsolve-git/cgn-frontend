@@ -16,7 +16,7 @@ import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
 interface ProductDetailPageProps{}
 
 const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
-    const { id } = useParams<{ id: string }>(); // This will capture the `id` from the URL
+    const { id } = useParams<{ id: string }>(); // This will capture the id from the URL
     const navigate = useNavigate()
 
     let {isMobile} = useMediaWidth()
@@ -46,13 +46,16 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
             <Navbar />
             {products.length &&  (
             <div>
-                <div className="grid grid-cols-1 place-items-center tablet:grid-cols-2 tablet:m-20">
-                    <div> 
-                        <div
-                        className="h-full w-fit flex bg-secondarylight rounded-t-full px-10 m-auto p-16">
-                            <img src={product?.product_imgs_id||"/image/stockpolish.png"} alt="Alt text" className="h-[300px] w-auto m-auto"/>
+                <div className="grid grid-cols-1 place-items-center m-10 tablet:grid-cols-2 tablet:m-20">
+                    <div className="w-full max-w-md aspect-square"> 
+                        <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
+                            <img 
+                                src={product?.product_imgs_id || "/image/stockpolish.png"} 
+                                alt={product.name} 
+                                className="max-h-full max-w-full object-contain"
+                            />
                         </div>
-                    </div> 
+                    </div>
                     <div className="text-center w-[80%] tablet:text-left"> 
                         <h1 className="font-bold text-xl mb-4">{product.name}</h1>
                         <h2 className="mb-3">{product.description}</h2> 
