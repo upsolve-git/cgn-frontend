@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 interface ProductPreviewCardProps{
     product : Product
     isBestSeller : boolean
+    ishomepage : boolean
 }
 
 const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     product,
-    isBestSeller
+    isBestSeller,
+    ishomepage
 })=>{
     const navigate = useNavigate()
 
@@ -36,7 +38,10 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                             {product?.description||"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut!"}
                         </p>
                     </div>
-                
+                    {ishomepage && <button
+                        className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
+                        {isBestSeller ? 'Best Seller' : 'New Product'}
+                    </button>}
                 </div>
                 <div
                 className="h-fit flex items-center justify-between">

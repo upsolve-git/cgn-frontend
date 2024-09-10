@@ -136,6 +136,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     {!isMobile&&<ArrowButton 
                     rotation={'180'}/>}
                     {products.length && <ProductPreviewList 
+                    ishomepage = {false}
                     products={products}
                     isBestSeller={true}/>}
                     {!isMobile&&<ArrowButton 
