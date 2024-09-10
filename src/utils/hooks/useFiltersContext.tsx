@@ -9,12 +9,16 @@ export interface ActiveCats{
 
 // Define the context's types
 interface FiltersContextProps {
-    priceRange: number[];
-    priceRangeChange: (priceRange: number[]) => void;
-    rating: number[];
-    ratingFilterChange: (ratings: number[]) => void;
-    activeCats: ActiveCats;
-    activeCatsChange: (cats: ActiveCats) => void;
+    priceRange: number[],
+    priceRangeChange: (priceRange: number[]) => void,
+    rating: number[],
+    ratingFilterChange: (ratings: number[]) => void,
+    activeCats: ActiveCats,
+    activeCatsChange: (cats: ActiveCats) => void,
+    sortBy: string,
+    sortByChange: (sortKey: string)=>void,
+    searchProd: string,
+    searchProdChange: (e: React.ChangeEvent<HTMLInputElement>)=>void
 }
 
 // Create the context
@@ -31,18 +35,22 @@ export const useFiltersContext = () => {
 
 // Context provider component
 export const FiltersContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [priceRange, setPriceRange] = useState<number[]>([0, 0]);
-    const [rating, setRating] = useState<number[]>([0, 5]);
-    const [activeCats, setActiveCats] = useState<ActiveCats>({
+    let [priceRange, setPriceRange] = useState<number[]>([0, 0]);
+    let [rating, setRating] = useState<number[]>([0, 5]);
+    let [searchProd, setSearchProd] = useState<string>('')
+    let [activeCats, setActiveCats] = useState<ActiveCats>({
         allproducts: true,
         nails: false,
         manicure: false,
         pedicure: false,
     });
+    let [sortBy, setSortBy] = useState<string>('')
 
     const priceRangeChange = (priceRange: number[]): void => setPriceRange(priceRange)
     const activeCatsChange = (cats: ActiveCats): void => setActiveCats(cats)
     const ratingFilterChange = (ratings: number[]): void => setRating(ratings)
+    const sortByChange = (sortKey:string):void=>setSortBy(sortKey)
+    const searchProdChange = (e: React.ChangeEvent<HTMLInputElement>):void=>{setSearchProd(e.target.value); console.log(searchProd)}
 
     return (
         <FiltersContext.Provider
@@ -53,6 +61,10 @@ export const FiltersContextProvider: React.FC<{ children: ReactNode }> = ({ chil
                 ratingFilterChange,
                 activeCats,
                 activeCatsChange,
+                sortBy,
+                sortByChange,
+                searchProd,
+                searchProdChange
             }}
         >
             {children}
