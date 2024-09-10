@@ -24,15 +24,15 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     
 }) => {
     const {isMobile} = useMediaWidth()
-    let {priceRange, rating, activeCats, activeCatsChange } = useFiltersContext()
+    let {priceRange, rating, activeCats, activeCatsChange, sortBy, sortByChange, searchProd, searchProdChange } = useFiltersContext()
+    const [showSortOptions, setShowSortOptions] = useState(false);
     // let {
     //     products
     // } = useAdminPage()
     // let products = dummyProducts
     const products = useMemo(() => {
-        let res = dummyProducts
+        let res = [...dummyProducts];
         
-        // Filter by category
         let trueCat = 'allproducts';
         for (let key in activeCats) {
             if (activeCats[key as keyof ActiveCats]) {
@@ -40,28 +40,41 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 break;
             }
         }
-        
-        // Only filter by category if a specific category is selected
         if (trueCat !== 'allproducts') {
             res = res.filter(prod => prod.category === trueCat);
         }
     
-        // Filter by price range if it's set
-        if (priceRange[0] !== 0 || priceRange[1] !== 0) {  // Ensure it's not default
+        if (priceRange[0] !== 0 || priceRange[1] !== 0) {  
             res = res.filter(prod => {
                 return prod.discounted_price_percentage >= priceRange[0] && prod.discounted_price_percentage <= priceRange[1];
             });
         } 
     
-        // Filter by rating if it's set
         if (rating && rating.length > 0) {
-            res = res.filter(prod => {
-                return prod.rating >= rating[0] && prod.rating <= rating[1];
-            });
+            res = res.filter(prod => prod.rating >= rating[0] && prod.rating <= rating[1]);
         }
     
-        return res;  // Return the filtered products
-    }, [priceRange, rating, activeCats]);
+        if (sortBy) {
+            if (sortBy === 'price-asc') {
+                res.sort((a, b) => a.discounted_price_percentage - b.discounted_price_percentage);
+            } else if (sortBy === 'price-desc') {
+                res.sort((a, b) => b.discounted_price_percentage - a.discounted_price_percentage);
+            } else if (sortBy === 'rating-asc') {
+                res.sort((a, b) => a.rating - b.rating);
+            } else if (sortBy === 'rating-desc') {
+                res.sort((a, b) => b.rating - a.rating);
+            }
+        }
+
+        if (searchProd) {
+            res = res.filter(prod =>
+                prod.name.toLowerCase().includes(searchProd.toLowerCase())
+            );
+        }
+    
+        return res;
+    }, [priceRange, rating, activeCats, sortBy, searchProd]);
+    
     
 
     let items = []
@@ -129,12 +142,22 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                             </span>
                         </div>
                         <div
-                        className="text-xs flex items-center">
-                            <BiSortAlt2 />
-                            <span
-                            className="ml-1">
-                                Sort by
-                            </span>
+                        className="relative">
+                            <div
+                            onClick={() => setShowSortOptions(!showSortOptions)}
+                            className="text-xs flex items-center cursor-pointer">
+                                <BiSortAlt2 />
+                                <span
+                                className="ml-1">
+                                    Sort by
+                                </span>
+                            </div>
+                            {showSortOptions && (
+                                <div className="absolute bg-white shadow-lg py-2 rounded mt-2">
+                                    <button className="block w-full text-left hover:bg-midgray" onClick={() => {sortByChange('price-asc'); setShowSortOptions(false)}}>Price: Low to High</button>
+                                    <button className="block w-full text-left hover:bg-midgray" onClick={() => {sortByChange('price-desc'); setShowSortOptions(false)}}>Price: High to Low</button>
+                                </div>
+                            )}
                         </div>
                         <div
                         className="text-xs flex items-center">
@@ -185,20 +208,32 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                         />
                         <input
                             type="text"
+                            value={searchProd}
                             placeholder="Search product ..."
                             className="p-2 border border-primary text-xs rounded w-[50%] desktop:text-md"
+                            onChange={searchProdChange}
                         /> 
-                        <button className="mx-4 p-2 text-xs flex rounded bg-lightgray desktop:text-md">
-                            Sort by 
-                            <CgSortAz style={{fontSize:"1.5rem"}}/>
-                        </button>
+                        <div
+                        className="relative">
+                            <button 
+                            onClick={() => setShowSortOptions(!showSortOptions)}
+                            className="mx-4 p-2 text-xs flex rounded bg-lightgray desktop:text-md">
+                                Sort by 
+                                <CgSortAz style={{fontSize:"1.5rem"}}/>
+                            </button>
+                            {showSortOptions && (
+                                <div className="absolute bg-white shadow-lg py-2 rounded mt-2">
+                                    <button className="block w-full text-left hover:bg-midgray" onClick={() => {sortByChange('price-asc'); setShowSortOptions(false)}}>Price: Low to High</button>
+                                    <button className="block w-full text-left hover:bg-midgray" onClick={() => {sortByChange('price-desc'); setShowSortOptions(false)}}>Price: High to Low</button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             }
 
             <div
             className="w-[90%] flex my-16 items-start">
-                
                 {
                     isMobile?
                     <></>
