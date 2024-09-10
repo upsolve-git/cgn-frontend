@@ -4,20 +4,23 @@ import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT
 
 interface AddProdParams{
     name: string,
-    image: File,
+    images: File[],
     type: string,
     description: string,
     cost: number,
     discountPercentage: number,
     availableSizes: string,
-    categoryId: number
+    categoryId: number,
+    color: string, 
+    shade : string, 
+    HEXCode : string,
 }
 
 export const addProductsReq = async (
-    {name, image, type, description, cost, discountPercentage, availableSizes, categoryId}: AddProdParams
+    {name, images, type, description, cost, discountPercentage, availableSizes, categoryId, color, shade, HEXCode}: AddProdParams
 )=>{
     
-    if(name && image && type && description && cost && discountPercentage && availableSizes && categoryId){
+    if(name && images.length && type && description && cost && discountPercentage && availableSizes && categoryId && color && shade && HEXCode){
         let formData = new FormData()
         formData.append('name', name)
         formData.append('product_type', type)
@@ -26,7 +29,9 @@ export const addProductsReq = async (
         formData.append('discounted_price_percentage', discountPercentage.toString())
         formData.append('available_sizes', availableSizes)
         formData.append('category_id', categoryId.toString())
-        formData.append('image', image)
+        images.forEach((file) => {
+            formData.append(`images`, file);  // You can adjust the key as needed
+          });
         
         return axios.post(ADD_PRODUCT_ENDPOINT, formData, {
             headers: {

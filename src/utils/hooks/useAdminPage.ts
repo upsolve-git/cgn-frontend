@@ -19,11 +19,14 @@ export const useAdminPage = ()=>{
     let [price, setPrice] = useState<number>(1)
     let [discountedPrice, setDiscountedPrice] = useState<number>(1)
     let [categories, setCategories] = useState<Category[]>([]);
-    let [file, setFile] = useState<File | null>()
+    let [files, setFiles] = useState<File[] | null>()
     let [addProductsError, setAddProductsError]  = useState<string>('')
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
     let [cartItems, setCartItems] = useState<Cart[]>([]); 
+    let [color, setColor] = useState<string>('')
+    let [shade, setShade] = useState<string>('')
+    let [HEXCode, setHEXCode] = useState<string>('')
 
     const handleAddToCart = async(product:Product, quantity : number) => { 
         console.log(product);
@@ -55,8 +58,10 @@ export const useAdminPage = ()=>{
     }, [])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0] || null;
-        setFile(file)
+        const selectedFiles = e.target.files;
+        if (selectedFiles) {
+            setFiles(Array.from(selectedFiles));
+        }
     }
 
     const handleSelectedMenuItemChange = (item : string)=>{
@@ -75,9 +80,21 @@ export const useAdminPage = ()=>{
         setDescription(e.target.value)
     }
 
+    const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setColor(e.target.value)
+    } 
+
+    const handleShadeChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setShade(e.target.value)
+    }
+
+    const handleHEXCodeChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setHEXCode(e.target.value)
+    }
+
     const handleProductTypeChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setProductType(e.target.value)
-    } 
+    }
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setPrice(Number(e.target.value))
@@ -102,7 +119,7 @@ export const useAdminPage = ()=>{
 
     const addProductHandler = async () => {
             console.log(name)
-            console.log(file)
+            console.log(files)
             console.log(productType)
             console.log(price)
             console.log(description)
@@ -110,16 +127,19 @@ export const useAdminPage = ()=>{
             console.log(category)
             await addProductsReq({
                 name: name,
-                image: file!,
+                images: files!,
                 type: productType,
                 description: description,
                 cost: price,
                 discountPercentage: discountedPrice,
                 availableSizes: '15',
                 categoryId: category.category_id,
+                color : color,
+                shade : shade, 
+                HEXCode : HEXCode
             })
             .then(res => {
-                console.log("added product")
+                console.log("added product", res)
                 setAddProductsError('false')
             }).catch (err => {
                 setAddProductsError('Error occured')
@@ -183,11 +203,11 @@ export const useAdminPage = ()=>{
         }) 
     } 
     
-    return {menuItems, products, users, handleAddToCart, cartItems, handleDeleteFromCart,
-        selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError,
-        category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange,
-        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, 
-        price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addBestSellerhandler, addNewSellerhandler
+    return {menuItems, products, users, handleAddToCart, cartItems, handleDeleteFromCart, handleColorChange, shade,
+        selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError, handleShadeChange, color,
+        category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange, handleHEXCodeChange, HEXCode,
+        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, addBestSellerhandler,
+        price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addNewSellerhandler
     }
 
 }

@@ -15,6 +15,9 @@ interface AddProductsSectionProps{
     prodCost : number,
     prodDiscountPercentage : number, 
     error : string,
+    color : string,
+    shade : string, 
+    HEXCode : string,
     categories : Category[]
     setProdName : (e: React.ChangeEvent<HTMLInputElement>)=>void,
     setProdType : (e: React.ChangeEvent<HTMLInputElement>)=>void,
@@ -23,11 +26,14 @@ interface AddProductsSectionProps{
     setProdCost : (e: React.ChangeEvent<HTMLInputElement>)=>void,
     setProdDiscountPercentage : (e: React.ChangeEvent<HTMLInputElement>)=>void,
     setFile :  (e: React.ChangeEvent<HTMLInputElement>)=>void,
+    setColor : (e: React.ChangeEvent<HTMLInputElement>)=>void,
+    setShade : (e: React.ChangeEvent<HTMLInputElement>)=>void,
+    setHEXCode : (e: React.ChangeEvent<HTMLInputElement>)=>void,
     addProduct : () => void
 }
 
-const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, prodDescription, prodCategory, prodCost, error, categories,setFile,
-    prodDiscountPercentage,setProdName,setProdType,setProdDescription, setProdCategory,setProdCost,setProdDiscountPercentage, addProduct})=>{
+const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, prodDescription, prodCategory, prodCost, error, categories,setFile, color, shade, HEXCode,
+    prodDiscountPercentage,setProdName,setProdType,setProdDescription, setProdCategory,setProdCost,setProdDiscountPercentage, addProduct, setColor, setShade, setHEXCode})=>{
     return(
         <div
         className="flex flex-col items-center">
@@ -41,6 +47,14 @@ const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, pro
                     <Dropdown value={prodCategory} label="Category" options={categories} onChange={setProdCategory}/>
                     <NumberInput value={prodCost} label="Product cost" callbackFunc={setProdCost}/>
                     <NumberInput value={prodDiscountPercentage} label="Price after discount" callbackFunc={setProdDiscountPercentage}/>
+                    {/* <div> 
+                    {prodCategory.category_name === "Nail Polish" && 
+                     <TextInput value={color} label="Color"  onChange={setColor}/> }
+                    {prodCategory.category_name === "Nail Polish" && 
+                     <TextInput value={shade} label="Shade"  onChange={setShade}/> }
+                    {prodCategory.category_name === "Nail Polish" && 
+                     <TextInput value={HEXCode} label="HEX Code"  onChange={setHEXCode}/> }
+                    </div> */}
                 </tbody>
             </table>
             <div

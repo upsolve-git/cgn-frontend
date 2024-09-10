@@ -36,7 +36,13 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         products,
         users,
         addBestSellerhandler,
-        addNewSellerhandler
+        addNewSellerhandler,
+        color,
+        shade,
+        HEXCode,
+        handleColorChange,
+        handleHEXCodeChange,
+        handleShadeChange
     } = useAdminPage()
 
     return (
@@ -77,6 +83,12 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     setFile={handleFileChange}
                     addProduct={addProductHandler}
                     error={addProductsError}
+                    color={color}
+                    shade={shade}
+                    HEXCode={HEXCode}
+                    setColor={handleColorChange}
+                    setShade={handleShadeChange}
+                    setHEXCode={handleHEXCodeChange}
                     />
                     : selectedMenuItem === "Add Best Selling products" ? 
                     <ProductPreviewListAdmin products={products} onClick={addBestSellerhandler} />
