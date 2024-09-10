@@ -40,7 +40,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             }
         }
         if (trueCat !== 'allproducts') {
-            res = res.filter(prod => prod.category === trueCat);
+            res = res.filter(prod => prod.category_name.toLowerCase() === trueCat);
         }
     
         if (priceRange[0] !== 0 || priceRange[1] !== 0) {  

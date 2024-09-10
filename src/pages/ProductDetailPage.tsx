@@ -79,8 +79,8 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                             <p className="mt-1">Free shipping on orders over $49USD</p>
                         </p>
 
-                        { product.category === "Nail Polish" && <label className="font-bold text-sm">Choose color</label> }
-                        { product.category === "Nail Polish" &&  <select className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
+                        { product.category_name === "Nail Polish" && <label className="font-bold text-sm">Choose color</label> }
+                        { product.category_name === "Nail Polish" &&  <select className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
                         <option>Color</option>
                         {colors.map(option => (
                             <option>
@@ -89,7 +89,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         ))}
                         </select> } 
 
-                        { product.category !== "Nail Polish" && 
+                        { product.category_name !== "Nail Polish" && 
                             <p className="flex mb-4 justify-center tablet:justify-start">
                             <IoIosCheckmarkCircleOutline style={{color:"green", fontSize:"2em"}} className="mr-2"/> 
                             <p className="mt-1">Free + easy returns</p>
