@@ -5,15 +5,13 @@ import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import AdSection from "../ui/sections/AdSection/AdSection";
 import ProductsSection from "../ui/sections/ProductsSection/ProductsSection";
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
-import { useAdminPage } from "../utils/hooks/useAdminPage";
+import { FiltersContextProvider } from "../utils/hooks/useFiltersContext";
 
 interface ProductsPageProps{}
 
 const ProductsPage:React.FC<ProductsPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {
-        products
-    } = useAdminPage()
+    
 
     // const products = [
     //     {
@@ -63,7 +61,9 @@ const ProductsPage:React.FC<ProductsPageProps> = ()=>{
         className="overflow-scroll bg-secondary">
             <Navbar/>
             <div>{isMobile?<></>:<AdSection />}</div>
-            <ProductsSection  products={products}/>
+            <FiltersContextProvider>
+                <ProductsSection />
+            </FiltersContextProvider>
             <FooterSection />
         </div>
     )

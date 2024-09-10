@@ -44,10 +44,10 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 <div>
                     <div
                     className="px-2 flex min-w-fit justify-start">
-                        <NavButton label="All products" isActive={true}/>
+                        {/* <NavButton label="All products" isActive={true}/>
                         <NavButton label="Nails" isActive={false}/>
                         <NavButton label="Manicure" isActive={false}/>
-                        <NavButton label="Pedicure" isActive={false}/>
+                        <NavButton label="Pedicure" isActive={false}/> */}
                     </div>
                     <div
                     className="w-[90%] m-auto flex justify-between my-4">
@@ -76,10 +76,10 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 :
                 <div className="flex w-[90vw] justify-between items-center m-auto"> 
                     <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]"> 
-                        <NavButton label="All products" isActive={true}/>
+                        {/* <NavButton label="All products" isActive={true}/>
                         <NavButton label="Nails" isActive={false}/>
                         <NavButton label="Manicure" isActive={false}/>
-                        <NavButton label="Pedicure" isActive={false}/>
+                        <NavButton label="Pedicure" isActive={false}/> */}
                     </div> 
                     <div className="w-[40%] flex items-center rounded-md">
                         <FaSearch 

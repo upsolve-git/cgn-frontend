@@ -1,28 +1,69 @@
-import React from "react";
-
-// import ProductCard from "../../molecules/ProductCard/ProductCard";
-import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
-import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
-import { Product } from "../../../interfaces/Product";
+import React, {useState, useMemo, useEffect} from "react";
 
 import { FaSearch } from 'react-icons/fa';
 import { CgSortAz } from "react-icons/cg";
 import { IoFilterSharp } from "react-icons/io5";
 import { BiSortAlt2 } from "react-icons/bi";
 import { TfiMenuAlt } from "react-icons/tfi";
-
 import 'react-tabs/style/react-tabs.css';
-import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+
+import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
+import BigFiltersBoard from "../../organisms/FiltersBoard/BigFiltersBoard";
 import NavButton from "../../atoms/navItems/NavButton/NavButton";
 
-interface ProductsSectionProps{
-    products : Product[]
-}
+
+import { useAdminPage } from "../../../utils/hooks/useAdminPage";
+import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
+import { dummyProducts } from "../../../constants/dummyProducts";
+import { Product } from "../../../interfaces/Product";
+import { ActiveCats, useFiltersContext } from "../../../utils/hooks/useFiltersContext";
+
+interface ProductsSectionProps{}
 
 const ProductsSection: React.FC<ProductsSectionProps> = ({
-    products
+    
 }) => {
     const {isMobile} = useMediaWidth()
+    let {priceRange, rating, activeCats, activeCatsChange } = useFiltersContext()
+    // let {
+    //     products
+    // } = useAdminPage()
+    // let products = dummyProducts
+    const products = useMemo(() => {
+        let res = dummyProducts
+        
+        // Filter by category
+        let trueCat = 'allproducts';
+        for (let key in activeCats) {
+            if (activeCats[key as keyof ActiveCats]) {
+                trueCat = key;
+                break;
+            }
+        }
+        
+        // Only filter by category if a specific category is selected
+        if (trueCat !== 'allproducts') {
+            res = res.filter(prod => prod.category === trueCat);
+        }
+    
+        // Filter by price range if it's set
+        if (priceRange[0] !== 0 || priceRange[1] !== 0) {  // Ensure it's not default
+            res = res.filter(prod => {
+                return prod.discounted_price_percentage >= priceRange[0] && prod.discounted_price_percentage <= priceRange[1];
+            });
+        } 
+    
+        // Filter by rating if it's set
+        if (rating && rating.length > 0) {
+            res = res.filter(prod => {
+                return prod.rating >= rating[0] && prod.rating <= rating[1];
+            });
+        }
+    
+        return res;  // Return the filtered products
+    }, [priceRange, rating, activeCats]);
+    
+
     let items = []
     for(let i=0;i<products.length;i++){
         items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
@@ -44,10 +85,38 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 <div>
                     <div
                     className="px-2 flex min-w-fit justify-start">
-                        <NavButton label="All products" isActive={true}/>
-                        <NavButton label="Nails" isActive={false}/>
-                        <NavButton label="Manicure" isActive={false}/>
-                        <NavButton label="Pedicure" isActive={false}/>
+                        <NavButton label="All products"
+                        onClick={()=>activeCatsChange({
+                            allproducts: true,
+                            nails: false,
+                            manicure: false,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.allproducts}/>
+                        <NavButton label="Nails" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: true,
+                            manicure: false,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.nails}/>
+                        <NavButton label="Manicure" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: false,
+                            manicure: true,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.manicure}/>
+                        <NavButton label="Pedicure" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: false,
+                            manicure: false,
+                            pedicure: true
+                        })}
+                        isActive={activeCats.pedicure}/>
                     </div>
                     <div
                     className="w-[90%] m-auto flex justify-between my-4">
@@ -64,7 +133,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                             <BiSortAlt2 />
                             <span
                             className="ml-1">
-                                Price: Lowest to Highest
+                                Sort by
                             </span>
                         </div>
                         <div
@@ -76,10 +145,38 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 :
                 <div className="flex w-[90vw] justify-between items-center m-auto"> 
                     <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]"> 
-                        <NavButton label="All products" isActive={true}/>
-                        <NavButton label="Nails" isActive={false}/>
-                        <NavButton label="Manicure" isActive={false}/>
-                        <NavButton label="Pedicure" isActive={false}/>
+                    <NavButton label="All products"
+                        onClick={()=>activeCatsChange({
+                            allproducts: true,
+                            nails: false,
+                            manicure: false,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.allproducts}/>
+                        <NavButton label="Nails" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: true,
+                            manicure: false,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.nails}/>
+                        <NavButton label="Manicure" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: false,
+                            manicure: true,
+                            pedicure: false
+                        })}
+                        isActive={activeCats.manicure}/>
+                        <NavButton label="Pedicure" 
+                        onClick={()=>activeCatsChange({
+                            allproducts: false,
+                            nails: false,
+                            manicure: false,
+                            pedicure: true
+                        })}
+                        isActive={activeCats.pedicure}/>
                     </div> 
                     <div className="w-[40%] flex items-center rounded-md">
                         <FaSearch 

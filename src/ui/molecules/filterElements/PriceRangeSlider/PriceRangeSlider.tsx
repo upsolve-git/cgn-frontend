@@ -3,14 +3,16 @@ import { Slider } from "@mui/material";
 
 import ListOpener from "../../../atoms/items/ListOpener/ListOpener";
 
+import { useFiltersContext } from "../../../../utils/hooks/useFiltersContext";
+
 interface PriceRangeSliderProps{}
 
 const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
 
-    let [value, setValue] = useState<number[]>([10,200])
+    let {priceRange, priceRangeChange} = useFiltersContext()
     let [isActive, setIsActive] = useState<boolean>(false)
     const handleSlide = (event: Event, newVal: number | number[])=>{
-        setValue(newVal as number[])
+        priceRangeChange(newVal as number[])
     }
 
     return(
@@ -37,7 +39,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
                     className="grid grid-rows-1 grid-cols-3 items-stretch">
                         <span
                         className="bg-lightgray px-[0.3rem] py-[0.1rem] rounded-md">
-                            {value[0]}
+                            {priceRange[0]}
                         </span>
                         <span
                         className="self-center text-center">
@@ -45,11 +47,11 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
                         </span>
                         <span
                         className="bg-lightgray px-[0.3rem] py-[0.1rem] rounded-md">
-                            {value[1]}
+                            {priceRange[1]}
                         </span>
                     </div>
                     <Slider
-                    value={value}
+                    value={priceRange}
                     min={0}
                     max={700}
                     onChange={handleSlide}
