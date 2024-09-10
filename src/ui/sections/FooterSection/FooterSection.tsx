@@ -28,8 +28,8 @@ const FooterSection: React.FC<FooterSectionProps> = ()=>{
                         <p
                         className="text-sm font-medium tablet:text-md desktop:text-xl">Contact</p>
                         <ul>
-                            <li>example@mail.com</li>
-                            <li>+1 1234567890</li>
+                            <li>dev.cgnails@gmail.com</li>
+                            <li>+1 (919)-670-9327</li>
                         </ul>
                     </div>
                     <div

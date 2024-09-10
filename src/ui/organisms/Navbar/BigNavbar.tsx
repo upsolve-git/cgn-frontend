@@ -40,7 +40,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                 { isAuthenticated && <li><a href="/cart">Cart</a></li>}
                 { isAuthenticated && <li>
                     <button
-                    onClick={() => logoutHandler}
+                    onClick={() => logoutHandler()}
                     className="bg-primary text-white px-2 py-1 rounded-lg">
                         Log out
                     </button>

@@ -19,7 +19,7 @@ const CartPage:React.FC<CartPageProps> = ()=>{
     return(
         <div className="bg-secondary space-y-16">
             <Navbar/>
-            <p className="text-center text-primary font-bold">My Shopping Bag ({2} Items)</p>
+            <p className="text-center text-primary font-bold">My Shopping Bag </p>
 
             <div space-y-4>
                 <div className="border my-4 bg-white border-secondarydark rounded mx-10">

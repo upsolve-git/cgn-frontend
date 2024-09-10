@@ -34,6 +34,7 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
                 {!isMobile&&<ArrowButton 
                 rotation={'180'}/>}
                 {products.length && <ProductPreviewList 
+                ishomepage={true}
                 products={products}
                 isBestSeller={isBestSeller}/>}
                 {!isMobile&&<ArrowButton 

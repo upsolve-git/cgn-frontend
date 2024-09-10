@@ -2,9 +2,13 @@ import React from "react";
 import PriceRangeSlider from "../../molecules/filterElements/PriceRangeSlider/PriceRangeSlider";
 import RatingFilter from "../../molecules/filterElements/RatingFilter/RatingFilter";
 
-interface BigFiltersBoardProps{}
+interface BigFiltersBoardProps{
+    clearAll: ()=>void,
+}
 
-const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ()=>{
+const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ({
+    clearAll
+})=>{
     return(
         <div
         className="text-xs py-4 px-3 w-full h-full rounded-lg border border-primary bg-white desktop:text-md">
@@ -15,6 +19,7 @@ const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ()=>{
                     Filters
                 </span>
                 <span
+                onClick={clearAll}
                 className="text-primary min-w-fit">
                     Clear all
                 </span>
@@ -25,4 +30,4 @@ const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ()=>{
     )
 }
 
-export default BigFiltersBoard
+export default BigFiltersBoard
