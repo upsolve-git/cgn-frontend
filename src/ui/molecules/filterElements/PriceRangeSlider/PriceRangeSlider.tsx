@@ -53,7 +53,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ()=>{
                     <Slider
                     value={priceRange}
                     min={0}
-                    max={700}
+                    max={3000}
                     onChange={handleSlide}
                     sx={{
                         color: '#C26F2D',

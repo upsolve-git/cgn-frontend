@@ -231,7 +231,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                 <CgSortAz style={{fontSize:"1.5rem"}}/>
                             </button>
                             {showSortOptions && (
-                                <div className="absolute bg-white shadow-lg py-2 rounded mt-2">
+                                <div className="absolute bg-white shadow-lg py-2 rounded mt-2 z-40">
                                     <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => {sortByChange('price-asc'); setShowSortOptions(false)}}>Price: Low to High</button>
                                     <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => {sortByChange('price-desc'); setShowSortOptions(false)}}>Price: High to Low</button>
                                 </div>

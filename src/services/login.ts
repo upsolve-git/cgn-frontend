@@ -24,7 +24,7 @@ export const getUsersReq = async() => {
 }
 
 export const getUsersCartReq = async(user_id:number) => {
-    return axios.get(GET_CART+user_id);
+    return axios.get(GET_CART);
 } 
 
 export const updateUsersCartReq = async(product_id : number, image:string, name:string, price:number, quantity : number, user_id : number) => {

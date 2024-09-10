@@ -39,10 +39,6 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
             {product?.description || "Lorem ipsum dolor sit, amet consectetur adipisicing elit."}
           </p>
         </div>
-        {ishomepage && <button
-                        className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
-                        {isBestSeller ? 'Best Seller' : 'New Product'}
-                    </button>}
         <div className="grid grid-cols-[1fr,auto] items-end gap-2 mt-auto">
           <div className="flex flex-col items-start overflow-hidden">
             <span className="text-lg font-semibold truncate w-full">
