@@ -36,15 +36,12 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
                             {product?.description||"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut!"}
                         </p>
                     </div>
-                    <button
-                        className="h-fit w-fit whitespace-nowrap text-3xs text-white bg-primary rounded-3xl py-[2%] px-[3%] desktop:text-xxs">
-                        {isBestSeller ? 'Best Seller' : 'New Product'}
-                    </button>
+                
                 </div>
                 <div
                 className="h-fit flex items-center justify-between">
                     <div
-                    className="w-fit flex justify-between items-center">
+                    className=" w-fit flex justify-between items-center">
                         <span
                         className="text-sm font-semibold mr-1 tablet:text-md desktop:text-xl">
                             ${product?.discounted_price_percentage||20}

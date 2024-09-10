@@ -14,7 +14,6 @@ import NavButton from "../../atoms/navItems/NavButton/NavButton";
 
 import { useAdminPage } from "../../../utils/hooks/useAdminPage";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
-import { dummyProducts } from "../../../constants/dummyProducts";
 import { Product } from "../../../interfaces/Product";
 import { ActiveCats, useFiltersContext } from "../../../utils/hooks/useFiltersContext";
 
@@ -25,12 +24,11 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
 }) => {
     const {isMobile} = useMediaWidth()
     let {priceRange, rating, activeCats, activeCatsChange } = useFiltersContext()
-    // let {
-    //     products
-    // } = useAdminPage()
-    // let products = dummyProducts
-    const products = useMemo(() => {
-        let res = dummyProducts
+    let {
+        products
+    } = useAdminPage()
+    const filteredproducts = useMemo(() => {
+        let res = products
         
         // Filter by category
         let trueCat = 'allproducts';
@@ -54,19 +52,19 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         } 
     
         // Filter by rating if it's set
-        if (rating && rating.length > 0) {
-            res = res.filter(prod => {
-                return prod.rating >= rating[0] && prod.rating <= rating[1];
-            });
-        }
+        // if (rating && rating.length > 0) {
+        //     res = res.filter(prod => {
+        //         return prod.rating >= rating[0] && prod.rating <= rating[1];
+        //     });
+        // }
     
         return res;  // Return the filtered products
     }, [priceRange, rating, activeCats]);
     
 
     let items = []
-    for(let i=0;i<products.length;i++){
-        items.push(<ProductPreviewCard product={products[i]} isBestSeller={true} key={i+1}/>)
+    for(let i=0;i<filteredproducts.length;i++){
+        items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={true} key={i+1}/>)
     }
 
     return(
