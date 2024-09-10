@@ -19,7 +19,7 @@ const AboutUs: React.FC<AboutUsSectionProps> = ()=>{
             description="Our Gel Nail Polish is crafted to provide a long lasting finish to keep your nails looking flawless for days. With a wide range of shades, from classic nudes to bold brights, you'll find the perfect colour for every occasion."
             isRight={false}/>
             <AboutUsInfo 
-            image="image/laserMachine.PNG"
+            image="image/laserMachine.png"
             name="Laser Machine"
             description="Experience the future of hair removal with our Laser Hair Removal Machine. Designed for both safety and efficiency, this device offers permanent hair reduction from the comfort of your home. It’s easy to use and suitable for all skin types, delivering professional level results without the need for salon visits."
             isRight={true} />
