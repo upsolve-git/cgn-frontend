@@ -18,7 +18,8 @@ interface FiltersContextProps {
     sortBy: string,
     sortByChange: (sortKey: string)=>void,
     searchProd: string,
-    searchProdChange: (e: React.ChangeEvent<HTMLInputElement>)=>void
+    searchProdChange: (e: React.ChangeEvent<HTMLInputElement>)=>void,
+    clearAll: ()=>void
 }
 
 // Create the context
@@ -51,6 +52,12 @@ export const FiltersContextProvider: React.FC<{ children: ReactNode }> = ({ chil
     const ratingFilterChange = (ratings: number[]): void => setRating(ratings)
     const sortByChange = (sortKey:string):void=>setSortBy(sortKey)
     const searchProdChange = (e: React.ChangeEvent<HTMLInputElement>):void=>{setSearchProd(e.target.value); console.log(searchProd)}
+    const clearAll = ()=>{
+        setPriceRange([0,0])
+        setRating([])
+        setSearchProd('')
+        setSortBy('')
+    }
 
     return (
         <FiltersContext.Provider
@@ -64,10 +71,11 @@ export const FiltersContextProvider: React.FC<{ children: ReactNode }> = ({ chil
                 sortBy,
                 sortByChange,
                 searchProd,
-                searchProdChange
+                searchProdChange,
+                clearAll
             }}
         >
             {children}
         </FiltersContext.Provider>
-    );
+    );
 };
