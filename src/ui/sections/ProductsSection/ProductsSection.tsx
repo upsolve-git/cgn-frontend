@@ -32,6 +32,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     } = useAdminPage()
     // let products = dummyProducts
     const filteredproducts = useMemo(() => {
+        console.log('memo trig');
+        
         let res = [...products];
         
         let trueCat = 'allproducts';
