@@ -50,7 +50,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     <div className="w-full max-w-md aspect-square"> 
                         <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
                             <img 
-                                src={product?.product_imgs_id || "/image/stockpolish.png"} 
+                                src={product?.product_imgs_id || "/image/wrapper/stockpolish.png"} 
                                 alt={product.name} 
                                 className="max-h-full max-w-full object-contain"
                             />

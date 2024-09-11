@@ -8,7 +8,7 @@ const MobileMainSection: React.FC<MobileMainSectionProps> = () => {
 
             <div className="w-fit h-fit m-auto relative">
                 <img
-                    src="/image/mobilemainsectionbg.png"
+                    src="/image/wrapper/mobilemainsectionbg.png"
                     alt=""
                     className="h-[15vh] w-[80vw] object-cover rounded-lg"
                 />

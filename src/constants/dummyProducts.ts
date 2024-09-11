@@ -7,7 +7,7 @@ export const dummyProducts = [
         price:30,
         discounted_price_percentage:125,
         rating: 4.5,
-        product_imgs_id: '/image/stockpolish.png',
+        product_imgs_id: '/image/wrapper/stockpolish.png',
         category : 'nails',
     },
     {
@@ -18,7 +18,7 @@ export const dummyProducts = [
         price:35,
         discounted_price_percentage:25,
         rating: 4,
-        product_imgs_id: '/image/stockpolish.png',
+        product_imgs_id: '/image/wrapper/stockpolish.png',
         category : 'manicure',
     },
     {
@@ -29,7 +29,7 @@ export const dummyProducts = [
         price:40,
         discounted_price_percentage:525,
         rating: 3.5,
-        product_imgs_id: '/image/stockpolish.png',
+        product_imgs_id: '/image/wrapper/stockpolish.png',
         category : 'pedicure',
     },
 ]

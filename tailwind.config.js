@@ -24,12 +24,12 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('../public/image/auth-bg.jpeg')",
-        'sectionBg': "url('../public/image/sectionbg.jpeg')",
-        'mainpolishBg':"url('../public/image/mainpolishbg.png')",
-        'contactusBg':"url('../public/image/contactusbg.png')",
-        'mobilemainBg':"url('../public/image/mobilemainsectionbg.png')",
-        'adsectionBg':"url('../public/image/image.png')"
+        'authBg': "url('../public/image/wrapper/authbg.jpeg')",
+        'sectionBg': "url('../public/image/wrapper/sectionbg.jpeg')",
+        'mainpolishBg':"url('../public/image/wrapper/mainpolishbg.png')",
+        'contactusBg':"url('../public/image/wrapper/contactusbg.png')",
+        'mobilemainBg':"url('../public/image/wrapper/mobilemainsectionbg.png')",
+        'adsectionBg':"url('../public/image/wrapper/image.png')"
       }
     },
     colors:{
