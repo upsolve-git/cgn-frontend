@@ -30,6 +30,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     let {
         products
     } = useAdminPage()
+    clearAll()
     let filteredproducts = products
     // let products = dummyProducts
     filteredproducts = useMemo(() => {
