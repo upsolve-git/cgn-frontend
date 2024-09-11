@@ -24,8 +24,8 @@ export default {
         lg : '24rem'
       },
       backgroundImage:{
-        'authBg': "url('../public/image/wrapper/authbg.jpeg')",
-        'sectionBg': "url('../public/image/wrapper/sectionbg.jpeg')",
+        'authBg': "url('../public/image/wrapper/blurbackground.png')",
+        'sectionBg': "url('../public/image/wrapper/sectionbg.png')",
         'mainpolishBg':"url('../public/image/wrapper/mainpolishbg.png')",
         'contactusBg':"url('../public/image/wrapper/contactusbg.png')",
         'mobilemainBg':"url('../public/image/wrapper/mobilemainsectionbg.png')",

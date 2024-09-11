@@ -1521,7 +1521,7 @@ video {
 }
 
 .bg-authBg{
-  background-image: url('../public/image/wrapper/authbg.jpeg');
+  background-image: url('../public/image/wrapper/blurbackground.png');
 }
 
 .bg-mainpolishBg{
@@ -2069,7 +2069,7 @@ html {
   }
 
   .tablet\:bg-sectionBg{
-    background-image: url('../public/image/wrapper/sectionbg.jpeg');
+    background-image: url('../public/image/wrapper/sectionbg.png');
   }
 
   .tablet\:px-16{
