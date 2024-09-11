@@ -27,10 +27,14 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     let {priceRange, rating, activeCats, activeCatsChange, sortBy, sortByChange, searchProd, searchProdChange, clearAll } = useFiltersContext()
     let [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
     const [showSortOptions, setShowSortOptions] = useState(false);
-    let {
-        products
-    } = useAdminPage()
+    // let [prods, setProds] = useState<Product[]>([])
+    const { products } = useAdminPage();
+    // useEffect(() => {
+    //     setProds([...products]); 
+    // }, [products])
+
     // let products = dummyProducts
+
     let filteredproducts = useMemo(() => {
         
         let res = [...products];
@@ -76,7 +80,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         }
     
         return res;
-    }, [priceRange, rating, activeCats, sortBy, searchProd]);
+    }, [products, priceRange, rating, activeCats, sortBy, searchProd]);
     
     
 
