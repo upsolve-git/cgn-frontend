@@ -42,10 +42,10 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         <div className="grid grid-cols-[1fr,auto] items-end gap-2 mt-auto">
           <div className="flex flex-col items-start overflow-hidden">
             <span className="text-lg font-semibold truncate w-full">
-              ${product?.discounted_price_percentage || 20}
+              ${product?.price || 32}
             </span>
             <span className="text-xs text-darkgray line-through truncate w-full">
-              ${product?.price || 32}
+              ${product?.discounted_price_percentage || 20}
             </span>
           </div>
           <button
