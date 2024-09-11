@@ -30,9 +30,9 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     let {
         products
     } = useAdminPage()
+    let filteredproducts = products
     // let products = dummyProducts
-    const filteredproducts = useMemo(() => {
-        console.log('memo trig');
+    filteredproducts = useMemo(() => {
         
         let res = [...products];
         
