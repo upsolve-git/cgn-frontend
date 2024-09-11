@@ -30,10 +30,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     let {
         products
     } = useAdminPage()
-    clearAll()
-    let filteredproducts = products
     // let products = dummyProducts
-    filteredproducts = useMemo(() => {
+    let filteredproducts = useMemo(() => {
         
         let res = [...products];
         
@@ -87,6 +85,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={true} key={i+1} ishomepage={false}/>)
     }
 
+    useEffect(()=>{clearAll()
+    },[])
     return(
         <div
         className="py-14 w-screen flex flex-col items-center">
