@@ -14,8 +14,7 @@ import { Product } from "../../../interfaces/Product";
 interface BestSellerSectionProps {}
 
 const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
-    // let {products} = useAdminPage()
-    let products = dummyProducts
+    let {products} = useAdminPage()
     let [isBestSeller, setIsBestSeller] = useState<boolean>(true)
     const navigate = useNavigate()
     console.log(products)

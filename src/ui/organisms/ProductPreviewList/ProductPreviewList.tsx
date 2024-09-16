@@ -22,11 +22,11 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
     const totalProducts = products.length;
 
     const handleRightClick = () => {
-        setStartIndex((prevIndex) => (prevIndex + maxGridItems) % totalProducts);
+        setStartIndex((prevIndex) => (prevIndex + 1) % totalProducts);
     };
 
     const handleLeftClick = () => {
-        setStartIndex((prevIndex) => (prevIndex - maxGridItems + totalProducts) % totalProducts);
+        setStartIndex((prevIndex) => (prevIndex - 1 + totalProducts) % totalProducts);
     };
 
     const currentWindowProducts = products.slice(startIndex, startIndex + maxGridItems);
@@ -37,7 +37,7 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
     }
 
     return (
-        <div className="w-[90%] h-fit flex justify-evenly items-center">
+        <div className="w-[90%] h-fit flex justify-evenly items-center m-auto">
             {
                 !isMobile &&
                 <ArrowButton rotation="180" clickFunc={handleLeftClick} />

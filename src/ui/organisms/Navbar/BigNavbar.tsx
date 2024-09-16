@@ -22,6 +22,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                 <li><a href="/">Home</a></li>
                 <li>About</li>
                 <li><a href="/products">Products</a></li>
+                { isAuthenticated && <li><a href="/orders">Orders</a></li> }
                 <li>Contact</li>
                 { !isAuthenticated && <li>
                     <button 

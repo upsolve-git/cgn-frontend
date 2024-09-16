@@ -1,8 +1,7 @@
-export interface Cart {
+export interface Order {
     product_id:number,
-    image:string,
+    image:string[],
     name:string,
     quantity:number,
-    price:number,
     user_id:number
 }

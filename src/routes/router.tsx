@@ -13,6 +13,8 @@ import AdminPage from "../pages/admin/AdminPage";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import Cart from "../pages/CartPage";
+import OrderHistoryPage from "../pages/OrderHistoryPage";
+import OrderSuccessPage from "../pages/OrderSuccessPage";
 
 const router = createBrowserRouter([
 {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
     {
         path: "cart",
         element: <Cart />
+    },
+    {
+        path: "orders",
+        element: <OrderHistoryPage />
+    },
+    {
+        path: "ordersuccess",
+        element: <OrderSuccessPage />
     },
     {
         path:'auth',
