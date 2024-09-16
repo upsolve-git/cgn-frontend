@@ -1,4 +1,6 @@
-export const dummyProducts = [
+import { Product } from "../interfaces/Product";
+
+export const dummyProducts: Product[] = [
     {
         product_id: 1,
         name: 'Lorem',
@@ -6,9 +8,9 @@ export const dummyProducts = [
         description:'nailsLorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
         price:30,
         discounted_price_percentage:125,
-        rating: 4.5,
+        
         product_imgs_id: '/image/wrapper/stockpolish.png',
-        category : 'nails',
+        category_name : 'nails',
     },
     {
         product_id: 2,
@@ -17,9 +19,8 @@ export const dummyProducts = [
         description:'manicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
         price:35,
         discounted_price_percentage:25,
-        rating: 4,
         product_imgs_id: '/image/wrapper/stockpolish.png',
-        category : 'manicure',
+        category_name : 'manicure',
     },
     {
         product_id: 3,
@@ -28,8 +29,47 @@ export const dummyProducts = [
         description:'pedicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
         price:40,
         discounted_price_percentage:525,
-        rating: 3.5,
         product_imgs_id: '/image/wrapper/stockpolish.png',
-        category : 'pedicure',
+        category_name : 'pedicure',
+    },
+    {
+        product_id: 3,
+        name: 'Silor',
+        product_type : 'none',
+        description:'pedicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
+        price:40,
+        discounted_price_percentage:525,
+        product_imgs_id: '/image/wrapper/stockpolish.png',
+        category_name : 'pedicure',
+    },
+    {
+        product_id: 3,
+        name: 'Silor',
+        product_type : 'none',
+        description:'pedicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
+        price:40,
+        discounted_price_percentage:525,
+        product_imgs_id: '/image/wrapper/stockpolish.png',
+        category_name : 'pedicure',
+    },
+    {
+        product_id: 3,
+        name: 'Silor',
+        product_type : 'none',
+        description:'pedicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
+        price:40,
+        discounted_price_percentage:525,
+        product_imgs_id: '/image/wrapper/stockpolish.png',
+        category_name : 'pedicure',
+    },
+    {
+        product_id: 3,
+        name: 'Silor',
+        product_type : 'none',
+        description:'pedicure Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dignissimos soluta voluptatem sunt suscipit modi?',
+        price:40,
+        discounted_price_percentage:525,
+        product_imgs_id: '/image/wrapper/stockpolish.png',
+        category_name : 'pedicure',
     },
 ]

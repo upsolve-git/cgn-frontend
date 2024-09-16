@@ -4,21 +4,22 @@ import { useNavigate } from "react-router-dom";
 import ProdListSwitcher from "../../molecules/ProdListSwitcher/ProdListSwitcher";
 import ProductPreviewList from "../../organisms/ProductPreviewList/ProductPreviewList";
 import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
-import ArrowButton from "../../atoms/buttons/ArrowButton/ArrowButton";
-
-import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 
 import { PRODUCTS_PAGE } from "../../../constants/routes";
 import { useAdminPage } from "../../../utils/hooks/useAdminPage";
+import { dummyProducts } from "../../../constants/dummyProducts";
+
+import { Product } from "../../../interfaces/Product";
 
 interface BestSellerSectionProps {}
 
 const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
-    let {products} = useAdminPage()
+    // let {products} = useAdminPage()
+    let products = dummyProducts
     let [isBestSeller, setIsBestSeller] = useState<boolean>(true)
-    let {isMobile} = useMediaWidth()
     const navigate = useNavigate()
     console.log(products)
+
     return (
         <div
         className="h-fit w-screen px-4 py-8 bg-contain flex flex-col items-center">
@@ -29,17 +30,14 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
             <ProdListSwitcher 
             isBestSeller={isBestSeller}
             setIsBestSeller={setIsBestSeller}/>
-            <div
-            className="w-[90%] h-fit flex justify-evenly items-center">
-                {!isMobile&&<ArrowButton 
-                rotation={'180'}/>}
-                {products.length && <ProductPreviewList 
+            
+            {
+                products.length && <ProductPreviewList 
                 ishomepage={true}
                 products={products}
-                isBestSeller={isBestSeller}/>}
-                {!isMobile&&<ArrowButton 
-                rotation={'0'}/>}
-            </div>
+                isBestSeller={isBestSeller}/>
+            }
+            
             <div
             className="w-[40%] mt-10 tablet:w-[20%]">
                 <ActionButton

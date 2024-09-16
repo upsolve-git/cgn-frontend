@@ -134,17 +134,13 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     </div>
                 </div>  
                 <p className="text-primary font-bold text-center my-20">Related products</p>
-                <div
-                className="h-fit flex justify-evenly items-center m-8">
-                    {!isMobile&&<ArrowButton 
-                    rotation={'180'}/>}
-                    {products.length && <ProductPreviewList 
+                {
+                    products.length && 
+                    <ProductPreviewList 
                     ishomepage = {false}
                     products={products}
-                    isBestSeller={true}/>}
-                    {!isMobile&&<ArrowButton 
-                    rotation={'0'}/>}
-                </div>
+                    isBestSeller={true}/>
+                }
             </div>)}
             <ReviewsSection />
             <FooterSection />
