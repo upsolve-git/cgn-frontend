@@ -7,9 +7,6 @@ import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
 
 import { PRODUCTS_PAGE } from "../../../constants/routes";
 import { useAdminPage } from "../../../utils/hooks/useAdminPage";
-import { dummyProducts } from "../../../constants/dummyProducts";
-
-import { Product } from "../../../interfaces/Product";
 
 interface BestSellerSectionProps {}
 

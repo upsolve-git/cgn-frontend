@@ -6,6 +6,7 @@ export const PRODUCTS_PAGE = '/products'
 
 export const LOGIN_ENDPOINT = '/login'
 export const SIGNUP_ENDPOINT = '/signup'
+export const GOOGLE_SIGNIN = '/auth/google'
 export const GET_AUTH_REQ = '/getauth'
 export const LOGOUT_REQ = '/logout'
 export const GET_USERS_ENDPOINT = '/users'

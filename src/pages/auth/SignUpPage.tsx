@@ -98,9 +98,9 @@ const SignUpPage: React.FC<SignUpPageProps> = ()=>{
                 error={signupErr}
                 label="Create an account"
                 callbackFunc={signupHandler}/>
-                {/* <p
+                <p
                 className="text-darkgray block text-xs">or continue with </p>
-                <GoogleAuthButton /> */}
+                <GoogleAuthButton />
             </FormCard>
         </div>
     )

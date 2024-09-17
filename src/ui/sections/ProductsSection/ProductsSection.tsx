@@ -47,12 +47,12 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             }
         }
         if (trueCat !== 'allproducts') {
-            res = res.filter(prod => prod.category_name.toLowerCase() === trueCat);
+            res = res.filter(prod => prod.categories[0].toLowerCase() === trueCat);
         }
     
         if (priceRange[0] !== 0 || priceRange[1] !== 0) {  
             res = res.filter(prod => {
-                return prod.discounted_price_percentage >= priceRange[0] && prod.discounted_price_percentage <= priceRange[1];
+                return prod.discounted_price >= priceRange[0] && prod.discounted_price <= priceRange[1];
             });
         } 
     
@@ -62,9 +62,9 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     
         if (sortBy) {
             if (sortBy === 'price-asc') {
-                res.sort((a, b) => a.discounted_price_percentage - b.discounted_price_percentage);
+                res.sort((a, b) => a.discounted_price - b.discounted_price);
             } else if (sortBy === 'price-desc') {
-                res.sort((a, b) => b.discounted_price_percentage - a.discounted_price_percentage);
+                res.sort((a, b) => b.discounted_price - a.discounted_price);
             } 
             // else if (sortBy === 'rating-asc') {
             //     res.sort((a, b) => a.rating - b.rating);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { getAuthReq, loginReq, logoutReq } from "../../services/login";
+import { getAuthReq, googleAuthReq, loginReq, logoutReq } from "../../services/login";
 
 import { isEmailValid } from "../../validations/emailValidation";
 import { HOME_PAGE } from "../../constants/routes";
@@ -69,6 +69,19 @@ export const useSignInPage = ()=>{
             })
 
         // }
+    }  
+
+    const googleAuthHandler = async(user:any) => {
+        await googleAuthReq(user.email, user.given_name, user.family_name)
+        .then(res=>{
+            console.log("inside signin success", res)
+            setLoginErr('')
+            navigate(HOME_PAGE)
+        })
+        .catch(err=>{
+            console.log(err)
+            setLoginErr("Error occured, Please try again")
+        })
     } 
 
     const logoutHandler = async() => {
@@ -82,5 +95,5 @@ export const useSignInPage = ()=>{
         })
     }
 
-    return {logoutHandler, isAuthenticated, email, emailErr, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
+    return {logoutHandler, isAuthenticated, googleAuthHandler,email, emailErr, handleEmailChange, password, handlePasswordChange, accType, handleAccTypeChange, loginHandler, loginErr, checkValues}
 }

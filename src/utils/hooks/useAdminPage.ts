@@ -6,6 +6,7 @@ import { Product } from "../../interfaces/Product";
 import { User } from "../../interfaces/User";
 import { deleteFromUsersCartReq, getUsersCartReq, getUsersReq, updateUsersCartReq } from "../../services/login";
 import { Cart } from "../../interfaces/Cart";
+import { Color } from "../../interfaces/Color";
 
 
 export const useAdminPage = ()=>{
@@ -18,17 +19,20 @@ export const useAdminPage = ()=>{
     let [categoryName, setCategoryName] = useState<string>('')  
     let [price, setPrice] = useState<number>(1)
     let [discountedPrice, setDiscountedPrice] = useState<number>(1)
+    let [discountedBusinessPrice, setDiscountedBusinessPrice] = useState<number>(1)
+
     let [categories, setCategories] = useState<Category[]>([]);
-    let [file, setFile] = useState<File | null>()
+    let [files, setFiles] = useState<File[]>([])
     let [addProductsError, setAddProductsError]  = useState<string>('')
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
     let [cartItems, setCartItems] = useState<Cart[]>([]); 
+    const [colors, setColors] = useState<Color[]>([]);
 
     const handleAddToCart = async(product:Product, quantity : number) => { 
         console.log(product);
         console.log(quantity); 
-        await updateUsersCartReq(product.product_id, product?.product_imgs_id||"/image/wrapper/stockpolish.png", product.name, product.discounted_price_percentage, quantity, 1)
+        await updateUsersCartReq(product.product_id, product?.images[0]||"/image/wrapper/stockpolish.png", product.name, product.discounted_price, quantity, 1)
         .then(res => {
             console.log("added to cart", res) 
         }).catch (err => {
@@ -55,13 +59,19 @@ export const useAdminPage = ()=>{
     }, [])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0] || null;
-        setFile(file)
+        const selectedFiles = e.target.files;
+        if (selectedFiles) {
+            setFiles(prevFiles => [...prevFiles, ...Array.from(selectedFiles)]);
+        }
     }
 
     const handleSelectedMenuItemChange = (item : string)=>{
         setSelectedMenuItem(item)
     }
+
+    const handleAddColor = (colorObj: Color) => {
+        setColors((prevColors) => [...prevColors, colorObj]);
+      };
 
     const handleCategoryChange = ((category: Category )=>{
         setCategory(category)
@@ -87,6 +97,10 @@ export const useAdminPage = ()=>{
         setDiscountedPrice(Number(e.target.value))
     }
 
+    const handleDiscountedBusinessPriceChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setDiscountedBusinessPrice(Number(e.target.value))
+    }
+
     const handleCategoryNameChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setCategoryName(e.target.value)
     } 
@@ -102,21 +116,23 @@ export const useAdminPage = ()=>{
 
     const addProductHandler = async () => {
             console.log(name)
-            console.log(file)
+            console.log(files)
             console.log(productType)
             console.log(price)
             console.log(description)
             console.log(discountedPrice)
             console.log(category)
+            console.log(colors)
             await addProductsReq({
                 name: name,
-                image: file!,
+                images: files!,
                 type: productType,
                 description: description,
                 cost: price,
-                discountPercentage: discountedPrice,
-                availableSizes: '15',
-                categoryId: category.category_id,
+                discounted_price: discountedPrice,
+                categoryId: [category.category_id],
+                colors : colors,
+                discounted_business_price : discountedBusinessPrice
             })
             .then(res => {
                 console.log("added product")
@@ -184,9 +200,9 @@ export const useAdminPage = ()=>{
     } 
     
     return {menuItems, products, users, handleAddToCart, cartItems, handleDeleteFromCart,
-        selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError,
-        category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange,
-        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, 
+        selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError, handleDiscountedBusinessPriceChange,
+        category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange, discountedBusinessPrice,
+        name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, colors, handleAddColor,
         price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addBestSellerhandler, addNewSellerhandler
     }
 

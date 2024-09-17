@@ -36,7 +36,11 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         products,
         users,
         addBestSellerhandler,
-        addNewSellerhandler
+        addNewSellerhandler,
+        colors,
+        handleAddColor,
+        handleDiscountedBusinessPriceChange,
+        discountedBusinessPrice
     } = useAdminPage()
 
     return (
@@ -61,6 +65,10 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     />
                     : selectedMenuItem === "Add Products" ? 
                     <AddProducts
+                    prodCostBusiness={discountedBusinessPrice}
+                    setProdCostBusiness={handleDiscountedBusinessPriceChange}
+                    colors={colors}
+                    setColors={handleAddColor}
                     categories={categories}
                     prodName={name}
                     prodCategory={category}

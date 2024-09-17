@@ -50,7 +50,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     <div className="w-full max-w-md aspect-square"> 
                         <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
                             <img 
-                                src={product?.product_imgs_id || "/image/wrapper/stockpolish.png"} 
+                                src={product?.images[0] || "/image/wrapper/stockpolish.png"} 
                                 alt={product.name} 
                                 className="max-h-full max-w-full object-contain"
                             />
@@ -62,7 +62,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         <p className="mb-6">
                         <span
                         className="text-md text-primary font-semibold desktop:text-xl pr-4">
-                            ${product.discounted_price_percentage}
+                            ${product.discounted_price}
                         </span>
                         <span
                         className="text-darkgray text-xs desktop:text-md m">
@@ -82,8 +82,8 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                             <p className="mt-1">Free shipping on orders over $49USD</p>
                         </p>
 
-                        { product.category_name === "Nail Polish" && <label className="font-bold text-sm">Choose color</label> }
-                        { product.category_name === "Nail Polish" &&  <select className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
+                        { product.categories[0] === "Nail Polish" && <label className="font-bold text-sm">Choose color</label> }
+                        { product.categories[0] === "Nail Polish" &&  <select className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
                         <option>Color</option>
                         {colors.map(option => (
                             <option>
@@ -92,7 +92,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         ))}
                         </select> } 
 
-                        { product.category_name !== "Nail Polish" && 
+                        { product.categories[0] !== "Nail Polish" && 
                             <p className="flex mb-4 justify-center tablet:justify-start">
                             <IoIosCheckmarkCircleOutline style={{color:"green", fontSize:"2em"}} className="mr-2"/> 
                             <p className="mt-1">Free + easy returns</p>

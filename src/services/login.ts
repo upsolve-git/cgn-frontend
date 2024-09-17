@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_USERS_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_REQ, UPDATE_CART } from "../constants/routes";
+import { DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, UPDATE_CART } from "../constants/routes";
 
 export const loginReq = async (email: string|undefined, password:string|undefined)=>{
     if(email && password){
@@ -10,6 +10,16 @@ export const loginReq = async (email: string|undefined, password:string|undefine
         });
     }
 } 
+
+export const googleAuthReq = async (email : string, first_name : string, last_name : string) => {
+    if (email && first_name && last_name){
+        return axios.post(GOOGLE_SIGNIN, {
+            "email" : email,
+            "first_name" : first_name,
+            "last_name" : last_name
+        })
+    }
+}
 
 export const getAuthReq = async() => {
     return axios.get(GET_AUTH_REQ)
