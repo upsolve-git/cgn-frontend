@@ -37,14 +37,14 @@ const OrderSuccessPage:React.FC<OrderSuccessPageProps> = ()=>{
                         {cartItems.map((item) => (
                             <tr>
                                 <td>
-                                    <img src={item.image} alt={item.name} className="h-16 w-16 object-cover mx-auto" />
+                                    <img src={item.images[0]} alt={item.name} className="h-16 w-16 object-cover mx-auto" />
                                 </td>
                                 <td>{item.name}</td>
-                                <td>${item.price}</td>
+                                <td>${item.discounted_price}</td>
                                 <td className="inline-flex justify-center items-center space-x-2 mt-4">
                                     <span>{item.quantity}</span>
                                 </td>
-                                <td>${(item.quantity * item.price).toFixed(2)}</td> 
+                                <td>${item.total.toFixed(2)}</td> 
                                 <td></td>
                             </tr>
                         ))}

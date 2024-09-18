@@ -37,15 +37,12 @@ export const getUsersCartReq = async(user_id:number) => {
     return axios.get(GET_CART);
 } 
 
-export const updateUsersCartReq = async(product_id : number, image:string, name:string, price:number, quantity : number, user_id : number) => {
-    if(product_id && image && name && price && quantity && user_id) {
+export const updateUsersCartReq = async(product_id : number, quantity : number, color_id : number) => {
+    if(product_id && quantity && color_id) {
         return axios.post(UPDATE_CART, {
             "product_id":product_id,
-            "image":image,
-            "name":name,
-            "price":price,
             "quantity":quantity,
-            "user_id":user_id
+            "color_id":color_id
         })
     }
 }

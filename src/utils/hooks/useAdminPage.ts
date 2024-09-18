@@ -29,10 +29,10 @@ export const useAdminPage = ()=>{
     let [cartItems, setCartItems] = useState<Cart[]>([]); 
     const [colors, setColors] = useState<Color[]>([]);
 
-    const handleAddToCart = async(product:Product, quantity : number) => { 
+    const handleAddToCart = async(product:Product, quantity : number, color_id : number) => { 
         console.log(product);
         console.log(quantity); 
-        await updateUsersCartReq(product.product_id, product?.images[0]||"/image/wrapper/stockpolish.png", product.name, product.discounted_price, quantity, 1)
+        await updateUsersCartReq(product.product_id,  quantity, color_id)
         .then(res => {
             console.log("added to cart", res) 
         }).catch (err => {

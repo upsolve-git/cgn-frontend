@@ -11,6 +11,8 @@ import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
+import { Product } from "../interfaces/Product";
+import { color } from "framer-motion";
 
 
 interface ProductDetailPageProps{}
@@ -21,7 +23,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
 
     let {isMobile} = useMediaWidth()
     let {products, handleAddToCart} = useAdminPage()
-    let colors = ["green", "red"]
+    // let colors = ["green", "red"]
     let product = products.find(product => product.product_id === Number(id)) || products[1]
     const [quantity, setQuantity] = useState<number>(1);
 
@@ -38,7 +40,57 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
         if (quantity > 1) {
             setQuantity(quantity - 1);
         }
-    };
+    }; 
+
+    const filterColors = (product: Product) => {
+        const colorMap: { [color_name: string]: { color: string; shadesCodeMapping: { shade: string, code: string, id : number}[] } } = {};
+        console.log(product)
+        product.colors.forEach(color => {
+          // If the color is not already in the map, initialize it
+          if (!colorMap[color.color_name]) {
+            colorMap[color.color_name] = {
+              color: color.color_name,
+              shadesCodeMapping: []
+            };
+          }
+      
+          // Check if this particular shade and code combination is unique
+          const exists = colorMap[color.color_name].shadesCodeMapping.some(
+            (shadeCode) => shadeCode.shade === color.shade_name && shadeCode.code === color.code
+          );
+      
+          // If the combination is unique, add it
+          if (!exists) {
+            colorMap[color.color_name].shadesCodeMapping.push({
+              shade: color.shade_name,
+              code: color.code,
+              id : color.color_id
+            });
+          }
+        });
+      
+        return colorMap;
+      };
+
+    let  colorMap: { [color_name: string]: { color: string; shadesCodeMapping: { shade: string, code: string, id : number}[] } } = {};
+    if(products.length !== 0) {
+        colorMap = filterColors(product)
+    } 
+    console.log(colorMap)
+
+    const [selectedColor, setSelectedColor] = useState<string>('');
+  const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id : number }[]>([]);
+  const [selectedShadeDetails, setSelectedShadeDetails] = useState<{shade : string; code: string; id : number}>();
+
+  // Function to handle the selection of a shade
+  const handleShadeSelect = (shade : {shade : string; code: string; id : number}) => {
+    setSelectedShadeDetails(shade);
+  };
+  const handleColorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const colorKey = event.target.value;
+    setSelectedColor(colorKey);
+    setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
+  };
 
     return(
         <div
@@ -70,12 +122,12 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         </span>
                         </p> 
 
-                        <p className="flex mb-4 justify-center tablet:justify-start">
+                        {/* <p className="flex mb-4 justify-center tablet:justify-start">
                             <p className="font-bold mr-1">368</p> 
                             <p className="text-darkgray mr-24">reviews</p> 
                             <p className="font-bold mr-1">86</p>
                             <p className="text-darkgray mr-24">sold</p> 
-                        </p> 
+                        </p>  */}
 
                         <p className="flex mb-4 justify-center tablet:justify-start">
                             <IoIosCheckmarkCircleOutline style={{color:"green", fontSize:"2em"}} className="mr-2"/> 
@@ -83,14 +135,42 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         </p>
 
                         { product.categories[0] === "Nail Polish" && <label className="font-bold text-sm">Choose color</label> }
-                        { product.categories[0] === "Nail Polish" &&  <select className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
-                        <option>Color</option>
-                        {colors.map(option => (
-                            <option>
-                            {option}
-                            </option>
-                        ))}
-                        </select> } 
+                        { product.categories[0] === "Nail Polish" &&  
+                            
+                            <select value={selectedColor} onChange={handleColorChange} className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
+                                <option value="">Choose a color</option>
+                                {Object.keys(colorMap).map((colorKey) => (
+                                <option key={colorKey} value={colorKey} style={{ backgroundColor: colorMap[colorKey].shadesCodeMapping[0].code }}>
+                                    {colorKey}
+                                </option>
+                                ))}
+                            </select>
+        
+                         } 
+                         {selectedShades.length > 0 && (
+                            <div className="space-y-2">
+                            <label className="font-bold text-sm">Select a shade</label>
+                            <div className="flex overflow-x-auto space-x-2">
+                                {selectedShades.map((shade) => (
+                                    <div key={shade.code} className="text-center">
+                                    <div
+                                        className="w-12 h-12 border border-black mb-2"
+                                        style={{ backgroundColor: shade.code }}
+                                        onClick={() => handleShadeSelect(shade)}
+                                    ></div>
+                                    <span>{shade.shade}</span>
+                                    </div>
+                                ))}
+                                </div>
+
+                            </div>
+                        )} 
+                        {selectedShadeDetails && (
+                            <div>
+                                <label className="font-bold text-sm">Selected shade : </label>
+                                <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
+                            </div>
+                        )}
 
                         { product.categories[0] !== "Nail Polish" && 
                             <p className="flex mb-4 justify-center tablet:justify-start">
@@ -121,7 +201,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                         <div className="flex space-x-4">
                             <button
                             className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary"
-                            onClick={()=> handleAddToCart(product, quantity)}>
+                            onClick={()=> selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}>
                                 <FaCartPlus style={{color:" rgb(194 111 45)"}} className="mr-2"/>
                                 Add to Cart
                             </button>

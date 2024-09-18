@@ -1,8 +1,12 @@
 export interface Cart {
     product_id:number,
-    image:string,
+    images:string[],
     name:string,
     quantity:number,
-    price:number,
-    user_id:number
+    discounted_price:number,
+    discounted_business_price:number,
+    shade_name : string,
+    code : string,
+    total : number,
+    
 }

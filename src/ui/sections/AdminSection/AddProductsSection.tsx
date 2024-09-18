@@ -38,7 +38,7 @@ const AddProducts: React.FC<AddProductsSectionProps> = ({prodName, prodType, pro
     let [color, setColor] = useState("")
     let [shade, setShade] = useState("")
     let [code, setCode] = useState("")
-    const handleAddColor = () => {setColors({color_name : color, shade_name : shade, code: code})}
+    const handleAddColor = () => {setColors({color_name : color, shade_name : shade, code: code, color_id : 1})}
     const handleAddColorName = (e: React.ChangeEvent<HTMLInputElement>) => {setColor(e.target.value)}
     const handleAddShade = (e: React.ChangeEvent<HTMLInputElement>) => {setShade(e.target.value)}
     const handleAddCode = (e: React.ChangeEvent<HTMLInputElement>) => {setCode(e.target.value)}
