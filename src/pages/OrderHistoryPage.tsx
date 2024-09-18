@@ -18,6 +18,65 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
     let {cartItems, handleDeleteFromCart} = useAdminPage();
     const navigate = useNavigate()
+    const dummyOrderStatus = {
+        orderId: '123456789000000',
+        orderProducts: [
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+            {
+                productName: 'Lorem ipsum',
+                size: '20ml',
+                quantity: 10,
+                price: 2000
+            },
+        ],
+        orderDate: new Date(2024, 11, 25),
+        orderConfirmDate: new Date(2024, 11, 25),
+        shippedDate: null,
+        outForDeliveryDate: null,
+        etaDate: new Date(2024, 11, 25),
+        deliveredDate: null
+    }
     let orders = [{},{}, {}, {}, {}, {}] 
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
@@ -40,7 +99,7 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
             <FooterSection />
 
         </div>
-        <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} />
+        <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} orderStatus={dummyOrderStatus}/>
         <AddReview isOpen={isAddReviewOpen} onClose={() => setIsAddReviewOpen(false)} />
         </div>
         

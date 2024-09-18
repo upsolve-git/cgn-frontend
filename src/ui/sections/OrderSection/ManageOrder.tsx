@@ -1,31 +1,104 @@
 import React from 'react';
 
+import CommonButton from '../../atoms/buttons/CommonButton/CommonButton';
+import OrderProgressBar from '../../molecules/OrderProgressBar/OrderProgressBar';
+
+import { TbTruckDelivery } from "react-icons/tb";
+import { FaRegCheckCircle } from "react-icons/fa";
+import OrderProductItem from '../../molecules/OrderProductItem/OrderProductItem';
+
+export interface OrderProduct{
+  productName: string,
+  size: string,
+  quantity: number,
+  price: number
+}
+
+interface OrderStatus{
+  orderProducts: OrderProduct[],
+  orderId: string
+  orderDate: Date
+  total?: number
+  orderConfirmDate: Date | null
+  shippedDate: Date | null
+  outForDeliveryDate: Date | null
+  deliveredDate: Date | null
+  etaDate: Date
+}
+
 interface ManageOrderProps {
   isOpen: boolean;
   onClose: () => void;
+  orderStatus: OrderStatus
 }
 
-const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null; // Don't render if not open
+const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, orderStatus }) => {
+  if (!isOpen) return null;
+
+  const invoiceHandler = ()=>{
+    console.log('invoice gen');
+    
+  }
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg w-96 p-6">
-        <h2 className="text-xl font-semibold mb-4">Popup Title</h2>
-        <p className="mb-4">This is a popup dialog box. The background is blurred.</p>
-        <div className="flex justify-end space-x-2">
-          <button 
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button 
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={onClose}
-          >
-            Confirm
-          </button>
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-10 bg-secondary">
+      <div className="bg-secondary w-[90%] rounded-lg shadow-lg p-6 flex flex-col items-center desktop:w-[50%]">
+        <h2 className="text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">Manage Order</h2>
+        <div
+        className='w-full flex items-start justify-between'>
+          <div
+          className='tablet:w-fit'>
+            <h2
+            className='text-md font-medium tablet:text-lg'>
+              Order ID: {orderStatus.orderId}
+            </h2>
+            <div
+            className='w-full text-sm tablet:flex'>
+              <p className='tablet:mr-3'>Order date: {orderStatus.orderDate.toDateString()}</p>
+              {
+                orderStatus.deliveredDate?
+                <p className='text-green flex items-center'>
+                  <FaRegCheckCircle />
+                  Delivered: {orderStatus.deliveredDate.toDateString()}
+                </p>:
+                <p className='text-green flex items-center'>
+                  <TbTruckDelivery />
+                  Estimated delivery: {orderStatus.etaDate.toDateString()}
+                </p>
+              }
+              
+            </div>
+          </div>
+          <div>
+            <CommonButton
+            label='Invoice' 
+            primaryColor='secondary'
+            secondaryColor='primary'
+            customStyles='border-2 px-1 border-primary'
+            callBack={invoiceHandler}
+            />
+          </div>
+        </div>
+        <OrderProgressBar
+        orderConfirmDate={orderStatus.orderConfirmDate}
+        shippedDate={orderStatus.shippedDate}
+        outForDeliveryDate={orderStatus.outForDeliveryDate}
+        deliveredDate={orderStatus.deliveredDate}
+        />
+        <div
+        className='w-full my-4 max-h-[20vh] overflow-scroll'>
+          {
+            orderStatus.orderProducts.map(item=><OrderProductItem orderProduct={item}/>)
+          }
+        </div>
+        <div
+        className='w-12'>
+          <CommonButton 
+          label='Close'
+          primaryColor='primary'
+          secondaryColor='white'
+          callBack={onClose}
+          />
         </div>
       </div>
     </div>
