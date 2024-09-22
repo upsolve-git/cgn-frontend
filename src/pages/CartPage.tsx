@@ -134,7 +134,7 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                         <p className="m-4 flex text-primary font-bold ">
                             Payment method
                         </p>
-                        <button onClick={()=>handlePlaceOrder("")}>Order</button>
+                        <button onClick={()=>handlePlaceOrder("123456")}>Order</button>
                         <PayPalButton amount={sumTotal}/>
                     </div>
                 </div>

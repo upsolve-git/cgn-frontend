@@ -3,6 +3,7 @@ import React from 'react';
 import CommonButton from '../../atoms/buttons/CommonButton/CommonButton';
 
 import { Rating } from '@mui/material';
+import { useAddReview } from '../../../utils/hooks/useAddReview';
 
 interface AddReviewProps {
   isOpen: boolean;
@@ -10,6 +11,8 @@ interface AddReviewProps {
 }
 
 const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
+  let {rating, handleRating, ratingText, handleRatingText, dummyClick} = useAddReview()
+
   if (!isOpen) return null;
 
   return (
@@ -17,10 +20,16 @@ const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
       <div className="bg-secondary w-[90%] rounded-lg shadow-lg p-6 flex flex-col items-center desktop:w-[50%]">
         <h2 className="text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">Review</h2>
         <div
-        className='border-2 bg-white border-primary w-full p-3 rounded-md my-4'>
-          <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+        className='border bg-secondary border-primary w-full p-3 rounded-md my-4'>
+          <Rating name="half-rating" defaultValue={2.5} precision={0.5} 
+          value={rating}
+          onChange={(event, newValue) => {
+            handleRating(newValue?newValue:0);
+          }}/>
           <textarea
-          className='border-2 border-primary w-full p-3 rounded-md my-4'></textarea>
+          className='border-2 bg-white border-primary w-full p-3 rounded-md my-4'
+          value={ratingText}
+          onChange={(e)=>handleRatingText(e.target.value)}></textarea>
         </div>
         
           <div
@@ -29,7 +38,7 @@ const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
             label='Add Review'
             primaryColor='primary'
             secondaryColor='white'
-            callBack={onClose}
+            callBack={dummyClick}
             />
             <CommonButton 
             label='Close'
