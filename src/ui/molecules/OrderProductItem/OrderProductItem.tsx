@@ -19,7 +19,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct})=>{
                     <img src="/image/wrapper/stockpolish.png" alt="" 
                     className="w-10 h-auto"/>
                     <div
-                    className="text-xs flex flex-col h-full justify-between">
+                    className="text-xs tablet:text-sm flex flex-col h-full justify-between">
                         <p>{orderProduct.productName}</p>
                         <p
                         className="text-xxs my-1">
@@ -34,7 +34,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct})=>{
                     </div>
                 </div>
                 <div
-                className="w-24 h-full grid grid-rows-2 grid-cols-1 gap-3">
+                className="w-18 h-full grid grid-rows-2 grid-cols-1 gap-3 tablet:w-24">
                     <CommonButton
                     label="Buy again"
                     primaryColor="primary"

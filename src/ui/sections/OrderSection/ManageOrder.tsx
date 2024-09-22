@@ -43,17 +43,17 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, orderStatus 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-10 bg-secondary">
       <div className="bg-secondary w-[90%] rounded-lg shadow-lg p-6 flex flex-col items-center desktop:w-[50%]">
-        <h2 className="text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">Manage Order</h2>
+        <h2 className="text-md font-semibold text-primary tablet:text-xl desktop:text-xl">Manage Order</h2>
         <div
         className='w-full flex items-start justify-between'>
           <div
           className='tablet:w-fit'>
             <h2
-            className='text-md font-medium tablet:text-lg'>
+            className='text-sm font-medium tablet:text-lg'>
               Order ID: {orderStatus.orderId}
             </h2>
             <div
-            className='w-full text-sm tablet:flex'>
+            className='w-full text-xxs whitespace-nowrap tablet:flex'>
               <p className='tablet:mr-3'>Order date: {orderStatus.orderDate.toDateString()}</p>
               {
                 orderStatus.deliveredDate?

@@ -26,7 +26,7 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({order, setIsMana
     return(
         <div className='w-[70%] border bg-white border-secondarydark rounded m-auto'>
              
-            <div className="mx-8 my-6 flex justify-between items-center">
+            <div className="mx-8 my-6 flex justify-between items-center overflow-scroll">
                 <div className="flex items-center">
                     <p className="mx-2 font-bold text-md">Order #12345</p>
                     {status === "delivered" && 

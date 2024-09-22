@@ -23,6 +23,12 @@ const OrderSuccessPage:React.FC<OrderSuccessPageProps> = ()=>{
             <p className="text-center text-primary font-bold">Thank you for your purchase!</p>
             <div className="w-[70%] border bg-white border-secondarydark rounded m-auto">
             <div className="items-center overflow-scroll"> 
+                <div
+                className="w-full h-fit">
+                    <div>
+                        
+                    </div>
+                </div>
                 <table className="table-auto text-md border-separate border-spacing-4 w-full">
                     <thead>
                         <tr>
