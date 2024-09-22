@@ -13,7 +13,7 @@ interface CartPageProps{}
 
 const CartPage:React.FC<CartPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {cartItems, handleDeleteFromCart, address, setAddress} = useCartPage();
+    let {cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders} = useCartPage();
     const navigate = useNavigate()
     let sumTotal = 0; 
     for (const item of cartItems) {
@@ -134,8 +134,8 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                         <p className="m-4 flex text-primary font-bold ">
                             Payment method
                         </p>
-                        
-                        <PayPalButton amount = {sumTotal}/>
+                        <button onClick={()=>handlePlaceOrder("")}>Order</button>
+                        <PayPalButton amount={sumTotal}/>
                     </div>
                 </div>
             </div>
