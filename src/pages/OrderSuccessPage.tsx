@@ -39,7 +39,7 @@ const OrderSuccessPage:React.FC<OrderSuccessPageProps> = ()=>{
                                 <td className="inline-flex justify-center items-center space-x-2 mt-4">
                                     <span>{item.quantity}</span>
                                 </td>
-                                <td>${item.total.toFixed(2)}</td> 
+                                {/* <td>${item.total}</td>  */}
                                 <td></td>
                             </tr>
                         ))}

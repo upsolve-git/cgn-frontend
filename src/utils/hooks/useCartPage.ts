@@ -66,10 +66,10 @@ export const useCartPage = () => {
     }
   };
 
-  const handlePlaceOrder = async () => {
+  const handlePlaceOrder = async (orderId : string) => {
     console.log("address changed", address);
     try {
-      const res = await placeOrderReq("xdu", address, cartItems)
+      const res = await placeOrderReq(orderId, address, cartItems)
       console.log("added to cart", res);
     } catch (err) {
       console.error("Error adding product to cart:", err);
@@ -88,6 +88,7 @@ export const useCartPage = () => {
     address,
     setAddress,
     handlePlaceOrder,
-    handleGetOrders
+    handleGetOrders,
+    orders
   };
 };

@@ -6,4 +6,5 @@ export interface Order {
     invoice : string,
     creation_date : number,
     products : OrderLine[]
+    status : string,
 } 

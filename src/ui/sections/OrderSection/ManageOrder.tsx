@@ -6,39 +6,35 @@ import OrderProgressBar from '../../molecules/OrderProgressBar/OrderProgressBar'
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaRegCheckCircle } from "react-icons/fa";
 import OrderProductItem from '../../molecules/OrderProductItem/OrderProductItem';
-
-export interface OrderProduct{
-  productName: string,
-  size: string,
-  quantity: number,
-  price: number
-}
-
-interface OrderStatus{
-  orderProducts: OrderProduct[],
-  orderId: string
-  orderDate: Date
-  total?: number
-  orderConfirmDate: Date | null
-  shippedDate: Date | null
-  outForDeliveryDate: Date | null
-  deliveredDate: Date | null
-  etaDate: Date
-}
+import { Order } from '../../../interfaces/Order';
 
 interface ManageOrderProps {
   isOpen: boolean;
   onClose: () => void;
-  orderStatus: OrderStatus
+  order : Order
 }
 
-const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, orderStatus }) => {
+const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => {
   if (!isOpen) return null;
 
   const invoiceHandler = ()=>{
     console.log('invoice gen');
     
   }
+
+  const formattedDate = new Date(order.creation_date.toString())
+  const creationDate = formattedDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+    formattedDate.setDate(formattedDate.getDate() + 7)
+
+      const deliveryDate = formattedDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-10 bg-secondary">
@@ -50,20 +46,20 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, orderStatus 
           className='tablet:w-fit'>
             <h2
             className='text-md font-medium tablet:text-lg'>
-              Order ID: {orderStatus.orderId}
+              Order ID: {order.order_id}
             </h2>
             <div
             className='w-full text-sm tablet:flex'>
-              <p className='tablet:mr-3'>Order date: {orderStatus.orderDate.toDateString()}</p>
+              <p className='tablet:mr-3'>Order date: {creationDate}</p>
               {
-                orderStatus.deliveredDate?
+                order.status != "pending"?
                 <p className='text-green flex items-center'>
                   <FaRegCheckCircle />
-                  Delivered: {orderStatus.deliveredDate.toDateString()}
+                  Delivered: {deliveryDate}
                 </p>:
                 <p className='text-green flex items-center'>
                   <TbTruckDelivery />
-                  Estimated delivery: {orderStatus.etaDate.toDateString()}
+                  Estimated delivery: {deliveryDate}
                 </p>
               }
               
@@ -80,17 +76,17 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, orderStatus 
           </div>
         </div>
         <OrderProgressBar
-        orderConfirmDate={orderStatus.orderConfirmDate}
-        shippedDate={orderStatus.shippedDate}
-        outForDeliveryDate={orderStatus.outForDeliveryDate}
-        deliveredDate={orderStatus.deliveredDate}
+        orderConfirmDate={creationDate}
+        shippedDate={creationDate}
+        outForDeliveryDate={creationDate}
+        deliveredDate={creationDate}
         />
-        <div
+        {/* <div
         className='w-full my-4 max-h-[20vh] overflow-scroll'>
           {
-            orderStatus.orderProducts.map(item=><OrderProductItem orderProduct={item}/>)
+            orderStatus..map(item=><OrderProductItem orderProduct={item}/>)
           }
-        </div>
+        </div> */}
         <div
         className='w-12'>
           <CommonButton 

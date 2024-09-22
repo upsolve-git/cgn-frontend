@@ -7,12 +7,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import { useCartPage } from "../utils/hooks/useCartPage";
+import PayPalButton from "../ui/organisms/Paypal/PaypalButton";
 
 interface CartPageProps{}
 
 const CartPage:React.FC<CartPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders} = useCartPage();
+    let {cartItems, handleDeleteFromCart, address, setAddress} = useCartPage();
     const navigate = useNavigate()
     let sumTotal = 0; 
     for (const item of cartItems) {
@@ -133,7 +134,8 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                         <p className="m-4 flex text-primary font-bold ">
                             Payment method
                         </p>
-                        <button onClick={()=>handleGetOrders()}>Order</button>
+                        
+                        <PayPalButton amount = {sumTotal}/>
                     </div>
                 </div>
             </div>

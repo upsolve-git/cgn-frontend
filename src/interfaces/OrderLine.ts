@@ -6,4 +6,5 @@ export interface OrderLine {
     price : number,
     shade_name : string, 
     code : string,
+    category : string
 }

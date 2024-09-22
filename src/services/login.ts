@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
+import { ADMIN_LOGIN_ENDPOINT, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
 import { Address } from "../interfaces/Address";
 import { Cart } from "../interfaces/Cart";
 
@@ -74,4 +74,29 @@ export const placeOrderReq = async(payment_id : string, address: Address, cartIt
 
 export const getOrdersReq = async() => {
       return axios.get(GET_ORDERS)
+}
+
+export const createPayment = async(amount : number) => {
+    if(amount) {
+        return axios.post(PAY, {
+            "amount" : amount
+        })
+    }
+}
+
+export const capturePayment = async(orderId : string) => {
+    if(orderId) {
+        return axios.post(CAPTURE, {
+            "orderId"  : orderId
+        })
+    }
+}
+
+export const adminLoginReq = async(email: string, password : string) => {
+    if(email && password) {
+        return axios.post(ADMIN_LOGIN_ENDPOINT, {
+            "email" : email,
+            "password" : password
+        })
+    } 
 }

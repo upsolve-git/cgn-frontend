@@ -19,6 +19,7 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
     let {cartItems, handleDeleteFromCart} = useCartPage();
     const navigate = useNavigate()
+    const {orders} = useCartPage()
     const dummyOrderStatus = {
         orderId: '123456789000000',
         orderProducts: [
@@ -78,16 +79,18 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
         etaDate: new Date(2024, 11, 25),
         deliveredDate: null
     }
-    let orders = [{},{}, {}, {}, {}, {}] 
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
     let [id, setId] = useState(1)
+    let [ProductId, setproductId] = useState(1)
+
 
     const openPopup = () => setIsManageOrderOpen(true);
     const closePopup = () => setIsManageOrderOpen(false);
     let items = []
-    for(let i=0;i<orders.length;i++){
-        items.push(<OrderDetailSection order="" id={i} setId={setId} setIsManageOrderOpen={setIsManageOrderOpen} setIsAddReviewOpen={setIsAddReviewOpen}/>)
+    console.log("In order details page", orders)
+    for(let i=0;i<orders.length;i++){ 
+        items.push(<OrderDetailSection order={orders[i]} id={i} setId={setId} setIsManageOrderOpen={setIsManageOrderOpen} setIsAddReviewOpen={setIsAddReviewOpen} setproductId={setproductId}/>)
     }
     return(
         <div>
@@ -100,7 +103,7 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
             <FooterSection />
 
         </div>
-        <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} orderStatus={dummyOrderStatus}/>
+        <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} order={orders[id]}/>
         <AddReview isOpen={isAddReviewOpen} onClose={() => setIsAddReviewOpen(false)} />
         </div>
         

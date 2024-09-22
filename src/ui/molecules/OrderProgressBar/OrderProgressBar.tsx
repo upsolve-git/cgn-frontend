@@ -1,10 +1,10 @@
 import React from "react";
 
 interface OrderProgressBarProps{
-    orderConfirmDate: Date | null
-    shippedDate: Date | null
-    outForDeliveryDate: Date | null,
-    deliveredDate: Date | null
+    orderConfirmDate: String | null
+    shippedDate: String | null
+    outForDeliveryDate: String | null,
+    deliveredDate: String | null
 }
 
 const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
@@ -31,25 +31,25 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
                 className="flex flex-col items-center w-fit">
                     <p>Order confirmed</p>
                     <div className={`rounded-full w-fit ${orderConfirmDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{orderConfirmDate?orderConfirmDate.toDateString():''}</p>
+                    <p>{orderConfirmDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Shipped</p>
                     <div className={`rounded-full w-fit ${shippedDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{shippedDate?shippedDate.toDateString():''}</p>
+                    <p>{shippedDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Out for delivery</p>
                     <div className={`rounded-full w-fit ${outForDeliveryDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{outForDeliveryDate?outForDeliveryDate.toDateString():''}</p>
+                    <p>{outForDeliveryDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Delivered</p>
                     <div className={`rounded-full w-fit ${deliveredDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{deliveredDate?deliveredDate.toDateString():''}</p>
+                    <p>{deliveredDate}</p>
                 </div>
             </div>
         </div>
