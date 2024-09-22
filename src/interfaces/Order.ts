@@ -1,7 +1,9 @@
+import { OrderLine } from "./OrderLine"
+
 export interface Order {
-    product_id:number,
-    image:string[],
-    name:string,
-    quantity:number,
-    user_id:number
-}
+    order_id : number,
+    user_id:number,
+    invoice : string,
+    creation_date : number,
+    products : OrderLine[]
+} 

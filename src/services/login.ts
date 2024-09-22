@@ -1,6 +1,8 @@
 import axios from "../helpers/axios";
 
-import { DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, UPDATE_CART } from "../constants/routes";
+import { DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
+import { Address } from "../interfaces/Address";
+import { Cart } from "../interfaces/Cart";
 
 export const loginReq = async (email: string|undefined, password:string|undefined)=>{
     if(email && password){
@@ -37,6 +39,10 @@ export const getUsersCartReq = async(user_id:number) => {
     return axios.get(GET_CART);
 } 
 
+export const getUserDefaultAddressReq = async() => {
+    return axios.get(GET_DEFAULT_ADDRESS)
+}
+
 export const updateUsersCartReq = async(product_id : number, quantity : number, color_id : number) => {
     if(product_id && quantity && color_id) {
         return axios.post(UPDATE_CART, {
@@ -47,11 +53,25 @@ export const updateUsersCartReq = async(product_id : number, quantity : number, 
     }
 }
 
-export const deleteFromUsersCartReq = async(product_id : number, user_id : number) => {
-    if(product_id) {
+export const deleteFromUsersCartReq = async(product_id : number, color_id : number) => {
+    if(product_id && color_id) {
         return axios.post(DELETE_FROM_CART, {
             "product_id":product_id,
-            "user_id":user_id
+            "user_id":color_id
         })
     }
+}
+
+export const placeOrderReq = async(payment_id : string, address: Address, cartItems : Cart[]) => {
+    if(payment_id && address && cartItems.length) {
+        return axios.post(PLACE_ORDER, {
+            "payment_id" : payment_id,
+            "address" : address,
+            "cartItems" : cartItems
+        })
+    }
+}
+
+export const getOrdersReq = async() => {
+      return axios.get(GET_ORDERS)
 }

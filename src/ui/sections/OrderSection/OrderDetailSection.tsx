@@ -7,6 +7,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 import { useAdminPage } from "../../../utils/hooks/useAdminPage";
 import PopupDialog from "./ManageOrder";
+import { useCartPage } from "../../../utils/hooks/useCartPage";
 
 interface OrderDetailSectionProps{
     order : string,
@@ -21,7 +22,7 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({order, setIsMana
     let {isMobile} = useMediaWidth()
     let [expand, setExpand] = useState<boolean>(false);
     let [status, setStatus] = useState<string>("delivered");
-    let {cartItems} = useAdminPage()
+    let {cartItems} = useCartPage()
 
     return(
         <div className='w-[70%] border bg-white border-secondarydark rounded m-auto'>

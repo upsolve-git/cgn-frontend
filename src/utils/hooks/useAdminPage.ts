@@ -26,36 +26,12 @@ export const useAdminPage = ()=>{
     let [addProductsError, setAddProductsError]  = useState<string>('')
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
-    let [cartItems, setCartItems] = useState<Cart[]>([]); 
     const [colors, setColors] = useState<Color[]>([]);
-
-    const handleAddToCart = async(product:Product, quantity : number, color_id : number) => { 
-        console.log(product);
-        console.log(quantity); 
-        await updateUsersCartReq(product.product_id,  quantity, color_id)
-        .then(res => {
-            console.log("added to cart", res) 
-        }).catch (err => {
-            console.log("error in adding product to cart: ", err)
-        })
-    } 
-
-    const handleDeleteFromCart = async(product_id:number) => {
-        console.log(product_id); 
-        await deleteFromUsersCartReq(product_id, 1)
-        .then(res => {
-            console.log("delete from cart", res) 
-        }).catch (err => {
-            console.log("error in deleting product to cart: ", err)
-        }) 
-        
-    }
 
     useEffect(() => {
         getCategories();
         getProducts();
         getUsers();
-        getCart();
     }, [])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +99,8 @@ export const useAdminPage = ()=>{
             console.log(discountedPrice)
             console.log(category)
             console.log(colors)
+        
+            const newColors = category.category_name!== "Nail Polish" ? [{color_name:"NA", shade_name:"NA", code:"NA", color_id:0}] : colors;
             await addProductsReq({
                 name: name,
                 images: files!,
@@ -131,7 +109,7 @@ export const useAdminPage = ()=>{
                 cost: price,
                 discounted_price: discountedPrice,
                 categoryId: [category.category_id],
-                colors : colors,
+                colors : newColors,
                 discounted_business_price : discountedBusinessPrice
             })
             .then(res => {
@@ -162,14 +140,7 @@ export const useAdminPage = ()=>{
         })
     }
 
-    const getCart = async() => {
-        await getUsersCartReq(1)
-        .then( res => {
-            setCartItems(res.data)
-        }).catch (err => {
-            console.log(err)
-        })
-    } 
+
 
     const addBestSellerhandler = async(product_id : number) => {
         await addBestSellerReq(product_id)
@@ -199,7 +170,7 @@ export const useAdminPage = ()=>{
         }) 
     } 
     
-    return {menuItems, products, users, handleAddToCart, cartItems, handleDeleteFromCart,
+    return {menuItems, products, users,
         selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError, handleDiscountedBusinessPriceChange,
         category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange, discountedBusinessPrice,
         name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, colors, handleAddColor,

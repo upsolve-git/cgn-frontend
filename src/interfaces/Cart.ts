@@ -8,5 +8,5 @@ export interface Cart {
     shade_name : string,
     code : string,
     total : number,
-    
+    color_id : number
 }

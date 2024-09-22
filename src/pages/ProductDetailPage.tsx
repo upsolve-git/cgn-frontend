@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
 import { Product } from "../interfaces/Product";
 import { color } from "framer-motion";
+import { useCartPage } from "../utils/hooks/useCartPage";
 
 
 interface ProductDetailPageProps{}
@@ -22,7 +23,8 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
     const navigate = useNavigate()
 
     let {isMobile} = useMediaWidth()
-    let {products, handleAddToCart} = useAdminPage()
+    let {products} = useAdminPage()
+    let {handleAddToCart} = useCartPage()
     // let colors = ["green", "red"]
     let product = products.find(product => product.product_id === Number(id)) || products[1]
     const [quantity, setQuantity] = useState<number>(1);
@@ -80,7 +82,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
 
     const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id : number }[]>([]);
-  const [selectedShadeDetails, setSelectedShadeDetails] = useState<{shade : string; code: string; id : number}>();
+  const [selectedShadeDetails, setSelectedShadeDetails] = useState<{shade : string; code: string; id : number}>({shade:"NA", code:"NA", id : 3});
 
   // Function to handle the selection of a shade
   const handleShadeSelect = (shade : {shade : string; code: string; id : number}) => {
@@ -152,9 +154,9 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                             <label className="font-bold text-sm">Select a shade</label>
                             <div className="flex overflow-x-auto space-x-2">
                                 {selectedShades.map((shade) => (
-                                    <div key={shade.code} className="text-center">
+                                    <div key={shade.code} className="items-center justify-evenly">
                                     <div
-                                        className="w-12 h-12 border border-black mb-2"
+                                        className="w-12 h-12 border border-black mb-2 "
                                         style={{ backgroundColor: shade.code }}
                                         onClick={() => handleShadeSelect(shade)}
                                     ></div>
@@ -165,7 +167,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
 
                             </div>
                         )} 
-                        {selectedShadeDetails && (
+                        {selectedShadeDetails.id!=3 && (
                             <div>
                                 <label className="font-bold text-sm">Selected shade : </label>
                                 <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>

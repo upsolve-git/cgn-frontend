@@ -11,12 +11,13 @@ import OrderDetailSection from "../ui/sections/OrderSection/OrderDetailSection";
 import { useState } from "react";
 import ManageOrder from "../ui/sections/OrderSection/ManageOrder";
 import AddReview from "../ui/sections/OrderSection/AddReview";
+import { useCartPage } from "../utils/hooks/useCartPage";
 
 interface OrderHistoryPageProps{}
 
 const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {cartItems, handleDeleteFromCart} = useAdminPage();
+    let {cartItems, handleDeleteFromCart} = useCartPage();
     const navigate = useNavigate()
     let orders = [{},{}, {}, {}, {}, {}] 
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
