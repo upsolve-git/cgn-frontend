@@ -1,32 +1,36 @@
 import React from 'react';
 
+import CommonButton from '../../atoms/buttons/CommonButton/CommonButton';
+
 interface AddReviewProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null; // Don't render if not open
+  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg w-96 p-6">
-        <h2 className="text-xl font-semibold mb-4">Popup Title</h2>
-        <p className="mb-4">This is a popup dialog box. The background is blurred.</p>
-        <div className="flex justify-end space-x-2">
-          <button 
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button 
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={onClose}
-          >
-            Confirm
-          </button>
-        </div>
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 bg-secondary">
+      <div className="bg-secondary w-[90%] rounded-lg shadow-lg p-6 flex flex-col items-center desktop:w-[50%]">
+        <h2 className="text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">Review</h2>
+        <textarea
+        className='border-2 border-primary w-full p-3 rounded-md my-4'></textarea>
+          <div
+          className='w-[80%] display grid grid-cols-2 place-items-center gap-3'>
+            <CommonButton 
+            label='Add Review'
+            primaryColor='primary'
+            secondaryColor='white'
+            callBack={onClose}
+            />
+            <CommonButton 
+            label='Close'
+            primaryColor='white'
+            secondaryColor='primary'
+            callBack={onClose}
+            />
+          </div>
       </div>
     </div>
   );
