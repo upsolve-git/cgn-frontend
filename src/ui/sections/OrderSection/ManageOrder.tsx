@@ -49,7 +49,7 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
               Order ID: {order.order_id}
             </h2>
             <div
-            className='w-full text-sm tablet:flex'>
+            className='w-full text-xxs whitespace-nowrap tablet:flex'>
               <p className='tablet:mr-3'>Order date: {creationDate}</p>
               {
                 order.status != "pending"?
