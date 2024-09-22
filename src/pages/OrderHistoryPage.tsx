@@ -72,12 +72,12 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
                 price: 2000
             },
         ],
-        orderDate: new Date(2024, 11, 25),
+        orderPlacedDate: new Date(2024, 11, 25),
         orderConfirmDate: new Date(2024, 11, 25),
-        shippedDate: null,
-        outForDeliveryDate: null,
+        shippedDate: new Date(2024, 11, 25),
+        outForDeliveryDate: new Date(2024, 11, 25),
         etaDate: new Date(2024, 11, 25),
-        deliveredDate: null
+        deliveredDate: new Date(2024, 11, 25)
     }
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);

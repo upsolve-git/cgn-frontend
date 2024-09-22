@@ -14,34 +14,46 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
     deliveredDate
 })=>{
 
-    const barWidth = 0
+    let barWidth = 0
+    if(orderConfirmDate){
+        barWidth = 2
+    }
+    if(shippedDate){
+        barWidth = 36
+    }
+    if(outForDeliveryDate){
+        barWidth = 68
+    }
+    if(deliveredDate){
+        barWidth = 100
+    }
 
     return (
         <div
-        className="text-xxs h-fit w-[20rem] relative">
+        className="text-3xs whitespace-nowrap h-fit w-[17rem] relative">
             <div
-            className="absolute translate-y-[1450%] translate-x-[17%] w-[79%] bg-midgray h-[0.1rem] z-20">
+            className="absolute translate-y-[950%] translate-x-[17%] w-[76%] bg-midgray h-[0.1rem] z-20">
                 <div
                 style={{ width: `${barWidth}%` }} 
                 className={`bg-green h-full`}></div>
             </div>
             <div
-            className="flex w-full justify-between z-30">
+            className="flex justify-between z-30">
                 <div
                 className="flex flex-col items-center w-fit">
-                    <p>Order confirmed</p>
+                    <p>Order placed</p>
                     <div className={`rounded-full w-fit ${orderConfirmDate?'bg-green':'bg-midgray'} p-1`}></div>
                     <p>{orderConfirmDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
-                    <p>Shipped</p>
+                    <p>Confirmed</p>
                     <div className={`rounded-full w-fit ${shippedDate?'bg-green':'bg-midgray'} p-1`}></div>
                     <p>{shippedDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
-                    <p>Out for delivery</p>
+                    <p>Shipped</p>
                     <div className={`rounded-full w-fit ${outForDeliveryDate?'bg-green':'bg-midgray'} p-1`}></div>
                     <p>{outForDeliveryDate}</p>
                 </div>

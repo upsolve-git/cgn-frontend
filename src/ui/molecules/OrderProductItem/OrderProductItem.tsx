@@ -21,7 +21,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct, setIsA
                     <img src="/image/wrapper/stockpolish.png" alt="" 
                     className="w-10 h-auto"/>
                     <div
-                    className="text-xs flex flex-col h-full justify-between">
+                    className="text-xs tablet:text-sm flex flex-col h-full justify-between">
                         <p>{orderProduct.name}</p>
                         <p
                         className="text-xxs my-1">

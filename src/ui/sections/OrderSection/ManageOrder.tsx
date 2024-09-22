@@ -39,7 +39,7 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-10 bg-secondary">
       <div className="bg-secondary w-[90%] rounded-lg shadow-lg p-6 flex flex-col items-center desktop:w-[50%]">
-        <h2 className="text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">Manage Order</h2>
+        <h2 className="text-md font-semibold text-primary tablet:text-xl desktop:text-xl">Manage Order</h2>
         <div
         className='w-full flex items-start justify-between'>
           <div
