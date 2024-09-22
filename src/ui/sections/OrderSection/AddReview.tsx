@@ -8,9 +8,10 @@ import { useAddReview } from '../../../utils/hooks/useAddReview';
 interface AddReviewProps {
   isOpen: boolean;
   onClose: () => void;
+  product_id : number
 }
 
-const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
+const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose, product_id}) => {
   let {rating, handleRating, ratingText, handleRatingText, dummyClick} = useAddReview()
 
   if (!isOpen) return null;
@@ -38,7 +39,7 @@ const AddReview: React.FC<AddReviewProps> = ({ isOpen, onClose }) => {
             label='Add Review'
             primaryColor='primary'
             secondaryColor='white'
-            callBack={dummyClick}
+            callBack={() =>{dummyClick(product_id); onClose()}}
             />
             <CommonButton 
             label='Close'

@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { ADMIN_LOGIN_ENDPOINT, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
+import { ADD_REVIEW, ADMIN_LOGIN_ENDPOINT, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
 import { Address } from "../interfaces/Address";
 import { Cart } from "../interfaces/Cart";
 
@@ -99,4 +99,14 @@ export const adminLoginReq = async(email: string, password : string) => {
             "password" : password
         })
     } 
+}
+
+export const addReviewReq = async(rating : number, review : string, product_id : number) => {
+    if(rating && review && product_id) {
+        return axios.post(ADD_REVIEW, {
+            "product_id" : product_id,
+            "rating" : rating,
+            "review" : review
+        })
+    }
 }

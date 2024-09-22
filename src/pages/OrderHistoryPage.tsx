@@ -20,67 +20,10 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     let {cartItems, handleDeleteFromCart} = useCartPage();
     const navigate = useNavigate()
     const {orders} = useCartPage()
-    const dummyOrderStatus = {
-        orderId: '123456789000000',
-        orderProducts: [
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-            {
-                productName: 'Lorem ipsum',
-                size: '20ml',
-                quantity: 10,
-                price: 2000
-            },
-        ],
-        orderPlacedDate: new Date(2024, 11, 25),
-        orderConfirmDate: new Date(2024, 11, 25),
-        shippedDate: new Date(2024, 11, 25),
-        outForDeliveryDate: new Date(2024, 11, 25),
-        etaDate: new Date(2024, 11, 25),
-        deliveredDate: new Date(2024, 11, 25)
-    }
+
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
+
     let [id, setId] = useState(1)
     let [ProductId, setproductId] = useState(1)
 
@@ -104,7 +47,7 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
 
         </div>
         <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} order={orders[id]}/>
-        <AddReview isOpen={isAddReviewOpen} onClose={() => setIsAddReviewOpen(false)} />
+        <AddReview isOpen={isAddReviewOpen} product_id = {ProductId} onClose={() => setIsAddReviewOpen(false)} />
         </div>
         
     )
