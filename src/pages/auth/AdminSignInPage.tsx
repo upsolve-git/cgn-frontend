@@ -10,11 +10,11 @@ import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuth
 
 import { useNavigate } from 'react-router-dom';
 import { adminLoginReq } from "../../services/login";
-import { ADMIN_LOGIN_ENDPOINT } from "../../constants/routes";
+import { ADMIN_HOME } from "../../constants/routes";
 
-interface SignInPageProps{}
+interface AdminSignInPageProps{}
 
-const SignInPage: React.FC<SignInPageProps> = ()=>{
+const AdminSignInPage: React.FC<AdminSignInPageProps> = ()=>{
 
     let [email, setEmail] = useState<string>('')
     let [password, setPassword] = useState<string>('')
@@ -24,7 +24,7 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
         await adminLoginReq(email, password)
             .then(res=>{
                 console.log("inside signin success", res)
-                navigate(ADMIN_LOGIN_ENDPOINT)
+                navigate(ADMIN_HOME)
             })
             .catch(err=>{
                 console.log(err)
@@ -41,12 +41,6 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                     className="text-lg font-medium tablet:text-xl desktop:text-2xl">
                         Log In
                     </h1>
-                    <p
-                    className="text-xxs tablet:text-xs desktop:text-sm">
-                        Don't have an account?
-                        <a href="/auth/sign-up"
-                        className="underline ml-1">Sign Up</a>
-                    </p>
                 </div>
                 <div id="input-container"
                 className="my-3 w-full">
@@ -65,14 +59,9 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                 error={""}
                 label="Login Now!"
                 callbackFunc={handleAdminLogin}/>
-                <p
-                className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
-                    or continue with 
-                </p>
-                <GoogleAuthButton/>
             </FormCard>
         </div>
     )
 }
 
-export default SignInPage
+export default AdminSignInPage

@@ -7,7 +7,7 @@ import './index.css'
 import router from './routes/router';
 
 createRoot(document.getElementById('root')!).render(
-  <GoogleOAuthProvider clientId='25620640731-gp8o0cgo157r8q4lthabhiuua2ou1hki.apps.googleusercontent.com'>
+  <GoogleOAuthProvider clientId='320892808308-97jn4eq9d3k93887lrimlk96mkb39l1p.apps.googleusercontent.com'>
     <StrictMode>
       <RouterProvider
       router={router} />

@@ -5,8 +5,10 @@ export const PRODUCTS_PAGE = '/products'
 
 
 export const LOGIN_ENDPOINT = '/login'
-export const ADMIN_LOGIN_ENDPOINT = '/login'
+export const ADMIN_LOGIN_ENDPOINT = '/adminlogin'
 export const ADMIN_HOME = '/admin-home'
+export const ADMIN_AUTH = '/getadminauth'
+export const ADMIN_ORDERS = '/admingetorders'
 export const SIGNUP_ENDPOINT = '/signup'
 export const GOOGLE_SIGNIN = '/auth/google'
 export const GET_AUTH_REQ = '/getauth'

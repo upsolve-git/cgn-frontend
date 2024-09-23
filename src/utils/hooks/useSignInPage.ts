@@ -88,6 +88,7 @@ export const useSignInPage = ()=>{
         await logoutReq()
         .then( res => {
             setIsAuthenticated(false);
+            navigate(HOME_PAGE)
         })
         .catch(err => {
             console.log("not authenticated")

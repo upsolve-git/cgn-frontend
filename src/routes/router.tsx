@@ -16,6 +16,7 @@ import Cart from "../pages/CartPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
 import UserProfilePage from "../pages/user/UserProfilePage";
+import AdminSignInPage from "../pages/auth/AdminSignInPage";
 
 const router = createBrowserRouter([
 {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             {
                 path: 'sign-up',
                 element: <SignUpPage />
+            },
+            {
+                path: 'admin',
+                element: <AdminSignInPage />
             }
         ]
     },

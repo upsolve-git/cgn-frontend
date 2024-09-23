@@ -5,10 +5,28 @@ import AddProducts from "../../ui/sections/AdminSection/AddProductsSection";
 import AddCategory from "../../ui/sections/AdminSection/AddCategorySection";
 import ProductPreviewListAdmin from "../../ui/organisms/ProductPreviewList/ProductPreviewListAdmin";
 import UserList from "../../ui/organisms/UsersList/UsersList";
+import { useEffect, useState } from "react";
+import { getAdminAuth } from "../../services/login";
+import Orders from "../../ui/sections/AdminSection/Orders";
 
 interface AdminPageProps{}
 
 const AdminPage: React.FC<AdminPageProps> = ()=>{
+
+    let [adminAuth, setAdminAuth] = useState<boolean>(false); 
+
+    useEffect(() => {
+        const getAuth = async() => {
+            await getAdminAuth()
+        .then(res => {
+            setAdminAuth(true)
+        })
+        .catch(err => {
+            setAdminAuth(false)
+        })
+        } 
+        getAuth()
+    })
 
     let {
         menuItems,
@@ -42,7 +60,9 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         handleDiscountedBusinessPriceChange,
         discountedBusinessPrice
     } = useAdminPage()
-
+    if(!adminAuth) {
+            return <div>NOT AUTHORIZED</div>
+    }
     return (
         <div className="flex flex-col h-screen">
             <Navbar />
@@ -92,7 +112,9 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     <ProductPreviewListAdmin products={products} onClick={addNewSellerhandler} />
                     : selectedMenuItem === "Users" ? 
                     <UserList users={users}/>
-                    : <div></div>}
+                    : selectedMenuItem === "Orders" ? 
+                    <Orders/>
+                    :<div></div>}
                 </div>
             </div>
         </div>

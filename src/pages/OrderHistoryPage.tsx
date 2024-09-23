@@ -1,11 +1,6 @@
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import Navbar from "../ui/organisms/Navbar/Navbar";
 import FooterSection from "../ui/sections/FooterSection/FooterSection";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { LuUserCircle2 } from "react-icons/lu";
-import { useAdminPage } from "../utils/hooks/useAdminPage";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { GrEdit } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import OrderDetailSection from "../ui/sections/OrderSection/OrderDetailSection";
 import { useState } from "react";
