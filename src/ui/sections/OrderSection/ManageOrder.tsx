@@ -81,12 +81,12 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
         outForDeliveryDate={creationDate}
         deliveredDate={creationDate}
         />
-        {/* <div
+        <div
         className='w-full my-4 max-h-[20vh] overflow-scroll'>
           {
-            orderStatus..map(item=><OrderProductItem orderProduct={item}/>)
+            order.products.map(item=><OrderProductItem orderProduct={item}/>)
           }
-        </div> */}
+        </div>
         <div
         className='w-12'>
           <CommonButton 
