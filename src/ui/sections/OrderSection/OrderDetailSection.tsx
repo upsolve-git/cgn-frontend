@@ -92,7 +92,7 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({order, setIsMana
                  <div
                     className='w-full m-4 max-h-[20vh]'>
                     {
-                        order.products.map(item=><OrderProductItem setproductId={setproductId}  orderProduct={item} setIsAddReviewOpen={setIsAddReviewOpen}/>)
+                        order.products.map(item=><OrderProductItem  orderProduct={item}/>)
                     }
                     </div>
                 </div>

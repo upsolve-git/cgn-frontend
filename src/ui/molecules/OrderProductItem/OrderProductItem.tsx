@@ -6,11 +6,14 @@ import { OrderLine } from "../../../interfaces/OrderLine";
 
 interface OrderProductItemProps{
     orderProduct: OrderLine,
-    setIsAddReviewOpen : (isOpen : boolean) => void,
-    setproductId :  (productId:number) => void
+    // setIsAddReviewOpen : (isOpen : boolean) => void,
+    // setproductId :  (productId:number) => void
 }
 
-const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct, setIsAddReviewOpen, setproductId})=>{
+const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct, 
+    // setIsAddReviewOpen, 
+    // setproductId
+})=>{
     return(
         <div
         className="bg-white rounded-lg w-full px-2 py-1 my-3">
@@ -40,7 +43,13 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct, setIsA
                 </div>
                 <div
                 className="w-18 h-full grid grid-rows-2 grid-cols-1 gap-3 tablet:w-24">
-                                    <button className="text-xs" onClick={() => {setproductId(orderProduct.product_id); setIsAddReviewOpen(true)}}>Add Review</button>
+                    {/* <button className="text-xs" 
+                    onClick={() => {
+                        setproductId(orderProduct.product_id); 
+                        setIsAddReviewOpen(true)
+                    }}>
+                        Add Review
+                    </button> */}
                     <CommonButton
                     label="Buy again"
                     primaryColor="primary"

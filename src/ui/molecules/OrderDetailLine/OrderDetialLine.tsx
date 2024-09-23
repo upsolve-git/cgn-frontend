@@ -1,6 +1,5 @@
 import React from "react";
 
-import { MdOutlineDateRange } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
 interface OrderDetailLineProps {
@@ -14,9 +13,10 @@ const OrderDetailLine: React.FC<OrderDetailLineProps> = ({
     label,
     value
 }) => {
+    
     return (
         <div
-        className="flex justify-between text-xs">
+        className="flex justify-between text-xs tablet:text-sm">
             <div
             className='flex items-center'>
                 <div
@@ -26,9 +26,9 @@ const OrderDetailLine: React.FC<OrderDetailLineProps> = ({
                         {icon}
                     </IconContext.Provider>
                 </div>
-                {label}
+                <span className="text-darkgray">{label}</span>
             </div>
-            <p>{value}</p>
+            <p className="font-semibold">{value}</p>
         </div>
     )
 }
