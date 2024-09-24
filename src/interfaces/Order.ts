@@ -1,3 +1,4 @@
+import { Address } from "./Address"
 import { OrderLine } from "./OrderLine"
 
 export interface Order {
@@ -6,5 +7,6 @@ export interface Order {
     invoice : string,
     creation_date : number,
     products : OrderLine[]
+    address : Address
     status : string,
 } 

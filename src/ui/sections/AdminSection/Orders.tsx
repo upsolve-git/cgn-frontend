@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Order } from "../../../interfaces/Order";
-import { getAdminORders } from "../../../services/login";
+import { getAdminOrders } from "../../../services/login";
 import NavButton from "../../atoms/navItems/NavButton/NavButton";
 import OrderDetail from "./OrderDetail";
 
@@ -21,7 +21,7 @@ const Orders: React.FC<OrdersProps> = ()=>{
     useEffect(() => {
         const fetchOrders = async () => {
           try {
-            const ordersRes = await getAdminORders(); 
+            const ordersRes = await getAdminOrders(); 
             console.log("orders",ordersRes)
             setOrders(ordersRes.data);
           } catch (err) {
@@ -34,9 +34,9 @@ const Orders: React.FC<OrdersProps> = ()=>{
 
     const filterOrders = async(filter : string) => {
         let items = []
-        const filtered = orders.filter((order) => order.status === filter)
+        const filtered =  orders.filter((order) => order.status === filter)
         for(let i=0;i<filtered.length;i++){ 
-            items.push(<OrderDetail order={orders[i]} />)
+            items.push(<OrderDetail order={filtered[i]} />)
         }
         setFilteredOrders(items)
     }

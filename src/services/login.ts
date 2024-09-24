@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { ADD_REVIEW, ADMIN_AUTH, ADMIN_LOGIN_ENDPOINT, ADMIN_ORDERS, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
+import { ADD_REVIEW, ADMIN_AUTH, ADMIN_CONFIRM_ORDER, ADMIN_DELIVER_ORDER, ADMIN_LOGIN_ENDPOINT, ADMIN_ORDERS, ADMIN_SHIP_ORDER, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
 import { Address } from "../interfaces/Address";
 import { Cart } from "../interfaces/Cart";
 
@@ -115,6 +115,30 @@ export const getAdminAuth = async() => {
     return axios.get(ADMIN_AUTH)
 }
 
-export const getAdminORders = async() => {
+export const getAdminOrders = async() => {
     return axios.get(ADMIN_ORDERS)
+}
+
+export const postConfirmOrder = async(order_id : number) => {
+    if (order_id) {
+        return axios.post(ADMIN_CONFIRM_ORDER, {
+            "order_id": order_id
+        })
+    }
+}
+
+export const postShipOrder = async(order_id : number) => {
+    if (order_id) {
+        return axios.post(ADMIN_SHIP_ORDER, {
+            "order_id": order_id
+        })
+    }
+}
+
+export const postDeliverOrder = async(order_id : number) => {
+    if (order_id) {
+        return axios.post(ADMIN_DELIVER_ORDER, {
+            "order_id": order_id
+        })
+    }
 }
