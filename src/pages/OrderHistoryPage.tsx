@@ -33,12 +33,12 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     return(
         <div>
             <div className={`bg-secondary space-y-16 relative ${isManageOrderOpen || isAddReviewOpen? 'blur-sm' : ''}`}>
-            <Navbar/>
+            {/* <Navbar/> */}
             <p className="text-center text-primary font-bold">Purchase history</p>
             {
                 items.map(e=>e)
             }
-            <FooterSection />
+            {/* <FooterSection /> */}
 
         </div>
         <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} order={orders[id]}/>

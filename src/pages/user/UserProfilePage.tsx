@@ -8,7 +8,7 @@ interface UserProfilePageProps{}
 const UserProfilePage: React.FC<UserProfilePageProps> = ()=>{
     return(
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div
             className="w-full h-[80vh] bg-secondary pt-8">
             <h2 className="text-center text-lg font-semibold text-primary tablet:text-xl desktop:text-xl">User profile</h2>
@@ -37,7 +37,7 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ()=>{
                     </tr>
                 </table>
             </div>
-            <FooterSection />
+            {/* <FooterSection /> */}
         </div>
     )
 }

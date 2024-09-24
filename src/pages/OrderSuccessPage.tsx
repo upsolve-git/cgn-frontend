@@ -77,7 +77,7 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
     }
     return (
         <div className="bg-secondary space-y-16">
-            <Navbar />
+            {/* <Navbar /> */}
             <p className="text-center text-primary font-bold tablet:text-lg">Thank you for your purchase!</p>
             <div className="w-[90%] px-3 border bg-white border-secondarydark rounded m-auto tablet:w-[70%]">
                 <div className="items-center">
@@ -121,7 +121,7 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
                     </div>
                 </div>
             </div>
-            <FooterSection />
+            {/* <FooterSection /> */}
         </div>
     )
 }

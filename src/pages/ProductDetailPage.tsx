@@ -97,7 +97,7 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
     return(
         <div
         className="overflow-scroll bg-secondary">
-            <Navbar />
+            {/* <Navbar /> */}
             {products.length &&  (
             <div>
                 <div className="grid grid-cols-1 place-items-center m-10 tablet:grid-cols-2 tablet:m-20">
@@ -224,8 +224,8 @@ const ProductDetailPage:React.FC<ProductDetailPageProps> = ()=>{
                     isBestSeller={true}/>
                 }
             </div>)}
-            <ReviewsSection />
-            <FooterSection />
+            {/* <ReviewsSection /> */}
+            {/* <FooterSection /> */}
         </div>
     )
 }

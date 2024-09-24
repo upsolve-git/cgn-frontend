@@ -65,7 +65,7 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
     }
     return (
         <div className="flex flex-col h-screen">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="flex flex-grow">
                 <Menu
                 menuItems={menuItems}

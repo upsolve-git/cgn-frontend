@@ -36,7 +36,7 @@ const SmallFiltersBoard: React.FC<SmallFiltersBoardProps> = ({
                 </span>
             </div>
             <PriceRangeSlider />
-            <RatingFilter />
+            {/* <RatingFilter /> */}
         </div>
     )
 }
