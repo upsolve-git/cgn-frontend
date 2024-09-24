@@ -6,7 +6,6 @@ import { getDaysGap, getToday } from "../../../helpers/dateHandler";
 
 interface ReviewContentProps{
     username: string,
-    userImg: string,
     reviewDate: Date,
     reviewRating: number,
     reviewText: string
@@ -14,7 +13,6 @@ interface ReviewContentProps{
 
 const ReviewContent: React.FC<ReviewContentProps> = ({
     username,
-    userImg,
     reviewDate,
     reviewRating,
     reviewText
@@ -29,7 +27,7 @@ const ReviewContent: React.FC<ReviewContentProps> = ({
             className="flex my-3">
                 <div
                 className="rounded-full w-fit h-fit mr-2">
-                    <img src={userImg} alt='#image'
+                    <img src="/image/wrapper/profile-default.png" alt='#image'
                     className="w-[40px] h-auto"/>
                 </div>
                 <div>

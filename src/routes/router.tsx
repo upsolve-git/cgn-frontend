@@ -1,7 +1,7 @@
 import {
     createBrowserRouter,
 
-  } from "react-router-dom";
+} from "react-router-dom";
 
 import DefaultLayout from "../layouts/DefaultLayout";
 import AuthLayout from "../layouts/auth/AuthLayout";
@@ -18,38 +18,48 @@ import OrderSuccessPage from "../pages/OrderSuccessPage";
 import UserProfilePage from "../pages/user/UserProfilePage";
 
 const router = createBrowserRouter([
-{
-    path: "/",
-    element: <DefaultLayout />,
-    children: [
     {
-        path: "",
-        element: <LandingPage />,
+        path: "/",
+        element: <DefaultLayout />,
+        children: [
+            {
+                path: "",
+                element: <LandingPage />,
+            },
+            {
+                path: "products",
+                element: <ProductsPage />
+            },
+            {
+                path: "productDetail/:id",
+                element: <ProductDetailPage />
+            },
+            {
+                path: "cart",
+                element: <Cart />
+            },
+            {
+                path: "orders",
+                element: <OrderHistoryPage />
+            },
+            {
+                path: "ordersuccess",
+                element: <OrderSuccessPage />
+            },
+            {
+                path: "admin-home",
+                element: <AdminPage />
+            },
+            {
+                path: "userprofile",
+                element: <UserProfilePage />
+            }
+        ],
     },
     {
-        path: "products",
-        element: <ProductsPage />
-    },
-    {
-        path: "productDetail/:id",
-        element: <ProductDetailPage />
-    },
-    {
-        path: "cart",
-        element: <Cart />
-    },
-    {
-        path: "orders",
-        element: <OrderHistoryPage />
-    },
-    {
-        path: "ordersuccess",
-        element: <OrderSuccessPage />
-    },
-    {
-        path:'auth',
+        path: 'auth',
         element: <AuthLayout />,
-        children:[
+        children: [
             {
                 path: 'sign-in',
                 element: <SignInPage />
@@ -60,16 +70,6 @@ const router = createBrowserRouter([
             }
         ]
     },
-    {
-        path: "admin-home",
-        element: <AdminPage />
-    },
-    {
-        path: "userprofile",
-        element: <UserProfilePage />
-    }
-    ],
-},
 ]);
 
 export default router

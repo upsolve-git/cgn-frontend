@@ -7,8 +7,7 @@ const ReviewsPreview: React.FC<ReviewsPreviewProps> = ()=>{
     const reviews = [
         {
             user:{
-                username:"Alex Hailey",
-                userImg: "/image/wrapper/profile-default.png"
+                fullname:"Alex Hailey",
             },
             reviewDate: new Date(2024,5,12),
             reviewRating: 4.5,
@@ -16,8 +15,7 @@ const ReviewsPreview: React.FC<ReviewsPreviewProps> = ()=>{
         },
         {
             user:{
-                username:"Alex Hailey",
-                userImg: "/image/wrapper/profile-default.png"
+                fullname:"Alex Hailey",
             },
             reviewDate: new Date(2024,5,12),
             reviewRating: 4.5,
@@ -25,8 +23,7 @@ const ReviewsPreview: React.FC<ReviewsPreviewProps> = ()=>{
         },
         {
             user:{
-                username:"Alex Hailey",
-                userImg: "/image/wrapper/profile-default.png"
+                fullname:"Alex Hailey",
             },
             reviewDate: new Date(2024,5,12),
             reviewRating: 4.5,
@@ -42,8 +39,7 @@ const ReviewsPreview: React.FC<ReviewsPreviewProps> = ()=>{
                 reviews.map((review)=>{
                     return(
                         <ReviewContent 
-                        username={review.user.username}
-                        userImg={review.user.userImg}
+                        username={review.user.fullname}
                         reviewDate={review.reviewDate}
                         reviewRating={review.reviewRating}
                         reviewText={review.reviewText}

@@ -25,7 +25,7 @@ const BigFiltersBoard: React.FC<BigFiltersBoardProps> = ({
                 </span>
             </div>
             <PriceRangeSlider />
-            <RatingFilter />
+            {/* <RatingFilter /> */}
         </div>
     )
 }
