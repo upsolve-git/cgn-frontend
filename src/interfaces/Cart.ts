@@ -3,6 +3,7 @@ export interface Cart {
     images:string[],
     name:string,
     quantity:number,
+    price: number,
     discounted_price:number,
     discounted_business_price:number,
     shade_name : string,

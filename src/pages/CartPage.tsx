@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from "../ui/organisms/Navbar/Navbar";
@@ -19,21 +19,20 @@ interface CartPageProps{}
 
 const CartPage:React.FC<CartPageProps> = ()=>{
     let {isMobile} = useMediaWidth()
-    let {cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders} = useCartPage();
+    let {cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders, stateDropdownItems, updateTaxPercent, generatePDF} = useCartPage();
     const navigate = useNavigate()
     let sumTotal = 0
-    let noDiscountTotal = 0
-    let discount = 0 
+    let fullPrice = 0 
+    let [taxTotal , setTaxTotal] = useState<number>(0);
+    const deliveryFee = 10
+
+    generatePDF()
+
     for (const item of cartItems) {
-        console.log(item.total)
-        noDiscountTotal = noDiscountTotal + item.total
-        discount = discount + item.total * item.discounted_price
-        sumTotal = sumTotal + item.total * item.discounted_price
+        fullPrice = fullPrice + item.quantity * item.price
+        sumTotal = sumTotal + item.quantity * item.discounted_price
     }
 
-    sumTotal = 1234567
-
-    console.log("in cart", cartItems)
     return(
         <div className="bg-secondary space-y-16 my-6 tablet:my-8 desktop:my-12">
             {/* <Navbar /> */}
@@ -116,7 +115,17 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                     <div className="flex m-4 space-x-2">
                         <div className="w-[40%] space-y-1">
                             <p className="font-bold">State</p>
-                            <input type="text" className="w-full rounded bg-lightgray" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })}/>
+                            <select 
+                                className="w-full rounded bg-lightgray" 
+                                value={address.state} 
+                                onChange={(e) => {setAddress({ ...address, state: e.target.value }); setTaxTotal(Math.round(sumTotal*(updateTaxPercent(e.target.value)))/100)}}
+                            >
+                                {stateDropdownItems.map((state, index) => (
+                                    <option key={index} value={state}>
+                                        {state}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="w-[40%] space-y-1">
                             <p className="font-bold">City</p>
@@ -153,21 +162,28 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                             <p
                             className='text-darkgray'>Subtotal</p>
                             <p
-                            className='font-semibold'>${20000000}</p>
+                            className='font-semibold'>${fullPrice}</p>
                         </div>
                         <div
                         className='my-2 flex items-center justify-between tablet:my-4 desktop:my-8'>
                             <p
                             className='text-darkgray'>Discount</p>
                             <p
-                            className='font-semibold'>${20000000}</p>
+                            className='font-semibold'>- ${fullPrice-sumTotal}</p>
+                        </div>
+                        <div
+                        className='my-2 flex items-center justify-between tablet:my-4 desktop:my-8'>
+                            <p
+                            className='text-darkgray'>Tax</p>
+                            <p
+                            className='font-semibold'>${taxTotal}</p>
                         </div>
                         <div
                         className='my-2 flex items-center justify-between tablet:my-4 desktop:my-8'>
                             <p
                             className='text-darkgray'>Delivery fee</p>
                             <p
-                            className='font-semibold'>${20000000}</p>
+                            className='font-semibold'>${deliveryFee}</p>
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
                         <div
@@ -175,11 +191,11 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                             <p
                             className='text-darkgray'>Total</p>
                             <p
-                            className='font-semibold text-primary'>${20000000}</p>
+                            className='font-semibold text-primary'>${sumTotal + taxTotal + deliveryFee}</p>
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
                     </div>
-                    <PayPalButton amount={sumTotal}/>
+                    <PayPalButton amount={sumTotal + taxTotal + deliveryFee}/>
                 </div>
             </div>
             {/* <FooterSection /> */}

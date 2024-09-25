@@ -1,6 +1,6 @@
 import axios from "../helpers/axios";
 
-import { ADD_REVIEW, ADMIN_AUTH, ADMIN_CONFIRM_ORDER, ADMIN_DELIVER_ORDER, ADMIN_LOGIN_ENDPOINT, ADMIN_ORDERS, ADMIN_SHIP_ORDER, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
+import { ADD_REVIEW, ADMIN_AUTH, ADMIN_CONFIRM_ORDER, ADMIN_DELIVER_ORDER, ADMIN_LOGIN_ENDPOINT, ADMIN_ORDERS, ADMIN_SHIP_ORDER, CAPTURE, DELETE_FROM_CART, GET_AUTH_REQ, GET_CART, GET_DEFAULT_ADDRESS, GET_ORDER, GET_ORDERS, GET_USERS_ENDPOINT, GOOGLE_SIGNIN, LOGIN_ENDPOINT, LOGOUT_REQ, PAY, PLACE_ORDER, UPDATE_CART } from "../constants/routes";
 import { Address } from "../interfaces/Address";
 import { Cart } from "../interfaces/Cart";
 
@@ -140,5 +140,12 @@ export const postDeliverOrder = async(order_id : number) => {
         return axios.post(ADMIN_DELIVER_ORDER, {
             "order_id": order_id
         })
+    }
+}
+
+export const getOrderReq = async(order_id : number) => {
+    if(order_id) {
+        console.log(GET_ORDER + order_id)
+        return axios.get(GET_ORDER + order_id)
     }
 }
