@@ -5,6 +5,7 @@ interface CommonButtonProps{
     primaryColor: string,
     secondaryColor: string,
     customStyles?: string,
+    preIcon?: React.ReactNode
     callBack: ()=>void
 }
 
@@ -13,13 +14,18 @@ const CommonButton: React.FC<CommonButtonProps> = ({
     primaryColor,
     secondaryColor,
     customStyles='',
+    preIcon,
     callBack
 })=>{
     return (
         <button
         onClick={callBack}
         className={`text-xxs w-full rounded-md py-2 bg-${primaryColor} text-${secondaryColor} tablet:text-xs desktop:text-sm ${customStyles}`}>
+            <div
+            className="flex items-center w-fit m-auto">
+            {preIcon}
             {label}
+            </div>
         </button>
     )
 }
