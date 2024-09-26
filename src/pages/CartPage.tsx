@@ -148,7 +148,6 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                     <p className="flex text-primary font-bold ">
                         Payment method
                     </p>
-                    {/* <button onClick={()=>handlePlaceOrder("123456")}>Order</button> */}
                     <div>
                         <h2
                         className=' font-semibold flex items-center my-3 tablet:my-5 desktop:my-8'>
@@ -196,7 +195,8 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
                     </div>
-                    <PayPalButton amount={sumTotal + taxTotal + deliveryFee}/>
+                    <button onClick={()=>{handlePlaceOrder("123456"); handleGenrateInvoice()}}>Order</button>
+                    <PayPalButton amount={sumTotal + taxTotal + deliveryFee} handleInvoice={handleGenrateInvoice} />
                 </div>
             </div>
             {/* <FooterSection /> */}

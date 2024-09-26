@@ -20,7 +20,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
       <div className="relative h-[65%] overflow-hidden">
         <img
-          src={product?.images[0] || "/image/wrapper/stockpolish.png"}
+          src={`${product.images[0]}?${new Date().getTime()}`}
           alt={product?.name || "Product image"}
           className="absolute p-8 w-full h-full"
         />
@@ -41,10 +41,10 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         </div>
         <div className="grid grid-cols-2 grid-rows-2 place-items-start">
             <span className="text-md font-semibold truncate w-full col-span-2">
-              ${12345678 || 32}
+              ${product?.discounted_price }
             </span>
             <span className="text-xs text-darkgray line-through truncate w-full">
-              ${product?.discounted_price || 20}
+              ${product?.price}
             </span>
             <button
               className="p-2 rounded-full bg-white shadow-sm flex-shrink-0 ml-[50%]"

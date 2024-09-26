@@ -16,7 +16,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         className="grid grid-cols-1 font-poppins max-w-[200px] max-h-fit">
             <div
             className="bg-white rounded-t-full px-3 py-4 desktop:px-6 desktop:py-8">
-                <img src={product.images[0]} alt="" 
+                <img src={`${product.images[0]}?${new Date().getTime()}`} alt="" 
                 className="w-auto h-[200px] m-auto tablet:w-[100px] desktop:w-[130px]"/>
             </div>
             <div

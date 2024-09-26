@@ -4,9 +4,10 @@ import { useCartPage } from '../../../utils/hooks/useCartPage';
 
 interface PayPalButtonProps{
     amount  : number
+    handleInvoice : ()=> void
 }
 
-const PayPalButton:React.FC<PayPalButtonProps>  = ({amount}) => {
+const PayPalButton:React.FC<PayPalButtonProps>  = ({amount, handleInvoice}) => {
   const paypalRef = useRef<HTMLDivElement>(null);
   const buttonRendered = useRef(false);
   const {handlePlaceOrder} = useCartPage()
@@ -25,6 +26,7 @@ const PayPalButton:React.FC<PayPalButtonProps>  = ({amount}) => {
     try {
         const response = await capturePayment(data.orderID);
         handlePlaceOrder(data.orderID)
+        handleInvoice()
         console.log('Capture result:', response?.data);
     } catch (error) {
       console.error('Error approving payment:', error);

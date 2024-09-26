@@ -83,7 +83,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
 
     const [selectedColor, setSelectedColor] = useState<string>('');
     const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id: number }[]>([]);
-    const [selectedShadeDetails, setSelectedShadeDetails] = useState<{ shade: string; code: string; id: number }>({ shade: "NA", code: "NA", id: 3 });
+    const [selectedShadeDetails, setSelectedShadeDetails] = useState<{ shade: string; code: string; id: number }>({ shade: "NA", code: "NA", id: 1 });
 
     // Function to handle the selection of a shade
     const handleShadeSelect = (shade: { shade: string; code: string; id: number }) => {
@@ -108,7 +108,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                             <div className="w-full max-w-md aspect-square">
                                 <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
                                     <img
-                                        src={product?.images[0] || "/image/wrapper/stockpolish.png"}
+                                        src={`${product.images[0]}?${new Date().getTime()}`}
                                         alt={product.name}
                                         className="max-h-full max-w-full object-contain"
                                     />
