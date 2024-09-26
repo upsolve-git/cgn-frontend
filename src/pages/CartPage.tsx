@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Navbar from "../ui/organisms/Navbar/Navbar";
-import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import PayPalButton from "../ui/organisms/Paypal/PaypalButton";
 
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -23,15 +21,13 @@ const CartPage:React.FC<CartPageProps> = ()=>{
     const navigate = useNavigate()
     let sumTotal = 0
     let noDiscountTotal = 0
-    let discount = 0 
+    let discount = 0
     for (const item of cartItems) {
         console.log(item.total)
         noDiscountTotal = noDiscountTotal + item.total
         discount = discount + item.total * item.discounted_price
         sumTotal = sumTotal + item.total * item.discounted_price
     }
-
-    sumTotal = 1234567
 
     console.log("in cart", cartItems)
     return(
@@ -90,40 +86,40 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                         Customer information
                     </p> 
                     <div className="m-4 space-y-1">
-                        <p className="font-bold">Ful Name</p>
+                        <p className="">Full Name</p>
                         <input type="text" className="w-full rounded bg-lightgray" value={address.full_name} onChange={(e) => setAddress({ ...address, full_name: e.target.value })}/>
                     </div>
                     <div className="m-4 space-y-1">
-                        <p className="font-bold">Address line 1</p>
+                        <p className="">Address line 1</p>
                         <input type="text" className="w-full rounded bg-lightgray" value={address.address_line1} onChange={(e) => setAddress({ ...address, address_line1: e.target.value })}/>
                     </div>
                     <div className="m-4 space-y-1">
-                        <p className="font-bold">Address line 2</p>
+                        <p className="">Address line 2</p>
                         <input type="text" className="w-full rounded bg-lightgray" value={address.address_line2} onChange={(e) => setAddress({ ...address, address_line2: e.target.value })}/>
                     </div>
 
                     <div className="flex m-4 space-x-2">
                         <div className="w-[30%] space-y-1">
-                            <p className="font-bold">Country</p>
+                            <p className="">Country</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })}/>
                         </div>
                         <div className="w-[70%] space-y-1">
-                            <p className="font-bold">Phone number</p>
+                            <p className="">Phone number</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.mobile} onChange={(e) => setAddress({ ...address, mobile: e.target.value })}/>
                         </div>
                     </div> 
                     
                     <div className="flex m-4 space-x-2">
                         <div className="w-[40%] space-y-1">
-                            <p className="font-bold">State</p>
+                            <p className="">State</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })}/>
                         </div>
                         <div className="w-[40%] space-y-1">
-                            <p className="font-bold">City</p>
+                            <p className="">City</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })}/>
                         </div>
                         <div className="w-[20%] space-y-1">
-                            <p className="font-bold">Pincode</p>
+                            <p className="">Pincode</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.pincode} onChange={(e) => setAddress({ ...address, pincode: e.target.value })}/>
                         </div>
                     </div>
