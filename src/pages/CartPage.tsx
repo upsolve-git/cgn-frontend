@@ -26,8 +26,9 @@ const CartPage:React.FC<CartPageProps> = ()=>{
     let [taxTotal , setTaxTotal] = useState<number>(0);
     const deliveryFee = 10
 
-    generatePDF()
-
+    const handleGenrateInvoice = async() => {
+        generatePDF(fullPrice, fullPrice-sumTotal, taxTotal, deliveryFee);
+    }
     for (const item of cartItems) {
         fullPrice = fullPrice + item.quantity * item.price
         sumTotal = sumTotal + item.quantity * item.discounted_price

@@ -3,6 +3,7 @@ import { Order } from "../../../interfaces/Order";
 import { getAdminOrders } from "../../../services/login";
 import NavButton from "../../atoms/navItems/NavButton/NavButton";
 import OrderDetail from "./OrderDetail";
+import AddressDialog from "./AddressDialog";
 
 
 interface OrdersProps{
@@ -11,12 +12,12 @@ interface OrdersProps{
 const Orders: React.FC<OrdersProps> = ()=>{
     let [orders, setOrders] = useState<Order[]>([])
     let [filteredOrders, setFilteredOrders] = useState<JSX.Element[]>([]);
-    let [filter, setFilter] = useState<string>("pending")
     let [newOders, setNewOrders] = useState<boolean>(false)
     let [confirmOders, setConfirmOrders] = useState<boolean>(false)
     let [shippedOrders, setShippedOrders] = useState<boolean>(false)
     let [deliveredOrders, setDeliveredOrders] = useState<boolean>(false)
-
+    const [isAddressDialogOpen, setIsAddressDialogOpen] = useState(false);
+    let [id, setId] = useState(1)
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -36,7 +37,7 @@ const Orders: React.FC<OrdersProps> = ()=>{
         let items = []
         const filtered =  orders.filter((order) => order.status === filter)
         for(let i=0;i<filtered.length;i++){ 
-            items.push(<OrderDetail order={filtered[i]} />)
+            items.push(<OrderDetail order={filtered[i]} id={i} setId={setId} setIsAddressDialogOpen={setIsAddressDialogOpen}/>)
         }
         setFilteredOrders(items)
     }
@@ -60,6 +61,8 @@ const Orders: React.FC<OrdersProps> = ()=>{
             {
                 filteredOrders.map(e=>e)
             }
+            <AddressDialog isOpen={isAddressDialogOpen} onClose={() => setIsAddressDialogOpen(false)} address={orders[id]?.address}/>
+
        </div> 
     
     )

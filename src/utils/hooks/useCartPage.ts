@@ -128,7 +128,7 @@ export const useCartPage = () => {
     console.log(orders)
   }
 
-  const generatePDF = () => {
+  const generatePDF = (subtotal: number, discount:number, tax : number, deliveryFee : number, ) => {
     const doc = new jsPDF();
 
     // Set font size and add invoice header
@@ -136,43 +136,53 @@ export const useCartPage = () => {
     doc.text('Invoice', 105, 20, { align: 'center' });
 
     // Add some details like company name, address etc.
+    
     doc.setFontSize(12);
-    doc.text('Company Name', 20, 30);
-    doc.text('123 Main Street', 20, 35);
-    doc.text('City, State, ZIP', 20, 40);
-    doc.text('Email: company@email.com', 20, 45);
-    doc.text('Phone: (123) 456-7890', 20, 50);
+    doc.text('Canadian Gel Nails', 20, 30);
+    doc.text('PO Box 2900 SUDBURY PO A, ON, P3A 5J3,Canada', 20, 35);
+    doc.text('Email: dev.cgnails@gmail.com', 20, 45);
+    // doc.text('Phone: (123) 456-7890', 20, 50);
 
     // Add a horizontal line separator
     doc.line(20, 55, 190, 55);
 
+    doc.setFontSize(14);
+    doc.text('Item', 20, 70);
+    doc.text('Price', 170, 70, { align: 'right' });
+
+    for (let i = 0; i< cartItems.length; i++) {
+      doc.text(cartItems[i].name + "   x " + cartItems[i].price, 20, 70)
+      doc.text((cartItems[i].quantity * cartItems[i].price).toString(), 170, 70, { align: 'right' })
+    }
+
+    doc.line(20, 55, 290, 55);
+
     // Add subtotal, discount, tax, delivery fee, and total
     doc.setFontSize(14);
     doc.text('Subtotal', 20, 70);
-    doc.text('$1000', 170, 70, { align: 'right' });
+    doc.text('$'+ subtotal, 170, 70, { align: 'right' });
 
     doc.text('Discount', 20, 80);
-    doc.text('-$100', 170, 80, { align: 'right' });
+    doc.text('-$' + discount, 170, 80, { align: 'right' });
 
     doc.text('Tax', 20, 90);
-    doc.text('$108', 170, 90, { align: 'right' });
+    doc.text('$' + tax, 170, 90, { align: 'right' });
 
     doc.text('Delivery Fee', 20, 100);
-    doc.text('$10', 170, 100, { align: 'right' });
+    doc.text('$' + deliveryFee, 170, 100, { align: 'right' });
 
     // Add another horizontal line separator
     doc.line(20, 110, 190, 110);
 
     doc.text('Total', 20, 120);
-    doc.text('$1018', 170, 120, { align: 'right' });
+    doc.text('$' + (subtotal - discount + tax + discount), 170, 120, { align: 'right' });
 
     // Save the PDF
     doc.save('invoice.pdf');
-    const pdfBlob = doc.output('blob');
+    // const pdfBlob = doc.output('blob');
   };
 
   
-
   return {
     handleAddToCart,
     handleDeleteFromCart,

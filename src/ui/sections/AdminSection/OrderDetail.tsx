@@ -12,15 +12,20 @@ import OrderProductItem from "../../molecules/OrderProductItem/OrderProductItem"
 import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 import { postConfirmOrder, postDeliverOrder, postShipOrder } from "../../../services/login";
 import PrintButton from "./Addressprint";
+import AddressDialog from "./AddressDialog";
 
 interface OrderDetailSectionProps{
     order : Order,
+    setIsAddressDialogOpen : (isOpen : boolean) => void,
+    id : number,
+    setId :  (id:number) => void
 }
 
-const OrderDetail: React.FC<OrderDetailSectionProps> = ({order})=>{
+const OrderDetail: React.FC<OrderDetailSectionProps> = ({order, setId, setIsAddressDialogOpen, id})=>{
 
     let {isMobile} = useMediaWidth()
     let [expand, setExpand] = useState<boolean>(false);
+
     const formattedDate = new Date(order.creation_date.toString())
     formattedDate.setDate(formattedDate.getDate() + 7)
 
@@ -73,6 +78,7 @@ const OrderDetail: React.FC<OrderDetailSectionProps> = ({order})=>{
                     }
                 </div>
                 <div className="flex items-center space-x-4">
+                <CommonButton label="Address" primaryColor="primary" secondaryColor="white" callBack={() => {setId(id);setIsAddressDialogOpen(true)}} />
                     {
                         order.status === "pending" && <CommonButton label="Confirm" primaryColor="primary" secondaryColor="white" callBack={() => confirmOrder(order.order_id)} />
                     }
@@ -99,7 +105,8 @@ const OrderDetail: React.FC<OrderDetailSectionProps> = ({order})=>{
                         order.products.map(item=><OrderProductItem orderProduct={item} />)
                     }
                     </div>
-            } 
+            }  
+
         </div>
     )
 }
