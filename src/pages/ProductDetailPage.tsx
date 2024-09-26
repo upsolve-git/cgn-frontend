@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 
-import Navbar from "../ui/organisms/Navbar/Navbar";
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import { useAdminPage } from "../utils/hooks/useAdminPage";
 import ProductPreviewList from "../ui/organisms/ProductPreviewList/ProductPreviewList";
-import ArrowButton from "../ui/atoms/buttons/ArrowButton/ArrowButton";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
-import FooterSection from "../ui/sections/FooterSection/FooterSection";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
 import { Product } from "../interfaces/Product";
-import { color } from "framer-motion";
 import { useCartPage } from "../utils/hooks/useCartPage";
 import CommonButton from "../ui/atoms/buttons/CommonButton/CommonButton";
+import ProductImageViewer from "../ui/organisms/ProductImageViewer";
 
 
 interface ProductDetailPageProps { }
@@ -49,7 +44,6 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         const colorMap: { [color_name: string]: { color: string; shadesCodeMapping: { shade: string, code: string, id: number }[] } } = {};
         console.log(product)
         product.colors.forEach(color => {
-            // If the color is not already in the map, initialize it
             if (!colorMap[color.color_name]) {
                 colorMap[color.color_name] = {
                     color: color.color_name,
@@ -57,12 +51,10 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                 };
             }
 
-            // Check if this particular shade and code combination is unique
             const exists = colorMap[color.color_name].shadesCodeMapping.some(
                 (shadeCode) => shadeCode.shade === color.shade_name && shadeCode.code === color.code
             );
 
-            // If the combination is unique, add it
             if (!exists) {
                 colorMap[color.color_name].shadesCodeMapping.push({
                     shade: color.shade_name,
@@ -85,7 +77,6 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id: number }[]>([]);
     const [selectedShadeDetails, setSelectedShadeDetails] = useState<{ shade: string; code: string; id: number }>({ shade: "NA", code: "NA", id: 1 });
 
-    // Function to handle the selection of a shade
     const handleShadeSelect = (shade: { shade: string; code: string; id: number }) => {
         setSelectedShadeDetails(shade);
     };
@@ -98,22 +89,19 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     return (
         <div
             className="overflow-scroll bg-secondary my-3 tablet:my-6">
-            {/* <Navbar /> */}
             {products.length && (
                 <div>
-                    {/* <div className="grid grid-cols-1 place-items-center m-10 tablet:grid-cols-2 tablet:m-20"> */}
                     <div className="grid grid-cols-1 w-[80%] m-auto tablet:grid-cols-2">
                         <div
                         className="w-full place-self-center flex justify-center tablet:w-fit desktop:justify-end">
-                            <div className="w-full max-w-md aspect-square">
-                                <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
-                                    <img
-                                        src={`${product.images[0]}?${new Date().getTime()}`}
-                                        alt={product.name}
-                                        className="max-h-full max-w-full object-contain"
-                                    />
-                                </div>
-                            </div>
+                            
+                            {
+                                product &&
+                                <ProductImageViewer 
+                                productName={product.name}
+                                productImages={product.images}
+                                />
+                            }
                         </div>
                         <div
                         className='tablet:ml-10 desktop:ml-0 desktop:'>
@@ -174,13 +162,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                         </div>
                                     )}
                                 </div>
-                                {/* {
-                                    product.categories[0] !== "Nail Polish" &&
-                                    <p className="flex mb-4 justify-center tablet:justify-start">
-                                        <IoIosCheckmarkCircleOutline style={{ color: "green", fontSize: "2em" }} className="mr-2" />
-                                        <p className="mt-1">Free + easy returns</p>
-                                    </p>
-                                } */}
+                                
                                 <div
                                 className="font-thin text-lg my-6">
                                     <label className="">Quantity</label>
@@ -204,12 +186,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-x-3">
-                                    {/* <button
-                                className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary"
-                                onClick={()=> selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}>
-                                    <FaCartPlus style={{color:" rgb(194 111 45)"}} className="mr-2"/>
-                                    Add to Cart
-                                </button> */}
+                                
                                     <CommonButton
                                         primaryColor="white"
                                         secondaryColor="primary"
@@ -217,11 +194,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                         preIcon={<FaCartPlus style={{ color: " rgb(194 111 45)" }} className="mr-2" />}
                                         callBack={() => selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}
                                     />
-                                    {/* <button
-                                className="h-full w-[50%] bg-primary flex items-center justify-center text-md text-white"
-                                onClick={()=> navigate('/cart')}>
-                                    Checkout
-                                </button> */}
+                                    
                                     <CommonButton
                                         primaryColor="primary"
                                         secondaryColor="white"
@@ -241,8 +214,6 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                             isBestSeller={true} />
                     }
                 </div>)}
-            {/* <ReviewsSection /> */}
-            {/* <FooterSection /> */}
         </div>
     )
 }

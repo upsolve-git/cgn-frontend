@@ -1,6 +1,6 @@
 import {
     createBrowserRouter,
-
+    redirect
 } from "react-router-dom";
 
 import DefaultLayout from "../layouts/DefaultLayout";
@@ -18,6 +18,18 @@ import OrderSuccessPage from "../pages/OrderSuccessPage";
 import UserProfilePage from "../pages/user/UserProfilePage";
 import ErrorPage from "../pages/ErrorPage";
 import AdminSignInPage from "../pages/auth/AdminSignInPage";
+
+import { getAuth } from "../services/auth";
+
+const authLoader = async () => {
+    console.log('auth redirect');
+    try{
+        const isAuthenticated = await getAuth()
+        return null;
+    }catch(err){
+        return redirect("/auth/sign-in");
+    }
+};
 
 const router = createBrowserRouter([
     {
@@ -39,11 +51,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "cart",
-                element: <Cart />
+                element: <Cart />,
+                loader: authLoader
             },
             {
                 path: "orders",
-                element: <OrderHistoryPage />
+                element: <OrderHistoryPage />,
+                loader: authLoader
             },
             {
                 path: "ordersuccess/:id",
@@ -55,7 +69,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "userprofile",
-                element: <UserProfilePage />
+                element: <UserProfilePage />,
+                loader: authLoader
             }
         ],
     },

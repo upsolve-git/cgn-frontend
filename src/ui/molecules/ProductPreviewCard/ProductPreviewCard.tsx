@@ -48,7 +48,10 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
             </span>
             <button
               className="p-2 rounded-full bg-white shadow-sm flex-shrink-0 ml-[50%]"
-              onClick={() => navigate(`/productDetail/${product?.product_id || 1}`)}
+              onClick={() => {
+                navigate(`/productDetail/${product?.product_id || 1}`)
+                window.location.reload()
+              }}
             >
               <FiShoppingCart className="text-sm text-primary" />
             </button>

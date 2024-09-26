@@ -107,6 +107,7 @@ export const useCartPage = () => {
         try {
             const res = await updateUsersCartReq(product.product_id, quantity, color_id);
             console.log("added to cart", res);
+            window.alert('Cart items added')
         } catch (err) {
           console.error("Error adding product to cart:", err);
         }
