@@ -32,7 +32,6 @@ const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ()=>{
         className="w-full h-fit py-2 bg-white border rounded-3xl flex justify-center text-xs mt-1 mb-1 tablet:text-sm"
         onClick={() => login()}>
             <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="" 
-            
             className="mr-1 w-4 h-4 tablet:w-6 tablet:h-6"/>
             Continue with Google
         </button>

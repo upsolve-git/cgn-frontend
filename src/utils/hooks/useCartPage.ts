@@ -4,10 +4,13 @@ import { deleteFromUsersCartReq, getOrdersReq, getUserDefaultAddressReq, getUser
 import { Cart } from "../../interfaces/Cart";
 import { Address } from "../../interfaces/Address";
 import { Order } from "../../interfaces/Order";
+import { getAuth } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 export const useCartPage = () => {
   const [cartItems, setCartItems] = useState<Cart[]>([]);
-  
+  const navigate = useNavigate()
+
   const defaultAddress: Address = {
     address_id: 0,
     full_name: '',
@@ -21,7 +24,7 @@ export const useCartPage = () => {
     user_id: 0,
     default: false,
   };
-  
+
   const [address, setAddress] = useState<Address>(defaultAddress);
   const [orders, setOrders] = useState<Order[]>([])
 
@@ -37,8 +40,8 @@ export const useCartPage = () => {
         const addressRes = await getUserDefaultAddressReq();
         setAddress(addressRes.data ? addressRes.data : defaultAddress);
 
-        const ordersRes = await getOrdersReq(); 
-        console.log("orders",ordersRes)
+        const ordersRes = await getOrdersReq();
+        console.log("orders", ordersRes)
         setOrders(ordersRes.data);
       } catch (err) {
         console.error("Error fetching cart or address:", err);
@@ -49,11 +52,20 @@ export const useCartPage = () => {
   }, []); // Empty dependency array to ensure this only runs on mount
 
   const handleAddToCart = async (product: Product, quantity: number, color_id: number) => {
-    try {
-      const res = await updateUsersCartReq(product.product_id, quantity, color_id);
-      console.log("added to cart", res);
-    } catch (err) {
-      console.error("Error adding product to cart:", err);
+    try{
+      const authRes = await getAuth()
+      if(authRes.status==200){
+        console.log('yes authed');
+        try {
+            const res = await updateUsersCartReq(product.product_id, quantity, color_id);
+            console.log("added to cart", res);
+        } catch (err) {
+          console.error("Error adding product to cart:", err);
+        }
+      }
+    }catch(err){
+      console.log('were here');
+      navigate('/auth/sign-in')
     }
   };
 
@@ -66,7 +78,7 @@ export const useCartPage = () => {
     }
   };
 
-  const handlePlaceOrder = async (orderId : string) => {
+  const handlePlaceOrder = async (orderId: string) => {
     console.log("address changed", address);
     try {
       const res = await placeOrderReq(orderId, address, cartItems)
@@ -76,7 +88,7 @@ export const useCartPage = () => {
     }
   };
 
-  const handleGetOrders = async() => {
+  const handleGetOrders = async () => {
     console.log(orders)
   }
 

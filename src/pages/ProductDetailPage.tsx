@@ -101,124 +101,134 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             {/* <Navbar /> */}
             {products.length && (
                 <div>
-                    <div className="grid grid-cols-1 place-items-center m-10 tablet:grid-cols-2 tablet:m-20">
-                        <div className="w-full max-w-md aspect-square">
-                            <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
-                                <img
-                                    src={product?.images[0] || "/image/wrapper/stockpolish.png"}
-                                    alt={product.name}
-                                    className="max-h-full max-w-full object-contain"
-                                />
+                    {/* <div className="grid grid-cols-1 place-items-center m-10 tablet:grid-cols-2 tablet:m-20"> */}
+                    <div className="grid grid-cols-1 w-[80%] m-auto tablet:grid-cols-2">
+                        <div
+                        className="w-full place-self-center flex justify-center tablet:w-fit desktop:justify-end">
+                            <div className="w-full max-w-md aspect-square">
+                                <div className="h-full w-full p-8 bg-secondarylight rounded-md flex items-center justify-center overflow-hidden">
+                                    <img
+                                        src={product?.images[0] || "/image/wrapper/stockpolish.png"}
+                                        alt={product.name}
+                                        className="max-h-full max-w-full object-contain"
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div className="tablet:text-left">
-                            <h1 className="font-semibold text-lg mb-4 line-clamp-1">{product.name}</h1>
-                            <p className="mb-6">
-                                <span
-                                    className="text-md text-primary font-semibold desktop:text-xl pr-4">
-                                    ${product.discounted_price}
-                                </span>
-                                <span
-                                    className="text-darkgray text-xs desktop:text-md m">
-                                    <s>${product.price}</s>
-                                </span>
-                            </p>
-                            <h2 className="mb-3">{product.description}</h2>
-
-                            <p className="flex mb-4 justify-center tablet:justify-start">
-                                <IoIosCheckmarkCircleOutline style={{ color: "green", fontSize: "2em" }} className="mr-2" />
-                                <p className="mt-1">Free shipping on orders over $49USD</p>
-                            </p>
-
-                            {product.categories[0] === "Nail Polish" && <label className="font-bold text-sm">Choose color</label>}
-                            {product.categories[0] === "Nail Polish" &&
-
-                                <select value={selectedColor} onChange={handleColorChange} className="w-full border rounded-md px-3 py-2 mb-4 bg-secondarylight">
-                                    <option value="">Choose a color</option>
-                                    {Object.keys(colorMap).map((colorKey) => (
-                                        <option key={colorKey} value={colorKey} style={{ backgroundColor: colorMap[colorKey].shadesCodeMapping[0].code }}>
-                                            {colorKey}
-                                        </option>
-                                    ))}
-                                </select>
-
-                            }
-                            {selectedShades.length > 0 && (
-                                <div className="space-y-2">
-                                    <label className="font-bold text-sm">Select a shade</label>
-                                    <div className="flex overflow-x-auto space-x-2">
-                                        {selectedShades.map((shade) => (
-                                            <div key={shade.code} className="items-center justify-evenly">
-                                                <div
-                                                    className="w-12 h-12 border border-black mb-2 "
-                                                    style={{ backgroundColor: shade.code }}
-                                                    onClick={() => handleShadeSelect(shade)}
-                                                ></div>
-                                                <span>{shade.shade}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                </div>
-                            )}
-                            {selectedShadeDetails.id != 3 && (
-                                <div>
-                                    <label className="font-bold text-sm">Selected shade : </label>
-                                    <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
-                                </div>
-                            )}
-
-                            {product.categories[0] !== "Nail Polish" &&
-                                <p className="flex mb-4 justify-center tablet:justify-start">
-                                    <IoIosCheckmarkCircleOutline style={{ color: "green", fontSize: "2em" }} className="mr-2" />
-                                    <p className="mt-1">Free + easy returns</p>
+                        <div
+                        className='tablet:ml-10 desktop:ml-0 desktop:'>
+                            <div className="tablet:text-left">
+                                <h1 className="font-medium text-lg desktop:text-2xl my-2 mb-4">{product.name}</h1>
+                                <p className="mb-6">
+                                    <span
+                                        className="text-lg text-primary font-semibold desktop:text-xl pr-4">
+                                        ${product.discounted_price}
+                                    </span>
+                                    <span
+                                        className="text-darkgray text-sm desktop:text-md">
+                                        <s>${product.price}</s>
+                                    </span>
                                 </p>
-                            }
+                                <h2 className="text-xs mb-3 desktop:text-md">{product.description}</h2>
+                                {
+                                    product.categories[0] === "Nail Polish" &&
+                                    <div
+                                        className="text-xs desktop:text-lg my-3">
+                                        <label>Choose color</label>
+                                        <select value={selectedColor} onChange={handleColorChange} className="w-full border rounded-md px-3 py-2 bg-secondarylight">
+                                            <option value="">Choose a color</option>
+                                            {Object.keys(colorMap).map((colorKey) => (
+                                                <option key={colorKey} value={colorKey} style={{ backgroundColor: colorMap[colorKey].shadesCodeMapping[0].code }}>
+                                                    {colorKey}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                }
+                                <div
+                                className="my-3">
+                                    {
+                                        selectedShades.length > 0 && (
+                                            <div className="space-y-2 text-xs">
+                                                <label className="">Select a shade</label>
+                                                <div className="flex overflow-x-auto space-x-2">
+                                                    {selectedShades.map((shade) => (
+                                                        <div key={shade.code} className="columns-[70px] flex flex-col items-center">
+                                                            <div
+                                                                className="w-8 h-8 mb-2 rounded-full"
+                                                                style={{ backgroundColor: shade.code }}
+                                                                onClick={() => handleShadeSelect(shade)}
+                                                            ></div>
+                                                            <span>{shade.shade}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        selectedShadeDetails.id != 3 && (
+                                        <div>
+                                            <label className="font-bold text-sm">Selected shade : </label>
+                                            <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
+                                        </div>
+                                    )}
+                                </div>
+                                {/* {
+                                    product.categories[0] !== "Nail Polish" &&
+                                    <p className="flex mb-4 justify-center tablet:justify-start">
+                                        <IoIosCheckmarkCircleOutline style={{ color: "green", fontSize: "2em" }} className="mr-2" />
+                                        <p className="mt-1">Free + easy returns</p>
+                                    </p>
+                                } */}
+                                <div
+                                className="font-thin text-lg my-6">
+                                    <label className="">Quantity</label>
+                                    <div className="flex items-center mb-4 tablet:justify-start">
+                                        <button
+                                            className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center hover:bg-gray-300 disabled:bg-gray-100"
+                                            onClick={decreaseQuantity}
+                                            disabled={quantity <= 1}
+                                        >
+                                            -
+                                        </button>
+                                        <span className="mx-3">{quantity}</span>
+                                        <button
+                                            className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center hover:bg-gray-300 disabled:bg-gray-100"
+                                            onClick={increaseQuantity}
+                                            disabled={quantity >= 10}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
 
-                            <label className="font-bold text-sm">Quantity</label>
-                            <div className="flex items-center mb-4 tablet:justify-start">
-                                <button
-                                    className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center text-lg font-bold hover:bg-gray-300 disabled:bg-gray-100"
-                                    onClick={decreaseQuantity}
-                                    disabled={quantity <= 1}
-                                >
-                                    -
-                                </button>
-                                <span className="mx-3 text-lg font-bold">{quantity}</span>
-                                <button
-                                    className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center text-lg font-bold hover:bg-gray-300 disabled:bg-gray-100"
-                                    onClick={increaseQuantity}
-                                    disabled={quantity >= 10}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-x-3">
-                                {/* <button
-                            className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary"
-                            onClick={()=> selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}>
-                                <FaCartPlus style={{color:" rgb(194 111 45)"}} className="mr-2"/>
-                                Add to Cart
-                            </button> */}
-                                <CommonButton
-                                    primaryColor="white"
-                                    secondaryColor="primary"
-                                    label="Add to cart"
-                                    preIcon={<FaCartPlus style={{ color: " rgb(194 111 45)" }} className="mr-2" />}
-                                    callBack={() => selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}
-                                />
-                                {/* <button
-                            className="h-full w-[50%] bg-primary flex items-center justify-center text-md text-white"
-                            onClick={()=> navigate('/cart')}>
-                                Checkout
-                            </button> */}
-                                <CommonButton
-                                    primaryColor="primary"
-                                    secondaryColor="white"
-                                    label="Checkout"
-                                    callBack={() => navigate('/cart')}
-                                />
+                                <div className="grid grid-cols-2 gap-x-3">
+                                    {/* <button
+                                className="h-full w-[50%] bg-white flex items-center justify-center text-md text-primary"
+                                onClick={()=> selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}>
+                                    <FaCartPlus style={{color:" rgb(194 111 45)"}} className="mr-2"/>
+                                    Add to Cart
+                                </button> */}
+                                    <CommonButton
+                                        primaryColor="white"
+                                        secondaryColor="primary"
+                                        label="Add to cart"
+                                        preIcon={<FaCartPlus style={{ color: " rgb(194 111 45)" }} className="mr-2" />}
+                                        callBack={() => selectedShadeDetails && handleAddToCart(product, quantity, selectedShadeDetails.id)}
+                                    />
+                                    {/* <button
+                                className="h-full w-[50%] bg-primary flex items-center justify-center text-md text-white"
+                                onClick={()=> navigate('/cart')}>
+                                    Checkout
+                                </button> */}
+                                    <CommonButton
+                                        primaryColor="primary"
+                                        secondaryColor="white"
+                                        label="Checkout"
+                                        callBack={() => navigate('/cart')}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
