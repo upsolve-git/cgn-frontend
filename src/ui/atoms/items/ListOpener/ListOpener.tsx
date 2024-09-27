@@ -7,6 +7,7 @@ interface ListOpenerProps{
 const ListOpener: React.FC<ListOpenerProps> = ({
     rotate
 })=>{
+    let rot: string = rotate
     return (
         <div
         className={rotate}>

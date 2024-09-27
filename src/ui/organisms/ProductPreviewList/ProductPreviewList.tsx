@@ -1,49 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPreviewCard";
+import ArrowButton from "../../atoms/buttons/ArrowButton/ArrowButton";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 import { Product } from "../../../interfaces/Product";
 
-interface ProductPreviewListProps{
-    products : Product[]
-    isBestSeller: boolean
-    ishomepage : boolean
+interface ProductPreviewListProps {
+    products: Product[];
+    isBestSeller: boolean;
+    ishomepage: boolean;
 }
 
-const ProductPreviewList: React.FC<ProductPreviewListProps>= ({
+const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
     products,
     isBestSeller,
     ishomepage
-})=>{
-    let {isTablet} = useMediaWidth()
-    let maxGridItems = isTablet?3:4
-    let items = [] 
-    console.log(products)
-    for(let i=0;i<products.length;i++){
-        if( isBestSeller && (products[i].product_id === 3 ||
-            products[i].product_id === 6 ||
-            products[i].product_id === 11 ||
-            products[i].product_id === 12 )
-        )
-        {
-            items.push(<ProductPreviewCard product={products[i]} isBestSeller={isBestSeller} ishomepage={ishomepage}/>)
-        } 
-
-        if(!isBestSeller && (products[i].product_id === 5 ||
-            products[i].product_id === 8 ||
-            products[i].product_id === 11 ||
-            products[i].product_id === 13 )) {
-                items.push(<ProductPreviewCard product={products[i]} isBestSeller={isBestSeller} ishomepage={ishomepage}/>)
-            }
-    }
+}) => {
+    const [startIndex, setStartIndex] = useState<number>(0);
+    const { isMobile, isTablet } = useMediaWidth();
+    const maxGridItems = isTablet ? 3 : 4;
     
-    return(
-        <div
-        className="grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4 desktop:px-6">
+    const totalProducts = products.length;
+
+    const handleRightClick = () => {
+        setStartIndex((prevIndex) => (prevIndex + 1) % totalProducts);
+    };
+
+    const handleLeftClick = () => {
+        setStartIndex((prevIndex) => (prevIndex - 1 + totalProducts) % totalProducts);
+    };
+
+    const currentWindowProducts = products.slice(startIndex, startIndex + maxGridItems);
+
+    if (currentWindowProducts.length < maxGridItems) {
+        const remainingItems = maxGridItems - currentWindowProducts.length;
+        currentWindowProducts.push(...products.slice(0, remainingItems));
+    }
+
+    return (
+        <div className="w-[90%] h-fit flex justify-evenly items-center m-auto">
             {
-                items.map(e=>e)
+                !isMobile &&
+                <ArrowButton rotation="180" clickFunc={handleLeftClick} />
+            }
+            <div className="grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4 desktop:px-6">
+                {
+                    currentWindowProducts.map((product, index) => (
+                        <ProductPreviewCard
+                            key={index}
+                            product={product}
+                            isBestSeller={isBestSeller}
+                            ishomepage={ishomepage}
+                        />
+                    ))
+                }
+            </div>
+            {
+                !isMobile &&
+                <ArrowButton rotation="0" clickFunc={handleRightClick} />
             }
         </div>
-    )
-}
+    );
+};
 
-export default ProductPreviewList
+export default ProductPreviewList;

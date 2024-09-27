@@ -18,7 +18,7 @@ const FileInput: React.FC<FileInputProps> = ({
                 </label>
             </td>
             <td>
-                <input type="file" onChange={onChange}/>
+                <input type="file" onChange={onChange} multiple/>
             </td>
         </tr>
     )

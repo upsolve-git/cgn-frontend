@@ -42,7 +42,8 @@ export default {
       red: '#ff2c2c',
       lightgray: '#F3F4F6',
       midgray: '#DEE1E6',
-      gold: '#F3C63F'
+      gold: '#F3C63F',
+      green: '#12B76A'
     },
     fontSize: {
       '5xs': ['4px', { lineHeight: '8px', letterSpacing: '-0.005em' }],

@@ -21,7 +21,7 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             {isMobile?<MobileMainSection/>:<MainSection />}
             <div
             className="bg-secondary tablet:bg-sectionBg">
@@ -33,7 +33,7 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
                 <OurProductsSection />
                 <AboutUs />
                 <ContactUsSection />
-                <FooterSection />
+                {/* <FooterSection /> */}
             </div>
         </div>
     )

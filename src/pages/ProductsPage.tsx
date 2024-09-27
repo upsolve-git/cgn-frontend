@@ -59,12 +59,12 @@ const ProductsPage:React.FC<ProductsPageProps> = ()=>{
     return(
         <div
         className="overflow-scroll bg-secondary">
-            <Navbar/>
+            {/* <Navbar/> */}
             <div>{isMobile?<></>:<AdSection />}</div>
             <FiltersContextProvider>
                 <ProductsSection />
             </FiltersContextProvider>
-            <FooterSection />
+            {/* <FooterSection /> */}
         </div>
     )
 }

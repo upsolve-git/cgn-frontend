@@ -1,32 +1,37 @@
 import axios from '../helpers/axios'
 
 import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT } from '../constants/routes';
+import { Color } from '../interfaces/Color';
 
 interface AddProdParams{
     name: string,
-    image: File,
+    images: File[],
     type: string,
     description: string,
     cost: number,
-    discountPercentage: number,
-    availableSizes: string,
-    categoryId: number
+    discounted_price: number,
+    categoryId: number[]
+    colors : Color[]
+    discounted_business_price: number,
 }
 
 export const addProductsReq = async (
-    {name, image, type, description, cost, discountPercentage, availableSizes, categoryId}: AddProdParams
+    {name, images, type, description, cost, discounted_price, categoryId, colors, discounted_business_price}: AddProdParams
 )=>{
     
-    if(name && image && type && description && cost && discountPercentage && availableSizes && categoryId){
+    if(name && images.length && type && description && cost && discounted_price && categoryId && discounted_business_price){
         let formData = new FormData()
         formData.append('name', name)
         formData.append('product_type', type)
         formData.append('description', description)
         formData.append('price', cost.toString())
-        formData.append('discounted_price_percentage', discountPercentage.toString())
-        formData.append('available_sizes', availableSizes)
-        formData.append('category_id', categoryId.toString())
-        formData.append('image', image)
+        formData.append('discounted_price', discounted_price.toString())
+        formData.append('discounted_business_price', discounted_business_price.toString())
+        formData.append('category_ids', categoryId.toString())
+        images.forEach((file) => {
+            formData.append(`images`, file);  // You can adjust the key as needed
+          });
+        formData.append('colors', JSON.stringify(colors))
         
         return axios.post(ADD_PRODUCT_ENDPOINT, formData, {
             headers: {
