@@ -2,29 +2,31 @@ import React from "react";
 
 interface OrderProgressBarProps{
     orderConfirmDate: String | null
+    confirmedDate: String | null,
     shippedDate: String | null
-    outForDeliveryDate: String | null,
     deliveredDate: String | null
+    orderStatus : string
 }
 
 const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
     orderConfirmDate,
     shippedDate,
-    outForDeliveryDate,
-    deliveredDate
+    confirmedDate,
+    deliveredDate,
+    orderStatus
 })=>{
 
     let barWidth = 0
-    if(orderConfirmDate){
+    if(orderStatus === "pending"){
         barWidth = 2
     }
-    if(shippedDate){
+    if(orderStatus === "confirmed"){
         barWidth = 36
     }
-    if(outForDeliveryDate){
+    if(orderStatus === "shipped"){
         barWidth = 68
     }
-    if(deliveredDate){
+    if(orderStatus === "delivered"){
         barWidth = 100
     }
 
@@ -48,14 +50,14 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Confirmed</p>
-                    <div className={`rounded-full w-fit ${shippedDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{shippedDate}</p>
+                    <div className={`rounded-full w-fit ${confirmedDate?'bg-green':'bg-midgray'} p-1`}></div>
+                    <p>{confirmedDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Shipped</p>
-                    <div className={`rounded-full w-fit ${outForDeliveryDate?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{outForDeliveryDate}</p>
+                    <div className={`rounded-full w-fit ${shippedDate?'bg-green':'bg-midgray'} p-1`}></div>
+                    <p>{shippedDate}</p>
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">

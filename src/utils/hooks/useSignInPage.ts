@@ -10,7 +10,7 @@ export const useSignInPage = ()=>{
     let [email, setEmail] = useState<string>('')
     let [emailErr, setEmailErr] = useState<string>('')
     let [password, setPassword] = useState<string>('')
-    let [accType, setAccType] = useState<string>('')
+    let [accType, setAccType] = useState<string>('Personal')
     let [loginErr, setLoginErr] = useState<string>('')
     let [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 

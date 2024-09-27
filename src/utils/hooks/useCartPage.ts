@@ -142,59 +142,67 @@ export const useCartPage = () => {
     console.log(orders)
   }
 
-  const generatePDF = (subtotal: number, discount:number, tax : number, deliveryFee : number, ) => {
+  const generatePDF = (subtotal: number, discount:number, tax : number, deliveryFee : number,) => {
     const doc = new jsPDF();
 
     // Set font size and add invoice header
     doc.setFontSize(18);
     doc.text('Invoice', 105, 20, { align: 'center' });
 
-    // Add some details like company name, address etc.
-    
+    // Add company details
     doc.setFontSize(12);
     doc.text('Canadian Gel Nails', 20, 30);
-    doc.text('PO Box 2900 SUDBURY PO A, ON, P3A 5J3,Canada', 20, 35);
+    doc.text('PO Box 2900 SUDBURY PO A, ON, P3A 5J3, Canada', 20, 35);
     doc.text('Email: dev.cgnails@gmail.com', 20, 45);
-    // doc.text('Phone: (123) 456-7890', 20, 50);
 
     // Add a horizontal line separator
     doc.line(20, 55, 190, 55);
 
     doc.setFontSize(14);
-    doc.text('Item', 20, 70);
-    doc.text('Price', 170, 70, { align: 'right' });
+    doc.text('Item', 20, 65);
+    doc.text('Price', 170, 65, { align: 'right' });
 
-    for (let i = 0; i< cartItems.length; i++) {
-      doc.text(cartItems[i].name + "   x " + cartItems[i].price, 20, 70)
-      doc.text((cartItems[i].quantity * cartItems[i].price).toString(), 170, 70, { align: 'right' })
+    // Dynamic Y-coordinate to avoid overlapping
+    let currentY = 75;
+
+    // Loop through cart items and add them to the PDF
+    for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        doc.text(`${item.name} x ${item.quantity}`, 20, currentY);
+        doc.text((item.quantity * item.price).toFixed(2), 170, currentY, { align: 'right' });
+
+        // Increment Y-coordinate for the next line
+        currentY += 10; // Increase Y by 10 for each line to space out items
     }
 
-    doc.line(20, 55, 290, 55);
+    // Add another horizontal line separator after items
+    doc.line(20, currentY + 5, 190, currentY + 5);
+    currentY += 15; // Add space after the separator for totals
 
     // Add subtotal, discount, tax, delivery fee, and total
-    doc.setFontSize(14);
-    doc.text('Subtotal', 20, 70);
-    doc.text('$'+ subtotal, 170, 70, { align: 'right' });
+    doc.text('Subtotal', 20, currentY);
+    doc.text(`$${subtotal.toFixed(2)}`, 170, currentY, { align: 'right' });
 
-    doc.text('Discount', 20, 80);
-    doc.text('-$' + discount, 170, 80, { align: 'right' });
+    doc.text('Discount', 20, currentY + 10);
+    doc.text(`-$${discount.toFixed(2)}`, 170, currentY + 10, { align: 'right' });
 
-    doc.text('Tax', 20, 90);
-    doc.text('$' + tax, 170, 90, { align: 'right' });
+    doc.text('Tax', 20, currentY + 20);
+    doc.text(`$${tax.toFixed(2)}`, 170, currentY + 20, { align: 'right' });
 
-    doc.text('Delivery Fee', 20, 100);
-    doc.text('$' + deliveryFee, 170, 100, { align: 'right' });
+    doc.text('Delivery Fee', 20, currentY + 30);
+    doc.text(`$${deliveryFee.toFixed(2)}`, 170, currentY + 30, { align: 'right' });
 
-    // Add another horizontal line separator
-    doc.line(20, 110, 190, 110);
+    // Add another horizontal line separator before the total
+    doc.line(20, currentY + 40, 190, currentY + 40);
 
-    doc.text('Total', 20, 120);
-    doc.text('$' + (subtotal - discount + tax + discount), 170, 120, { align: 'right' });
+    doc.text('Total', 20, currentY + 50);
+    const total = subtotal - discount + tax + deliveryFee;
+    doc.text(`$${total.toFixed(2)}`, 170, currentY + 50, { align: 'right' });
 
     // Save the PDF
     doc.save('invoice.pdf');
-    // const pdfBlob = doc.output('blob');
-  };
+};
+
 
   
   return {

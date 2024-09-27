@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import ProdListSwitcher from "../../molecules/ProdListSwitcher/ProdListSwitcher";
@@ -7,15 +7,40 @@ import ActionButton from "../../atoms/buttons/ActionButton/ActionButton";
 
 import { PRODUCTS_PAGE } from "../../../constants/routes";
 import { useAdminPage } from "../../../utils/hooks/useAdminPage";
+import { Product } from "../../../interfaces/Product";
+import { getLandingPage } from "../../../services/login";
 
 interface BestSellerSectionProps {}
 
 const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
-    let {products} = useAdminPage()
+    let [bestSellers, setBestSellers] = useState<Product[]>([])
+    let [newSellers, setNewSellers] = useState<Product[]>([])
+    let [products, setProducts] = useState<Product[]>([])
     let [isBestSeller, setIsBestSeller] = useState<boolean>(true)
     const navigate = useNavigate()
-    console.log(products)
+    // console.log(products)
 
+    useEffect(() => {
+        const getProducts = async () => {
+            try {
+                const res = await getLandingPage();
+                setBestSellers(res.data.bestSellers)
+                setProducts(res.data.bestSellers)
+                setNewSellers(res.data.newSellers)
+            } catch (err) {
+                console.log("failed fetching order", err);
+            }
+        };
+        getProducts();
+    }, []);
+
+    const updateProducts = () => {
+        if(isBestSeller) {
+            setProducts(bestSellers);
+        } else {
+            setProducts(newSellers);
+        }
+    }
     return (
         <div
         className="h-fit w-screen px-4 py-8 bg-contain flex flex-col items-center">
@@ -25,7 +50,8 @@ const BestSellerSection: React.FC<BestSellerSectionProps> = ()=>{
             </h1>
             <ProdListSwitcher 
             isBestSeller={isBestSeller}
-            setIsBestSeller={setIsBestSeller}/>
+            setIsBestSeller={setIsBestSeller}
+            updateProducts={updateProducts}/>
             
             {
                 products.length && <ProductPreviewList 

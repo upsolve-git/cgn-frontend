@@ -4,12 +4,14 @@ import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 
 interface ProdListSwitcherProps{
     isBestSeller: boolean,
+    updateProducts : () => void
     setIsBestSeller: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ProdListSwitcher: React.FC<ProdListSwitcherProps> = ({
     isBestSeller,
-    setIsBestSeller
+    setIsBestSeller,
+    updateProducts
 })=>{
     return (
         <div
@@ -18,7 +20,7 @@ const ProdListSwitcher: React.FC<ProdListSwitcherProps> = ({
             label="Best-Sellers"
             primaryColor={isBestSeller?"secondarylight":"white"}
             secondaryColor="black"
-            callBack={()=>setIsBestSeller(true)}/>
+            callBack={()=>{setIsBestSeller(true); updateProducts();}}/>
             <CommonButton
             label="New Products"
             primaryColor={!isBestSeller?"secondarylight":"white"}

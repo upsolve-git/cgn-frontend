@@ -28,6 +28,21 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
     month: 'long',
     day: 'numeric'
   });
+  const confirmDate = (new Date(order.confirmation_date.toString())).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  const shippedDate = (new Date(order.shipping_date.toString())).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  const deliveredDate = (new Date(order.delivered_date.toString())).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
     formattedDate.setDate(formattedDate.getDate() + 7)
 
       const deliveryDate = formattedDate.toLocaleDateString('en-US', {
@@ -66,20 +81,21 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
             </div>
           </div>
           <div>
-            <CommonButton
+            {/* <CommonButton
             label='Invoice' 
             primaryColor='secondary'
             secondaryColor='primary'
             customStyles='border-2 px-1 border-primary'
             callBack={invoiceHandler}
-            />
+            /> */}
           </div>
         </div>
         <OrderProgressBar
         orderConfirmDate={creationDate}
-        shippedDate={creationDate}
-        outForDeliveryDate={creationDate}
-        deliveredDate={creationDate}
+        shippedDate={shippedDate}
+        confirmedDate={confirmDate}
+        deliveredDate={deliveredDate}
+        orderStatus={order.status}
         />
         <div
         className='w-full my-4 max-h-[20vh] overflow-scroll'>
