@@ -132,6 +132,7 @@ export const useCartPage = () => {
     console.log("address changed", address);
     try {
       const res = await placeOrderReq(orderId, address, cartItems)
+      navigate("/ordersuccess/"+res?.data.order_id)
       console.log("added to cart", res);
     } catch (err) {
       console.error("Error adding product to cart:", err);
