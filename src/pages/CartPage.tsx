@@ -75,7 +75,7 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                                             <span>{item.quantity}</span>
                                         </td>
                                         <td>${(item.quantity * item.discounted_price).toFixed(2)}</td> 
-                                        <td><button onClick={() => {handleDeleteFromCart(item.product_id, item.color_id);window.location.reload();}}><RiDeleteBin6Line /></button></td>
+                                        <td><button onClick={() => {handleDeleteFromCart(item.product_id, item.color_id)}}><RiDeleteBin6Line /></button></td>
                                     </tr>
                                 ))}
                             </tbody>

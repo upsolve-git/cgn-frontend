@@ -8,13 +8,13 @@ import ManageOrder from "../ui/sections/OrderSection/ManageOrder";
 import AddReview from "../ui/sections/OrderSection/AddReview";
 import { useCartPage } from "../utils/hooks/useCartPage";
 
-interface OrderHistoryPageProps{}
+interface OrderHistoryPageProps { }
 
-const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
-    let {isMobile} = useMediaWidth()
-    let {cartItems, handleDeleteFromCart} = useCartPage();
+const OrderHistoryPage: React.FC<OrderHistoryPageProps> = () => {
+    let { isMobile } = useMediaWidth()
+    let { cartItems, handleDeleteFromCart } = useCartPage();
     const navigate = useNavigate()
-    const {orders} = useCartPage()
+    const { orders } = useCartPage()
 
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
@@ -27,24 +27,25 @@ const OrderHistoryPage:React.FC<OrderHistoryPageProps> = ()=>{
     const closePopup = () => setIsManageOrderOpen(false);
     let items = []
     console.log("In order details page", orders)
-    for(let i=0;i<orders.length;i++){ 
-        items.push(<OrderDetailSection order={orders[i]} id={i} setId={setId} setIsManageOrderOpen={setIsManageOrderOpen} setIsAddReviewOpen={setIsAddReviewOpen} setproductId={setproductId}/>)
+    for (let i = 0; i < orders.length; i++) {
+        items.push(<OrderDetailSection order={orders[i]} id={i} setId={setId} setIsManageOrderOpen={setIsManageOrderOpen} setIsAddReviewOpen={setIsAddReviewOpen} setproductId={setproductId} />)
     }
-    return(
-        <div>
-            <div className={`bg-secondary space-y-16 relative ${isManageOrderOpen || isAddReviewOpen? 'blur-sm' : ''}`}>
-            {/* <Navbar/> */}
-            <p className="text-center text-primary font-bold">Purchase history</p>
-            {
-                items.map(e=>e)
-            }
-            {/* <FooterSection /> */}
+    return (
+        <div
+        className="my-3 tablet:my-6 desktop:my-10">
+            <div className={`bg-secondary space-y-16 relative ${isManageOrderOpen || isAddReviewOpen ? 'blur-sm' : ''}`}>
+                {/* <Navbar/> */}
+                <p className="text-center text-primary font-bold desktop:text-xl">Purchase history</p>
+                {
+                    items.map(e => e)
+                }
+                {/* <FooterSection /> */}
 
+            </div>
+            <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} order={orders[id]} />
+            <AddReview isOpen={isAddReviewOpen} product_id={ProductId} onClose={() => setIsAddReviewOpen(false)} />
         </div>
-        <ManageOrder isOpen={isManageOrderOpen} onClose={() => setIsManageOrderOpen(false)} order={orders[id]}/>
-        <AddReview isOpen={isAddReviewOpen} product_id = {ProductId} onClose={() => setIsAddReviewOpen(false)} />
-        </div>
-        
+
     )
 }
 

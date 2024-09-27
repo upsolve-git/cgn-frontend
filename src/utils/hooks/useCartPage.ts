@@ -122,6 +122,7 @@ export const useCartPage = () => {
     try {
       const res = await deleteFromUsersCartReq(product_id, color_id);
       console.log("deleted from cart", res);
+      window.location.reload()
     } catch (err) {
       console.error("Error deleting product from cart:", err);
     }

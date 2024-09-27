@@ -21,10 +21,10 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
         <div
         className="bg-white rounded-lg w-full px-2 py-1 my-3">
             <div
-            className="flex justify-between items-center">
+            className="tablet:flex tablet:justify-between">
                 <div
                 className="w-fit flex max-w-[80%] overflow-hidden">
-                    <img src="/image/wrapper/stockpolish.png" alt="" 
+                    <img src={orderProduct.images[0]} alt="/image/wrapper/stockpolish.png" 
                     className="w-10 h-auto"/>
                     <div
                     className="text-xs tablet:text-sm flex flex-col h-full justify-between">
@@ -37,7 +37,6 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                                 <span
                                 className="px-1 py-2 bg-lightgray rounded-full mr-[0.5rem]">50ml</span>
                             }
-
                         </p>
                         <p>
                             ${orderProduct.price}
@@ -45,7 +44,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                     </div>
                 </div>
                 <div
-                className="w-18 h-full grid grid-rows-2 grid-cols-1 gap-3 tablet:w-24">
+                className={`w-full my-2 h-full grid ${showReviewButton?'grid-cols-3':'grid-cols-2'} gap-3 tablet:grid-cols-1 tablet:max-w-[20%]`}>
                     {
                         showReviewButton &&
                         <CommonButton

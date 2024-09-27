@@ -10,58 +10,64 @@ import PopupDialog from "./ManageOrder";
 import { useCartPage } from "../../../utils/hooks/useCartPage";
 import { Order } from "../../../interfaces/Order";
 import OrderProductItem from "../../molecules/OrderProductItem/OrderProductItem";
+import ListOpener from "../../atoms/items/ListOpener/ListOpener";
 
-interface OrderDetailSectionProps{
-    order : Order,
-    setIsManageOrderOpen : (isOpen : boolean) => void,
-    setIsAddReviewOpen : (isOpen : boolean) => void,
-    id : number,
-    setId :  (id:number) => void
-    setproductId :  (productId:number) => void
+interface OrderDetailSectionProps {
+    order: Order,
+    setIsManageOrderOpen: (isOpen: boolean) => void,
+    setIsAddReviewOpen: (isOpen: boolean) => void,
+    id: number,
+    setId: (id: number) => void
+    setproductId: (productId: number) => void
 }
 
-const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({order, setIsManageOrderOpen, id, setId, setIsAddReviewOpen, setproductId})=>{
+const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({ order, setIsManageOrderOpen, id, setId, setIsAddReviewOpen, setproductId }) => {
 
-    let {isMobile} = useMediaWidth()
+    let { isMobile } = useMediaWidth()
     let [expand, setExpand] = useState<boolean>(false);
-    let {cartItems} = useCartPage()
+    let { cartItems } = useCartPage()
     const formattedDate = new Date(order.creation_date.toString())
     formattedDate.setDate(formattedDate.getDate() + 7)
 
-      const deliveryDate = formattedDate.toLocaleDateString('en-US', {
+    const deliveryDate = formattedDate.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
-      });
-      console.log("formatted date",formattedDate)
-    return(
-        <div className='w-[70%] border bg-white border-secondarydark rounded m-auto'>
-             
-            <div className="mx-8 my-6 flex justify-between items-center overflow-scroll">
-                <div className="flex items-center">
-                    <p className="mx-2 font-bold text-md">Order #{order.order_id}</p>
-                    {order.status === "delivered" && 
-                        <p className="text-xs my-1 text-gray-500">Delivered on {deliveryDate}</p>
-                    } 
-                    {order.status !== "delivered" && 
-                        <p className="text-xs">Delivery on {deliveryDate}</p>
-                    }
-                </div>
-                <div className="flex items-center space-x-4">
-                    <button className="text-xs" onClick={() => {setId(id); setIsManageOrderOpen(true)}}>Manage Order</button>
-                    <a className="text-xs">View invoice</a>
+    });
+    console.log("formatted date", formattedDate)
+
+
+
+    return (
+        <div className='w-[90%] border bg-white border-secondarydark rounded m-auto'>
+
+            <div className="mx-4 my-3 flex justify-between items-center overflow-scroll">
+                <div className="grid grid-cols-2 place-items-baseline gap-2 m-auto tablet:grid-cols-4 tablet:gap-x-[10%] tablet:place-items-start desktop:w-[90%]">
+                    <p className="text-md">Order #{order.order_id}</p>
+                    {/* <p className="text-sm desktop:text-md">Order #{123456789}</p> */}
                     {
-                        !expand && <button onClick={()=> setExpand(true)}><FaChevronRight className="text-xs"/></button>
-                    } 
+                        order.status === "delivered" &&
+                        <p className="font-medium text-xs text-midgray desktop:text-md">Delivered on {deliveryDate}</p>
+                    }
+                    {order.status !== "delivered" &&
+                        <p className="font-medium text-xs text-green desktop:text-md">Delivery on {deliveryDate}</p>
+                    }
+                    <button className="text-xs desktop:text-md" onClick={() => { setId(id); setIsManageOrderOpen(true) }}>Manage Order</button>
+                    <a className="text-xs desktop:text-md">View invoice</a>
+                </div>
+                <div className="">
+                    {
+                        !expand && <button onClick={() => setExpand(true)}><FaChevronRight className="text-xs" /></button>
+                    }
                     {
                         expand && <button onClick={() => setExpand(false)}><FaChevronRight style={{ transform: 'rotate(90deg)' }} className="text-xs mt-1" /></button>
                     }
                 </div>
             </div>
-            
-            { expand && 
-                <div className="items-center overflow-scroll"> 
-                {/* <table className="table-auto text-md border-separate border-spacing-4 w-full">
+
+            {expand &&
+                <div className="items-center overflow-y-scroll w-full max-h-[30vh]">
+                    {/* <table className="table-auto text-md border-separate border-spacing-4 w-full">
                     <thead>
                         <tr>
                             <th className="text-center">Product</th>
@@ -89,14 +95,13 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({order, setIsMana
                         ))}
                     </tbody>
                 </table> */}
-                 <div
-                    className='w-full m-4 max-h-[20vh]'>
                     {
-                        order.products.map(item=><OrderProductItem  orderProduct={item}/>)
+                        order.products.map(item => <OrderProductItem orderProduct={item}
+                            setIsAddReviewOpen={setIsAddReviewOpen}
+                            setproductId={setproductId} />)
                     }
-                    </div>
                 </div>
-            } 
+            }
         </div>
     )
 }
