@@ -47,7 +47,7 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({ order, setIsMan
                     {/* <p className="text-sm desktop:text-md">Order #{123456789}</p> */}
                     {
                         order.status === "delivered" &&
-                        <p className="font-medium text-xs text-midgray desktop:text-md whitespace-nowrap">Delivered on {deliveryDate}</p>
+                        <p className="font-medium text-xs text-darkgray desktop:text-md whitespace-nowrap">Delivered on {deliveryDate}</p>
                     }
                     {order.status !== "delivered" &&
                         <p className="font-medium text-xs text-green desktop:text-md whitespace-nowrap">Delivery on {deliveryDate}</p>
