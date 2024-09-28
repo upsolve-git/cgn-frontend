@@ -94,7 +94,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     }, [])
     return (
         <div
-            className="py-14 w-screen flex flex-col items-center overflow-y-scroll">
+            className="py-14 w-screen flex flex-col items-center overflow-y-scroll overflow-x-hidden">
             <h1
                 className="font-lexend text-lg font-bold text-primary desktop:text-3xl">
                 Products
@@ -107,170 +107,201 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                 isMobile ?
                     <div>
                         {
-                            showMobileFilters &&
-                            <SmallFiltersBoard
-                                closeFilter={() => setShowMobileFilters(false)}
-                                clearAll={clearAll} />
-                        }
-                        <div
-                            className="px-2 flex min-w-fit justify-start">
-                            <NavButton label="All products"
-                                onClick={() => activeCatsChange({
-                                    allproducts: true,
-                                    nails: false,
-                                    manicure: false,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.allproducts} />
-                            <NavButton label="Nails"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: true,
-                                    manicure: false,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.nails} />
-                            <NavButton label="Manicure"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: false,
-                                    manicure: true,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.manicure} />
-                            <NavButton label="Pedicure"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: false,
-                                    manicure: false,
-                                    pedicure: true
-                                })}
-                                isActive={activeCats.pedicure} />
-                        </div>
-                        <div
-                            className="w-[90%] m-auto flex justify-around my-4">
-                            <div
-                                onClick={() => setShowMobileFilters(true)}
-                                className="text-xs flex items-center ">
-                                <IoFilterSharp />
-                                <span
-                                    className="ml-1">
-                                    Filters
-                                </span>
-                            </div>
-                            <div
-                                className="relative">
-                                <div
-                                    onClick={() => setShowSortOptions(!showSortOptions)}
-                                    className="text-xs flex items-center cursor-pointer">
-                                    <BiSortAlt2 />
-                                    <span
-                                        className="ml-1">
-                                        Sort by
-                                    </span>
-                                </div>
-                                {showSortOptions && (
-                                    <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
-                                        <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
-                                        <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
-                                    </div>
-                                )}
-                            </div>
-                            <div
-                                className="text-xs flex items-center">
+                            showMobileFilters ?
+                                <SmallFiltersBoard
+                                    closeFilter={() => setShowMobileFilters(false)}
+                                    clearAll={clearAll}
+                                />
+                                :
+                                <div>
+                                    
+                                        <div>
 
-                            </div>
-                        </div>
+                                            <div
+                                                className="px-2 flex min-w-fit justify-start">
+                                                <NavButton label="All products"
+                                                    onClick={() => activeCatsChange({
+                                                        allproducts: true,
+                                                        nails: false,
+                                                        manicure: false,
+                                                        pedicure: false
+                                                    })}
+                                                    isActive={activeCats.allproducts} />
+                                                <NavButton label="Nails"
+                                                    onClick={() => activeCatsChange({
+                                                        allproducts: false,
+                                                        nails: true,
+                                                        manicure: false,
+                                                        pedicure: false
+                                                    })}
+                                                    isActive={activeCats.nails} />
+                                                <NavButton label="Manicure"
+                                                    onClick={() => activeCatsChange({
+                                                        allproducts: false,
+                                                        nails: false,
+                                                        manicure: true,
+                                                        pedicure: false
+                                                    })}
+                                                    isActive={activeCats.manicure} />
+                                                <NavButton label="Pedicure"
+                                                    onClick={() => activeCatsChange({
+                                                        allproducts: false,
+                                                        nails: false,
+                                                        manicure: false,
+                                                        pedicure: true
+                                                    })}
+                                                    isActive={activeCats.pedicure} />
+                                            </div>
+                                            <div
+                                                className="w-[90%] m-auto flex justify-around my-4">
+                                                <div
+                                                    onClick={() => setShowMobileFilters(true)}
+                                                    className="text-xs flex items-center ">
+                                                    <IoFilterSharp />
+                                                    <span
+                                                        className="ml-1">
+                                                        Filters
+                                                    </span>
+                                                </div>
+                                                <div
+                                                    className="relative">
+                                                    <div
+                                                        onClick={() => setShowSortOptions(!showSortOptions)}
+                                                        className="text-xs flex items-center cursor-pointer">
+                                                        <BiSortAlt2 />
+                                                        <span
+                                                            className="ml-1">
+                                                            Sort by
+                                                        </span>
+                                                    </div>
+                                                    {showSortOptions && (
+                                                        <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
+                                                            <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
+                                                            <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div
+                                                    className="text-xs flex items-center">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                        className="mx-auto w-[90%] flex my-16 justify-around items-start">
+                                        {
+                                            isMobile ?
+                                                <></>
+                                                :
+                                                <div
+                                                    className="w-[30%] tablet:mr-[10%] h-fit justify-between desktop:w-[20%]">
+                                                    <BigFiltersBoard
+                                                        clearAll={clearAll} />
+                                                </div>
+                                        }
+            
+                                        <div
+                                            className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
+                                            {
+                                                items.map(e => e)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                        }
                     </div>
                     :
-                    <div className="flex w-[90vw] justify-between items-center m-auto">
-                        <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]">
-                            <NavButton label="All products"
-                                onClick={() => activeCatsChange({
-                                    allproducts: true,
-                                    nails: false,
-                                    manicure: false,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.allproducts} />
-                            <NavButton label="Nails"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: true,
-                                    manicure: false,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.nails} />
-                            <NavButton label="Manicure"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: false,
-                                    manicure: true,
-                                    pedicure: false
-                                })}
-                                isActive={activeCats.manicure} />
-                            <NavButton label="Pedicure"
-                                onClick={() => activeCatsChange({
-                                    allproducts: false,
-                                    nails: false,
-                                    manicure: false,
-                                    pedicure: true
-                                })}
-                                isActive={activeCats.pedicure} />
-                        </div>
-                        <div className="w-[40%] flex items-center rounded-md">
-                            <FaSearch
-                                className="bg-secondary mr-2 text-sm"
-                                style={{ color: "rgb(194 111 45)" }}
-                            />
-                            <input
-                                type="text"
-                                value={searchProd}
-                                placeholder="Search product ..."
-                                className="p-2 border border-primary text-xs rounded w-[50%] desktop:text-md"
-                                onChange={searchProdChange}
-                            />
-                            <div
-                                className="relative">
-                                <button
-                                    onClick={() => setShowSortOptions(!showSortOptions)}
-                                    className="mx-4 p-2 text-xs flex rounded bg-lightgray desktop:text-md">
-                                    Sort by
-                                    <CgSortAz style={{ fontSize: "1.5rem" }} />
-                                </button>
-                                {showSortOptions && (
-                                    <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
-                                        <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
-                                        <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
+                    <div>
+
+                            <div className="flex w-[90vw] justify-between items-center m-auto">
+                                <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]">
+                                    <NavButton label="All products"
+                                        onClick={() => activeCatsChange({
+                                            allproducts: true,
+                                            nails: false,
+                                            manicure: false,
+                                            pedicure: false
+                                        })}
+                                        isActive={activeCats.allproducts} />
+                                    <NavButton label="Nails"
+                                        onClick={() => activeCatsChange({
+                                            allproducts: false,
+                                            nails: true,
+                                            manicure: false,
+                                            pedicure: false
+                                        })}
+                                        isActive={activeCats.nails} />
+                                    <NavButton label="Manicure"
+                                        onClick={() => activeCatsChange({
+                                            allproducts: false,
+                                            nails: false,
+                                            manicure: true,
+                                            pedicure: false
+                                        })}
+                                        isActive={activeCats.manicure} />
+                                    <NavButton label="Pedicure"
+                                        onClick={() => activeCatsChange({
+                                            allproducts: false,
+                                            nails: false,
+                                            manicure: false,
+                                            pedicure: true
+                                        })}
+                                        isActive={activeCats.pedicure} />
+                                </div>
+                                <div className="w-[40%] flex items-center rounded-md">
+                                    <FaSearch
+                                        className="bg-secondary mr-2 text-sm"
+                                        style={{ color: "rgb(194 111 45)" }}
+                                    />
+                                    <input
+                                        type="text"
+                                        value={searchProd}
+                                        placeholder="Search product ..."
+                                        className="p-2 border border-primary text-xs rounded w-[50%] desktop:text-md"
+                                        onChange={searchProdChange}
+                                    />
+                                    <div
+                                        className="relative">
+                                        <button
+                                            onClick={() => setShowSortOptions(!showSortOptions)}
+                                            className="mx-4 p-2 text-xs flex rounded bg-lightgray desktop:text-md">
+                                            Sort by
+                                            <CgSortAz style={{ fontSize: "1.5rem" }} />
+                                        </button>
+                                        {showSortOptions && (
+                                            <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
+                                                <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
+                                                <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
+                                </div>
+                            </div>
+                        <div
+                            className="mx-auto w-[90%] flex my-16 justify-around items-start">
+                            {
+                                isMobile ?
+                                    <></>
+                                    :
+                                    <div
+                                        className="w-[30%] tablet:mr-[10%] h-fit justify-between desktop:w-[20%]">
+                                        <BigFiltersBoard
+                                            clearAll={clearAll} />
+                                    </div>
+                            }
+
+                            <div
+                                className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
+                                {
+                                    items.map(e => e)
+                                }
                             </div>
                         </div>
                     </div>
             }
-
-            <div
-                className="w-[90%] flex my-16 justify-around items-start">
-                {
-                    isMobile ?
-                        <></>
-                        :
-                        <div
-                            className="w-[30%] tablet:mr-[10%] h-fit justify-between desktop:w-[20%]">
-                            <BigFiltersBoard
-                                clearAll={clearAll} />
-                        </div>
-                }
-
-                <div
-                    className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
-                    {
-                        items.map(e => e)
-                    }
-                </div>
-            </div>
         </div>
+
     )
 }
 
-export default ProductsSection
+export default ProductsSection
