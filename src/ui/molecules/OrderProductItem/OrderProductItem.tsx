@@ -5,17 +5,26 @@ import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 import { OrderLine } from "../../../interfaces/OrderLine";
 import { useNavigate } from 'react-router-dom';
 
+import { useCartPage } from "../../../utils/hooks/useCartPage";
+
 interface OrderProductItemProps{
     orderProduct: OrderLine,
     setIsAddReviewOpen? : (isOpen : boolean) => void,
-    setproductId? :  (productId:number) => void
+    setproductId? :  (productId:number) => void,
+    deleteProduct?: ()=>void,
+    productId?: number,
+    colorId?: number
 }
 
 const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct, 
     setIsAddReviewOpen, 
-    setproductId
+    setproductId,
+    deleteProduct,
+    productId,
+    colorId
 })=>{
 
+    let { cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders, stateDropdownItems, updateTaxPercent, generatePDF } = useCartPage();
     const showReviewButton = typeof(setIsAddReviewOpen) === 'function' && typeof(setproductId) === 'function'
     const navigate = useNavigate()
 
@@ -27,14 +36,14 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                 <div
                 className="w-fit flex max-w-[80%] overflow-hidden">
                     <img src={orderProduct.images[0]} alt="/image/wrapper/stockpolish.png" 
-                    className="w-10 h-auto"/>
+                    className="w-24 h-24"/>
                     <div
-                    className="text-xs tablet:text-sm flex flex-col h-full justify-between">
+                    className="text-xs line-clamp-1 tablet:text-sm flex flex-col h-full">
                         <p>{orderProduct.name}</p>
                         <p
                         className="text-xxs my-1">
                             <span
-                            className="px-1 py-2 bg-lightgray rounded-full mr-[0.5rem]">x{orderProduct.quantity} items</span>
+                            className="px-2 py-2 bg-lightgray rounded-full mr-[0.5rem]">x{orderProduct.quantity} items</span>
                             {orderProduct.category === "Nail Polish" && 
                                 <span
                                 className="px-1 py-2 bg-lightgray rounded-full mr-[0.5rem]">50ml</span>
@@ -59,18 +68,28 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                         }}
                         />
                     }
-                    <CommonButton
-                    label="Buy again"
-                    primaryColor="primary"
-                    secondaryColor="white"
-                    callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
-                    />
-                    <CommonButton 
-                    label="View product"
-                    primaryColor="lightgray"
-                    secondaryColor="black"
-                    callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
-                    />
+                        <CommonButton 
+                        primaryColor="white"
+                        secondaryColor="darkgray"
+                        label="Delete"
+                        customStyles={deleteProduct?"":"hidden"}
+                        callBack={() => { handleDeleteFromCart(productId?productId:0, colorId?colorId:0) }}
+                        />
+                            <CommonButton
+                            label="Buy again"
+                            primaryColor="primary"
+                            secondaryColor="white"
+                            customStyles={deleteProduct?"hidden":""}
+                            callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
+                            />
+                            <CommonButton 
+                            label="View product"
+                            primaryColor="lightgray"
+                            secondaryColor="black"
+                            customStyles={deleteProduct?"hidden":""}
+                            callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
+                            />
+                    
                 </div>
             </div>
         </div>

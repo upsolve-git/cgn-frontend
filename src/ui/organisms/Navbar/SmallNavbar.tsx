@@ -55,6 +55,7 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
                             </button>
                         </li>} 
                         { isAuthenticated && <li className="py-1 px-2 "><a href="/cart">Cart</a></li>}
+                        { isAuthenticated && <li className="py-1 px-2 "><a href="/orders">Orders</a></li>}
                         { isAuthenticated && <li className="py-1 px-2 ">
                             <button
                             onClick={() => logoutHandler()}
