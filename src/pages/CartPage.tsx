@@ -50,7 +50,29 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                     </div>
                     
                     <div className="items-center overflow-x-auto min-h-[160px]"> 
-                        <table className="table-fixed w-full">
+                        {
+                            isMobile?
+                            cartItems.map((item) => (
+                                <tr key={item.product_id}>
+                                    <td>
+                                        <img src={item.images[0]} alt={item.name} className="h-16 w-16 object-cover mx-auto" />
+                                    </td>
+                                    <td>{item.name}</td>
+                                    <td>{item.shade_name !== "NA" ? item.shade_name : ""}</td>
+                                    <td>${item.discounted_price}</td>
+                                    <td className="inline-flex justify-center items-center space-x-2 mt-4">
+                                        <button onClick={() => navigate(`/productDetail/${item.product_id}`)}><GrEdit /></button>
+                                        <span>{item.quantity}</span>
+                                    </td>
+                                    <td>${(item.quantity * item.discounted_price).toFixed(2)}</td>
+                                    <td>
+                                        <button onClick={() => { handleDeleteFromCart(item.product_id, item.color_id) }}>
+                                            <RiDeleteBin6Line />
+                                        </button>
+                                    </td>
+                                </tr>
+                            )):
+                            <table className="table-fixed w-full">
                             <thead>
                                 <tr>
                                     <th className="text-center font-normal text-md">Product</th>
@@ -61,7 +83,7 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                                     <th className="text-center font-normal text-md">Total</th>
                                 </tr>
                             </thead>
-                            <tbody className="text-center">
+                            <tbody className="text-center text-sm">
                                 {cartItems.map((item) => (
                                     <tr key={item.product_id}>
                                         <td>
@@ -84,6 +106,7 @@ const CartPage:React.FC<CartPageProps> = ()=>{
                                 ))}
                             </tbody>
                         </table>
+                        }
                     </div>
                 </div>
 

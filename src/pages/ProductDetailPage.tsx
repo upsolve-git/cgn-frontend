@@ -193,7 +193,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-x-3 flex h-10 desktop:h-16 items-stretch">
+                                <div className="grid grid-cols-2 gap-x-3 h-10 desktop:h-16 items-stretch">
                                 
                                     <CommonButton
                                         primaryColor="white"

@@ -20,7 +20,7 @@ const CommonButton: React.FC<CommonButtonProps> = ({
     return (
         <button
         onClick={callBack}
-        className={`text-xxs w-full rounded-md py-[0.1rem] bg-${primaryColor} text-${secondaryColor} tablet:text-xs desktop:text-sm ${customStyles}`}>
+        className={`text-xxs w-full rounded-md py-[0.1rem] px-[0.3rem] bg-${primaryColor} text-${secondaryColor} tablet:text-xs desktop:text-sm ${customStyles}`}>
             <div
             className="flex items-center w-fit m-auto">
             {preIcon}

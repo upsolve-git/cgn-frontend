@@ -17,14 +17,17 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
 })=>{
 
     let barWidth = 0
+    // let [confirmDate, shippedDate, deliveredDate] = [false, false, false]
     if(orderStatus === "pending"){
         barWidth = 2
     }
     if(orderStatus === "confirmed"){
         barWidth = 36
+        orderConfirmDate = 'true'
     }
     if(orderStatus === "shipped"){
         barWidth = 68
+        shippedDate = ''
     }
     if(orderStatus === "delivered"){
         barWidth = 100
@@ -32,21 +35,21 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
 
     return (
         <div
-        className="text-3xs whitespace-nowrap h-fit w-[17rem] relative my-6">
+        className="text-3xs h-fit my-6">
             <div
-            className="absolute translate-y-[950%] translate-x-[17%] w-[76%] bg-midgray h-[0.1rem] z-20">
+            className="translate-y-[1050%] translate-x[10%] w-[68%] m-auto bg-midgray h-[0.1rem]">
                 <div
                 style={{ width: `${barWidth}%` }} 
                 className={`bg-green h-full`}></div>
             </div>
             <div
-            className="flex justify-between z-30">
-                <div
+            className="flex justify-between">
+                {/* <div
                 className="flex flex-col items-center w-fit">
                     <p>Order placed</p>
                     <div className={`rounded-full w-fit ${orderConfirmDate?'bg-green':'bg-midgray'} p-1`}></div>
                     <p>{orderConfirmDate}</p>
-                </div>
+                </div> */}
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Confirmed</p>
