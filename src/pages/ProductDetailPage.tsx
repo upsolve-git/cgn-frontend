@@ -85,19 +85,27 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         setSelectedColor(colorKey);
         setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
     };
+    const [isImageLoaded, setImageLoaded] = useState(false);
 
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+      };
+    
+    
     return (
         <div
-            className="overflow-scroll bg-secondary my-3 tablet:my-6">
+            className="overflow-scroll bg-secondary my-3 tablet:my-16">
+                {/* {!isImageLoaded && <p>Loading...</p>} */}
             {products.length && (
                 <div>
                     <div className="grid grid-cols-1 w-[80%] m-auto tablet:grid-cols-2">
                         <div
-                        className="w-full place-self-center flex justify-center tablet:w-fit desktop:justify-end">
+                        className="w-full place-self-center flex justify-center">
                             
                             {
                                 product &&
                                 <ProductImageViewer 
+                                handleImageLoad={handleImageLoad}
                                 productName={product.name}
                                 productImages={product.images}
                                 />
@@ -155,7 +163,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                         )
                                     }
                                     {
-                                        selectedShadeDetails.id != 3 && (
+                                        selectedShadeDetails.id != 1 && (
                                         <div>
                                             <label className="font-bold text-sm">Selected shade : </label>
                                             <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
@@ -164,9 +172,9 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                 </div>
                                 
                                 <div
-                                className="font-thin text-lg my-6">
-                                    <label className="">Quantity</label>
-                                    <div className="flex items-center mb-4 tablet:justify-start">
+                                className="font-thin my-6">
+                                    <label className="text-xs desktop:text-md">Quantity</label>
+                                    <div className="flex items-center mt-2 mb-4 tablet:justify-start">
                                         <button
                                             className="w-8 h-8 bg-secondarylight rounded flex items-center justify-center hover:bg-gray-300 disabled:bg-gray-100"
                                             onClick={decreaseQuantity}
@@ -185,7 +193,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-x-3">
+                                <div className="grid grid-cols-2 gap-x-3 flex h-10 desktop:h-16 items-stretch">
                                 
                                     <CommonButton
                                         primaryColor="white"

@@ -32,7 +32,7 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
 
     return (
         <div
-        className="text-3xs whitespace-nowrap h-fit w-[17rem] relative">
+        className="text-3xs whitespace-nowrap h-fit w-[17rem] relative my-6">
             <div
             className="absolute translate-y-[950%] translate-x-[17%] w-[76%] bg-midgray h-[0.1rem] z-20">
                 <div

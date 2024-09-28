@@ -51,6 +51,8 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
         return <div>No orders found</div>; // Show when there are no orders
     }
 
+    console.log(orders)
+
     return (
         <div className="bg-secondary space-y-16">
         {/* <Navbar /> */}

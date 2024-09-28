@@ -3,6 +3,7 @@ import React from "react";
 import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 
 import { OrderLine } from "../../../interfaces/OrderLine";
+import { useNavigate } from 'react-router-dom';
 
 interface OrderProductItemProps{
     orderProduct: OrderLine,
@@ -16,6 +17,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
 })=>{
 
     const showReviewButton = typeof(setIsAddReviewOpen) === 'function' && typeof(setproductId) === 'function'
+    const navigate = useNavigate()
 
     return(
         <div
@@ -61,13 +63,13 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                     label="Buy again"
                     primaryColor="primary"
                     secondaryColor="white"
-                    callBack={()=>console.log('Buy again')}
+                    callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
                     />
                     <CommonButton 
                     label="View product"
                     primaryColor="lightgray"
                     secondaryColor="black"
-                    callBack={()=>console.log('View product')}
+                    callBack={()=>navigate("/productDetail/" + orderProduct.product_id)}
                     />
                 </div>
             </div>

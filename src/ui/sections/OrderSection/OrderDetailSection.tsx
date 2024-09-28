@@ -41,18 +41,18 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({ order, setIsMan
     return (
         <div className='w-[90%] border bg-white border-secondarydark rounded m-auto'>
 
-            <div className="mx-4 my-3 flex justify-between items-center">
+            <div className="mx-4 my-3 flex items-center">
                 <div className="grid grid-cols-2 place-items-baseline gap-2 m-auto tablet:grid-cols-4 tablet:gap-x-[10%] tablet:place-items-start desktop:w-[90%]">
                     <p className="text-md">Order #{order.order_id}</p>
                     {/* <p className="text-sm desktop:text-md">Order #{123456789}</p> */}
                     {
                         order.status === "delivered" &&
-                        <p className="font-medium text-xs text-midgray desktop:text-md">Delivered on {deliveryDate}</p>
+                        <p className="font-medium text-xs text-midgray desktop:text-md whitespace-nowrap">Delivered on {deliveryDate}</p>
                     }
                     {order.status !== "delivered" &&
-                        <p className="font-medium text-xs text-green desktop:text-md">Delivery on {deliveryDate}</p>
+                        <p className="font-medium text-xs text-green desktop:text-md whitespace-nowrap">Delivery on {deliveryDate}</p>
                     }
-                    <button className="text-xs desktop:text-md" onClick={() => { setId(id); setIsManageOrderOpen(true) }}>Manage Order</button>
+                    <button className="text-xs desktop:text-md bg-primary text-secondary rounded-md" onClick={() => { setId(id); setIsManageOrderOpen(true) }}>Manage Order</button>
                     {/* <a className="text-xs desktop:text-md">View invoice</a> */}
                 </div>
                 <div className="">
