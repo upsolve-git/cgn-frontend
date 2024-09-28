@@ -58,7 +58,7 @@ const ProductsPage:React.FC<ProductsPageProps> = ()=>{
 
     return(
         <div
-        className="overflow-scroll bg-secondary">
+        className=" bg-secondary">
             {/* <Navbar/> */}
             <div>{isMobile?<></>:<AdSection />}</div>
             <FiltersContextProvider>

@@ -94,7 +94,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     }, [])
     return (
         <div
-            className="py-14 w-screen flex flex-col items-center overflow-hidden">
+            className="py-14 w-screen flex flex-col items-center overflow-y-scroll">
             <h1
                 className="font-lexend text-lg font-bold text-primary desktop:text-3xl">
                 Products
@@ -170,7 +170,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                     </span>
                                 </div>
                                 {showSortOptions && (
-                                    <div className="absolute bg-white shadow-lg py-2 rounded mt-2">
+                                    <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
                                         <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
                                         <button className="text-xs block w-full text-left hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
                                     </div>
@@ -239,7 +239,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                     <CgSortAz style={{ fontSize: "1.5rem" }} />
                                 </button>
                                 {showSortOptions && (
-                                    <div className="absolute bg-white shadow-lg py-2 rounded mt-2 z-40">
+                                    <div className="absolute bg-white whitespace-nowrap w-fit shadow-lg py-2 px-1 rounded mt-2">
                                         <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-asc'); setShowSortOptions(false) }}>Price: Low to High</button>
                                         <button className="text-xs block w-full text-left tablet:text-md hover:bg-midgray" onClick={() => { sortByChange('price-desc'); setShowSortOptions(false) }}>Price: High to Low</button>
                                     </div>
@@ -250,20 +250,20 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             }
 
             <div
-                className="w-[90%] flex my-16 items-start">
+                className="w-[90%] flex my-16 justify-around items-start">
                 {
                     isMobile ?
                         <></>
                         :
                         <div
-                            className="w-[30%] h-fit justify-between desktop:w-[20%]">
+                            className="w-[30%] tablet:mr-[10%] h-fit justify-between desktop:w-[20%]">
                             <BigFiltersBoard
                                 clearAll={clearAll} />
                         </div>
                 }
 
                 <div
-                    className="grid grid-cols-2 gap-6 tablet:pl-20 tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
+                    className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
                     {
                         items.map(e => e)
                     }
@@ -273,4 +273,4 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     )
 }
 
-export default ProductsSection
+export default ProductsSection
