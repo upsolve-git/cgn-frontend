@@ -18,7 +18,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
             styles="w-14 h-14 desktop:w-20 desktop:h-20"
             fill="#C26F2D"/>
             <ul
-            className="text-xxs flex items-center justify-between text-primary w-[40%] desktop:text-sm">
+            className="text-xxs flex hover:cursor-pointer items-center justify-between text-primary w-[40%] desktop:text-sm">
                 <li><a href="/">Home</a></li>
                 <li>About</li>
                 <li><a href="/products">Products</a></li>

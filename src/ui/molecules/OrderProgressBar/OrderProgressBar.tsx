@@ -24,7 +24,7 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
         pendingStatus = true
     }
     if(orderStatus === "confirmed"){
-        barWidth = 10
+        barWidth = 2
         pendingStatus = true
         confirmStatus = true
     }
@@ -44,9 +44,9 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
 
     return (
         <div
-        className="text-3xs h-fit my-6">
+        className="text-3xs tablet:text-xs desktop:text-md h-fit my-6">
             <div
-            className="translate-y-[1050%] w-[68%] m-auto bg-midgray h-[0.1rem]">
+            className="translate-y-[1050%] tablet:translate-y-[1550%] tablet:translate-x-[1%] desktop:translate-y-[2050%] w-[75%] m-auto bg-midgray h-[0.1rem]">
                 <div
                 style={{ width: `${barWidth}%` }} 
                 className={`bg-green h-full`}></div>
@@ -60,22 +60,22 @@ const OrderProgressBar: React.FC<OrderProgressBarProps> = ({
                     <p>{orderConfirmDate}</p>
                 </div> */}
                 <div
-                className="flex flex-col items-center w-fit">
+                className="flex flex-col mr-5 desktop:mr-10 items-center w-fit">
                     <p>Confirmed</p>
                     <div className={`rounded-full w-fit ${confirmStatus?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{confirmedDate}</p>
+                    {/* <p>{confirmedDate}</p> */}
                 </div>
                 <div
-                className="flex flex-col items-center w-fit">
+                className="flex flex-col mr-5 desktop:mr-10 items-center w-fit">
                     <p>Shipped</p>
                     <div className={`rounded-full w-fit ${shippedStatus?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{shippedDate}</p>
+                    {/* <p>{shippedDate}</p> */}
                 </div>
                 <div
                 className="flex flex-col items-center w-fit">
                     <p>Delivered</p>
                     <div className={`rounded-full w-fit ${deliveredStatus?'bg-green':'bg-midgray'} p-1`}></div>
-                    <p>{deliveredDate}</p>
+                    {/* <p>{deliveredDate}</p> */}
                 </div>
             </div>
         </div>

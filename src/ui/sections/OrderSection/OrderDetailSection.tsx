@@ -54,7 +54,7 @@ const OrderDetailSection: React.FC<OrderDetailSectionProps> = ({ order, setIsMan
                     }
                     {/* <button className="text-xs desktop:text-md bg-primary text-secondary rounded-md" onClick={() => { setId(id); setIsManageOrderOpen(true) }}>Manage Order</button> */}
                     <span
-                    className="text-xs desktop:text-md underline"
+                    className="text-xs desktop:text-md underline hover:cursor-pointer"
                     onClick={() => { setId(id); setIsManageOrderOpen(true) }}>Manage Order</span>
                     {/* <a className="text-xs desktop:text-md">View invoice</a> */}
                 </div>
