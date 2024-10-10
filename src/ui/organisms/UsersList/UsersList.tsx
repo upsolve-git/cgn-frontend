@@ -12,7 +12,7 @@ const UserList: React.FC<UserListProps>= ({
     users,
 })=>{
     
-    
+    console.log("asgo;sd ",users)
     return(
         <div
   className="ag-theme-quartz" // applying the Data Grid theme
@@ -20,7 +20,7 @@ const UserList: React.FC<UserListProps>= ({
  >
    <AgGridReact
        rowData={users}
-       columnDefs={[{field:'email'}, {field:'accType'}, {field:'firstName'}, {field:'lastName'}, {field:'countryCode'}, {field:'phone'}]}
+       columnDefs={[{field:'email'}, {field:'account_type'}, {field:'first_name'}, {field:'last_name'}, {field:'country_code'}, {field:'phone'}]}
    />
  </div>
     )

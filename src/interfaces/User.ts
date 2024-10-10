@@ -1,8 +1,8 @@
 export interface User{
     email: string,
-    accType: string,
-    firstName : string,
-    lastName : string,
+    account_type: string,
+    first_name : string,
+    last_name : string,
     phone : string,
-    countryCode : string
+    country_code : string
 }
