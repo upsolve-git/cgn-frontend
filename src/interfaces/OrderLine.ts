@@ -7,4 +7,5 @@ export interface OrderLine {
     shade_name : string, 
     code : string,
     category?: string
+    color_id : number
 }

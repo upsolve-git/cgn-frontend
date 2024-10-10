@@ -73,7 +73,7 @@ const OrderProductItem: React.FC<OrderProductItemProps> = ({orderProduct,
                         secondaryColor="darkgray"
                         label="Delete"
                         customStyles={deleteProduct?"":"hidden"}
-                        callBack={() => { handleDeleteFromCart(productId?productId:0, colorId?colorId:0) }}
+                        callBack={() => { handleDeleteFromCart(orderProduct.product_id, orderProduct.color_id) }}
                         />
                             <CommonButton
                             label="Buy again"
