@@ -81,14 +81,14 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
                         <OrderDetailLine
                             icon={<BiDollar />}
                             label={'Total'}
-                            value={'$107890'} />
+                            value={'$'+ orders[0].total} />
                     </div>
                 </div>
                 <div>
                     <h2
                     className='font-bold tablet:text-lg'>Order Line</h2>
                     <div
-                    className='h-[20vh] overflow-scroll'>
+                    className='h-[20vh] overflow-auto'>
                         {
                             orders[0].products.map(prod=>
                             <OrderProductItem 

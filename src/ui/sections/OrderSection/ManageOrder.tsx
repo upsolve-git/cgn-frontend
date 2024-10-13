@@ -98,7 +98,7 @@ const ManageOrder: React.FC<ManageOrderProps> = ({ isOpen, onClose, order }) => 
         orderStatus={order.status}
         />
         <div
-        className='w-full my-4 max-h-[20vh] overflow-scroll'>
+        className='w-full my-4 max-h-[20vh] overflow-auto'>
           {
             order.products.map(item=><OrderProductItem orderProduct={item}/>)
           }

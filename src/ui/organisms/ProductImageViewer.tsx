@@ -17,7 +17,7 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
 
     return(
         <div className="w-full max-w-md aspect-square">
-            <div className="w-full p-8 bg-secondarylight rounded-md overflow-scroll">
+            <div className="w-full p-8 bg-secondarylight rounded-md overflow-auto">
                 <img
                     // src={productImages[0] || "/image/wrapper/stockpolish.png"}
                     src={`${displayImg}?${new Date().getDate()}`}

@@ -12,4 +12,5 @@ export interface Order {
     products : OrderLine[]
     address : Address
     status : string,
+    total : number
 } 

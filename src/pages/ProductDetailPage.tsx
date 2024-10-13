@@ -94,7 +94,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     
     return (
         <div
-            className="overflow-scroll bg-secondary my-3 tablet:my-16">
+            className="bg-secondary my-3 tablet:my-16">
                 {/* {!isImageLoaded && <p>Loading...</p>} */}
             {products.length && (
                 <div>
