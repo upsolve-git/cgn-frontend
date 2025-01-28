@@ -19,7 +19,12 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
 
     return (
         <div className="p-2 flex justify-between items-center">
-            <Logo styles="w-12 h-12" fill="#C26F2D" />
+            {/* <Logo styles="w-12 h-12" fill="#C26F2D" /> */}
+            <div
+            className="w-16 h-16">
+                <img src="/image/cgnailslogo.png" alt="logo.png" 
+                className="object-fill"/>
+            </div>
             <div className="relative">
                 <div onClick={toggleMenu} className="cursor-pointer">
                     <svg
