@@ -14,7 +14,7 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
     let maxGridItems: number = isMobile? 1:4
 
     let nailPolishes: React.ReactNode[] = []
-    let names = ["Golden Rose", "Luminous Nude", "Soft Pink", "Classic Beige"]
+    let names = ["Rose Love Letter", "Pearl Nude", "Harvest Season", "Nude World"]
     let description = ["Warm, luxurious elegance", "Timeless, subtle sophistication", "Romantic, delicate blush", "Versatile, everyday neutral"]
     for(let i=0;i<maxGridItems; i++){
         let element = assetPaths.getElementAt(i)

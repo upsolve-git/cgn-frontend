@@ -9,7 +9,7 @@ const MainSection: React.FC<MainSectionProps> = () => {
     const [itemIndex, setItemIndex] = useState<number>(0);
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [item, setItem] = useState<{ nailPolishPath: string; nailsImagePath: string; thumbNailPath: string } | null>(null);
-    let names = ["Golden Rose", "Luminous Nude", "Soft Pink", "Classic Beige"]
+    let names = ["Rose Love Letter", "Pearl Nude", "Harvest Season", "Nude World"]
     let description = ["Warm, luxurious elegance", "Timeless, subtle sophistication", "Romantic, delicate blush", "Versatile, everyday neutral"]
     const increaseIndex = () => {
         setItemIndex((prevIndex) => (prevIndex + 1) % assetPaths.size());
