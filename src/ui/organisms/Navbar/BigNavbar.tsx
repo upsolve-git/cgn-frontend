@@ -14,9 +14,14 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
     return(
         <div
         className="bg-secondarylight px-6 py-2 flex justify-between items-center">
-            <Logo 
+            {/* <Logo 
             styles="w-14 h-14 desktop:w-20 desktop:h-20"
-            fill="#C26F2D"/>
+            fill="#C26F2D"/> */}
+            <div
+            className="w-16 h-16 desktop:w-24 desktop:h-24">
+                <img src="/image/cgnailslogo.png" alt="logo.png" 
+                className="object-fill"/>
+            </div>
             <ul
             className="text-xxs flex hover:cursor-pointer items-center justify-between text-primary w-[40%] desktop:text-sm">
                 <li><a href="/">Home</a></li>
