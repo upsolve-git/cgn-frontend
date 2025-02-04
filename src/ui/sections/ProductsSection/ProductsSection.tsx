@@ -127,7 +127,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                         pedicure: false
                                                     })}
                                                     isActive={activeCats.allproducts} />
-                                                <NavButton label="Nails"
+                                                <NavButton label="Nail Polish"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: false,
                                                         nails: true,
@@ -135,22 +135,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                         pedicure: false
                                                     })}
                                                     isActive={activeCats.nails} />
-                                                <NavButton label="Manicure"
-                                                    onClick={() => activeCatsChange({
-                                                        allproducts: false,
-                                                        nails: false,
-                                                        manicure: true,
-                                                        pedicure: false
-                                                    })}
-                                                    isActive={activeCats.manicure} />
-                                                <NavButton label="Pedicure"
-                                                    onClick={() => activeCatsChange({
-                                                        allproducts: false,
-                                                        nails: false,
-                                                        manicure: false,
-                                                        pedicure: true
-                                                    })}
-                                                    isActive={activeCats.pedicure} />
                                             </div>
                                             <div
                                                 className="w-[90%] m-auto flex justify-around my-4">
@@ -223,7 +207,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                             pedicure: false
                                         })}
                                         isActive={activeCats.allproducts} />
-                                    <NavButton label="Nails"
+                                    <NavButton label="Nail Polish"
                                         onClick={() => activeCatsChange({
                                             allproducts: false,
                                             nails: true,
@@ -231,22 +215,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                             pedicure: false
                                         })}
                                         isActive={activeCats.nails} />
-                                    <NavButton label="Manicure"
-                                        onClick={() => activeCatsChange({
-                                            allproducts: false,
-                                            nails: false,
-                                            manicure: true,
-                                            pedicure: false
-                                        })}
-                                        isActive={activeCats.manicure} />
-                                    <NavButton label="Pedicure"
-                                        onClick={() => activeCatsChange({
-                                            allproducts: false,
-                                            nails: false,
-                                            manicure: false,
-                                            pedicure: true
-                                        })}
-                                        isActive={activeCats.pedicure} />
                                 </div>
                                 <div className="w-[40%] flex items-center rounded-md">
                                     <FaSearch

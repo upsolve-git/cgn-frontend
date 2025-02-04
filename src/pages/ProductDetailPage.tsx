@@ -115,16 +115,19 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                         className='tablet:ml-10 desktop:ml-0 desktop:'>
                             <div className="tablet:text-left">
                                 <h1 className="font-medium text-lg desktop:text-2xl my-2 mb-4">{product.name}</h1>
-                                <p className="mb-6">
-                                    <span
-                                        className="text-lg text-primary font-semibold desktop:text-xl pr-4">
-                                        ${product.discounted_price}
-                                    </span>
-                                    <span
-                                        className="text-darkgray text-sm desktop:text-md">
-                                        <s>${product.price}</s>
-                                    </span>
-                                </p>
+                                {
+                                    product.categories[0] === "Nail Polish" &&
+                                    <p className="mb-6">
+                                        <span
+                                            className="text-lg text-primary font-semibold desktop:text-xl pr-4">
+                                            ${product.discounted_price}
+                                        </span>
+                                        <span
+                                            className="text-darkgray text-sm desktop:text-md">
+                                            <s>${product.price}</s>
+                                        </span>
+                                    </p>
+                                }
                                 <h2 className="text-xs mb-3 desktop:text-md">{product.description}</h2>
                                 {
                                     product.categories[0] === "Nail Polish" &&
