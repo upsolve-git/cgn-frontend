@@ -2,9 +2,8 @@ import React, { useContext, createContext, ReactNode, useState } from "react";
 
 export interface ActiveCats{
     'allproducts': boolean,
-    'nails': boolean,
-    'manicure': boolean,
-    'pedicure': boolean
+    'nailPolish': boolean,
+    'machines': boolean
 }
 
 // Define the context's types
@@ -41,9 +40,8 @@ export const FiltersContextProvider: React.FC<{ children: ReactNode }> = ({ chil
     let [searchProd, setSearchProd] = useState<string>('')
     let [activeCats, setActiveCats] = useState<ActiveCats>({
         allproducts: true,
-        nails: false,
-        manicure: false,
-        pedicure: false,
+        nailPolish: false,
+        machines: false
     });
     let [sortBy, setSortBy] = useState<string>('')
 

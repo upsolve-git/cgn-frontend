@@ -47,8 +47,14 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
             }
         }
         if (trueCat !== 'allproducts') {
-            res = res.filter(prod => prod.categories[0].toLowerCase() === trueCat);
+            res = res.filter(prod => {
+                let category = prod.categories[0].toLowerCase();
+                if (trueCat === 'nailPolish') return category === 'Nail Polish';
+                if (trueCat === 'machines') return category === 'Machine';
+                return category === trueCat;
+            });
         }
+        
 
         if (priceRange[0] !== 0 || priceRange[1] !== 0) {
             res = res.filter(prod => {
@@ -122,19 +128,24 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                 <NavButton label="All products"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: true,
-                                                        nails: false,
-                                                        manicure: false,
-                                                        pedicure: false
+                                                        nailPolish: false,
+                                                        machines: false
                                                     })}
                                                     isActive={activeCats.allproducts} />
                                                 <NavButton label="Nail Polish"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: false,
-                                                        nails: true,
-                                                        manicure: false,
-                                                        pedicure: false
+                                                        nailPolish: true,
+                                                        machines: false
                                                     })}
-                                                    isActive={activeCats.nails} />
+                                                    isActive={activeCats.nailPolish} />
+                                                    <NavButton label="Nail Polish"
+                                                    onClick={() => activeCatsChange({
+                                                        allproducts: false,
+                                                        nailPolish: false,
+                                                        machines: true
+                                                    })}
+                                                    isActive={activeCats.machines} />
                                             </div>
                                             <div
                                                 className="w-[90%] m-auto flex justify-around my-4">
@@ -202,19 +213,24 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                     <NavButton label="All products"
                                         onClick={() => activeCatsChange({
                                             allproducts: true,
-                                            nails: false,
-                                            manicure: false,
-                                            pedicure: false
+                                            nailPolish: false,
+                                            machines: false
                                         })}
                                         isActive={activeCats.allproducts} />
                                     <NavButton label="Nail Polish"
                                         onClick={() => activeCatsChange({
                                             allproducts: false,
-                                            nails: true,
-                                            manicure: false,
-                                            pedicure: false
+                                            nailPolish: true,
+                                            machines: false
                                         })}
-                                        isActive={activeCats.nails} />
+                                        isActive={activeCats.nailPolish} />
+                                        <NavButton label="Nail Polish"
+                                        onClick={() => activeCatsChange({
+                                            allproducts: false,
+                                            nailPolish: false,
+                                            machines: true
+                                        })}
+                                        isActive={activeCats.machines} />
                                 </div>
                                 <div className="w-[40%] flex items-center rounded-md">
                                     <FaSearch
