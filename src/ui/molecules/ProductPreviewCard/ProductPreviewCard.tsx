@@ -39,23 +39,24 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
             {product?.description || "Lorem ipsum dolor sit, amet consectetur adipisicing elit."}
           </p>
         </div>
-        <div className="grid grid-cols-2 grid-rows-2 place-items-start">
-            <span className="text-md font-semibold truncate w-full col-span-2">
-              ${product?.discounted_price }
-            </span>
-            <span className="text-xs text-darkgray line-through truncate w-full">
-              ${product?.price}
-            </span>
-            <button
-              className="p-2 rounded-full bg-white shadow-sm flex-shrink-0 ml-[50%]"
-              onClick={() => {
-                navigate(`/productDetail/${product?.product_id || 1}`)
-                window.location.reload()
-              }}
-            >
-              <FiShoppingCart className="text-sm text-primary" />
-            </button>
-        </div>
+        <div className="flex items-center justify-between w-full">
+  {product.categories[0] === "Nail Polish" && (
+    <span className="text-md font-semibold truncate">
+      ${product?.price}
+    </span>
+  )}
+
+  <button
+    className="p-2 rounded-full bg-white shadow-sm flex-shrink-0"
+    onClick={() => {
+      navigate(`/productDetail/${product?.product_id || 1}`);
+      window.location.reload();
+    }}
+  >
+    <FiShoppingCart className="text-sm text-primary" />
+  </button>
+</div>
+
       </div>
     </div>
   )
