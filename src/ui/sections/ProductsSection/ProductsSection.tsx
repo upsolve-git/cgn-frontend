@@ -48,7 +48,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         }
         if (trueCat !== 'allproducts') {
             res = res.filter(prod => {
-                let category = prod.categories[0].toLowerCase();
+                let category = prod.categories[0];
                 if (trueCat === 'nailPolish') return category === 'Nail Polish';
                 if (trueCat === 'machines') return category === 'Machine';
                 return category === trueCat;
@@ -139,7 +139,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                         machines: false
                                                     })}
                                                     isActive={activeCats.nailPolish} />
-                                                    <NavButton label="Nail Polish"
+                                                    <NavButton label="Machines"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: false,
                                                         nailPolish: false,
@@ -224,7 +224,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                             machines: false
                                         })}
                                         isActive={activeCats.nailPolish} />
-                                        <NavButton label="Nail Polish"
+                                        <NavButton label="Machines"
                                         onClick={() => activeCatsChange({
                                             allproducts: false,
                                             nailPolish: false,
