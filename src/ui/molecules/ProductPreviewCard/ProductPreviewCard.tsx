@@ -40,7 +40,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
           </p>
         </div>
         <div className="flex items-center justify-between w-full">
-  {product.categories[0] === "Nail Polish" && (
+  {(product.categories[0] === "Nail Polish"|| product.name === "Electric Beauty Bed/Podiatry chair") && (
     <span className="text-md font-semibold truncate">
       ${product?.price}
     </span>
