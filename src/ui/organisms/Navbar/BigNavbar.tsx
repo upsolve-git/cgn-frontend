@@ -14,7 +14,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
     return(
         <div
         className="bg-secondarylight px-6 py-2 flex justify-between items-center">
-            {/* <Logo 
+            {/* <Logo
             styles="w-14 h-14 desktop:w-20 desktop:h-20"
             fill="#C26F2D"/> */}
             <div
@@ -23,10 +23,11 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                 className="object-fill"/>
             </div>
             <ul
-            className="text-xxs flex hover:cursor-pointer items-center justify-between text-primary w-[40%] desktop:text-sm">
+            className="text-xxs flex hover:cursor-pointer items-center justify-between text-primary w-[50%] desktop:text-sm desktop:w-[40%]">
                 <li><a href="/">Home</a></li>
                 <li>About</li>
                 <li><a href="/products">Products</a></li>
+                <li><a href="/salons">Salons</a></li>
                 { isAuthenticated && <li><a href="/orders">Orders</a></li> }
                 <li>Contact</li>
                 { !isAuthenticated && <li>

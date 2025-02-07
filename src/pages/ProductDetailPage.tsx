@@ -10,6 +10,7 @@ import { Product } from "../interfaces/Product";
 import { useCartPage } from "../utils/hooks/useCartPage";
 import CommonButton from "../ui/atoms/buttons/CommonButton/CommonButton";
 import ProductImageViewer from "../ui/organisms/ProductImageViewer";
+import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
 
 
 interface ProductDetailPageProps { }
@@ -249,6 +250,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                             isBestSeller={true} />
                     }
                 </div>)}
+            <ReviewsSection />
         </div>
     )
 }

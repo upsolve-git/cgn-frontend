@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 import Logo from "../../atoms/Logo/Logo";
 
 import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
+
 import { useSignInPage } from "../../../utils/hooks/useSignInPage";
 
 interface SmallNavbarProps {}
@@ -40,28 +42,41 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
                 </div>
 
                 {menuOpen && (
-                    <ul className="absolute right-0 top-full mt-2 bg-white shadow-lg p-2 text-xs z-50">
-                        <li className="py-1 px-2 "><a href="/">Home</a></li>
-                        <li className="py-1 px-2 ">About</li>
-                        <li className="py-1 px-2 "><a href="/products">Products</a></li>
-                        <li className="py-1 px-2 ">Contact</li>
-                        { !isAuthenticated && <li className="py-1 px-2 ">
-                            <button
+                    <ul className="absolute flex flex-col gap-1 justify-between items-center right-0 top-full mt-2 bg-white shadow-lg py-3 px-4 text-xs z-50">
+                        <li><a href="/">Home</a></li>
+                        <li>About</li>
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/salons">Salons</a></li>
+                        <li>Contact</li>
+                        { !isAuthenticated && <li>
+                            {/* <button
                             onClick={() => navigate(SIGNUP_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
                                 Sign Up
-                            </button>
+                            </button> */}
+                            <CommonButton 
+                            label="Sign Up"
+                            primaryColor="primary"
+                            secondaryColor="secondary"
+                            callBack={() => navigate(SIGNUP_PAGE)}
+                            />
                         </li>}
-                        { !isAuthenticated && <li className="py-1 px-2 ">
-                            <button
+                        { !isAuthenticated && <li>
+                            {/* <button
                             onClick={() => navigate(LOGIN_PAGE)}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
                                 Sign In
-                            </button>
+                            </button> */}
+                            <CommonButton 
+                            label="Sign In"
+                            primaryColor="primary"
+                            secondaryColor="secondary"
+                            callBack={() => navigate(LOGIN_PAGE)}
+                            />
                         </li>} 
-                        { isAuthenticated && <li className="py-1 px-2 "><a href="/cart">Cart</a></li>}
-                        { isAuthenticated && <li className="py-1 px-2 "><a href="/orders">Orders</a></li>}
-                        { isAuthenticated && <li className="py-1 px-2 ">
+                        { isAuthenticated && <li><a href="/cart">Cart</a></li>}
+                        { isAuthenticated && <li><a href="/orders">Orders</a></li>}
+                        { isAuthenticated && <li>
                             <button
                             onClick={() => logoutHandler()}
                             className="bg-primary text-white rounded-md px-1 text-xxs">
