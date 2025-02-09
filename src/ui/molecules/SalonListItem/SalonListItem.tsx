@@ -18,8 +18,8 @@ const SalonListItem: React.FC<SalonListItemProps> = ({salon})=>{
                 className="text-sm font-semibold tablet:text-md">
                     {salon.name}
                 </p>
-                <RatingStars
-                rating={salon.averageRating}/>
+                {/* <RatingStars
+                rating={salon.averageRating}/> */}
                 <p
                 className="text-xxs text-darkgray line-clamp-2 font-medium tablet:text-xs">
                     {salon.description}
