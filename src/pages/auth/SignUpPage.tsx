@@ -60,9 +60,9 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
                             className="underline ml-1">Sign In</a>
                     </p>
                 </div>
-                <AccTypeContext.Provider value={{ accType, handleAccTypeChange }}>
+                {/* <AccTypeContext.Provider value={{ accType, handleAccTypeChange }}>
                     <AccountType />
-                </AccTypeContext.Provider>
+                </AccTypeContext.Provider> */}
                 <div id="input-container"
                     className="my-3 w-full">
                     <EmailInput
