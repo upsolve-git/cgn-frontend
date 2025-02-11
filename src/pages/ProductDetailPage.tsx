@@ -99,10 +99,9 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                 {/* {!isImageLoaded && <p>Loading...</p>} */}
             {products.length && (
                 <div>
-                    <div className="grid grid-cols-1 w-[80%] m-auto tablet:grid-cols-2">
+                    <div className="w-[80%] m-auto tablet:grid tablet:grid-cols-2">
                         <div
-                        className="w-full place-self-center flex justify-center">
-                            
+                        className="w-full">
                             {
                                 product &&
                                 <ProductImageViewer 
@@ -113,7 +112,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                             }
                         </div>
                         <div
-                        className='tablet:ml-10 desktop:ml-0 desktop:'>
+                        className='tablet:ml-10 desktop:ml-0'>
                             <div className="tablet:text-left">
                                 <h1 className="font-medium text-lg desktop:text-2xl my-2 mb-4">{product.name}</h1>
                                 {

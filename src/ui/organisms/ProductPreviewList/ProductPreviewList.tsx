@@ -35,6 +35,7 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
         const remainingItems = maxGridItems - currentWindowProducts.length;
         currentWindowProducts.push(...products.slice(0, remainingItems));
     }
+    // console.log(products)
 
     return (
         <div className="w-[90%] h-fit flex justify-evenly items-center m-auto">
@@ -44,14 +45,16 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
             }
             <div className="grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4 desktop:px-6">
                 {
-                    currentWindowProducts.map((product, index) => (
+                    currentWindowProducts.map((product, index) => {
+                        console.log(product)
+                        return (
                         <ProductPreviewCard
                             key={index}
                             product={product}
                             isBestSeller={isBestSeller}
                             ishomepage={ishomepage}
                         />
-                    ))
+                    )})
                 }
             </div>
             {

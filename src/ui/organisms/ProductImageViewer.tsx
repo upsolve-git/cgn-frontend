@@ -16,14 +16,14 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
     let [displayImg, setDisplayImg] = useState<string>(productImages[0])
 
     return(
-        <div className="w-full max-w-md aspect-square">
+        <div className="w-full max-w-md max-h-[20rem]">
             <div className="w-full p-8 bg-secondarylight rounded-md overflow-auto">
                 <img
                     // src={productImages[0] || "/image/wrapper/stockpolish.png"}
                     src={`${displayImg}?${new Date().getDate()}`}
                     alt={productName}
                     onLoad={handleImageLoad}
-                    className="max-h-full max-w-full object-contain"
+                    className="h-60 w-40 tablet:h-80 tablet:w-44 desktop:h-96 desktop:w-80 m-auto"
                 />
                 {
                     productImages.length>1&&
