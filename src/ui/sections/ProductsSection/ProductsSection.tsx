@@ -275,19 +275,22 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                     </div>
                             }
 
-                            <div
+                            {
+                                activeCats["machines"] && Array.isArray(filteredproducts) && filteredproducts.length>0?
+                                <ProductPreviewList 
+                                products={filteredproducts}
+                                isBestSeller={false}
+                                ishomepage={true}
+                                gridItems={1}
+                                />
+                                :
+                                <div
                                 className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
-                                {
-                                    // activeCats["machines"]?
-                                    // <ProductPreviewList 
-                                    // products={filteredproducts}
-                                    // isBestSeller={false}
-                                    // ishomepage={true}
-                                    // />
-                                    // :
-                                    items.map(e => e)
-                                }
-                            </div>
+                                    {
+                                        items.map(e => e)
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
             }
