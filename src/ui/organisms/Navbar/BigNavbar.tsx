@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../atoms/Logo/Logo";
 import { useNavigate } from 'react-router-dom';
-import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
+import { LOGIN_PAGE, POS_WEBSITE_URL, SIGNUP_PAGE } from "../../../constants/routes";
 import { useSignInPage } from "../../../utils/hooks/useSignInPage";
 
 interface BigNavbarProps{}
@@ -30,7 +30,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                     <li><a href="/">Home</a></li>
                     <li>About</li>
                     <li><a href="/products">Products</a></li>
-                    <li><a href="/salons">Salon Partners</a></li>
+                    <li><a href={POS_WEBSITE_URL}>Salon Partners</a></li>
                     { isAuthenticated && <li><a href="/orders">Orders</a></li> }
                     <li>Contact</li>
                     { !isAuthenticated && <li>
