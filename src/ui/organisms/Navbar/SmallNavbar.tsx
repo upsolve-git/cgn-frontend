@@ -28,7 +28,7 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
             <div
             className="">
                 <img src="/image/cgnailslogo.png" alt="logo.png" 
-                className="w-20 h-16 translate-x-[20%]"/>
+                className="w-28 translate-x-[20%]"/>
             </div>
             <div className="relative">
                 <div onClick={toggleMenu} className="cursor-pointer">

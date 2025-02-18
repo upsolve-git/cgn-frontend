@@ -37,4 +37,4 @@ export const GET_AUTH_ENDPOINT = '/getauth'
 export const GET_ORDER = '/order/'
 export const LANDING_PAGE = '/landingpage'
 
-export const POS_WEBSITE_URL = '/salons'
+export const POS_WEBSITE_URL = 'https://main.d29iicb8es15um.amplifyapp.com/'

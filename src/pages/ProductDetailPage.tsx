@@ -141,7 +141,12 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                         </span> */}
                                     </p>
                                 }
-                                <h2 className="text-xs mb-3 desktop:text-md">{product.description}</h2>
+                                <h2 className="text-xs mb-3 desktop:text-md">{product.description}
+                                    <br/>
+                                    <a
+                                    className="text-primary underline" 
+                                    href="/productsinfo">Product Information</a>
+                                </h2>
                                 {
                                     product.categories[0] === "Nail Polish" &&
                                     <div
