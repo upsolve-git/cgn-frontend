@@ -21,6 +21,7 @@ import AdminSignInPage from "../pages/auth/AdminSignInPage";
 
 import { getAuth } from "../services/auth";
 import SalonsPage from "../pages/SalonsPage";
+import ProductInfoPage from "../pages/ProductInfoPage";
 
 const authLoader = async () => {
     console.log('auth redirect');
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: "salons",
                 element: <SalonsPage />
+            },
+            {
+                path: "productsinfo",
+                element: <ProductInfoPage />
             }
         ],
     },

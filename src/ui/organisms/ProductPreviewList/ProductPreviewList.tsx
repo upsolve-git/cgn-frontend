@@ -3,24 +3,26 @@ import ProductPreviewCard from "../../molecules/ProductPreviewCard/ProductPrevie
 import ArrowButton from "../../atoms/buttons/ArrowButton/ArrowButton";
 import { useMediaWidth } from "../../../utils/hooks/useMediaWidth";
 import { Product } from "../../../interfaces/Product";
+import { error } from "console";
 
 interface ProductPreviewListProps {
     products: Product[];
     isBestSeller: boolean;
     ishomepage: boolean;
+    gridItems?: number;
 }
 
 const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
     products,
     isBestSeller,
-    ishomepage
+    ishomepage,
+    gridItems
 }) => {
     const [startIndex, setStartIndex] = useState<number>(0);
     const { isMobile, isTablet } = useMediaWidth();
-    const maxGridItems = isTablet ? 3 : 4;
-    
+    const maxGridItems = gridItems?gridItems:(isTablet ? 3 : 4)
     const totalProducts = products.length;
-
+    
     const handleRightClick = () => {
         setStartIndex((prevIndex) => (prevIndex + 1) % totalProducts);
     };
@@ -28,12 +30,20 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
     const handleLeftClick = () => {
         setStartIndex((prevIndex) => (prevIndex - 1 + totalProducts) % totalProducts);
     };
+    
+    const createWindowProds = ()=>{
 
-    const currentWindowProducts = products.slice(startIndex, startIndex + maxGridItems);
-
-    if (currentWindowProducts.length < maxGridItems) {
-        const remainingItems = maxGridItems - currentWindowProducts.length;
-        currentWindowProducts.push(...products.slice(0, remainingItems));
+        let currentWindowProducts = products.slice(startIndex, startIndex + maxGridItems);
+    
+        if (currentWindowProducts.length < maxGridItems) {
+            let remainingItems = maxGridItems - currentWindowProducts.length;
+            currentWindowProducts.push(...products.slice(0, remainingItems));
+        }
+        if (currentWindowProducts){
+            return currentWindowProducts
+        }else{
+            throw new Error('current window products not generated')
+        }
     }
 
     return (
@@ -42,16 +52,18 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
                 !isMobile &&
                 <ArrowButton rotation="180" clickFunc={handleLeftClick} />
             }
-            <div className="grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-3 desktop:grid-cols-4 desktop:px-6">
+            <div className={`grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-${maxGridItems} desktop:grid-cols-${maxGridItems} desktop:px-6`}>
                 {
-                    currentWindowProducts.map((product, index) => (
+                    createWindowProds().map((product, index) => {
+                        console.log(product)
+                        return (
                         <ProductPreviewCard
                             key={index}
                             product={product}
                             isBestSeller={isBestSeller}
                             ishomepage={ishomepage}
                         />
-                    ))
+                    )})
                 }
             </div>
             {

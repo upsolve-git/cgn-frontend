@@ -10,7 +10,7 @@ const SalonsPage: React.FC<SalonsPageProps> = ()=>{
             className="">
                 <h1
                     className="font-lexend text-center text-lg font-bold text-primary desktop:text-3xl">
-                    Salons
+                    Salon Partners
                 </h1>
                 <p
                     className="m-2 font-lexend text-center items-center text-darkgray text-xs mb-10 desktop:text-sm">

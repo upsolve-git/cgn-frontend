@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CommonButton from "../../atoms/buttons/CommonButton/CommonButton";
 import Logo from "../../atoms/Logo/Logo";
 
-import { LOGIN_PAGE, SIGNUP_PAGE } from "../../../constants/routes";
+import { LOGIN_PAGE, POS_WEBSITE_URL, SIGNUP_PAGE } from "../../../constants/routes";
 
 import { useSignInPage } from "../../../utils/hooks/useSignInPage";
 
@@ -22,10 +22,13 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
     return (
         <div className="p-2 flex justify-between items-center">
             {/* <Logo styles="w-12 h-12" fill="#C26F2D" /> */}
+            <div>
+
+            </div>
             <div
-            className="w-16 h-16">
+            className="">
                 <img src="/image/cgnailslogo.png" alt="logo.png" 
-                className="object-fill"/>
+                className="w-28 translate-x-[20%]"/>
             </div>
             <div className="relative">
                 <div onClick={toggleMenu} className="cursor-pointer">
@@ -46,7 +49,7 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
                         <li><a href="/">Home</a></li>
                         <li>About</li>
                         <li><a href="/products">Products</a></li>
-                        <li><a href="/salons">Salons</a></li>
+                        <li><a href={POS_WEBSITE_URL}>Salon Partners</a></li>
                         <li>Contact</li>
                         { !isAuthenticated && <li>
                             {/* <button
