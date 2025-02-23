@@ -20,9 +20,14 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
     <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
       <div className="relative h-[65%] overflow-hidden">
         <img
-          src={`${product.images[0]}?${new Date().getDate()}`}
+          // src={`${product.images[0]}?${new Date().getDate()}`}
+          src={`${product.images[product.images.length-1]}`}
           alt={product?.name || "Product image"}
           className="absolute p-8 w-full h-full"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/image/mainsection/color1/nailpolish.png';
+          }}
         />
       </div>
       <div className="flex-grow bg-secondarylight p-3 flex flex-col justify-between max-h-[35%]">

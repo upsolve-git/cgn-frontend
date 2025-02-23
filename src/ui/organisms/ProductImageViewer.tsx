@@ -12,7 +12,7 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
   productImages,
   handleImageLoad,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(productImages.length-1);
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % productImages.length);
@@ -28,10 +28,15 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
     <div className="w-full max-w-md aspect-square relative">
       <div className="w-full p-8 bg-secondarylight rounded-md overflow-hidden relative">
         <img
-          src={`${productImages[currentIndex]}?${new Date().getDate()}`}
+        //   src={`${productImages[currentIndex]}?${new Date().getDate()}`}
+          src={`${productImages[currentIndex]}`}
           alt={productName}
           onLoad={handleImageLoad}
           className="max-h-full max-w-full object-contain mx-auto"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/image/mainsection/color1/nailpolish.png';
+          }}
         />
         {productImages.length > 1 && (
           <>
