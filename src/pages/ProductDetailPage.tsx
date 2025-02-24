@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import { useAdminPage } from "../utils/hooks/useAdminPage";
@@ -77,6 +77,14 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     const [selectedColor, setSelectedColor] = useState<string>('');
     const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id: number }[]>([]);
     const [selectedShadeDetails, setSelectedShadeDetails] = useState<{ shade: string; code: string; id: number }>({ shade: "NA", code: "NA", id: 1 });
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+
+    useEffect(() => {
+        if (product && product.images && product.images.length > 0) {
+            setCurrentImageIndex(product.images.length - 1);
+        }
+    }, [product]);
+    
 
     const handleShadeSelect = (shade: { shade: string; code: string; id: number }) => {
         setSelectedShadeDetails(shade);
@@ -84,9 +92,40 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     const handleColorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const colorKey = event.target.value;
         setSelectedColor(colorKey);
+        if (colorKey === "") {
+            setSelectedShades([]);
+            setCurrentImageIndex(product.images.length - 1);
+            return;
+        }
         setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
+        const colorIndex = Object.keys(colorMap).indexOf(colorKey);
+        if (colorIndex >= 0 && colorIndex < product.images.length) {
+            setCurrentImageIndex(colorIndex);
+        }
     };
     const [isImageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageIndexChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedIndex = parseInt(event.target.value);
+        setCurrentImageIndex(selectedIndex);
+    };
+
+    const handleImageChange = (newIndex: number) => {
+        setCurrentImageIndex(newIndex);
+
+        if (newIndex === product.images.length - 1) {
+            setSelectedColor("");
+            setSelectedShades([]);
+            return;
+        }
+        
+        // When image changes via arrows, also update the selected color in dropdown
+        if (newIndex >= 0 && newIndex < Object.keys(colorMap).length) {
+            const colorKey = Object.keys(colorMap)[newIndex];
+            setSelectedColor(colorKey);
+            setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
+        }
+    };
 
     const handleImageLoad = () => {
         setImageLoaded(true);
@@ -108,6 +147,8 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                 handleImageLoad={handleImageLoad}
                                 productName={product.name}
                                 productImages={product.images}
+                                externalIndex={currentImageIndex}
+                                onImageChange={handleImageChange}
                                 />
                             }
                         </div>
@@ -152,7 +193,10 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     <div
                                         className="text-xs desktop:text-lg my-3">
                                         <label>Choose color</label>
-                                        <select value={selectedColor} onChange={handleColorChange} className="w-full border rounded-md px-3 py-2 bg-secondarylight">
+                                        <select 
+                                        value={selectedColor} 
+                                        onChange={handleColorChange} 
+                                        className="w-full border rounded-md px-3 py-2 bg-secondarylight">
                                             <option value="">Choose a color</option>
                                             {Object.keys(colorMap).map((colorKey) => (
                                                 <option key={colorKey} value={colorKey} style={{ backgroundColor: colorMap[colorKey].shadesCodeMapping[0].code }}>
@@ -179,16 +223,16 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                                             <span>{shade.shade}</span>
                                                         </div>
                                                     ))}
-                                                </div>
+                                                        </div>
                                             </div>
                                         )
                                     }
                                     {
                                         selectedShadeDetails.id != 1 && (
-                                        <div>
+                                            <div>
                                             <label className="font-bold text-sm">Selected shade : </label>
                                             <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
-                                        </div>
+                                            </div>
                                     )}
                                 </div>
                                 {

@@ -1,28 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProductImageViewerProps {
   productName: string;
   productImages: string[];
   handleImageLoad: () => void;
+  externalIndex?: number;
+  onImageChange?: (index: number) => void;
 }
 
 const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
   productName,
   productImages,
   handleImageLoad,
+  externalIndex,
+  onImageChange,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(productImages.length-1);
 
+  const updateIndex = (newIndex: number) => {
+    setCurrentIndex(newIndex);
+    if (onImageChange) {
+      onImageChange(newIndex);
+    }
+  };
+
+  useEffect(() => {
+    if (externalIndex !== undefined && externalIndex !== currentIndex) {
+      setCurrentIndex(externalIndex);
+    }
+  }, [externalIndex]);
+
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % productImages.length);
+    const newIndex = (currentIndex + 1) % productImages.length;
+    updateIndex(newIndex);
   };
 
   const prevImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? productImages.length - 1 : prevIndex - 1
-    );
+    const newIndex = currentIndex === 0 ? productImages.length - 1 : currentIndex - 1;
+    updateIndex(newIndex);
   };
+
+  useEffect(() => {
+    setCurrentIndex(productImages.length - 1);
+  }, [productImages.length]);
+
 
   return (
     <div className="w-full max-w-md aspect-square relative">
@@ -60,7 +82,7 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
         {productImages.map((_, index) => (
           <div
             key={index}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => updateIndex(index)}
             className={`w-2 h-2 rounded-full cursor-pointer ${
               index === currentIndex ? "bg-primary" : "bg-gray-300"
             }`}
