@@ -23,11 +23,11 @@ const AboutUs: React.FC<AboutUsSectionProps> = ()=>{
             name="Laser Machine"
             description="Experience the future of hair removal with our Laser Hair Removal Machine. Designed for both safety and efficiency, this device offers permanent hair reduction from the comfort of your home. It’s easy to use and suitable for all skin types, delivering professional level results without the need for salon visits."
             isRight={true} />
-            <AboutUsInfo 
+            {/* <AboutUsInfo 
             image="/image/wrapper/stockpolish.png"
             name="Ultimate Nail Care Kit"
             description="Taking care of your nails has never been easier with our Ultimate Nail Care Kit. This all-in-one set includes everything you need for complete nail maintenance, from cuticle oils to nourishing creams and high-quality tools. Whether you're prepping for a manicure or just maintaining healthy nails, this kit is your go-to solution for professional grade care."
-            isRight={false} />
+            isRight={false} /> */}
         </div>
     )
 }

@@ -30,7 +30,8 @@ const CartPage: React.FC<CartPageProps> = () => {
     }
     for (const item of cartItems) {
         fullPrice = fullPrice + item.quantity * item.price
-        sumTotal = sumTotal + item.quantity * item.discounted_price
+        // sumTotal = sumTotal + item.quantity * item.discounted_price
+        sumTotal = sumTotal + item.quantity * item.price
     }
 
     return (

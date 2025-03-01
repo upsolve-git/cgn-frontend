@@ -30,7 +30,7 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                     <li><a href="/">Home</a></li>
                     <li>About</li>
                     <li><a href="/products">Products</a></li>
-                    <li><a href={POS_WEBSITE_URL}>Salon Partners</a></li>
+                    <li><a href={'/salons'}>Salon Partners</a></li>
                     { isAuthenticated && <li><a href="/orders">Orders</a></li> }
                     <li>Contact</li>
                     { !isAuthenticated && <li>

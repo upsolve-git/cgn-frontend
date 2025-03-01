@@ -49,7 +49,7 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
                         <li><a href="/">Home</a></li>
                         <li>About</li>
                         <li><a href="/products">Products</a></li>
-                        <li><a href={POS_WEBSITE_URL}>Salon Partners</a></li>
+                        <li><a href={'/salons'}>Salon Partners</a></li>
                         <li>Contact</li>
                         { !isAuthenticated && <li>
                             {/* <button
