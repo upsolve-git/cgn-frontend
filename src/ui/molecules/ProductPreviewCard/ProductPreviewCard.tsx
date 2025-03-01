@@ -21,7 +21,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
       <div className="relative h-[65%] overflow-hidden">
         <img
           // src={`${product.images[0]}?${new Date().getDate()}`}
-          src={`${product.images[product.images.length-1]}`}
+          src={`${product.images[0]}`}
           alt={product?.name || "Product image"}
           className="absolute p-8 w-full h-full"
           onError={(e) => {

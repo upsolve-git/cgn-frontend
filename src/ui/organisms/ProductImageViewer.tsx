@@ -42,7 +42,7 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
   };
 
   useEffect(() => {
-    setCurrentIndex(productImages.length - 1);
+    setCurrentIndex(0);
   }, [productImages.length]);
 
 

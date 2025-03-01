@@ -81,7 +81,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
 
     useEffect(() => {
         if (product && product.images && product.images.length > 0) {
-            setCurrentImageIndex(product.images.length - 1);
+            setCurrentImageIndex(0);
         }
     }, [product]);
     
@@ -94,7 +94,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         setSelectedColor(colorKey);
         if (colorKey === "") {
             setSelectedShades([]);
-            setCurrentImageIndex(product.images.length - 1);
+            setCurrentImageIndex(0);
             return;
         }
         setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
@@ -113,7 +113,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     const handleImageChange = (newIndex: number) => {
         setCurrentImageIndex(newIndex);
 
-        if (newIndex === product.images.length - 1) {
+        if (newIndex === 0) {
             setSelectedColor("");
             setSelectedShades([]);
             return;
