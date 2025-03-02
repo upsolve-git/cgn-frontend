@@ -16,7 +16,7 @@ const FooterSection: React.FC<FooterSectionProps> = ()=>{
                     fill="#FFFFFF"/>
                     <div
                     className="grid grid-cols-2 max-w-40% tablet:grid-rows-1 tablet:grid-cols-2 tablet:min-w-[80%] tablet:gap-3">
-                        <div
+                        {/* <div
                         className="">
                             <p
                             className="text-sm font-medium tablet:text-md desktop:text-xl">Menu</p>
@@ -25,7 +25,7 @@ const FooterSection: React.FC<FooterSectionProps> = ()=>{
                                 <li>About</li>
                                 <li>Products</li>
                             </ul>
-                        </div>
+                        </div> */}
                         <div>
                             <p
                             className="text-sm font-medium tablet:text-md desktop:text-xl">Contact</p>

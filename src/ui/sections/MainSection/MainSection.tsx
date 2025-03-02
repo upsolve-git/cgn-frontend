@@ -70,7 +70,7 @@ const MainSection: React.FC<MainSectionProps> = () => {
                                         alt="Nail Polish"
                                         className="w-[100px] h-[170px] desktop:w-[150px] desktop:h-[250px] -translate-x-[15%]"
                                     />
-                                    <p className="text-xxs text-darkgray text-center desktop:text-sm">{names[currIndex]}</p>
+                                    <p className="text-xxs text-darkgray text-center desktop:text-sm ml-[-15%]">{names[currIndex]}</p>
                                 </motion.div>
                             </AnimatePresence>
                         </div>

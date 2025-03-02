@@ -18,6 +18,7 @@ const TopSellingShadesSection: React.FC<TopSellingShadesSectionProps> = ()=>{
     let description = ["Warm, luxurious elegance", "Timeless, subtle sophistication", "Romantic, delicate blush", "Versatile, everyday neutral"]
     for(let i=0;i<maxGridItems; i++){
         let element = assetPaths.getElementAt(i)
+        console.log(element)
         if(element){
             nailPolishes.push(<NailPolish name={names[i]} description={description[i]} nailPolishPath={element.value.nailPolishPath} key={i}/>)
         }

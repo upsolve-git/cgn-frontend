@@ -55,7 +55,6 @@ const ProductPreviewList: React.FC<ProductPreviewListProps> = ({
             <div className={`grid h-fit w-fit grid-cols-2 grid-rows-2 gap-6 tablet:grid-rows-1 tablet:grid-cols-${maxGridItems} desktop:grid-cols-${maxGridItems} desktop:px-6`}>
                 {
                     createWindowProds().map((product, index) => {
-                        console.log(product)
                         return (
                         <ProductPreviewCard
                             key={index}

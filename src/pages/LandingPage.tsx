@@ -30,7 +30,7 @@ const LandingPage: React.FC<LandingPageProps> = ()=>{
                     <BestSellerSection />
                     <TopSellingShadesSection />
                 </div>
-                <OurProductsSection />
+                {/* <OurProductsSection /> */}
                 <AboutUs />
                 <ContactUsSection />
                 {/* <FooterSection /> */}

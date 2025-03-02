@@ -28,11 +28,11 @@ const BigNavbar: React.FC<BigNavbarProps> = ()=>{
                 <ul
                 className="text-xs max-w-[500px] flex hover:cursor-pointer items-center justify-between text-primary w-[65%] desktop:text-md desktop:w-[50%] desktop:max-w-prose">
                     <li><a href="/">Home</a></li>
-                    <li>About</li>
+                    {/* <li>About</li> */}
                     <li><a href="/products">Products</a></li>
                     <li><a href={'/salons'}>Salon Partners</a></li>
                     { isAuthenticated && <li><a href="/orders">Orders</a></li> }
-                    <li>Contact</li>
+                    {/* <li>Contact</li> */}
                     { !isAuthenticated && <li>
                         <button 
                         onClick={() => navigate(SIGNUP_PAGE)}

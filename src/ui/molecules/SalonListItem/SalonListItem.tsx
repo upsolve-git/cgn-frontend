@@ -49,13 +49,22 @@ const SalonListItem: React.FC<SalonListItemProps> = ({ salon }) => {
     return (
         <div
             className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center items-center hover:shadow-lg cursor-pointer"
-            onClick={() => navigate(`/salonDetail/${salon.salonName}`, { state: { salon } })}
+            // onClick={() => navigate(`/salonDetail/${salon.salonName}`, { state: { salon } })}
         >
             <p className="text-lg font-semibold text-center mb-2">
                 {salon.salonName}
             </p>
             <p className="text-sm text-gray-600 text-center">
                 {salon.contactEmail}
+            </p>
+            <p className="text-sm text-gray-600 text-center">
+                {salon.contactMobile}
+            </p>
+            <p className="text-sm text-gray-600 text-center">
+                {/* {salon.address} */}
+                PO Box 2900 Station A,
+                Sudbury, ON
+                P3A 5J3
             </p>
         </div>
     );

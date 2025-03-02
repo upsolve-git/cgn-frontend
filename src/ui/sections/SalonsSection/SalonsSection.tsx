@@ -64,7 +64,7 @@ const SalonsSection: React.FC<SalonsSectionProps> = ()=>{
         <div className="grid gap-4 
     grid-cols-1 
     tablet:grid-cols-2 
-    desktop:grid-cols-3">
+    desktop:grid-cols-3 pb-10 p-4">
             {
                 salons.map(salon=><SalonListItem salon={salon}/>)
             }

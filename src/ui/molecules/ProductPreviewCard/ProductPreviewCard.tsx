@@ -9,6 +9,7 @@ interface ProductPreviewCardProps {
   ishomepage: boolean
 }
 
+
 const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
   product,
   isBestSeller,
@@ -19,14 +20,19 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
   return (
     <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
       <div className="relative h-[65%] overflow-hidden">
+        
         <img
           // src={`${product.images[0]}?${new Date().getDate()}`}
-          src={`${product.images[0]}`}
+          src={isBestSeller ? `${product.images[product.images.length - 1]}` : `${product.images[0]}`}
           alt={product?.name || "Product image"}
           className="absolute p-8 w-full h-full"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = '/image/mainsection/color1/nailpolish.png';
+          }}
+          onClick={() => {
+            navigate(`/productDetail/${product?.product_id || 1}`);
+            window.location.reload();
           }}
         />
       </div>

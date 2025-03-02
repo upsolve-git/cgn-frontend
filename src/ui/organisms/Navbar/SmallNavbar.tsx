@@ -47,10 +47,10 @@ const SmallNavbar: React.FC<SmallNavbarProps> = () => {
                 {menuOpen && (
                     <ul className="absolute flex flex-col gap-1 justify-between items-center right-0 top-full mt-2 bg-white shadow-lg py-3 px-4 text-xs z-50">
                         <li><a href="/">Home</a></li>
-                        <li>About</li>
+                        {/* <li>About</li> */}
                         <li><a href="/products">Products</a></li>
                         <li><a href={'/salons'}>Salon Partners</a></li>
-                        <li>Contact</li>
+                        {/* <li>Contact</li> */}
                         { !isAuthenticated && <li>
                             {/* <button
                             onClick={() => navigate(SIGNUP_PAGE)}

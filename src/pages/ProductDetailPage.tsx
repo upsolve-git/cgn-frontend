@@ -43,7 +43,6 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
 
     const filterColors = (product: Product) => {
         const colorMap: { [color_name: string]: { color: string; shadesCodeMapping: { shade: string, code: string, id: number }[] } } = {};
-        console.log(product)
         product.colors.forEach(color => {
             if (!colorMap[color.color_name]) {
                 colorMap[color.color_name] = {
@@ -84,6 +83,13 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             setCurrentImageIndex(0);
         }
     }, [product]);
+
+    useEffect(() => {
+        if (selectedShades.length > 0) {
+            // Automatically select the first shade (0th index)
+            handleShadeSelect(selectedShades[0]);
+        }
+    }, [selectedShades]);
     
 
     const handleShadeSelect = (shade: { shade: string; code: string; id: number }) => {
@@ -137,7 +143,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             className="bg-secondary my-3 tablet:my-16">
                 {/* {!isImageLoaded && <p>Loading...</p>} */}
             {products.length && (
-                <div>
+                <div className="pb-10">
                     <div className="w-[80%] m-auto tablet:grid tablet:grid-cols-2">
                         <div
                         className="w-full">
@@ -184,9 +190,9 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                 }
                                 <h2 className="text-xs mb-3 desktop:text-md">{product.description}
                                     <br/>
-                                    <a
+                                    {/* <a
                                     className="text-primary underline" 
-                                    href="/productsinfo">Product Information</a>
+                                    href="/productsinfo">Product Information</a> */}
                                 </h2>
                                 {
                                     product.categories[0] === "Nail Polish" &&
@@ -206,7 +212,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                         </select>
                                     </div>
                                 }
-                                <div
+                                {/* <div
                                 className="my-3">
                                     {
                                         selectedShades.length > 0 && (
@@ -216,7 +222,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                                     {selectedShades.map((shade) => (
                                                         <div key={shade.code} className="columns-[70px] flex flex-col items-center">
                                                             <div
-                                                                className="w-8 h-8 mb-2 rounded-full"
+                                                                className={`w-8 h-8 mb-2 rounded-full ${selectedShadeDetails.code === shade.code ? 'ring-2 ring-primary' : ''}`}
                                                                 style={{ backgroundColor: shade.code }}
                                                                 onClick={() => handleShadeSelect(shade)}
                                                             ></div>
@@ -234,7 +240,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                             <label className="font-bold text-sm">{selectedShadeDetails.shade}</label>
                                             </div>
                                     )}
-                                </div>
+                                </div> */}
                                 {
                                     product.categories[0] === "Nail Polish" &&
                                     <div
@@ -295,7 +301,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                         <ProductPreviewList
                             ishomepage={false}
                             products={products}
-                            isBestSeller={true} />
+                            isBestSeller={false} />
                     }
                 </div>)}
             <ReviewsSection />

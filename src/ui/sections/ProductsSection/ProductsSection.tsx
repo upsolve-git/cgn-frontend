@@ -21,6 +21,13 @@ import ProductPreviewList from "../../organisms/ProductPreviewList/ProductPrevie
 
 interface ProductsSectionProps { }
 
+// Extended ActiveCats to include machine names
+interface ExtendedActiveCats extends ActiveCats {
+    beautyBed: boolean;
+    androidEMS: boolean;
+    laserHair: boolean;
+}
+
 const ProductsSection: React.FC<ProductsSectionProps> = ({
 
 }) => {
@@ -28,58 +35,76 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     let { priceRange, rating, activeCats, activeCatsChange, sortBy, sortByChange, searchProd, searchProdChange, clearAll } = useFiltersContext()
     let [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
     const [showSortOptions, setShowSortOptions] = useState(false);
-    // let [prods, setProds] = useState<Product[]>([])
     const { products } = useAdminPage();
-    // useEffect(() => {
-    //     setProds([...products]); 
-    // }, [products])
 
-    // let products = dummyProducts
+    // Extended activeCats with machine names
+    const extendedActiveCats = activeCats as ExtendedActiveCats;
+    
+    // Function to change active category for specific machine names
+    const handleMachineSelect = (machineName: 'beautyBed' | 'androidEMS' | 'laserHair') => {
+        const newActiveCats = {
+            allproducts: false,
+            nailPolish: false,
+            machines: false,
+            beautyBed: false,
+            androidEMS: false,
+            laserHair: false,
+        };
+        newActiveCats[machineName] = true;
+        activeCatsChange(newActiveCats as unknown as ActiveCats);
+    };
 
     let filteredproducts = useMemo(() => {
-
         let res = [...products];
 
+        // Determine which category is active
         let trueCat = 'allproducts';
-        for (let key in activeCats) {
-            if (activeCats[key as keyof ActiveCats]) {
-                trueCat = key;
+        let specificMachine = '';
+        
+        for (let key in extendedActiveCats) {
+            if (extendedActiveCats[key as keyof ExtendedActiveCats]) {
+                if (key === 'beautyBed' || key === 'androidEMS' || key === 'laserHair') {
+                    trueCat = 'machines';
+                    specificMachine = key;
+                } else {
+                    trueCat = key;
+                }
                 break;
             }
         }
+
+        // Filter by category
         if (trueCat !== 'allproducts') {
             res = res.filter(prod => {
                 let category = prod.categories[0];
                 if (trueCat === 'nailPolish') return category === 'Nail Polish';
-                if (trueCat === 'machines') return category === 'Machine';
+                if (trueCat === 'machines') {
+                    if (specificMachine === 'beautyBed') return category === 'Machine' && prod.name.includes('Electric Beauty Bed') || prod.name.includes('Podiatry chair');
+                    if (specificMachine === 'androidEMS') return category === 'Machine' && prod.name.includes('Android EMS') || prod.name.includes('RF Sculpture');
+                    if (specificMachine === 'laserHair') return category === 'Machine' && prod.name.includes('LASER HAIR REMOVAL');
+                    return category === 'Machine';
+                }
                 return category === trueCat;
             });
         }
-        
 
+        // Apply price filter
         if (priceRange[0] !== 0 || priceRange[1] !== 0) {
             res = res.filter(prod => {
                 return prod.discounted_price >= priceRange[0] && prod.discounted_price <= priceRange[1];
             });
         }
 
-        // if (rating && rating.length > 0) {
-        //     res = res.filter(prod => prod.rating >= rating[0] && prod.rating <= rating[1]);
-        // }
-
+        // Apply sort
         if (sortBy) {
             if (sortBy === 'price-asc') {
                 res.sort((a, b) => a.discounted_price - b.discounted_price);
             } else if (sortBy === 'price-desc') {
                 res.sort((a, b) => b.discounted_price - a.discounted_price);
             }
-            // else if (sortBy === 'rating-asc') {
-            //     res.sort((a, b) => a.rating - b.rating);
-            // } else if (sortBy === 'rating-desc') {
-            //     res.sort((a, b) => b.rating - a.rating);
-            // }
         }
 
+        // Apply search filter
         if (searchProd) {
             res = res.filter(prod =>
                 prod.name.toLowerCase().includes(searchProd.toLowerCase())
@@ -89,16 +114,15 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         return res;
     }, [products, priceRange, rating, activeCats, sortBy, searchProd]);
 
-
-
     let items = []
     for (let i = 0; i < filteredproducts.length; i++) {
-        items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={true} key={i + 1} ishomepage={false} />)
+        items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={false} key={i + 1} ishomepage={false} />)
     }
 
     useEffect(() => {
         clearAll()
     }, [])
+    
     return (
         <div
             className="py-14 w-screen flex flex-col items-center overflow-y-scroll overflow-x-hidden">
@@ -130,23 +154,25 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                     onClick={() => activeCatsChange({
                                                         allproducts: true,
                                                         nailPolish: false,
-                                                        machines: false
-                                                    })}
-                                                    isActive={activeCats.allproducts} />
+                                                        machines: false,
+                                                    } as ActiveCats)}
+                                                    isActive={extendedActiveCats.allproducts} />
                                                 <NavButton label="Nail Polish"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: false,
                                                         nailPolish: true,
-                                                        machines: false
-                                                    })}
-                                                    isActive={activeCats.nailPolish} />
-                                                    <NavButton label="Machines"
-                                                    onClick={() => activeCatsChange({
-                                                        allproducts: false,
-                                                        nailPolish: false,
-                                                        machines: true
-                                                    })}
-                                                    isActive={activeCats.machines} />
+                                                        machines: false,
+                                                    } as ActiveCats)}
+                                                    isActive={extendedActiveCats.nailPolish} />
+                                                <NavButton label="Beauty Bed"
+                                                    onClick={() => handleMachineSelect('beautyBed')}
+                                                    isActive={extendedActiveCats.beautyBed} />
+                                                <NavButton label="Android EMS"
+                                                    onClick={() => handleMachineSelect('androidEMS')}
+                                                    isActive={extendedActiveCats.androidEMS} />
+                                                <NavButton label="Diode Laser"
+                                                    onClick={() => handleMachineSelect('laserHair')}
+                                                    isActive={extendedActiveCats.laserHair} />
                                             </div>
                                             <div
                                                 className="w-[90%] m-auto flex justify-around my-4">
@@ -210,28 +236,30 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                     <div>
 
                             <div className="flex w-[90vw] justify-between items-center m-auto">
-                                <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]">
+                                <div className="grid grid-rows-1 grid-cols-6 w-fit h-[50%]">
                                     <NavButton label="All products"
                                         onClick={() => activeCatsChange({
                                             allproducts: true,
                                             nailPolish: false,
-                                            machines: false
-                                        })}
-                                        isActive={activeCats.allproducts} />
+                                            machines: false,
+                                        } as ActiveCats)}
+                                        isActive={extendedActiveCats.allproducts} />
                                     <NavButton label="Nail Polish"
                                         onClick={() => activeCatsChange({
                                             allproducts: false,
                                             nailPolish: true,
-                                            machines: false
-                                        })}
-                                        isActive={activeCats.nailPolish} />
-                                        <NavButton label="Machines"
-                                        onClick={() => activeCatsChange({
-                                            allproducts: false,
-                                            nailPolish: false,
-                                            machines: true
-                                        })}
-                                        isActive={activeCats.machines} />
+                                            machines: false,
+                                        } as ActiveCats)}
+                                        isActive={extendedActiveCats.nailPolish} />
+                                    <NavButton label="Beauty Bed"
+                                        onClick={() => handleMachineSelect('beautyBed')}
+                                        isActive={extendedActiveCats.beautyBed} />
+                                    <NavButton label="Android EMS"
+                                        onClick={() => handleMachineSelect('androidEMS')}
+                                        isActive={extendedActiveCats.androidEMS} />
+                                    <NavButton label="Diode Laser"
+                                        onClick={() => handleMachineSelect('laserHair')}
+                                        isActive={extendedActiveCats.laserHair} />
                                 </div>
                                 <div className="w-[40%] flex items-center rounded-md">
                                     <FaSearch
@@ -276,14 +304,14 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                             }
 
                             {
-                                activeCats["machines"] && Array.isArray(filteredproducts) && filteredproducts.length>0?
-                                <ProductPreviewList 
-                                products={filteredproducts}
-                                isBestSeller={false}
-                                ishomepage={true}
-                                gridItems={1}
-                                />
-                                :
+                                // (extendedActiveCats.beautyBed || extendedActiveCats.androidEMS || extendedActiveCats.laserHair) && Array.isArray(filteredproducts) && filteredproducts.length>0?
+                                // <ProductPreviewList 
+                                // products={filteredproducts}
+                                // isBestSeller={false}
+                                // ishomepage={true}
+                                // gridItems={1}
+                                // />
+                                // :
                                 <div
                                 className="grid grid-cols-2 gap-6 tablet:w-[70%] tablet:grid-cols-3 desktop:grid-cols-4 desktop:gap-8">
                                     {
