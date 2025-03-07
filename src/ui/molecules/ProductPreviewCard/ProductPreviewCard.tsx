@@ -23,7 +23,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         
         <img
           // src={`${product.images[0]}?${new Date().getDate()}`}
-          src={isBestSeller ? `${product.images[product.images.length - 1]}` : `${product.images[0]}`}
+          src={isBestSeller ? `${product.images[0]}` : `${product.images[0]}`}
           alt={product?.name || "Product image"}
           className="absolute p-8 w-full h-full"
           onError={(e) => {
@@ -53,7 +53,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         <div className="flex items-center justify-between w-full">
   {(product.categories[0] === "Nail Polish"|| product.name === "Electric Beauty Bed/Podiatry chair") && (
     <span className="text-md font-semibold truncate">
-      ${localStorage.getItem('role')==='Business'?product?.discounted_price:product?.price}
+      ${product?.price}
     </span>
   )}
 
