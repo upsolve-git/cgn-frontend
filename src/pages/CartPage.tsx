@@ -60,63 +60,6 @@ const CartPage: React.FC<CartPageProps> = () => {
                                 />
                             })
                         }
-                        {/* {
-                            isMobile ?
-                                cartItems.map((item) => (
-                                    <tr key={item.product_id}>
-                                        <td>
-                                            <img src={item.images[0]} alt={item.name} className="h-16 w-16 object-cover mx-auto" />
-                                        </td>
-                                        <td>{item.name}</td>
-                                        <td>{item.shade_name !== "NA" ? item.shade_name : ""}</td>
-                                        <td>${item.discounted_price}</td>
-                                        <td className="inline-flex justify-center items-center space-x-2 mt-4">
-                                            <button onClick={() => navigate(`/productDetail/${item.product_id}`)}><GrEdit /></button>
-                                            <span>{item.quantity}</span>
-                                        </td>
-                                        <td>${(item.quantity * item.discounted_price).toFixed(2)}</td>
-                                        <td>
-                                            <button onClick={() => { handleDeleteFromCart(item.product_id, item.color_id) }}>
-                                                <RiDeleteBin6Line />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )) :
-                                <table className="table-fixed w-full">
-                                    <thead>
-                                        <tr>
-                                            <th className="text-center font-normal text-md">Product</th>
-                                            <th className="text-center font-normal text-md">Name</th>
-                                            <th className="text-center font-normal text-md">Color</th>
-                                            <th className="text-center font-normal text-md">Price</th>
-                                            <th className="text-center font-normal text-md">Quantity</th>
-                                            <th className="text-center font-normal text-md">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="text-center text-sm">
-                                        {cartItems.map((item) => (
-                                            <tr key={item.product_id}>
-                                                <td>
-                                                    <img src={item.images[0]} alt={item.name} className="h-16 w-16 object-cover mx-auto" />
-                                                </td>
-                                                <td>{item.name}</td>
-                                                <td>{item.shade_name !== "NA" ? item.shade_name : ""}</td>
-                                                <td>${item.discounted_price}</td>
-                                                <td className="inline-flex justify-center items-center space-x-2 mt-4">
-                                                    <button onClick={() => navigate(`/productDetail/${item.product_id}`)}><GrEdit /></button>
-                                                    <span>{item.quantity}</span>
-                                                </td>
-                                                <td>${(item.quantity * item.discounted_price).toFixed(2)}</td>
-                                                <td>
-                                                    <button onClick={() => { handleDeleteFromCart(item.product_id, item.color_id) }}>
-                                                        <RiDeleteBin6Line />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                        } */}
                     </div>
                 </div>
 
@@ -152,7 +95,7 @@ const CartPage: React.FC<CartPageProps> = () => {
 
                     <div className="flex space-x-2">
                         <div className="w-[40%] space-y-1">
-                            <p className=" text-md">State</p>
+                            <p className=" text-md">Province</p>
                             <select
                                 className="w-full rounded bg-lightgray text-md"
                                 value={address.state}
@@ -170,7 +113,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                             <input type="text" className="w-full rounded bg-lightgray" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} />
                         </div>
                         <div className="w-[20%] space-y-1">
-                            <p className="text-md">Pincode</p>
+                            <p className="text-md">Postal Code</p>
                             <input type="text" className="w-full rounded bg-lightgray" value={address.pincode} onChange={(e) => setAddress({ ...address, pincode: e.target.value })} />
                         </div>
                     </div>

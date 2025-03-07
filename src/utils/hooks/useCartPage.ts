@@ -121,8 +121,12 @@ export const useCartPage = () => {
   const handleDeleteFromCart = async (product_id: number, color_id: number) => {
     try {
       const res = await deleteFromUsersCartReq(product_id, color_id);
-      console.log("deleted from cart", res);
-      window.location.reload()
+      if(res?.status==200){
+        setCartItems(cartItems.filter(item=>item.product_id!==product_id))
+        console.log(res.status, "success: deleted from cart")
+      }else{
+        console.log(res?.status, "\nerror: not deleted from cart in db");
+      }
     } catch (err) {
       console.error("Error deleting product from cart:", err);
     }
