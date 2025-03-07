@@ -149,7 +149,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                         <div>
 
                                             <div
-                                                className="px-2 flex min-w-fit justify-start">
+                                                className="px-2 text-center">
                                                 <NavButton label="All products"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: true,
