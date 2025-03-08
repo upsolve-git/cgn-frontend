@@ -91,16 +91,16 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         // Apply price filter
         if (priceRange[0] !== 0 || priceRange[1] !== 0) {
             res = res.filter(prod => {
-                return prod.discounted_price >= priceRange[0] && prod.discounted_price <= priceRange[1];
+                return prod.price >= priceRange[0] && prod.price <= priceRange[1];
             });
         }
 
         // Apply sort
         if (sortBy) {
             if (sortBy === 'price-asc') {
-                res.sort((a, b) => a.discounted_price - b.discounted_price);
+                res.sort((a, b) => a.price - b.price);
             } else if (sortBy === 'price-desc') {
-                res.sort((a, b) => b.discounted_price - a.discounted_price);
+                res.sort((a, b) => b.price - a.price);
             }
         }
 

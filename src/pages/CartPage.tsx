@@ -32,7 +32,7 @@ const CartPage: React.FC<CartPageProps> = () => {
         fullPrice = fullPrice + item.quantity * item.price
         if(localStorage.getItem('role')==='Business'){
             console.log('its a business profile')
-            sumTotal = sumTotal + item.quantity * item.discounted_price
+            sumTotal = sumTotal + item.quantity * item.discounted_business_price
         }else{
             console.log('not business profile')
             sumTotal = sumTotal + item.quantity * item.price
