@@ -21,6 +21,7 @@ const EditProductSection: React.FC<EditProductSectionProps> = () => {
         prodCost, handleProdCost,
         prodCostBusiness, handleProdCostBusiness,
         handleEditProduct,
+        handleFileChange,
         error
     } = useEditProduct()
 
@@ -40,6 +41,7 @@ const EditProductSection: React.FC<EditProductSectionProps> = () => {
                         <NumberInput value={prodCost} label="Product cost" callbackFunc={handleProdCost}/>
                         {/* <NumberInput value={prodDiscountPercentage} label="Price after discount" callbackFunc={handleProdDiscountPercentage}/> */}
                         <NumberInput value={prodCostBusiness} label="Business Price after discount" callbackFunc={handleProdCostBusiness}/>
+                        <FileInput label="Product images" onChange={handleFileChange}/>
                     </tbody>
                 </table>
                 <div
