@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getAdminAuth } from "../../services/login";
 import Orders from "../../ui/sections/AdminSection/Orders";
 import EditProductSection from "../../ui/sections/AdminSection/EditProductSection";
+import ProductsListSection from "../../ui/sections/AdminSection/ProductsListSection";
 
 interface AdminPageProps{}
 
@@ -107,6 +108,8 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     addProduct={addProductHandler}
                     error={addProductsError}
                     />
+                    :selectedMenuItem === "Products" ?
+                    <ProductsListSection products={products} />
                     : selectedMenuItem === "Edit Product" ?
                     <EditProductSection />
                     : selectedMenuItem === "Add Best Selling products" ? 
