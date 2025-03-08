@@ -37,6 +37,7 @@ export const GET_AUTH_ENDPOINT = '/getauth'
 export const GET_ORDER = '/order/'
 export const LANDING_PAGE = '/landingpage'
 export const FEEDBACK_ENDPOINT = '/sendfeeback'
+export const EDIT_PRODUCT_ENDPOINT = '/updateproduct'
 
 export const POS_WEBSITE_URL = 'https://main.d29iicb8es15um.amplifyapp.com/'
 export const base_url = 'https://posapi.canadiangelnails.com/'

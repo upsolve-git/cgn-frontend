@@ -1,6 +1,6 @@
 import axios from '../helpers/axios'
 
-import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT } from '../constants/routes';
+import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT, EDIT_PRODUCT_ENDPOINT } from '../constants/routes';
 import { Color } from '../interfaces/Color';
 
 interface AddProdParams{
@@ -13,6 +13,14 @@ interface AddProdParams{
     categoryId: number[]
     colors : Color[]
     discounted_business_price: number,
+}
+
+interface EditProductParams{
+    prodId: string,
+    name: string,
+    description: string,
+    cost: number,
+    discBusinessCost: number
 }
 
 export const addProductsReq = async (
@@ -61,4 +69,27 @@ export const addNewSellerReq = async (product_id : number)=>{
             "product_id": product_id
         });
     }
-} 
+}
+
+export const editProduct = async (
+    { prodId, name, description, cost, discBusinessCost }: EditProductParams
+  ) => {
+    console.log('Editing product:', prodId, name, description, cost, discBusinessCost);
+  
+    let formData = new FormData();
+    formData.append('product_id', prodId);
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', cost.toString());
+    formData.append('discounted_business_price', discBusinessCost.toString());
+  
+    try {
+      const response = await axios.post(EDIT_PRODUCT_ENDPOINT, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error editing product:', error);
+      throw error;
+    }
+  };

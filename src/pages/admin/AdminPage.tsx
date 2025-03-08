@@ -8,6 +8,7 @@ import UserList from "../../ui/organisms/UsersList/UsersList";
 import { useEffect, useState } from "react";
 import { getAdminAuth } from "../../services/login";
 import Orders from "../../ui/sections/AdminSection/Orders";
+import EditProductSection from "../../ui/sections/AdminSection/EditProductSection";
 
 interface AdminPageProps{}
 
@@ -106,6 +107,8 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     addProduct={addProductHandler}
                     error={addProductsError}
                     />
+                    : selectedMenuItem === "Edit Product" ?
+                    <EditProductSection />
                     : selectedMenuItem === "Add Best Selling products" ? 
                     <ProductPreviewListAdmin products={products} onClick={addBestSellerhandler} />
                     : selectedMenuItem === "Add New Products" ? 

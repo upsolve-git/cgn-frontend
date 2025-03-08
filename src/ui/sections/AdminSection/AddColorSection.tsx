@@ -25,8 +25,8 @@ const AddColorSection: React.FC<AddColorSectionProps> = ({color, shade, code,set
             className="table-auto text-md border-separate border-spacing-4">
                 <tbody>
                     <TextInput value={color} label="Color" onChange={setColor}/>
-                    <TextInput value={shade} label="Shade"  onChange={setShade}/>
-                    <TextInput value={code} label="HEX Code"  onChange={setCode}/>
+                    {/* <TextInput value={shade} label="Shade"  onChange={setShade}/>
+                    <TextInput value={code} label="HEX Code"  onChange={setCode}/> */}
                 </tbody>
             </table>
             <div
