@@ -2,6 +2,7 @@ import React from "react";
 import { Product } from "../../../interfaces/Product";
 import { FiShoppingCart } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
+import { productsInfoList } from "../../../constants/productInfoLinks";
 
 interface ProductPreviewCardProps {
   product: Product
@@ -17,24 +18,29 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
 }) => {
   const navigate = useNavigate()
 
+  console.log("product: ",product)
+
   return (
     <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
       <div className="relative h-[65%] overflow-hidden">
         
-        <img
-          // src={`${product.images[0]}?${new Date().getDate()}`}
-          src={isBestSeller ? `${product.images[0]}` : `${product.images[0]}`}
-          alt={product?.name || "Product image"}
-          className="absolute p-8 w-full h-full"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/image/mainsection/color1/nailpolish.png';
-          }}
-          onClick={() => {
-            navigate(`/productDetail/${product?.product_id || 1}`);
-            window.location.reload();
-          }}
-        />
+        {
+          product.images!=null &&
+          <img
+            // src={`${product.images[0]}?${new Date().getDate()}`}
+            src={isBestSeller ? `${product.images[0]}` : `${product.images[0]}`}
+            alt={product?.name || "Product image"}
+            className="absolute p-8 w-full h-full"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/image/mainsection/color1/nailpolish.png';
+            }}
+            onClick={() => {
+              navigate(`/productDetail/${product?.product_id || 1}`);
+              window.location.reload();
+            }}
+          />
+        }
       </div>
       <div className="flex-grow bg-secondarylight p-3 flex flex-col justify-between max-h-[35%]">
         <div>
