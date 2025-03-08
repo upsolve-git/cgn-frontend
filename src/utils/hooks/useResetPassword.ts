@@ -1,26 +1,18 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { resetPassword } from '../../services/auth';
 import { ResetPasswordParams } from '../../interfaces/Password';
 
 export const useResetPassword = () => {
-  const [email, setEmail] = useState<string>('');
-  const [emailErr, setEmailErr] = useState<string>('');
+  // Get the token from the URL params
+  const { token } = useParams<{ token: string }>();
+  
   const [password, setPassword] = useState<string>('');
   const [passwordErr, setPasswordErr] = useState<string>('');
   const [confPassword, setConfPassword] = useState<string>('');
   const [confPasswordErr, setConfPasswordErr] = useState<string>('');
   const [submitError, setSubmitError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (!/\S+@\S+\.\S+/.test(value)) {
-      setEmailErr('Invalid email address');
-    } else {
-      setEmailErr('');
-    }
-  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -47,11 +39,9 @@ export const useResetPassword = () => {
     }
   };
 
-  // Returns true if any field is empty or has errors
   const checkValues = () => {
     return (
-      !email ||
-      !!emailErr ||
+      !token ||
       !password ||
       !!passwordErr ||
       !confPassword ||
@@ -66,7 +56,7 @@ export const useResetPassword = () => {
     }
     setSubmitError('');
     try {
-      const data = await resetPassword({ email, password } as ResetPasswordParams);
+      await resetPassword({ token: token!, password });
       setSuccess('Password reset successfully.');
     } catch (error: any) {
       setSubmitError(error.response?.data?.message || 'Failed to reset password.');
@@ -74,9 +64,7 @@ export const useResetPassword = () => {
   };
 
   return {
-    email,
-    emailErr,
-    handleEmailChange,
+    token,
     password,
     passwordErr,
     handlePasswordChange,

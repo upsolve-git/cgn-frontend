@@ -23,6 +23,7 @@ import { getAuth } from "../services/auth";
 import SalonsPage from "../pages/SalonsPage";
 import ProductInfoPage from "../pages/ProductInfoPage";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
+import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage";
 
 const authLoader = async () => {
     console.log('auth redirect');
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             },
             {
                 path: 'forgotpassword',
+                element: <ForgotPasswordPage />
+            },
+            {
+                path: 'resetpassword/:token',
                 element: <ResetPasswordPage />
             }
         ]

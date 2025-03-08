@@ -1,35 +1,38 @@
 import React from 'react';
 
 import FormCard from "../../ui/molecules/FormCard/FormCard";
+import EmailInput from "../../ui/atoms/formElements/auth/EmailInput/EmailInput";
 import PasswordInput from "../../ui/atoms/formElements/auth/PasswordInput/PasswordInput";
 import AuthSubmitButton from "../../ui/atoms/buttons/ActionButton/AuthSubmitButton";
 
-import { useResetPassword } from '../../utils/hooks/useResetPassword';
+import { useForgotPassword } from '../../utils/hooks/useForgotPassword';
 
-interface ResetPasswordPageProps {}
+interface ForgotPasswordPageProps {}
 
-const ResetPasswordPage: React.FC<ResetPasswordPageProps> = () => {
+const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = () => {
   const {
-    password,
-    passwordErr,
-    handlePasswordChange,
-    confPassword,
-    confPasswordErr,
-    handleConfPassword,
+    email,
+    emailErr,
+    handleEmailChange,
     checkValues,
-    handleResetPassword,
+    handleForgotPassword,
     submitError,
     success,
-  } = useResetPassword();
+  } = useForgotPassword();
 
   return (
     <div className="h-screen flex flex-col items-center justify-center">
       <FormCard>
         <div id="form-title-wrapper" className="flex flex-col items-center justify-center my-4">
-          <h1 className="text-lg font-medium tablet:text-xl desktop:text-2xl">Reset Password</h1>
+          <h1 className="text-lg font-medium tablet:text-xl desktop:text-2xl">Forgot Password</h1>
         </div>
         <div id="input-container" className="my-3 w-full">
-          <PasswordInput
+          <EmailInput 
+            value={email}
+            error={emailErr}
+            onChange={handleEmailChange}
+          />
+          {/* <PasswordInput
             label="Password"
             value={password}
             errors={passwordErr ? [passwordErr] : []}
@@ -40,13 +43,13 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = () => {
             value={confPassword}
             errors={confPasswordErr ? [confPasswordErr] : []}
             onChange={handleConfPassword}
-          />
+          /> */}
         </div>
         <AuthSubmitButton 
           disabled={checkValues()}
           error={submitError}
-          label="Reset Password"
-          callbackFunc={handleResetPassword}
+          label="Send Email"
+          callbackFunc={handleForgotPassword}
         />
         {success && <p className="text-green font-medium">{success}</p>}
       </FormCard>
@@ -54,4 +57,4 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default ForgotPasswordPage;

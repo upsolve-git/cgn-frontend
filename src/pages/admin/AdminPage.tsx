@@ -125,8 +125,7 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
             </div>
         </div>
     )
-    
-    
+
 }
 
 export default AdminPage

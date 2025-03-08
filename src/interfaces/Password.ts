@@ -1,4 +1,8 @@
 export interface ResetPasswordParams {
-    email: string;
+    token: string;
     password: string;
+}
+
+export interface ForgotPasswordParams {
+    email: string;
 }
