@@ -22,6 +22,7 @@ import AdminSignInPage from "../pages/auth/AdminSignInPage";
 import { getAuth } from "../services/auth";
 import SalonsPage from "../pages/SalonsPage";
 import ProductInfoPage from "../pages/ProductInfoPage";
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
 
 const authLoader = async () => {
     console.log('auth redirect');
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
             {
                 path: 'admin',
                 element: <AdminSignInPage />
+            },
+            {
+                path: 'forgotpassword',
+                element: <ResetPasswordPage />
             }
         ]
     },

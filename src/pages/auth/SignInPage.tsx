@@ -12,6 +12,7 @@ import GoogleAuthButton from "../../ui/atoms/buttons/GoogleAuthButton/GoogleAuth
 // hooks imports
 import { useSignInPage } from "../../utils/hooks/useSignInPage";
 import { AccTypeContext } from "../../utils/hooks/useAccTypeContext";
+import { resetPasswordEmail } from "../../services/auth";
 
 interface SignInPageProps{}
 
@@ -72,6 +73,13 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                     or continue with 
                 </p>
                 <GoogleAuthButton/>
+                <p
+                className="text-xxs tablet:text-xs desktop:text-sm">
+                    Forgot password?
+                    <a href="/auth/forgotpassword"
+                    onClick={resetPasswordEmail}
+                    className="underline ml-1">Reset here</a>
+                </p>
             </FormCard>
         </div>
     )
