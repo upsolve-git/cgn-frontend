@@ -122,8 +122,14 @@ export const useCartPage = () => {
     try {
       const res = await deleteFromUsersCartReq(product_id, color_id);
       if(res?.status==200){
-        setCartItems(cartItems.filter(item=>item.product_id!==product_id))
+        // setCartItems(cartItems.filter(item=>item.product_id!==product_id))
+        const filteredItems = cartItems.filter(item => !(item.product_id === product_id && item.color_id === color_id) );
+        console.log("Filtered items:", filteredItems); 
+        setCartItems(filteredItems);
+        console.log(cartItems.filter(item=>item.product_id!==product_id))
         console.log(res.status, "success: deleted from cart")
+        window.location.reload()
+        
       }else{
         console.log(res?.status, "\nerror: not deleted from cart in db");
       }

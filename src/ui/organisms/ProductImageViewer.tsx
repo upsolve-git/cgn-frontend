@@ -45,6 +45,8 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
     setCurrentIndex(0);
   }, [productImages.length]);
 
+  console.log('current index:',currentIndex);
+  console.log('image link:',productImages[currentIndex]);
 
   return (
     <div className="w-full max-w-md aspect-square relative">

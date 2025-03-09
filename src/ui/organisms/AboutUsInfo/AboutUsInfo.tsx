@@ -29,7 +29,7 @@ const AboutUsInfo: React.FC<AboutUsInfoProps> = ({
                 </div>
             </div>
             <div
-            className="min-w-fit px-3 bg-secondarylight rounded-t-full self-center m-auto tablet:w-[160px] tablet:h-[220px] desktop:h-[350px] desktop:w-[320px]">
+            className="min-w-fit px-3 overflow-hidden bg-secondarylight rounded-t-full self-center m-auto tablet:w-[160px] tablet:h-[220px] desktop:h-[350px] desktop:w-[320px]">
                 <img src={image} alt="" 
                 className="pt-6 desktop:pt-14 w-[100px] h-[160px] tablet:w-[140px] tablet:h-[200px] desktop:h-[300px] desktop:w-[210px] m-auto"/>
             </div>

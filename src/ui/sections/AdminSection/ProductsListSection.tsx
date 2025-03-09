@@ -21,8 +21,28 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
     { 
       field: 'categories' as keyof Product, 
       headerName: 'Categories', 
-      valueFormatter: (params: any) => Array.isArray(params.value) ? params.value.join(', ') : params.value 
+      valueFormatter: (params: any) =>
+        Array.isArray(params.value) ? params.value.join(', ') : params.value 
     },
+    {
+      headerName: 'Color Range',
+      valueGetter: (params) => {
+        if (!params.data) return 'N/A';
+        const colors = params.data.colors;
+        if (Array.isArray(colors) && colors.length > 0) {
+          const numericColors = colors
+            .map((color: any) => Number(color.color_name))
+            .filter((num: number) => !isNaN(num));
+          if (numericColors.length === 0) {
+            return 'N/A';
+          }
+          const min = Math.min(...numericColors);
+          const max = Math.max(...numericColors);
+          return `${min}-${max}`;
+        }
+        return 'N/A';
+      }
+    }
   ];
 
   return (

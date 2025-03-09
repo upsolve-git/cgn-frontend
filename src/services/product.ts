@@ -15,13 +15,14 @@ interface AddProdParams{
     discounted_business_price: number,
 }
 
-interface EditProductParams{
-    prodId: string,
-    name: string,
-    description: string,
-    cost: number,
-    discBusinessCost: number
-}
+export interface EditProductParams {
+    prodId: string;
+    name: string;
+    description: string;
+    cost: number;
+    discBusinessCost: number;
+    files?: File[];
+  }
 
 export const addProductsReq = async (
     {name, images, type, description, cost, discounted_price, categoryId, colors, discounted_business_price}: AddProdParams
@@ -71,9 +72,14 @@ export const addNewSellerReq = async (product_id : number)=>{
     }
 }
 
-export const editProduct = async (
-    { prodId, name, description, cost, discBusinessCost }: EditProductParams
-  ) => {
+export const editProduct = async ({
+    prodId,
+    name,
+    description,
+    cost,
+    discBusinessCost,
+    files,
+  }: EditProductParams) => {
     console.log('Editing product:', prodId, name, description, cost, discBusinessCost);
   
     let formData = new FormData();
@@ -82,6 +88,12 @@ export const editProduct = async (
     formData.append('description', description);
     formData.append('price', cost.toString());
     formData.append('discounted_business_price', discBusinessCost.toString());
+  
+    if (files && files.length > 0) {
+      files.forEach((file) => {
+        formData.append('images', file);
+      });
+    }
   
     try {
       const response = await axios.post(EDIT_PRODUCT_ENDPOINT, formData, {
