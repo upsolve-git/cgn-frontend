@@ -57,7 +57,7 @@ export const useSignInPage = ()=>{
         
             console.log('log in');
             
-            await loginReq(email, password)
+            await loginReq(email, password, accType)
             .then(res=>{
                 console.log("inside signin success", res)
                 setLoginErr('')

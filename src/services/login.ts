@@ -4,11 +4,12 @@ import { ADD_REVIEW, ADMIN_AUTH, ADMIN_CONFIRM_ORDER, ADMIN_DELIVER_ORDER, ADMIN
 import { Address } from "../interfaces/Address";
 import { Cart } from "../interfaces/Cart";
 
-export const loginReq = async (email: string|undefined, password:string|undefined)=>{
-    if(email && password){
+export const loginReq = async (email: string|undefined, password:string|undefined, accType:string|undefined)=>{
+    if(email && password && accType){
         return axios.post(LOGIN_ENDPOINT, {
             "email": email,
-            "password": password
+            "password": password,
+            "accType":accType
         });
     }
 } 
