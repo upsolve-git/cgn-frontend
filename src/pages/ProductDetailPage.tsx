@@ -304,7 +304,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                             isBestSeller={false} />
                     }
                 </div>)}
-            <ReviewsSection />
+            {/* <ReviewsSection /> */}
         </div>
     )
 }
