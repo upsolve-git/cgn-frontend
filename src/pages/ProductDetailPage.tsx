@@ -98,10 +98,10 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         setSelectedShadeDetails(shade);
     };
     const handleColorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log('handle color change func');
+        // console.log('handle color change func');
         
         const colorKey = event.target.value;
-        console.log('colorKey:',  colorKey)
+        // console.log('colorKey:',  colorKey)
         setSelectedColor(colorKey);
         if (colorKey === "") {
             setSelectedShades([]);
@@ -110,13 +110,26 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         }
         setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
         const imageIndex = Number(colorKey);
-        if (imageIndex >= 0 && imageIndex < product.images.length) {
-            setCurrentImageIndex(imageIndex);
+        // console.log('imageIndex:',  imageIndex);
+        // console.log('length: ',product.images.length)
+        let colorMapArray = Object.values(colorMap);
+        let minColor = Number(colorMapArray[0].color);
+        // console.log('minColor:', minColor)
+        let maxColor = Number(colorMapArray[colorMapArray.length - 1].color);
+        const selectedColor = Number(colorKey);
+        // console.log('selectedColor:', selectedColor)
+        if (
+            imageIndex >= minColor &&
+            imageIndex <= maxColor
+        ) {
+            const polishImageIndex = selectedColor - minColor + 1;
+            // console.log('Polish image index:', polishImageIndex);
+            setCurrentImageIndex(polishImageIndex);
         } else {
             setCurrentImageIndex(0);
-            
         }
-        console.log('img idx: ',imageIndex)
+        // console.log('if failed')
+        // console.log('img idx: ',imageIndex)
     };
     const [isImageLoaded, setImageLoaded] = useState(false);
 
@@ -142,7 +155,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             const shades = colorMap[colorKey]?.shadesCodeMapping || [];
             setSelectedShades(shades);
         }
-        console.log('selewcted color:',selectedColor)
+        // console.log('selewcted color:',selectedColor)
     }
 
     const handleImageLoad = () => {
