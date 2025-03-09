@@ -57,7 +57,7 @@ export const deleteFromUsersCartReq = async(product_id : number, color_id : numb
     if(product_id && color_id) {
         return axios.post(DELETE_FROM_CART, {
             "product_id":product_id,
-            "user_id":color_id
+            "color_id":color_id
         })
     }
 }

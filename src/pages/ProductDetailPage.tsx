@@ -11,6 +11,7 @@ import { useCartPage } from "../utils/hooks/useCartPage";
 import CommonButton from "../ui/atoms/buttons/CommonButton/CommonButton";
 import ProductImageViewer from "../ui/organisms/ProductImageViewer";
 import ReviewsSection from "../ui/sections/ReviewsSection/ReviewsSection";
+import { log } from "console";
 
 
 interface ProductDetailPageProps { }
@@ -25,6 +26,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     // let colors = ["green", "red"]
     let product = products.find(product => product.product_id === Number(id)) || products[1]
     const [quantity, setQuantity] = useState<number>(1);
+    // console.log(product?.images)
 
     const increaseQuantity = () => {
         setQuantity(prevQuantity => {
@@ -71,7 +73,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
     if (products.length !== 0) {
         colorMap = filterColors(product)
     }
-    console.log(colorMap)
+    // console.log(colorMap)
 
     const [selectedColor, setSelectedColor] = useState<string>('');
     const [selectedShades, setSelectedShades] = useState<{ shade: string; code: string; id: number }[]>([]);
@@ -96,7 +98,10 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         setSelectedShadeDetails(shade);
     };
     const handleColorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log('handle color change func');
+        
         const colorKey = event.target.value;
+        console.log('colorKey:',  colorKey)
         setSelectedColor(colorKey);
         if (colorKey === "") {
             setSelectedShades([]);
@@ -104,10 +109,14 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             return;
         }
         setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
-        const colorIndex = Object.keys(colorMap).indexOf(colorKey);
-        if (colorIndex >= 0 && colorIndex < product.images.length) {
-            setCurrentImageIndex(colorIndex);
+        const imageIndex = Number(colorKey);
+        if (imageIndex >= 0 && imageIndex < product.images.length) {
+            setCurrentImageIndex(imageIndex);
+        } else {
+            setCurrentImageIndex(0);
+            
         }
+        console.log('img idx: ',imageIndex)
     };
     const [isImageLoaded, setImageLoaded] = useState(false);
 
@@ -126,12 +135,15 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
         }
         
         // When image changes via arrows, also update the selected color in dropdown
-        if (newIndex >= 0 && newIndex < Object.keys(colorMap).length) {
-            const colorKey = Object.keys(colorMap)[newIndex];
+        const colorIndex = newIndex - 1;
+        if (colorIndex >= 0 && colorIndex < Object.keys(colorMap).length) {
+            const colorKey = Object.keys(colorMap)[colorIndex];
             setSelectedColor(colorKey);
-            setSelectedShades(colorMap[colorKey]?.shadesCodeMapping || []);
+            const shades = colorMap[colorKey]?.shadesCodeMapping || [];
+            setSelectedShades(shades);
         }
-    };
+        console.log('selewcted color:',selectedColor)
+    }
 
     const handleImageLoad = () => {
         setImageLoaded(true);
@@ -193,6 +205,8 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     {/* <a
                                     className="text-primary underline" 
                                     href="/productsinfo">Product Information</a> */}
+                                    <br/>
+                                    {localStorage.getItem('role')==='Business' ? 'Return the bottle to get $11 refund':''}
                                 </h2>
                                 {
                                     product.categories[0] === "Nail Polish" &&

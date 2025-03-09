@@ -59,6 +59,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                     <div className="items-center overflow-x-auto min-h-[160px]"> 
                         {
                             cartItems.map(item=>{
+                                console.log('item')
                                 return <OrderProductItem 
                                 orderProduct={item}
                                 deleteProduct={() => { handleDeleteFromCart(item.product_id, item.color_id) }}

@@ -18,7 +18,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
 }) => {
   const navigate = useNavigate()
 
-  console.log("product: ",product)
+  // console.log("product: ",product)
 
   return (
     <div className="font-poppins w-full max-w-[250px] h-[350px] tablet:h-[400px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
