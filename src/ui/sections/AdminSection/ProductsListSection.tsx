@@ -18,6 +18,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
     { field: 'price' as keyof Product, headerName: 'Price' },
     { field: 'discounted_price' as keyof Product, headerName: 'Discounted Price' },
     { field: 'discounted_business_price' as keyof Product, headerName: 'Business Price' },
+    { field: 'inventory_count' as keyof Product, headerName: 'Inventory' },
     { 
       field: 'categories' as keyof Product, 
       headerName: 'Categories', 

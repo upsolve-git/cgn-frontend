@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Category } from "../../interfaces/Category";
 import { addCategoryReq, getCategoryReq } from "../../services/category";
-import { addBestSellerReq, addNewSellerReq, addProductsReq, getProductsReq } from "../../services/product";
+import { addBestSellerReq, addNewSellerReq, addProductsReq, deleteProductReq, getProductsReq, updateInventoryReq } from "../../services/product";
 import { Product } from "../../interfaces/Product";
 import { User } from "../../interfaces/User";
 import { deleteFromUsersCartReq, getUsersCartReq, getUsersReq, updateUsersCartReq } from "../../services/login";
 import { Cart } from "../../interfaces/Cart";
 import { Color } from "../../interfaces/Color";
 
+import axios from "axios";
 
 export const useAdminPage = ()=>{
-    const menuItems = ["Add Products", "Products", "Edit Product", "Users", "Orders"];
+    const menuItems = ["Products", "Add Products", "Edit Product", "Delete Product", "Users", "Orders"];
     let [selectedMenuItem, setSelectedMenuItem] = useState<string>('') 
     let [category, setCategory] = useState<Category>({category_id:1, category_name:""})
     let [name, setName] = useState<string>('')
@@ -27,6 +28,10 @@ export const useAdminPage = ()=>{
     let [products, setproducts] = useState<Product[]>([])
     let [users, setUsers] = useState<User[]>([])
     const [colors, setColors] = useState<Color[]>([]);
+    
+    let [showOverlay, setShowOverlay] = useState<boolean>(false)
+    let [newProdFlag, setNewProdFlag] = useState<boolean>(false)
+    // let {openOverlay, closeOverlay} = useOverlay()
 
     useEffect(() => {
         getCategories();
@@ -91,17 +96,13 @@ export const useAdminPage = ()=>{
     } 
 
     const addProductHandler = async () => {
-            console.log(name)
-            console.log(files)
-            console.log(productType)
-            console.log(price)
-            console.log(description)
-            console.log(discountedPrice)
-            console.log(category)
-            console.log(colors)
-        
-            const newColors = category.category_name!== "Nail Polish" ? [{color_name:"NA", shade_name:"NA", code:"NA", color_id:0}] : colors;
-            await addProductsReq({
+        console.log("Adding product: ", name, description, price, discountedPrice, category, productType, colors);
+        const newColors = category.category_name !== "Nail Polish" 
+            ? [{ color_name: "NA", shade_name: "NA", code: "NA", color_id: 0 }] 
+            : colors;
+    
+        try {
+            const res = await addProductsReq({
                 name: name,
                 images: files!,
                 type: productType,
@@ -109,16 +110,37 @@ export const useAdminPage = ()=>{
                 cost: price,
                 discounted_price: discountedPrice,
                 categoryId: [category.category_id],
-                colors : newColors,
-                discounted_business_price : discountedBusinessPrice
-            })
-            .then(res => {
-                console.log("added product")
-                setAddProductsError('false')
-            }).catch (err => {
-                setAddProductsError('Error occured')
-                console.log("error in adding product : ", err)
-            })
+                colors: newColors,
+                discounted_business_price: discountedBusinessPrice
+            });
+    
+            console.log("Added product: ", res);
+            await localStorage.setItem('exist_product_id', res.data.product_id)
+            setAddProductsError('false');
+            setNewProdFlag(true);
+            setShowOverlay(true);
+    
+        } catch (err: any) { 
+            if (axios.isAxiosError(err)) {
+                if (err.response) {
+                    if (err.response.status === 409) {
+                        setShowOverlay(true)
+                        await localStorage.setItem('exist_product_id', err.response.data.product_id)
+                        setAddProductsError('Product already exists');
+                        console.log(err.response.data)
+                    } else {
+                        setAddProductsError(`Error: ${err.response.data.message || 'Unknown error'}`);
+                    }
+                    console.log("Error in adding product: ", err.response.data);
+                } else {
+                    setAddProductsError('Server did not respond.');
+                    console.log("Server error: ", err);
+                }
+            } else {
+                setAddProductsError(String(err));
+                console.log("Unexpected error: ", err);
+            }
+        }
     };
 
     const getCategories = async() => {
@@ -135,12 +157,11 @@ export const useAdminPage = ()=>{
         await getProductsReq()
         .then( res => {
             setproducts(res.data)
+            console.log(res.data)
         }).catch (err => {
             console.log(err)
         })
     }
-
-
 
     const addBestSellerhandler = async(product_id : number) => {
         await addBestSellerReq(product_id)
@@ -178,13 +199,109 @@ export const useAdminPage = ()=>{
         }).catch(err => {
             console.log(err)
         }) 
-    } 
+    }
+
+    let [quantity, setQuantity] = useState<number>()
+
+    const handleQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuantity(Number(e.target.value))
+    }
+
+    const updateInventory = async () => {
+        console.log("Updating inventory: ", quantity);
+        if (quantity) {
+            let product_id = localStorage.getItem('exist_product_id')
+            try{
+                await updateInventoryReq(product_id||'', quantity)
+
+                console.log("Inventory updated")
+                await localStorage.removeItem('exist_product_id')
+                await setShowOverlay(false)
+                window.alert("Inventory updated")
+            } catch(err: any){
+                if(err.response){
+                    window.alert(err.response.data.message)
+                }
+                console.log(err)
+            }
+            // let product_id = localStorage.getItem('exist_product_id')
+            // await updateInventoryReq(product_id||'', quantity)
+            // .then(res => {
+            //     console.log("Inventory updated")
+            //     localStorage.removeItem('exist_product_id')
+            //     setShowOverlay(false)
+            // }).catch(err => {
+            //     console.log(err)
+            // })
+        }
+    }
     
     return {menuItems, products, users,
         selectedMenuItem, handleSelectedMenuItemChange, handleFileChange, addProductsError, handleDiscountedBusinessPriceChange,
         category, handleCategoryChange, addCategoryHandler, categoryName, handleCategoryNameChange, discountedBusinessPrice,
         name, handleNameChange, description, handleDescriptionChange, productType, handleProductTypeChange, colors, handleAddColor,
-        price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addBestSellerhandler, addNewSellerhandler
+        price, handlePriceChange, discountedPrice, handleDiscountedPriceChange, addProductHandler, categories, addBestSellerhandler, addNewSellerhandler,
+        showOverlay, setShowOverlay,
+        quantity, handleQuantity, updateInventory,
+        newProdFlag
     }
 
+}
+
+export const useDeleteProduct = () => {
+    let [productId, setProductId] = useState<string>('')
+    let [success, setSuccess] = useState<boolean>(false)
+    let [message, setMessage] = useState<string>('')
+
+    const handleProductIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProductId(e.target.value)
+    }
+
+    const handleDeleteProduct = async () => {
+        console.log("Deleting product: ", productId);
+
+        // await deleteProductReq(productId)
+        // .then(res => {
+        //     console.log("Product deleted");
+        //     setSuccess(true);
+        //     setMessage('Product deleted successfully');
+        // }
+        // ).catch(err => {
+        //     console.log(err.response)
+        //     setSuccess(false);
+        //     setMessage(err.response.data.message);
+        // })
+
+        try{
+            const res = await deleteProductReq(productId);
+
+            console.log("Product deleted");
+            setSuccess(true);
+            setMessage('Product deleted successfully');
+        }catch(err: any){
+            await setSuccess(false);
+            if (axios.isAxiosError(err)) {
+                if (err.response) {
+                    if (err.response.status === 404) {
+                        setMessage('Product with ID not found');
+                    } else {
+                        setMessage(`Error: ${err.response.data.message || 'Unknown error'}`);
+                    }
+                    // console.log("Error in adding product: ", err.response.data);
+                } else {
+                    setMessage('Server did not respond.');
+                    console.log("Server error: ", err);
+                }
+            } else {
+                setMessage(String(err));
+                console.log("Unexpected error: ", err);
+            }
+        }
+    }
+
+
+    return {
+        productId, handleProductIdChange, handleDeleteProduct,
+        success, message
+    }
 }

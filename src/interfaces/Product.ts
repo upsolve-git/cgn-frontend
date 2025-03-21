@@ -8,6 +8,7 @@ export interface Product {
     price:number;
     discounted_price:number;
     discounted_business_price: number;
+    inventory_count: number;
     categories : string[];
     images:string[];
     colors : Color[]

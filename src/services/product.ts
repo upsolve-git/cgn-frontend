@@ -1,6 +1,10 @@
 import axios from '../helpers/axios'
 
-import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT, EDIT_PRODUCT_ENDPOINT } from '../constants/routes';
+import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, 
+  ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT, 
+  EDIT_PRODUCT_ENDPOINT, UPDATE_INVENTORY_ENDPOINT,
+  DELETE_PRODUCT_ENDPOINT } from '../constants/routes';
+
 import { Color } from '../interfaces/Color';
 
 interface AddProdParams{
@@ -47,6 +51,8 @@ export const addProductsReq = async (
                 'Content-Type': 'multipart/form-data'
             }
         });
+    }else{
+      throw new Error('All fields are required');
     }
 } 
 
@@ -105,3 +111,24 @@ export const editProduct = async ({
       throw error;
     }
   };
+
+export const updateInventoryReq = async (product_id : string, quantity : number)=>{
+  if(product_id && quantity){
+    return axios.post(UPDATE_INVENTORY_ENDPOINT, {
+        "product_id": product_id,
+        "quantity": quantity
+    });
+  }else{
+    throw new Error('incorrect existing product id or quantity');
+  }
+}
+
+export const deleteProductReq = async (product_id : string)=>{
+  if(product_id){
+    return axios.post(DELETE_PRODUCT_ENDPOINT, {
+        "product_id": product_id
+    });
+  }else{
+    throw new Error('Enter a product id');
+  }
+}

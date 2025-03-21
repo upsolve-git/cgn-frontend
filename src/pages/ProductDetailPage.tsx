@@ -316,7 +316,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     product.categories[0] !== "Nail Polish" &&
                                     <div>
                                             <label className="font-bold text-sm">Contact for more details : </label>
-                                            <label className="font-bold text-sm">dev.cgnails@gmail.com</label>
+                                            <label className="font-bold text-sm">canadiangelnailsinc@gmail.com</label>
                                         </div>
                                 }
                             </div>

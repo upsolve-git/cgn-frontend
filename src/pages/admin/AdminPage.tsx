@@ -1,4 +1,3 @@
-import Navbar from "../../ui/organisms/Navbar/BigNavbar";
 import { useAdminPage } from "../../utils/hooks/useAdminPage";
 import Menu from "../../ui/organisms/Admin/Menu";
 import AddProducts from "../../ui/sections/AdminSection/AddProductsSection";
@@ -10,6 +9,7 @@ import { getAdminAuth } from "../../services/login";
 import Orders from "../../ui/sections/AdminSection/Orders";
 import EditProductSection from "../../ui/sections/AdminSection/EditProductSection";
 import ProductsListSection from "../../ui/sections/AdminSection/ProductsListSection";
+import DeleteProductSection from "../../ui/sections/AdminSection/DeleteProductSection";
 
 interface AdminPageProps{}
 
@@ -60,10 +60,12 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
         colors,
         handleAddColor,
         handleDiscountedBusinessPriceChange,
-        discountedBusinessPrice
+        discountedBusinessPrice,
+        showOverlay, setShowOverlay,
+        newProdFlag
     } = useAdminPage()
     if(!adminAuth) {
-            return <div>NOT AUTHORIZED</div>
+        return <div>NOT AUTHORIZED</div>
     }
     return (
         <div className="flex flex-col h-screen">
@@ -107,11 +109,16 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     setFile={handleFileChange}
                     addProduct={addProductHandler}
                     error={addProductsError}
+                    showOverlay={showOverlay}
+                    setShowOverlay={setShowOverlay}
+                    newProdFlag={newProdFlag}
                     />
                     :selectedMenuItem === "Products" ?
                     <ProductsListSection products={products} />
                     : selectedMenuItem === "Edit Product" ?
                     <EditProductSection />
+                    : selectedMenuItem === "Delete Product" ?
+                    <DeleteProductSection />
                     : selectedMenuItem === "Add Best Selling products" ? 
                     <ProductPreviewListAdmin products={products} onClick={addBestSellerhandler} />
                     : selectedMenuItem === "Add New Products" ? 
