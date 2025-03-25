@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Category } from "../../interfaces/Category";
 import { addCategoryReq, getCategoryReq } from "../../services/category";
-import { addBestSellerReq, addNewSellerReq, addProductsReq, deleteProductReq, getProductsReq, updateInventoryReq } from "../../services/product";
+import { addBestSellerReq, addNewSellerReq, addProductsReq, deleteProductReq, getProductsReq, updateInventoryReq, getProductQuantityReq } from "../../services/product";
 import { Product } from "../../interfaces/Product";
 import { User } from "../../interfaces/User";
 import { deleteFromUsersCartReq, getUsersCartReq, getUsersReq, updateUsersCartReq } from "../../services/login";
@@ -303,5 +303,27 @@ export const useDeleteProduct = () => {
     return {
         productId, handleProductIdChange, handleDeleteProduct,
         success, message
+    }
+}
+
+export const useColorInventoryOverlay = ()=>{
+    const [colorCounts, setColorCounts] = useState<any[]>([]);
+    const [showColorCountsOverlay, setShowColorCountsOverlay] = useState<boolean>(false);
+
+    const handleRowClick = async (params: any) => {
+        const productId = params.data.product_id;
+        try {
+          const data = await getProductQuantityReq(productId.toString());
+          setColorCounts(data);
+          setShowColorCountsOverlay(true);
+        } catch (error) {
+          console.error('Error fetching color counts:', error);
+        }
+      };
+
+    return {
+        colorCounts, 
+        showColorCountsOverlay, setShowColorCountsOverlay, 
+        handleRowClick
     }
 }

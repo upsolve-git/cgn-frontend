@@ -132,3 +132,13 @@ export const deleteProductReq = async (product_id : string)=>{
     throw new Error('Enter a product id');
   }
 }
+
+export const getProductQuantityReq = async (product_id: string) => {
+  try {
+    const response = await axios.get(`/productquantity/${product_id}`);
+    return response.data; // Assuming the response is in the correct format
+  } catch (err) {
+    console.error('Error fetching product quantity:', err);
+    throw new Error('Failed to fetch product quantity');
+  }
+};
