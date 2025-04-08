@@ -61,7 +61,7 @@ export const useSignInPage = ()=>{
             .then(res=>{
                 console.log("inside signin success", res)
                 setLoginErr('')
-                localStorage.setItem('role', accType)
+                localStorage.setItem('role', res?.data.role)
                 navigate(HOME_PAGE)
             })
             .catch(err=>{
@@ -77,6 +77,7 @@ export const useSignInPage = ()=>{
         .then(res=>{
             console.log("inside signin success", res)
             setLoginErr('')
+            localStorage.setItem('role', res?.data.role)
             navigate(HOME_PAGE)
         })
         .catch(err=>{
