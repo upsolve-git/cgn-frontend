@@ -13,6 +13,7 @@ import { IconContext } from 'react-icons';
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import { useCartPage } from "../utils/hooks/useCartPage";
 import OrderProductItem from '../ui/molecules/OrderProductItem/OrderProductItem';
+import PaymentDetailsSection from '../ui/sections/PaymentDetialsSection/PaymentDetailsSection';
 
 interface CartPageProps { }
 
@@ -181,8 +182,11 @@ const CartPage: React.FC<CartPageProps> = () => {
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
                     </div>
-                    <button onClick={() => { handlePlaceOrder("123456"); handleGenrateInvoice() }}>Order</button>
-                    <PayPalButton amount={sumTotal + taxTotal + deliveryFee} handleInvoice={handleGenrateInvoice} />
+                    {/* <button onClick={() => { handlePlaceOrder("123456"); handleGenrateInvoice() }}>Order</button> */}
+                    {/* <PayPalButton amount={sumTotal + taxTotal + deliveryFee} handleInvoice={handleGenrateInvoice} /> */}
+                    <PaymentDetailsSection 
+                    totalAmount={sumTotal + taxTotal + deliveryFee}
+                    />
                 </div>
             </div>
             {/* <FooterSection /> */}

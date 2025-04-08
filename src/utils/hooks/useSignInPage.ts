@@ -66,7 +66,13 @@ export const useSignInPage = ()=>{
             })
             .catch(err=>{
                 console.log(err)
-                setLoginErr("Error occured, Please try again")
+                if(err.response.status === 401){
+                    setLoginErr("Incorrect email or password")
+                }else if(err.response.status === 403){
+                    setLoginErr("Incorrect account type")
+                }else{
+                    setLoginErr("Error occured, Please try again")
+                }
             })
 
         // }
