@@ -24,6 +24,7 @@ import SalonsPage from "../pages/SalonsPage";
 import ProductInfoPage from "../pages/ProductInfoPage";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
 import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage";
+import MembershipPage from "../pages/MembershipPage";
 
 const authLoader = async () => {
     console.log('auth redirect');
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: "productsinfo",
                 element: <ProductInfoPage />
+            },
+            {
+                path: "membership",
+                element: <MembershipPage />
             }
         ],
     },

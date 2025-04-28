@@ -1,14 +1,19 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { HOME_PAGE } from "../../../../constants/routes";
 
 import { IoIosClose } from "react-icons/io";
 
-const CrossButton: React.FC = () =>{ 
-    const navigate = useNavigate()
+interface CrossButtonProps {
+    callbackFunc: () => void;
+}
+
+const CrossButton: React.FC<CrossButtonProps> = ({
+    callbackFunc
+}
+) =>{ 
+    
     return (
         <button 
-        onClick={() =>navigate(HOME_PAGE)}
+        onClick={callbackFunc}
         className="w-full h-fit flex justify-end text-darkgray float-right text-2xl pt-2 pr-4">
                 <IoIosClose />
         </button>

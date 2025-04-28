@@ -1,17 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import Logo from "../../atoms/Logo/Logo";
 import CrossButton from "../../atoms/buttons/CrossButton/CrossButton";
+
+import { HOME_PAGE } from "../../../constants/routes";
 
 interface FormCardProps{
     children: React.ReactNode
 }
 
 const FormCard: React.FC<FormCardProps> = ({children}) => {
+    const navigate = useNavigate()
+
     return (
         <div
         className="bg-white rounded-2xl flex flex-col tablet:w-3/5 desktop:w-2/5">
-            <CrossButton 
+            <CrossButton
+            callbackFunc={() =>navigate(HOME_PAGE)} 
             />
             <div
             className="px-4 tablet:px-12 py-2">

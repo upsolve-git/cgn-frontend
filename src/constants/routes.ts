@@ -2,6 +2,7 @@ export const HOME_PAGE = '/';
 export const LOGIN_PAGE = '/auth/sign-in'
 export const SIGNUP_PAGE = '/auth/sign-up'
 export const PRODUCTS_PAGE = '/products'
+export const MEMBERSHIP_PAGE = '/membership'
 
 
 export const LOGIN_ENDPOINT = '/login'
