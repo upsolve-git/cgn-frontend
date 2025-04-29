@@ -5,12 +5,12 @@ export const useMembershipAd = () => {
   const { pathname } = useLocation();
   const isBusiness = localStorage.getItem('role') === 'business';
 
-  // Derive initial state
   const [showAd, setShowAd] = useState(() =>
     isBusiness && pathname !== '/membership'
   );
 
-  // Sync with route changes
+  const [showPurchaseDets, setShowPurchaseDets] = useState(false);
+
   useEffect(() => {
     if (pathname === '/membership') {
       setShowAd(false);
@@ -22,12 +22,11 @@ export const useMembershipAd = () => {
   const closeAd = () => setShowAd(false);
 
   const handleMemPurchase = () => {
-    // 1) Hide the ad immediately
     setShowAd(false);
-    // 2) Promote them to member so it never shows again
-    localStorage.setItem('role', 'member');
-    console.log('Membership purchased');
+    setShowPurchaseDets(true);
   };
 
-  return { showAd, closeAd, handleMemPurchase };
+  return { showAd, closeAd, 
+    showPurchaseDets, 
+    handleMemPurchase };
 };

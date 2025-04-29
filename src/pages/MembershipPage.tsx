@@ -1,13 +1,15 @@
 import React from 'react';
 import ActionButton from '../ui/atoms/buttons/ActionButton/ActionButton';
 import { useMembershipAd } from '../utils/hooks/useMembershipAd';
+import PaymentDetailsSection from '../ui/sections/PaymentDetialsSection/PaymentDetailsSection';
 
 interface MembershipPageProps {}
 
 const MembershipPage: React.FC<MembershipPageProps> = () => {
 
     let {
-        handleMemPurchase
+        handleMemPurchase,
+        showPurchaseDets
     } = useMembershipAd()
 
   return (
@@ -31,7 +33,7 @@ const MembershipPage: React.FC<MembershipPageProps> = () => {
                 <li>Free product samples</li>
             </ul>
             <p
-            className='w-[70%] text-sm text-primary font-semibold tablet:text-md'>
+            className='whitespace-nowrap text-sm text-primary font-semibold tablet:text-md'>
                 Price: 15.99 CAD/month
             </p>
             <ActionButton 
@@ -39,6 +41,14 @@ const MembershipPage: React.FC<MembershipPageProps> = () => {
             callbackFunc={handleMemPurchase}
             />
         </div>
+        { showPurchaseDets &&
+            <div
+            className='bg-white border border-primary p-4 rounded-2xl w-[90%] mx-auto my-4'>
+                <PaymentDetailsSection 
+                totalAmount={15.99}
+                />
+            </div>
+        }
     </div>
   );
 };
