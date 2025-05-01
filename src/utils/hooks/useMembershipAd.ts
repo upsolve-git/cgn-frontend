@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 export const useMembershipAd = () => {
   const { pathname } = useLocation();
-  const isBusiness = localStorage.getItem('role') === 'business';
+  const isBusiness = localStorage.getItem('role') === 'Business';
 
   const [showAd, setShowAd] = useState(() =>
     isBusiness && pathname !== '/membership'
