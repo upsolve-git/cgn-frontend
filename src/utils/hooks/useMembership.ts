@@ -5,29 +5,30 @@ import { getMembershipsReq } from '../../services/membership';
 
 export const useMembership = () => {
   const { pathname } = useLocation();
-  let initialIsBusiness = localStorage.getItem('role') === 'Business';
+  let initialIsMember = localStorage.getItem('isMember') === 'false';
 
   const [showAd, setShowAd] = useState(() =>
-    initialIsBusiness && pathname !== '/membership'
+    initialIsMember && pathname !== '/membership'
   );
 
-  const [isBusiness, setIsBusiness] = useState(initialIsBusiness);
+  const [isMember, setIsMember] = useState(initialIsMember);
 
   useEffect(() => {
-    const currentIsBusiness = localStorage.getItem('role') === 'Business';
+    const currentIsMember = localStorage.getItem('isMember') === 'false';
+    console.log('current is ',currentIsMember);
     
-    if (currentIsBusiness !== isBusiness) {
-      setIsBusiness(currentIsBusiness);
+    if (currentIsMember !== isMember) {
+      setIsMember(currentIsMember);
     }
     
     if (pathname === '/membership') {
       setShowAd(false);
-    } else if (currentIsBusiness) {
+    } else if (currentIsMember) {
       setShowAd(true);
     } else {
       setShowAd(false);
     }
-  }, [pathname, isBusiness]);
+  }, [pathname, isMember]);
 
   const [showPurchaseDets, setShowPurchaseDets] = useState(false);
   const [memberships, setMemberships] = useState<Membership[]>()
@@ -36,7 +37,7 @@ export const useMembership = () => {
   useEffect(() => {
     if (pathname === '/membership') {
       setShowAd(false);
-    } else if (isBusiness) {
+    } else if (isMember) {
       setShowAd(true);
     }
 
@@ -51,7 +52,7 @@ export const useMembership = () => {
 
     getMembershipsWrapper();
 
-  }, [pathname, isBusiness]);
+  }, [pathname, isMember]);
 
   const closeAd = () => setShowAd(false);
 

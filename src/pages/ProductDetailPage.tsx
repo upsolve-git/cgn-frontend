@@ -192,7 +192,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     <p className="mb-6">
                                         <span
                                             className="text-lg text-primary font-semibold desktop:text-xl pr-4">
-                                              ${localStorage.getItem('role')==='membership'?product?.discounted_business_price:product?.price}
+                                              ${localStorage.getItem('isMember')==='true'?product?.discounted_price:product?.price}
                                         </span>
                                         {/* <span
                                             className="text-darkgray text-sm desktop:text-md">
@@ -205,7 +205,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     <p className="mb-6">
                                         <span
                                             className="text-lg text-primary font-semibold desktop:text-xl pr-4">
-                                             ${localStorage.getItem('role')==='membership'?product?.discounted_business_price:product?.price}
+                                             ${localStorage.getItem('isMember')==='true'?product?.discounted_price:product?.price}
                                         </span>
                                         {/* <span
                                             className="text-darkgray text-sm desktop:text-md">

@@ -62,6 +62,8 @@ export const useSignInPage = ()=>{
                 console.log("inside signin success", res)
                 setLoginErr('')
                 localStorage.setItem('role', res?.data.role)
+                localStorage.setItem('isMember', 
+                    res?.data.isMember ? res?.data.isMember : 'false')
                 navigate(HOME_PAGE)
             })
             .catch(err=>{
@@ -95,6 +97,7 @@ export const useSignInPage = ()=>{
         .then( res => {
             setIsAuthenticated(false);
             localStorage.removeItem('role')
+            localStorage.removeItem('isMember')
             navigate(HOME_PAGE)
         })
         .catch(err => {
