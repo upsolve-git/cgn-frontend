@@ -54,8 +54,8 @@ export const useSignUpPage = ()=>{
     }
 
     const handleAccTypeChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
-        // setAccType(e.target.value)
-        setAccType("Personal")
+        setAccType(e.target.value)
+        // setAccType("Personal")
     }
 
     const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
