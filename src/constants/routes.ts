@@ -44,6 +44,7 @@ export const FORGOT_PASSWORD_ENDPOINT = '/forgotpassword'
 export const UPDATE_INVENTORY_ENDPOINT = '/updateinventory'
 export const DELETE_PRODUCT_ENDPOINT = '/deleteproduct'
 export const PAYMENT_ENDPOINT = '/payment'
+export const GET_MEMSHIPS_ENDPOINT = '/getallmemberships'
 
 export const POS_WEBSITE_URL = 'https://main.d29iicb8es15um.amplifyapp.com/'
 export const base_url = 'https://posapi.canadiangelnails.com/'

@@ -59,7 +59,7 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
         <div className="flex items-center justify-between w-full">
   {(product.categories[0] === "Nail Polish"|| product.name === "Electric Beauty Bed/Podiatry chair") && (
     <span className="text-md font-semibold truncate">
-      ${localStorage.getItem('role')==='Business'?product?.discounted_business_price:product?.price}
+      ${localStorage.getItem('role')==='membership'?product?.discounted_business_price:product?.price}
     </span>
   )}
 
