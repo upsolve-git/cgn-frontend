@@ -1,5 +1,5 @@
-import axios from '../helpers/axios'
-
+import customAxios from '../helpers/axios'
+import axios from 'axios';
 import { base_url, PAYMENT_ENDPOINT } from '../constants/routes';
 
 export const makePaymentReq = async (
@@ -19,7 +19,7 @@ export const makePaymentReq = async (
                 expiry_year: expiryYear,
                 cvd : cvv
             });
-            response = await axios.post(base_url + PAYMENT_ENDPOINT, {
+            response = await customAxios.post(base_url + PAYMENT_ENDPOINT, {
                 amount: totalAmount,
                 token : response.data.token,
                 name : cardName
