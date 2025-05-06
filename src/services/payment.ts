@@ -19,7 +19,7 @@ export const makePaymentReq = async (
                 expiry_year: expiryYear,
                 cvd : cvv
             });
-            response = await customAxios.post(base_url + PAYMENT_ENDPOINT, {
+            response = await customAxios.post(PAYMENT_ENDPOINT, {
                 amount: totalAmount,
                 token : response.data.token,
                 name : cardName
