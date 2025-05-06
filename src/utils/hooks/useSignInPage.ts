@@ -66,16 +66,14 @@ export const useSignInPage = ()=>{
             })
             .catch(err=>{
                 console.log(err)
-                if(err.response.status === 401){
+                if(err?.response?.status === 401){
                     setLoginErr("Incorrect email or password")
-                }else if(err.response.status === 403){
+                }else if(err?.response?.status === 403){
                     setLoginErr("Incorrect account type")
                 }else{
                     setLoginErr("Error occured, Please try again")
                 }
             })
-
-        // }
     }  
 
     const googleAuthHandler = async(user:any) => {

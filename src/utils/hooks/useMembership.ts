@@ -5,11 +5,30 @@ import { getMembershipsReq } from '../../services/membership';
 
 export const useMembership = () => {
   const { pathname } = useLocation();
-  const isBusiness = localStorage.getItem('role') === 'Business';
+  let initialIsBusiness = localStorage.getItem('role') === 'Business';
 
   const [showAd, setShowAd] = useState(() =>
-    isBusiness && pathname !== '/membership'
+    initialIsBusiness && pathname !== '/membership'
   );
+
+  const [isBusiness, setIsBusiness] = useState(initialIsBusiness);
+
+  useEffect(() => {
+    const currentIsBusiness = localStorage.getItem('role') === 'Business';
+    
+    if (currentIsBusiness !== isBusiness) {
+      setIsBusiness(currentIsBusiness);
+    }
+    
+    if (pathname === '/membership') {
+      setShowAd(false);
+    } else if (currentIsBusiness) {
+      setShowAd(true);
+    } else {
+      setShowAd(false);
+    }
+  }, [pathname, isBusiness]);
+
   const [showPurchaseDets, setShowPurchaseDets] = useState(false);
   const [memberships, setMemberships] = useState<Membership[]>()
   const [totalPrice, setTotalPrice] = useState<number>(0);
