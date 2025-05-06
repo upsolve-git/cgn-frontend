@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { makePaymentReq } from "../../services/payment";
 
+import { useCartPage } from "./useCartPage";
+
 export const usePayment = (totalAmount: number) => {
+
+    const {handlePlaceOrder} = useCartPage()
 
     const [cardName, setCardName] = useState<string>("");
     const [cardNumber, setCardNumber] = useState<string>("");
@@ -35,7 +39,7 @@ export const usePayment = (totalAmount: number) => {
             cvv
         });
         try{
-            await makePaymentReq(
+            const resData = await makePaymentReq(
                 cardName,
                 cardNumber,
                 expiryMonth,
@@ -44,6 +48,7 @@ export const usePayment = (totalAmount: number) => {
                 totalAmount
             )
             await setSuccess(true);
+            handlePlaceOrder(resData.id)
             setMessage("Payment successful");
             // window.location.href = "/orders";
         }catch(err: any){

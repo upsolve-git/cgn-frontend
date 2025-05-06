@@ -24,9 +24,11 @@ export const makePaymentReq = async (
                 token : response.data.token,
                 name : cardName
             });
-        
+            
+            return response.data;
+
         } catch (error) {
-            console.error("Payment Error:", error);
+            throw new Error('Payment Error')
         }
     }catch(err: any){
         if(err.response.status === 400){
