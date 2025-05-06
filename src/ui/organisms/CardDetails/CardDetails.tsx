@@ -70,7 +70,6 @@ const CardDetails: React.FC<CardDetailsProps> = ({
                     const resData = await handlePaymentSubmit();
                     console.log('Response Data:', resData);
                     placeOrderHandler && placeOrderHandler(resData.id)
-                    placeOrderHandler && placeOrderHandler('123456')
                     handleInvoice && handleInvoice()
                   } catch (err) {
                     console.error('Error submitting payment:', err);
