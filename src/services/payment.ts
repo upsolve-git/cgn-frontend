@@ -18,6 +18,10 @@ export const makePaymentReq = async (
                 expiry_month: expiryMonth,
                 expiry_year: expiryYear,
                 cvd : cvv
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             });
             response = await customAxios.post(PAYMENT_ENDPOINT, {
                 amount: totalAmount,
