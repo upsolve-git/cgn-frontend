@@ -43,7 +43,7 @@ export const RESET_PASSWORD_ENDPOINT = '/resetpassword'
 export const FORGOT_PASSWORD_ENDPOINT = '/forgotpassword'
 export const UPDATE_INVENTORY_ENDPOINT = '/updateinventory'
 export const DELETE_PRODUCT_ENDPOINT = '/deleteproduct'
-export const PAYMENT_ENDPOINT = '/payment'
+export const PAYMENT_ENDPOINT = 'api/payment/process'
 export const GET_MEMSHIPS_ENDPOINT = '/getallmemberships'
 
 export const POS_WEBSITE_URL = 'https://main.d29iicb8es15um.amplifyapp.com/'

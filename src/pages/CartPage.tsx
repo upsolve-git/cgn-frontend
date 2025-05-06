@@ -13,14 +13,13 @@ import { IconContext } from 'react-icons';
 import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import { useCartPage } from "../utils/hooks/useCartPage";
 import OrderProductItem from '../ui/molecules/OrderProductItem/OrderProductItem';
-import PaymentButton from '../ui/organisms/Paypal/paymentButton';
 import PaymentDetailsSection from '../ui/sections/PaymentDetialsSection/PaymentDetailsSection';
 
 interface CartPageProps { }
 
 const CartPage: React.FC<CartPageProps> = () => {
     let { isMobile } = useMediaWidth()
-    let { cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders, stateDropdownItems, updateTaxPercent, generatePDF, card, setCard } = useCartPage();
+    let { cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders, stateDropdownItems, updateTaxPercent, generatePDF } = useCartPage();
     const navigate = useNavigate()
     let sumTotal = 0
     let fullPrice = 0
@@ -182,35 +181,6 @@ const CartPage: React.FC<CartPageProps> = () => {
                                 className='font-semibold text-primary text-md'>${sumTotal + taxTotal + deliveryFee}</p>
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
-                    </div>
-                    <div className="mt-4">
-                        <input
-                            type="text"
-                            placeholder="Full Name"
-                            className="w-full border p-2 rounded-md text-md mb-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Card Number"
-                            className="w-full border p-2 rounded-md text-md mb-3"
-                        />
-                        <div className="flex gap-3">
-                            <input
-                                type="text"
-                                placeholder="MM"
-                                className="w-1/3 border p-2 rounded-md text-md"
-                            />
-                            <input
-                                type="text"
-                                placeholder="YY"
-                                className="w-1/3 border p-2 rounded-md text-md"
-                            />
-                            <input
-                                type="text"
-                                placeholder="CVD"
-                                className="w-1/3 border p-2 rounded-md text-md"
-                            />
-                        </div>
                     </div>
 
                     {/* <button onClick={() => { handlePlaceOrder("123456"); handleGenrateInvoice() }}>Order</button> */}

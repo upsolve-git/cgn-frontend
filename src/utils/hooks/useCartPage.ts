@@ -3,7 +3,6 @@ import { Product } from "../../interfaces/Product";
 import { deleteFromUsersCartReq, getOrdersReq, getUserDefaultAddressReq, getUsersCartReq, placeOrderReq, updateUsersCartReq } from "../../services/login";
 import { Cart } from "../../interfaces/Cart";
 import { Address } from "../../interfaces/Address";
-import { Card } from '../../interfaces/Card';
 import { Order } from "../../interfaces/Order";
 import { jsPDF } from 'jspdf';
 import { getAuth } from "../../services/auth";
@@ -27,15 +26,7 @@ export const useCartPage = () => {
     default: false,
   };
 
-  const defaultCard: Card = {
-    full_name: '',
-    expiry_month: 0,
-    expiry_year: 0,
-    cvd: 0
-  }
-
   const [address, setAddress] = useState<Address>(defaultAddress);
-  const [card, setCard] = useState<Card>(defaultCard);
   const [orders, setOrders] = useState<Order[]>([])
   const stateDropdownItems = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Quebec", "Price Edward Island", "Saskatchewan", "Yukon"]
   const updateTaxPercent = (state : string) : number => {
@@ -233,8 +224,6 @@ export const useCartPage = () => {
     setAddress,
     handlePlaceOrder,
     handleGetOrders,
-    card,
-    setCard,
     orders,
     stateDropdownItems,
     updateTaxPercent,
