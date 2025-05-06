@@ -62,20 +62,20 @@ export const useSignInPage = ()=>{
                 console.log("inside signin success", res)
                 setLoginErr('')
                 localStorage.setItem('role', res?.data.role)
+                localStorage.setItem('isMember', 
+                    res?.data.isMember ? res?.data.isMember : 'false')
                 navigate(HOME_PAGE)
             })
             .catch(err=>{
                 console.log(err)
-                if(err.response.status === 401){
+                if(err?.response?.status === 401){
                     setLoginErr("Incorrect email or password")
-                }else if(err.response.status === 403){
+                }else if(err?.response?.status === 403){
                     setLoginErr("Incorrect account type")
                 }else{
                     setLoginErr("Error occured, Please try again")
                 }
             })
-
-        // }
     }  
 
     const googleAuthHandler = async(user:any) => {
@@ -97,6 +97,7 @@ export const useSignInPage = ()=>{
         .then( res => {
             setIsAuthenticated(false);
             localStorage.removeItem('role')
+            localStorage.removeItem('isMember')
             navigate(HOME_PAGE)
         })
         .catch(err => {

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../ui/organisms/Navbar/Navbar"
 import FooterSection from "../ui/sections/FooterSection/FooterSection"
 import MembershipAd from "../ui/molecules/MembershipAd/MembershipAd"
-import { useMembershipAd } from "../utils/hooks/useMembershipAd"
+import { useMembership } from "../utils/hooks/useMembership"
 
 interface DefaultLayoutProps {}
 
@@ -12,7 +12,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = () =>{
     let {
         showAd,
         closeAd
-    } = useMembershipAd()
+    } = useMembership()
 
     return (
         <div

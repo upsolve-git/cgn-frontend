@@ -45,7 +45,7 @@ export const usePayment = (totalAmount: number) => {
             )
             await setSuccess(true);
             setMessage("Payment successful");
-            window.location.href = "/orders";
+            // window.location.href = "/orders";
         }catch(err: any){
             setSuccess(false);
             setMessage(err);
