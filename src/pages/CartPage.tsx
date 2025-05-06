@@ -187,6 +187,8 @@ const CartPage: React.FC<CartPageProps> = () => {
                     {/* <PaymentButton/> */}
                     <PaymentDetailsSection 
                     totalAmount={sumTotal + taxTotal + deliveryFee}
+                    placeOrderHandler={handlePlaceOrder}
+                    handleInvoice={handleGenrateInvoice}
                     />
                 </div>
             </div>

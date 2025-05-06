@@ -3,10 +3,14 @@ import CardDetails from '../../organisms/CardDetails/CardDetails';
 
 interface PaymentDetailsSectionProps {
     totalAmount: number;
+    placeOrderHandler?: (orderId: string) => void;
+    handleInvoice?: () => void;
 }
 
 const PaymentDetailsSection: React.FC<PaymentDetailsSectionProps> = ({
-    totalAmount
+    totalAmount,
+    placeOrderHandler,
+    handleInvoice
 }) => {
   return (
     <div>
@@ -17,6 +21,8 @@ const PaymentDetailsSection: React.FC<PaymentDetailsSectionProps> = ({
         </p>
         <CardDetails 
         totalAmount={totalAmount}
+        placeOrderHandler={placeOrderHandler}
+        handleInvoice={handleInvoice}
         />
     </div>
   );

@@ -6,10 +6,14 @@ import NumberInput from '../../atoms/formElements/auth/NumberInput/NumberInput';
 
 interface CardDetailsProps {
     totalAmount: number;
+    placeOrderHandler?: (orderId: string) => void;
+    handleInvoice?: () => void;
 }
 
 const CardDetails: React.FC<CardDetailsProps> = ({
-    totalAmount
+    totalAmount,
+    placeOrderHandler,
+    handleInvoice
 }) => {
 
     let {
@@ -61,7 +65,18 @@ const CardDetails: React.FC<CardDetailsProps> = ({
         className='w-[40%] m-auto'>
             <ActionButton 
             label='Pay Now'
-            callbackFunc={handlePaymentSubmit}
+            callbackFunc={async ()=>{
+                try {
+                    const resData = await handlePaymentSubmit();
+                    console.log('Response Data:', resData);
+                    placeOrderHandler && placeOrderHandler(resData.id)
+                    placeOrderHandler && placeOrderHandler('123456')
+                    handleInvoice && handleInvoice()
+                  } catch (err) {
+                    console.error('Error submitting payment:', err);
+                    // Optionally, show a user-friendly message
+                  }
+            }}
             />
         </div>
         {

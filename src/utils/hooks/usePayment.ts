@@ -5,8 +5,6 @@ import { useCartPage } from "./useCartPage";
 
 export const usePayment = (totalAmount: number) => {
 
-    const {handlePlaceOrder} = useCartPage()
-
     const [cardName, setCardName] = useState<string>("");
     const [cardNumber, setCardNumber] = useState<string>("");
     const [expiryMonth, setExpiryMonth] = useState<string>("");
@@ -48,8 +46,9 @@ export const usePayment = (totalAmount: number) => {
                 totalAmount
             )
             await setSuccess(true);
-            handlePlaceOrder(resData.id)
+            // handlePlaceOrder('123456789')
             setMessage("Payment successful");
+            return resData;
             // window.location.href = "/orders";
         }catch(err: any){
             setSuccess(false);
