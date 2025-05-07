@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Membership } from '../../interfaces/Membership';
 import { getMembershipsReq } from '../../services/membership';
+import axios from 'axios';
+import { ADD_MEMBERSHIP_ENDPOINT } from '../../constants/routes';
 
 export const useMembership = () => {
   const { pathname } = useLocation();
@@ -33,6 +35,7 @@ export const useMembership = () => {
   const [showPurchaseDets, setShowPurchaseDets] = useState(false);
   const [memberships, setMemberships] = useState<Membership[]>()
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [membership, setMembership] = useState<Membership[]>()
 
   useEffect(() => {
     if (pathname === '/membership') {
@@ -63,6 +66,16 @@ export const useMembership = () => {
     setShowPurchaseDets(true);
   };
 
+  const handleSubmitMembership = async (payment_id : any) => {
+    try {
+      await axios.post(ADD_MEMBERSHIP_ENDPOINT, {
+        membership_id: membership
+      })
+    } catch (err) {
+
+    }
+  };
+
   // const priceSetter = (price: number) => {
   //   setTotalPrice(price);
   // }
@@ -71,5 +84,8 @@ export const useMembership = () => {
     showPurchaseDets, 
     memberships,
     totalPrice,
-    handleMemPurchase };
+    handleMemPurchase, 
+    handleSubmitMembership,
+    membership,
+    setMembership};
 };
