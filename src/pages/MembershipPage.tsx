@@ -44,6 +44,7 @@ const MembershipPage: React.FC<MembershipPageProps> = () => {
             className='bg-white border border-primary p-4 rounded-2xl w-[90%] mx-auto my-4'>
                 <PaymentDetailsSection 
                 totalAmount={totalPrice}
+                
                 />
             </div>
         }

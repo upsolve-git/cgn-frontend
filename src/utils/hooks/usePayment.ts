@@ -28,7 +28,7 @@ export const usePayment = (totalAmount: number) => {
     const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCvv(e.target.value);
     }
-    const handlePaymentSubmit = async () => {
+    const handlePaymentSubmit = async (token : string) => {
         console.log("Payment submitted with details: ", {
             cardName,
             cardNumber,
@@ -39,13 +39,10 @@ export const usePayment = (totalAmount: number) => {
         try{
             const resData = await makePaymentReq(
                 cardName,
-                cardNumber,
-                expiryMonth,
-                expiryYear,
-                cvv,
+                token,
                 totalAmount
             )
-            await setSuccess(true);
+            setSuccess(true);
             // handlePlaceOrder('123456789')
             setMessage("Payment successful");
             return resData;
