@@ -54,7 +54,7 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
     console.log(orders)
 
     return (
-        <div className="bg-secondary space-y-16">
+        <div className="bg-secondary space-y-16 py-4 tablet:py-8 desktop:py-[6rem] monitor:py-[10rem]">
         {/* <Navbar /> */}
         <p className="text-center text-primary font-bold tablet:text-lg">Thank you for your purchase!</p>
         <div className="w-[90%] px-3 border bg-white border-secondarydark rounded m-auto tablet:w-[70%]">
