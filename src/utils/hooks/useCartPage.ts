@@ -18,7 +18,7 @@ export const useCartPage = () => {
     address_line1: '',
     address_line2: '',
     city: '',
-    state: '',
+    state: 'Alberta',
     pincode: '',
     country: '',
     mobile: '',
@@ -149,6 +149,21 @@ export const useCartPage = () => {
     }
   };
 
+  // check for address availability
+  const isNonEmptyString = (val: any) => typeof val === 'string' && val.trim() !== '';
+  
+  const isAddressValid = (): boolean => {
+    return (
+      isNonEmptyString(address.full_name) &&
+      isNonEmptyString(address.address_line1) &&
+      isNonEmptyString(address.city) &&
+      isNonEmptyString(address.state) &&
+      isNonEmptyString(address.pincode) &&
+      isNonEmptyString(address.country) &&
+      isNonEmptyString(address.mobile)
+    );
+  };
+
   const handleGetOrders = async () => {
     console.log(orders)
   }
@@ -227,6 +242,7 @@ export const useCartPage = () => {
     orders,
     stateDropdownItems,
     updateTaxPercent,
-    generatePDF
+    generatePDF,
+    isAddressValid
   };
 };

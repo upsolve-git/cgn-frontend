@@ -1,8 +1,11 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Membership } from '../../interfaces/Membership';
+
 import { getMembershipsReq } from '../../services/membership';
-import axios from 'axios';
+
+import { Membership } from '../../interfaces/Membership';
+
 import { ADD_MEMBERSHIP_ENDPOINT } from '../../constants/routes';
 
 export const useMembership = () => {
@@ -17,7 +20,7 @@ export const useMembership = () => {
 
   useEffect(() => {
     const currentIsMember = localStorage.getItem('isMember') === 'false';
-    console.log('current is ',currentIsMember);
+    // console.log('current is ',currentIsMember);
     
     if (currentIsMember !== isMember) {
       setIsMember(currentIsMember);
@@ -52,9 +55,7 @@ export const useMembership = () => {
         console.log(err);
       }
     }
-
     getMembershipsWrapper();
-
   }, [pathname, isMember]);
 
   const closeAd = () => setShowAd(false);
@@ -72,7 +73,8 @@ export const useMembership = () => {
         membership_id: membership
       })
     } catch (err) {
-
+      alert(err)
+      return
     }
   };
 
@@ -80,12 +82,13 @@ export const useMembership = () => {
   //   setTotalPrice(price);
   // }
 
-  return { showAd, closeAd, 
+  return { 
+    showAd, closeAd, 
     showPurchaseDets, 
     memberships,
     totalPrice,
     handleMemPurchase, 
     handleSubmitMembership,
-    membership,
-    setMembership};
+    membership, setMembership
+  };
 };

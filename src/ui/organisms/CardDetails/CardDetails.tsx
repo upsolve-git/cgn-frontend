@@ -7,6 +7,7 @@ interface CardDetailsProps {
   totalAmount: number;
   placeOrderHandler?: (orderId: string) => void;
   handleInvoice?: () => void;
+  isAddressValid?: () => boolean;
 }
 
 declare global {
@@ -18,7 +19,8 @@ declare global {
 const CardDetails: React.FC<CardDetailsProps> = ({
   totalAmount,
   placeOrderHandler,
-  handleInvoice
+  handleInvoice,
+  isAddressValid
 }) => {
   const {
     cardName,
@@ -29,6 +31,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
   } = usePayment(totalAmount);
 
   const [customCheckoutInstance, setCustomCheckoutInstance] = useState<any>(null);
+  const [loadError, setLoadError] = useState<boolean>(false)
 
   // Load Bambora Custom Checkout script
   useEffect(() => {
@@ -50,6 +53,8 @@ const CardDetails: React.FC<CardDetailsProps> = ({
   const initializeCustomCheckout = () => {
     if (!window.customcheckout) {
       console.error('Bambora Custom Checkout SDK not available');
+      // dont show input elements if custom components not mounted
+      setLoadError(true)
       return;
     }
 
@@ -76,6 +81,12 @@ const CardDetails: React.FC<CardDetailsProps> = ({
   };
 
   const handlePayClick = () => {
+
+    if (!isAddressValid || !isAddressValid()) {
+      alert("Please fill all address fields before placing the order.");
+      return;
+    }
+
     if (!customCheckoutInstance) {
       console.error('Custom Checkout not initialized');
       return;
@@ -99,29 +110,50 @@ const CardDetails: React.FC<CardDetailsProps> = ({
 
   return (
     <div>
-      <TextInput
-        label="Full Name (on card)"
-        value={cardName}
-        onChange={handleCardNameChange}
-      />
-
-      <div id="card-number" className="border p-2 my-2 rounded-md" />
-      <div id="card-expiry" className="border p-2 my-2 rounded-md" />
-      <div id="card-cvv" className="border p-2 my-2 rounded-md" />
-
-      <div className="w-[40%] m-auto mt-4">
-        <ActionButton label="Pay Now" callbackFunc={handlePayClick} />
-      </div>
-
-      {message && (
+      {
+        loadError ?
         <div
-          className={`border-[0.1rem] rounded-md my-2 py-1 px-2 shadow-lg border-${success ? 'green' : 'red'}`}
-        >
-          <p className={`text-${success ? 'green' : 'red'} text-xxs tablet:text-xs desktop:text-sm`}>
-            {message}
-          </p>
+        className='w-fit mx-auto text-red text-xxs tablet:text-xs desktop:text-sm'>
+          An error occured, please reload.
         </div>
-      )}
+        :
+        <div>
+          <TextInput
+            label="Full Name (on card)"
+            value={cardName}
+            onChange={handleCardNameChange}
+          />
+          <label
+          className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
+              Card number
+          </label>
+          <div id="card-number" className="border p-2 my-2 rounded-md" />
+          <label
+          className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
+              Card expiry dat (mm/yyyy)
+          </label>
+          <div id="card-expiry" className="border p-2 my-2 rounded-md" />
+          <label
+          className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
+              CVV
+          </label>
+          <div id="card-cvv" className="border p-2 my-2 rounded-md" />
+
+          <div className="w-[40%] m-auto mt-4">
+            <ActionButton label="Pay Now" callbackFunc={handlePayClick} />
+          </div>
+
+          {message && (
+            <div
+              className={`border-[0.1rem] rounded-md my-2 py-1 px-2 shadow-lg border-${success ? 'green' : 'red'}`}
+            >
+              <p className={`text-${success ? 'green' : 'red'} text-xxs tablet:text-xs desktop:text-sm`}>
+                {message}
+              </p>
+            </div>
+          )}
+        </div>
+      }
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import PayPalButton from "../ui/organisms/Paypal/PaypalButton";
 
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { LuUserCircle2 } from "react-icons/lu";
@@ -10,7 +9,6 @@ import { PiReceiptFill } from "react-icons/pi";
 import { GrEdit } from "react-icons/gr";
 import { IconContext } from 'react-icons';
 
-import { useMediaWidth } from "../utils/hooks/useMediaWidth";
 import { useCartPage } from "../utils/hooks/useCartPage";
 import OrderProductItem from '../ui/molecules/OrderProductItem/OrderProductItem';
 import PaymentDetailsSection from '../ui/sections/PaymentDetialsSection/PaymentDetailsSection';
@@ -18,8 +16,12 @@ import PaymentDetailsSection from '../ui/sections/PaymentDetialsSection/PaymentD
 interface CartPageProps { }
 
 const CartPage: React.FC<CartPageProps> = () => {
-    let { isMobile } = useMediaWidth()
-    let { cartItems, handleDeleteFromCart, address, setAddress, handlePlaceOrder, handleGetOrders, stateDropdownItems, updateTaxPercent, generatePDF } = useCartPage();
+    let { cartItems, handleDeleteFromCart, 
+        address, setAddress, handlePlaceOrder, 
+        handleGetOrders, stateDropdownItems, 
+        updateTaxPercent, generatePDF ,
+        isAddressValid
+    } = useCartPage();
     const navigate = useNavigate()
     let sumTotal = 0
     let fullPrice = 0
@@ -189,6 +191,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                     totalAmount={sumTotal + taxTotal + deliveryFee}
                     placeOrderHandler={handlePlaceOrder}
                     handleInvoice={handleGenrateInvoice}
+                    isAddressValid={isAddressValid}
                     />
                 </div>
             </div>
