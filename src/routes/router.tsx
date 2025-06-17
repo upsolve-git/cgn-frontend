@@ -69,10 +69,6 @@ const router = createBrowserRouter([
                 element: <OrderSuccessPage />
             },
             {
-                path: "admin-home",
-                element: <AdminPage />
-            },
-            {
                 path: "userprofile",
                 element: <UserProfilePage />,
                 loader: authLoader
@@ -90,6 +86,10 @@ const router = createBrowserRouter([
                 element: <MembershipPage />
             }
         ],
+    },
+    {
+        path: "admin-home",
+        element: <AdminPage />
     },
     {
         path: 'auth',
