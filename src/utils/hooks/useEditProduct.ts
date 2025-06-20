@@ -1,66 +1,99 @@
-import { useState } from "react";
-import { editProduct } from "../../services/product";
+import { useState, useEffect } from 'react';
+import { getProductReq, updateProductReq } from '../../services/product';
+import { Category } from '../../interfaces/Category';
+import { Color } from '../../interfaces/Color';
+
+/**
+ * Extended color type for editing (guarantees inventory field)
+ */
+interface EditColor extends Color {
+  inventory: number;
+}
 
 export const useEditProduct = () => {
-  let [prodID, setProdID] = useState<string>('');
-  let [prodName, setProdName] = useState<string>('');
-  let [prodDesc, setProdDesc] = useState<string>('');
-  let [prodCost, setProdCost] = useState<number>(0);
-  let [prodCostBusiness, setProdCostBusiness] = useState<number>(0);
-  let [error, setError] = useState<string>('');
-  let [files, setFiles] = useState<File[]>([]);
+  const [prodId, setProdId] = useState('');
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
+  const [price, setPrice] = useState(0);
+  const [discPrice, setDiscPrice] = useState(0);
+  const [discBizPrice, setDiscBizPrice] = useState(0);
+  const [categoryIds, setCategoryIds] = useState<number[]>([]);
+  // use EditColor so inventory is always number
+  const [colors, setColors] = useState<EditColor[]>([]);
+  const [error, setError] = useState('');
 
-  const handleProdID = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setProdID(e.target.value);
-  };
-  const handleProdName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setProdName(e.target.value);
-  };
-  const handleProdDesc = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setProdDesc(e.target.value);
-  };
-  const handleProdCost = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setProdCost(Number(e.target.value));
-  };
-  const handleProdCostBusiness = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setProdCostBusiness(Number(e.target.value));
-  };
+  // Load product details when prodId changes
+  useEffect(() => {
+    if (!prodId) return;
+    (async () => {
+      try {
+        const p = await getProductReq(prodId);
+        setError('');
+        setName(p.name);
+        setDesc(p.description);
+        setPrice(p.price);
+        setDiscPrice(p.discounted_price);
+        setDiscBizPrice(p.discounted_business_price);
+        setCategoryIds(p.categories.map((c: Category) => c.category_id));
+        // map incoming colors to EditColor
+        setColors(p.colors.map((c: any) => ({
+          color_id: c.color_id,
+          color_name: c.color_name,
+          shade_name: c.shade_name,
+          code: c.code,
+          inventory: c.quantity
+        })));
+      } catch {
+        setError('Failed to load product');
+      }
+    })();
+  }, [prodId]);
 
-  // New file handler: update the state with selected files
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const selectedFiles = e.target.files;
-    if (selectedFiles) {
-      setFiles(Array.from(selectedFiles));
-    }
-  };
-
+  // Submit update
   const handleEditProduct = async () => {
-    console.log('Submitting product edit:', prodID);
     try {
-      const result = await editProduct({
-        prodId: prodID,
-        name: prodName,
-        description: prodDesc,
-        cost: prodCost,
-        discBusinessCost: prodCostBusiness,
-        files: files, // pass files; if empty, they won't be appended
+      await updateProductReq({
+        prodId,
+        name,
+        description: desc,
+        price,
+        discounted_price: discPrice,
+        discounted_business_price: discBizPrice,
+        category_ids: categoryIds,
+        colors // EditColor[] satisfies required inventory: number
       });
-      console.log('Product updated successfully:', result);
-      setError('false'); // "false" as a flag for success
-    } catch (err) {
-      console.error('Error updating product:', err);
-      setError('Failed to update product');
+      setError('');
+      alert('Product updated!');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Update failed');
     }
+  };
+
+  // Color helpers
+  const addColor = () => {
+    setColors(c => [...c, { color_name: '', shade_name: '', code: '', inventory: 0 } as EditColor]);
+  };
+  const removeColor = (idx: number) => {
+    setColors(c => c.filter((_, i) => i !== idx));
+  };
+  const updateColorField = (idx: number, field: keyof EditColor, value: any) => {
+    setColors(c => {
+      const arr = [...c];
+      (arr[idx] as any)[field] = value;
+      return arr;
+    });
   };
 
   return {
-    prodID, handleProdID,
-    prodName, handleProdName,
-    prodDesc, handleProdDesc,
-    prodCost, handleProdCost,
-    prodCostBusiness, handleProdCostBusiness,
+    prodId, setProdId,
+    name, setName,
+    desc, setDesc,
+    price, setPrice,
+    discPrice, setDiscPrice,
+    discBizPrice, setDiscBizPrice,
+    categoryIds, setCategoryIds,
+    colors, addColor, removeColor, updateColorField,
     handleEditProduct,
-    error,
-    handleFileChange, // expose the file change handler
+    error
   };
 };

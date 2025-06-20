@@ -3,7 +3,7 @@ import axios from '../helpers/axios'
 import { ADD_BEST_SELLER_ENDPOINT, ADD_NEW_SELLER_ENDPOINT, 
   ADD_PRODUCT_ENDPOINT, GET_PRODUCT_ENDPOINT, 
   EDIT_PRODUCT_ENDPOINT, UPDATE_INVENTORY_ENDPOINT,
-  DELETE_PRODUCT_ENDPOINT } from '../constants/routes';
+  DELETE_PRODUCT_ENDPOINT, GET_PRODUCT_BY_ID_ENDPOINT, DELETE_COLOR_ENDPOINT } from '../constants/routes';
 
 import { Color } from '../interfaces/Color';
 
@@ -133,6 +133,17 @@ export const deleteProductReq = async (product_id : string)=>{
   }
 }
 
+export const getProductReq = async (product_id: string) => {
+  console.log('calling fetch')
+  try {
+    const {data} = await axios.get(`${GET_PRODUCT_BY_ID_ENDPOINT}/${product_id}`);
+    return data;
+  } catch (err) {
+    console.error('Error fetching product info:', err);
+    throw new Error('Failed to fetch product info');
+  }
+};
+
 export const getProductQuantityReq = async (product_id: string) => {
   try {
     const response = await axios.get(`/productquantity/${product_id}`);
@@ -141,4 +152,29 @@ export const getProductQuantityReq = async (product_id: string) => {
     console.error('Error fetching product quantity:', err);
     throw new Error('Failed to fetch product quantity');
   }
+};
+
+export const deleteColorReq = async (product_id: string, color_id: number) => {
+  return axios.post(DELETE_COLOR_ENDPOINT, { product_id, color_id });
+};
+
+export interface UpdateProductParams {
+  prodId: string;
+  name: string;
+  description: string;
+  price: number;
+  discounted_price: number;
+  discounted_business_price: number;
+  category_ids: number[];
+  colors: Array<{
+    color_id?: number;
+    color_name: string;
+    shade_name: string;
+    code: string;
+    inventory: number;
+  }>;
+}
+
+export const updateProductReq = async (data: UpdateProductParams) => {
+  return axios.put(`${EDIT_PRODUCT_ENDPOINT}/${data.prodId}`, data);
 };

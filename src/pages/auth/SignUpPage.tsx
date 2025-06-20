@@ -70,14 +70,18 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
                         error={emailErr}
                         onChange={handleEmailChange} />
                     <TextInput
-                        label="First Name"
+                        label={accType === 'Business' ? "Business Name" : "First Name"}
                         value={firstName}
                         onChange={handleFirstNameChange} />
-                    <TextInput
-                        label="Last Name"
-                        value={lastName}
-                        onChange={handleLastNameChange} />
+                        {
+                            accType !== 'Business' &&    
+                            <TextInput
+                                label="Last Name"
+                                value={lastName}
+                                onChange={handleLastNameChange} />
+                        }
                     <PhoneInput
+                        label={accType==="Business"?"Business Number":"Phone Number"}
                         value={phone}
                         onChange={handlePhoneChange}
                         countryCode={countryCode}

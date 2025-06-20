@@ -2,8 +2,8 @@ import React from "react";
 
 interface CommonButtonProps{
     label: string,
-    primaryColor: string,
-    secondaryColor: string,
+    primaryColor?: string,
+    secondaryColor?: string,
     customStyles?: string,
     preIcon?: React.ReactNode
     callBack: ()=>void
@@ -11,8 +11,8 @@ interface CommonButtonProps{
 
 const CommonButton: React.FC<CommonButtonProps> = ({
     label,
-    primaryColor,
-    secondaryColor,
+    primaryColor='primary',
+    secondaryColor='white',
     customStyles='',
     preIcon,
     callBack

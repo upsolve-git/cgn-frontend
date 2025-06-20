@@ -157,7 +157,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                                         machines: false,
                                                     } as ActiveCats)}
                                                     isActive={extendedActiveCats.allproducts} />
-                                                <NavButton label="Nail Polish"
+                                                <NavButton label="Gel Nail Polish"
                                                     onClick={() => activeCatsChange({
                                                         allproducts: false,
                                                         nailPolish: true,
@@ -244,7 +244,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                                             machines: false,
                                         } as ActiveCats)}
                                         isActive={extendedActiveCats.allproducts} />
-                                    <NavButton label="Nail Polish"
+                                    <NavButton label="Gel Nail Polish"
                                         onClick={() => activeCatsChange({
                                             allproducts: false,
                                             nailPolish: true,

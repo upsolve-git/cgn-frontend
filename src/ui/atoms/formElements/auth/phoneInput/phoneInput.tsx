@@ -1,6 +1,7 @@
 import React from "react";
 
 interface PhoneInputProps {
+    label?: string
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     countryCode: string;
@@ -8,6 +9,7 @@ interface PhoneInputProps {
 }
 
 const PhoneInput: React.FC<PhoneInputProps> = ({
+    label='Phone number',
     value,
     onChange,
     countryCode,
@@ -16,7 +18,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
     return (
         <div className="w-full h-fit my-2">
             <label htmlFor="signup-tel" className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
-                Phone Number
+                {label}
             </label>
             <div className="flex">
                 <select

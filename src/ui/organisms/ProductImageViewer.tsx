@@ -50,7 +50,7 @@ const ProductImageViewer: React.FC<ProductImageViewerProps> = ({
 
   return (
     <div className="w-full max-w-md aspect-square relative">
-      <div className="w-full p-8 bg-secondarylight rounded-md overflow-hidden relative">
+      <div className="w-full max-h-[40vh] p-8 bg-secondarylight rounded-md overflow-scroll relative">
         <img
         //   src={`${productImages[currentIndex]}?${new Date().getDate()}`}
           src={`${productImages[currentIndex]}`}

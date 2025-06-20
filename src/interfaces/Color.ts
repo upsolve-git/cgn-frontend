@@ -3,4 +3,5 @@ export interface Color {
     code: string;
     color_name : string
     color_id : number
+    inventory?: number;
   }
