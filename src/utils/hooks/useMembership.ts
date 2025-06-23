@@ -9,9 +9,8 @@ import { Membership } from '../../interfaces/Membership';
 import { ADD_MEMBERSHIP_ENDPOINT } from '../../constants/routes';
 
 export const useMembership = () => {
-  
+
   const { pathname } = useLocation();
-  // let initialIsMember = localStorage.getItem('isMember') === 'false';
   const rawIsMember = localStorage.getItem('isMember');
   const rawRole = localStorage.getItem('role');
   const initialIsMember = rawIsMember === 'true';
@@ -29,8 +28,11 @@ export const useMembership = () => {
   const [isMember, setIsMember] = useState(initialIsMember);
 
   useEffect(() => {
-    const currentIsMember = localStorage.getItem('isMember') === 'false';
+    // console.log('showAd is', showAd)
+    const currentIsMember = localStorage.getItem('isMember') === 'true';
     const currentRole = localStorage.getItem('role') || '';
+    // console.log('current role is ', currentRole);
+    // console.log('current isMember is ', currentIsMember);
     // console.log('current is ',currentIsMember);
     
     if (currentIsMember !== isMember) {
@@ -39,8 +41,6 @@ export const useMembership = () => {
     
     if (pathname === '/membership') {
       setShowAd(false);
-    } else if (currentIsMember) {
-      setShowAd(true);
     } else {
       setShowAd(
         !currentIsMember
