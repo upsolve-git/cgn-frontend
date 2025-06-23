@@ -9,17 +9,28 @@ import { Membership } from '../../interfaces/Membership';
 import { ADD_MEMBERSHIP_ENDPOINT } from '../../constants/routes';
 
 export const useMembership = () => {
+  
   const { pathname } = useLocation();
-  let initialIsMember = localStorage.getItem('isMember') === 'false';
+  // let initialIsMember = localStorage.getItem('isMember') === 'false';
+  const rawIsMember = localStorage.getItem('isMember');
+  const rawRole = localStorage.getItem('role');
+  const initialIsMember = rawIsMember === 'true';
+  const initialRole = rawRole || '';
 
+  // const [showAd, setShowAd] = useState(() =>
+  //   initialIsMember && pathname !== '/membership'
+  // );
   const [showAd, setShowAd] = useState(() =>
-    initialIsMember && pathname !== '/membership'
+    !initialIsMember
+    && initialRole === 'Business'
+    && pathname !== '/membership'
   );
 
   const [isMember, setIsMember] = useState(initialIsMember);
 
   useEffect(() => {
     const currentIsMember = localStorage.getItem('isMember') === 'false';
+    const currentRole = localStorage.getItem('role') || '';
     // console.log('current is ',currentIsMember);
     
     if (currentIsMember !== isMember) {
@@ -31,7 +42,10 @@ export const useMembership = () => {
     } else if (currentIsMember) {
       setShowAd(true);
     } else {
-      setShowAd(false);
+      setShowAd(
+        !currentIsMember
+        && currentRole === 'Business'
+      );
     }
   }, [pathname, isMember]);
 
