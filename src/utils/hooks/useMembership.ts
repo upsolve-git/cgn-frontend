@@ -55,11 +55,11 @@ export const useMembership = () => {
   const [membership, setMembership] = useState<Membership[]>()
 
   useEffect(() => {
-    if (pathname === '/membership') {
-      setShowAd(false);
-    } else if (isMember) {
-      setShowAd(true);
-    }
+    // if (pathname === '/membership') {
+    //   setShowAd(false);
+    // } else if (!isMember) {
+    //   setShowAd(true);
+    // }
 
     const getMembershipsWrapper = async () => {
       try{
