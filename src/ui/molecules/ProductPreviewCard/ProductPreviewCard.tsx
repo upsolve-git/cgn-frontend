@@ -17,6 +17,9 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
   ishomepage
 }) => {
   const navigate = useNavigate()
+  if(product?.price<5){
+    console.log("render cats: ", product?.categories)
+  }
 
   // console.log("product: ",product)
 
@@ -57,22 +60,27 @@ const ProductPreviewCard: React.FC<ProductPreviewCardProps> = ({
           </p>
         </div>
         <div className="flex items-center justify-between w-full">
-  {(product.categories[0] === "Nail Polish"|| product.name === "Electric Beauty Bed/Podiatry chair") && (
-    <span className="text-md font-semibold truncate">
-      ${localStorage.getItem('isMember')==='true'?product?.discounted_business_price:product?.price}
-    </span>
-  )}
+          {
+          // (product.categories[0] === "Nail Polish" || product.name === "Electric Beauty Bed/Podiatry chair") &&
+            (product.categories[0]!=='Machine' || 
+              (product.categories[0]==='Machine' && product.name==='Electric Beauty Bed/Podiatry chair')) && 
+            (
+              <span className="text-md font-semibold truncate">
+                ${localStorage.getItem('isMember')==='true'?product?.discounted_business_price:product?.price}
+              </span>
+            )
+          }
 
-  <button
-    className="p-2 rounded-full bg-white shadow-sm flex-shrink-0"
-    onClick={() => {
-      navigate(`/productDetail/${product?.product_id || 1}`);
-      window.location.reload();
-    }}
-  >
-    <FiShoppingCart className="text-sm text-primary" />
-  </button>
-</div>
+          <button
+            className="p-2 rounded-full bg-white shadow-sm flex-shrink-0"
+            onClick={() => {
+              navigate(`/productDetail/${product?.product_id || 1}`);
+              window.location.reload();
+            }}
+          >
+            <FiShoppingCart className="text-sm text-primary" />
+          </button>
+        </div>
 
       </div>
     </div>

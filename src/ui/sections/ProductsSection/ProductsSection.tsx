@@ -115,6 +115,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
     }, [products, priceRange, rating, activeCats, sortBy, searchProd]);
 
     let items = []
+    console.log("Filtered Products: ", filteredproducts);
     for (let i = 0; i < filteredproducts.length; i++) {
         items.push(<ProductPreviewCard product={filteredproducts[i]} isBestSeller={false} key={i + 1} ishomepage={false} />)
     }

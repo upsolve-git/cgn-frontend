@@ -201,7 +201,8 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     </p>
                                 }
                                 {
-                                    product.categories[0] === "Nail Polish" &&
+                                    // product.categories[0] === "Nail Polish" &&
+                                    (product.categories[0]!=='Machine' && product.name!=='Electric Beauty Bed/Podiatry chair') &&
                                     <p className="mb-6">
                                         <span
                                             className="text-lg text-primary font-semibold desktop:text-xl pr-4">
@@ -222,7 +223,8 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     {localStorage.getItem('isMember')==='true' ? 'Return the bottle to get $11 refund':''}
                                 </h2>
                                 {
-                                    product.categories[0] === "Nail Polish" &&
+                                    // product.categories[0] === "Nail Polish" &&
+                                    product.categories[0]!=='Machine' &&
                                     <div
                                         className="text-xs desktop:text-lg my-3">
                                         <label>Choose color</label>
@@ -269,7 +271,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     )}
                                 </div> */}
                                 {
-                                    product.categories[0] === "Nail Polish" &&
+                                    product.categories[0] !== "Machine" &&
                                     <div
                                     className="font-thin my-6">
                                         <label className="text-xs desktop:text-md">Quantity</label>
@@ -293,7 +295,8 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     </div>
                                 }
                                 {
-                                    product.categories[0] === "Nail Polish" &&
+                                    // product.categories[0] === "Nail Polish" &&
+                                    product.categories[0]!=='Machine' &&
                                     <div className="grid grid-cols-2 gap-x-3 h-10 desktop:h-16 items-stretch">
                                     
                                         <CommonButton
@@ -313,11 +316,12 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
                                     </div>
                                 }
                                 {
-                                    product.categories[0] !== "Nail Polish" &&
+                                    // product.categories[0] !== "Nail Polish" &&
+                                    product.categories[0] ==='Machine' &&
                                     <div>
-                                            <label className="font-bold text-sm">Contact for more details : </label>
-                                            <label className="font-bold text-sm">canadiangelnailsinc@gmail.com</label>
-                                        </div>
+                                        <label className="font-bold text-sm">Contact for more details : </label>
+                                        <label className="font-bold text-sm">canadiangelnailsinc@gmail.com</label>
+                                    </div>
                                 }
                             </div>
                         </div>
