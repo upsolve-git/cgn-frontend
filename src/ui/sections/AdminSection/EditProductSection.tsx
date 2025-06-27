@@ -64,7 +64,7 @@ const EditProductSection: React.FC = () => {
             <CommonButton
               label="Remove"
               primaryColor="red"
-              secondaryColor="white"
+              secondaryColor="black"
               callBack={() => removeColor(i)}
             />
           </div>
