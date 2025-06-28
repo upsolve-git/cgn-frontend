@@ -19,19 +19,25 @@ const Orders: React.FC<OrdersProps> = ()=>{
     const [isAddressDialogOpen, setIsAddressDialogOpen] = useState(false);
     let [id, setId] = useState(1)
 
+    const [err, setErr] = useState<string>("")
+
     useEffect(() => {
-        const fetchOrders = async () => {
-          try {
-            const ordersRes = await getAdminOrders(); 
-            console.log("orders",ordersRes)
-            setOrders(ordersRes.data);
-          } catch (err) {
-            console.error("Error fetching orders:", err);
-          }
-        };
-    
-        fetchOrders(); 
-      }, [])
+      console.log('inside orders effect')
+      const fetchOrders = async () => {
+        try {
+          console.log('fetch oder taking place')
+          const ordersRes = await getAdminOrders(); 
+          console.log('finished fetching orders')
+          console.log("orders",ordersRes)
+          setOrders(ordersRes.data);
+        } catch (err) {
+          setErr("Failed to fetch orders");
+          console.error("Error fetching orders:", err);
+        }
+      };
+
+      fetchOrders(); 
+    }, [])
 
     const filterOrders = async(filter : string) => {
         let items = []
@@ -44,6 +50,12 @@ const Orders: React.FC<OrdersProps> = ()=>{
 
     return(
        <div>
+        {
+          err && 
+          <div>
+            <p className="text-red-500 text-center">{err}</p>
+          </div>
+        }
             <div className="grid grid-rows-1 grid-cols-4 w-fit h-[50%]"> 
                 <NavButton label="New Orders"
                     onClick={()=>{setNewOrders(true); setConfirmOrders(false); setShippedOrders(false); setDeliveredOrders(false); filterOrders("pending")}}
