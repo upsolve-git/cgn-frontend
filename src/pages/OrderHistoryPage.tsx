@@ -8,20 +8,20 @@ import ManageOrder from "../ui/sections/OrderSection/ManageOrder";
 import AddReview from "../ui/sections/OrderSection/AddReview";
 import { useCartPage } from "../utils/hooks/useCartPage";
 
+import { getUsersCartReq, getOrdersReq } from "../services/login";
+
 interface OrderHistoryPageProps { }
 
 const OrderHistoryPage: React.FC<OrderHistoryPageProps> = () => {
     let { isMobile } = useMediaWidth()
-    let { cartItems, handleDeleteFromCart } = useCartPage();
+    let { cartItems, handleDeleteFromCart, orders } = useCartPage();
     const navigate = useNavigate()
-    const { orders } = useCartPage()
 
     const [isManageOrderOpen, setIsManageOrderOpen] = useState(false);
     const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
 
     let [id, setId] = useState(1)
     let [ProductId, setproductId] = useState(1)
-
 
     const openPopup = () => setIsManageOrderOpen(true);
     const closePopup = () => setIsManageOrderOpen(false);

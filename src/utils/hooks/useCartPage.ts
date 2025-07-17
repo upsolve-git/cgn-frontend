@@ -102,7 +102,7 @@ export const useCartPage = () => {
   const handleAddToCart = async (product: Product, quantity: number, color_id: number) => {
     try{
       const authRes = await getAuth()
-      if(authRes.status==200){
+      if(authRes.status===200){
         console.log('yes authed');
         try {
             const res = await updateUsersCartReq(product.product_id, quantity, color_id);
