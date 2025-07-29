@@ -14,9 +14,9 @@ const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ()=>{
         onSuccess: async (response) => {
             console.log(response);
             const response1 = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-            headers: {
-                Authorization: `Bearer ${response.access_token}`,
-            },
+                headers: {
+                    Authorization: `Bearer ${response.access_token}`,
+                },
             });
 
             const userInfo = await response1.json();

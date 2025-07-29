@@ -16,14 +16,14 @@ const TextInput: React.FC<TextInputProps> = ({
         className="">
             <td>
                 <label
-                className="whitespace-nowrap font-medium">
+                className="whitespace-nowrap font-medium text-xs tablet:text-sm desktop:text-md">
                     {label}
                 </label>
             </td>
             <td>
                 <input type="text" value={value}
                 onChange={onChange}
-                className="w-full border rounded-md px-3 py-2 "/>
+                className="w-full border rounded-md px-1 py-1 text-xs tablet:text-sm desktop:text-md"/>
             </td>
         </tr>
     )

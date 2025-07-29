@@ -39,7 +39,7 @@ export default {
       secondarylight: '#EAD7C3',
       darkgray: '#848383',
       white: '#FFFFFF',
-      red: '#ff2c2c',
+      red: '#FF2C2C',
       lightgray: '#F3F4F6',
       midgray: '#DEE1E6',
       gold: '#F3C63F',

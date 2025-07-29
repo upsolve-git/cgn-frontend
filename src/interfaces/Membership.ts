@@ -1,5 +1,7 @@
 export interface Membership{
+    id?: number;
     name: string;
-    desc: string;
+    description: string;
     price: number;
+    discount?: number;
 }

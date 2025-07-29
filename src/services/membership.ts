@@ -1,6 +1,8 @@
 import axios from "../helpers/axios"
 
-import { GET_MEMSHIPS_ENDPOINT } from "../constants/routes"
+import { Membership } from "../interfaces/Membership";
+
+import { ADD_NEW_MEMBERSHIP_ENDPOINT, GET_MEMSHIPS_ENDPOINT } from "../constants/routes"
 
 export const getMembershipsReq = async () => {
     // return [
@@ -29,3 +31,18 @@ export const getMembershipsReq = async () => {
         throw new Error("Failed to fetch memberships");
     }
 }
+
+export const addMembershipReq = async (membership: Membership) => {
+    try {
+        const response = await axios.post(ADD_NEW_MEMBERSHIP_ENDPOINT, membership);
+        return response.data;
+    } catch (error) {
+        console.error("Error adding membership:", error);
+        throw new Error("Failed to add membership");
+    }
+}
+
+export const softDeleteMembershipReq = async (id: number) => {
+  const response = await axios.patch(`/membership/${id}`);
+  return response.data;
+};

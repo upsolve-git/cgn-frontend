@@ -10,6 +10,7 @@ import Orders from "../../ui/sections/AdminSection/Orders";
 import EditProductSection from "../../ui/sections/AdminSection/EditProductSection";
 import ProductsListSection from "../../ui/sections/AdminSection/ProductsListSection";
 import DeleteProductSection from "../../ui/sections/AdminSection/DeleteProductSection";
+import AdminMembershipSection from "../../ui/sections/AdminSection/AdminMembershipSection";
 
 interface AdminPageProps{}
 
@@ -127,6 +128,8 @@ const AdminPage: React.FC<AdminPageProps> = ()=>{
                     <UserList users={users}/>
                     : selectedMenuItem === "Orders" ? 
                     <Orders/>
+                    : selectedMenuItem === "Memberships" ?
+                    <AdminMembershipSection />
                     :<div></div>}
                 </div>
             </div>

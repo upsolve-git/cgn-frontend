@@ -48,6 +48,7 @@ export const DELETE_COLOR_ENDPOINT = '/deletecolor';
 export const PAYMENT_ENDPOINT = '/api/payment/process'
 export const GET_MEMSHIPS_ENDPOINT = '/getallmemberships'
 export const ADD_MEMBERSHIP_ENDPOINT = '/addmembership'
+export const ADD_NEW_MEMBERSHIP_ENDPOINT = '/addnewmembership'
 
 export const POS_WEBSITE_URL = 'https://main.d29iicb8es15um.amplifyapp.com/'
 export const base_url = 'https://posapi.canadiangelnails.com/'

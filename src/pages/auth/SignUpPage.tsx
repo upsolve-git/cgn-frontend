@@ -102,9 +102,15 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
                     error={signupErr}
                     label="Create an account"
                     callbackFunc={signupHandler} />
-                <p
-                    className="text-darkgray block text-xs">or continue with </p>
-                <GoogleAuthButton />
+                {
+                    accType === 'Personal' &&
+                    <div>
+                        <p
+                            className="text-darkgray block text-xs">or continue with 
+                        </p>
+                        <GoogleAuthButton />
+                    </div>
+                }
             </FormCard>
         </div>
     )

@@ -14,7 +14,7 @@ const AuthSubmitButton: React.FC<AuthSubmitButtonProps> = ({ disabled, error, la
             <button
                 disabled= {disabled}
                 onClick={callbackFunc}
-                className="w-full h-fit py-2 bg-primary text-white rounded-3xl text-xs mt-1 mb-1 tablet:text-sm"
+                className="hover:cursor-pointer w-full h-fit py-2 bg-primary text-white rounded-3xl text-xs mt-1 mb-1 tablet:text-sm"
             >
                 {label}
             </button>

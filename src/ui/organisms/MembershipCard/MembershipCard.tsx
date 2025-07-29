@@ -28,8 +28,9 @@ const MembershipCard: React.FC<MembershipCardProps> = ({
                 <li>Access to special events</li>
                 <li>Free product samples</li>
             </ul> */}
-            <p>
-                {membershipDetails.desc}
+            <p
+            className='text-xs text-darkgray font-normal tablet:text-sm'>
+                {membershipDetails.description}
             </p>
             <p
             className='whitespace-nowrap text-sm text-primary font-semibold tablet:text-md'>
