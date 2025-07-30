@@ -8,6 +8,7 @@ interface CardDetailsProps {
   placeOrderHandler?: (orderId: string) => void;
   handleInvoice?: () => void;
   isAddressValid?: () => boolean;
+  requireAddress?: boolean;
 }
 
 declare global {
@@ -21,6 +22,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
   placeOrderHandler,
   handleInvoice,
   isAddressValid,
+  requireAddress = true,
 }) => {
   const {
     cardName,
@@ -115,7 +117,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
   };
 
   const handlePayClick = () => {
-    if (!isAddressValid || !isAddressValid()) {
+    if (requireAddress && (!isAddressValid || !isAddressValid())) {
       alert('Please fill all address fields before placing the order.');
       return;
     }

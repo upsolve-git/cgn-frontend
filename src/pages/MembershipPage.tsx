@@ -46,6 +46,7 @@ const MembershipPage: React.FC<MembershipPageProps> = () => {
                 <PaymentDetailsSection 
                 totalAmount={totalPrice}
                 placeOrderHandler={handleSubmitMembership}
+                requireAddress={false}
                 />
             </div>
         }

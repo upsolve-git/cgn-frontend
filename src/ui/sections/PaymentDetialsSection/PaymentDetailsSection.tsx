@@ -6,13 +6,15 @@ interface PaymentDetailsSectionProps {
     placeOrderHandler?: (orderId: string) => void;
     handleInvoice?: () => void;
     isAddressValid? : () => boolean
+    requireAddress?: boolean
 }
 
 const PaymentDetailsSection: React.FC<PaymentDetailsSectionProps> = ({
     totalAmount,
     placeOrderHandler,
     handleInvoice,
-    isAddressValid
+    isAddressValid,
+    requireAddress = true
 }) => {
   return (
     <div>
