@@ -46,3 +46,11 @@ export const softDeleteMembershipReq = async (id: number) => {
   const response = await axios.patch(`/membership/${id}`);
   return response.data;
 };
+
+export const editMembershipReq = async (
+  id: number,
+  membership: Omit<Membership, "id">
+) => {
+  const response = await axios.put(`/membership/${id}`, membership);
+  return response.data;
+};

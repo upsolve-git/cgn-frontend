@@ -47,7 +47,7 @@ const MembershipAdminCard: React.FC<MembershipAdminCardProps> = ({
             className='w-[70%] grid grid-cols-1 gap-y-3 max-h-fit'>
                 <CommonButton 
                 label='Edit'
-                callBack={()=>console.log('edit')}
+                callBack={onEdit}
                 />
                 <CommonButton
                 label='Delete'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getMembershipsReq, addMembershipReq, softDeleteMembershipReq } from "../../services/membership";
+import { getMembershipsReq, addMembershipReq, softDeleteMembershipReq, editMembershipReq } from "../../services/membership";
 
 import { Membership } from "../../interfaces/Membership";
 
@@ -96,7 +96,14 @@ export const useAdminMembership = () =>{
         }
     };
 
-    
+    const handleMembershipEdit = async (id: any, m: Omit<Membership, "id">) =>{
+        try {
+            await editMembershipReq(id, m);
+            await fetchMemberships();
+        } catch {
+            setError("Failed to update membership");
+        }
+    }
 
     return {
         memberships,
@@ -105,6 +112,7 @@ export const useAdminMembership = () =>{
         membershipDiscount, handleMembershipDiscount,
         membershipDescription, handleMembershipDescription,
         deleteMembership,
-        handleMembershipAdd, error
+        handleMembershipAdd, handleMembershipEdit,
+        error
     }
 }
