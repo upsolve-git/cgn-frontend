@@ -28,6 +28,7 @@ const PaymentDetailsSection: React.FC<PaymentDetailsSectionProps> = ({
         placeOrderHandler={placeOrderHandler}
         handleInvoice={handleInvoice}
         isAddressValid={isAddressValid}
+        requireAddress={requireAddress}
         />
     </div>
   );
