@@ -22,6 +22,12 @@ export const useEditProduct = () => {
   const [colors, setColors] = useState<EditColor[]>([]);
   const [error, setError] = useState('');
 
+  const availableCategories: Category[] = [
+    // This should be fetched from a service or passed as a prop
+    { category_id: 1, category_name: 'Nail Polish' },
+    { category_id: 2, category_name: 'Machine' }
+  ]
+
   // Load product details when prodId changes
   useEffect(() => {
     if (!prodId) return;
@@ -94,6 +100,7 @@ export const useEditProduct = () => {
     categoryIds, setCategoryIds,
     colors, addColor, removeColor, updateColorField,
     handleEditProduct,
-    error
+    error,
+    availableCategories
   };
 };

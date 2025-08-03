@@ -1,34 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
 
-import MembershipAdminCard from '../../organisms/Admin/MembershipAdminCard';
-import AddMembershipForm from '../../organisms/Admin/AddMembershipForm';
-import EditMembershipModal from './EditEditMembershipModal';
+interface AdminSalonSectionProps {}
 
-import { useAdminMembership } from '../../../utils/hooks/useAdminMembership';
-
-import { Membership } from '../../../interfaces/Membership';
-
-interface AdminMembershipSectionProps {}
-
-const AdminMembershipSection: React.FC<AdminMembershipSectionProps> = () => {
-
-  let {
-    memberships,
-    deleteMembership,
-    handleMembershipEdit
-  } = useAdminMembership()
-  console.log("Memberships in section:", memberships);
-
-  const [editing, setEditing] = useState<Membership | null>(null);
-
+const AdminSalonSection: React.FC<AdminSalonSectionProps> = () => {
   return (
     <div>
+        <div>
         <p
         className='text-xs text-primary font-bold mb-4'>
             Existing memberships:
         </p>
-        <div
+        {/* <div
         className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-3'>
           {
             memberships.map((membership, index) => (
@@ -39,9 +21,9 @@ const AdminMembershipSection: React.FC<AdminMembershipSectionProps> = () => {
               />
             ))
           }
-        </div>
+        </div> */}
         {/* <AddMembershipForm /> */}
-        {editing && (
+        {/* {editing && (
           <EditMembershipModal
             membership={editing}
             onClose={() => setEditing(null)}
@@ -50,9 +32,10 @@ const AdminMembershipSection: React.FC<AdminMembershipSectionProps> = () => {
               setEditing(null);
             }}
           />
-      )}
+      )} */}
+    </div>
     </div>
   );
 };
 
-export default AdminMembershipSection;
+export default AdminSalonSection;

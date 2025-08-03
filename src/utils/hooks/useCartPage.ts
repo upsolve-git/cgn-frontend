@@ -18,9 +18,9 @@ export const useCartPage = () => {
     address_line1: '',
     address_line2: '',
     city: '',
-    state: 'Alberta',
+    state: '',
     pincode: '',
-    country: '',
+    country: 'Canada',
     mobile: '',
     user_id: 0,
     default: false,
@@ -28,7 +28,7 @@ export const useCartPage = () => {
 
   const [address, setAddress] = useState<Address>(defaultAddress);
   const [orders, setOrders] = useState<Order[]>([])
-  const stateDropdownItems = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Quebec", "Price Edward Island", "Saskatchewan", "Yukon"]
+  const stateDropdownItems = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Quebec", "Prince Edward Island", "Saskatchewan", "Yukon"]
   const updateTaxPercent = (state : string) : number => {
     let value: number;
     switch (state) {
@@ -62,7 +62,7 @@ export const useCartPage = () => {
       case "Quebec":
         value = 14.975;
         break;
-      case "Price Edward Island":
+      case "Prince Edward Island":
         value = 15;
         break;
       case "Saskatchewan":

@@ -49,12 +49,12 @@ const MembershipAdminCard: React.FC<MembershipAdminCardProps> = ({
                 label='Edit'
                 callBack={onEdit}
                 />
-                <CommonButton
+                {/* <CommonButton
                 label='Delete'
                 primaryColor='red'
                 secondaryColor='white'
                 callBack={onDelete}
-                />
+                /> */}
             </div>
         </div>
     </div>

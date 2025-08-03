@@ -14,7 +14,8 @@ const EditProductSection: React.FC = () => {
     discBizPrice, setDiscBizPrice,
     categoryIds, setCategoryIds,
     colors, addColor, removeColor, updateColorField,
-    handleEditProduct, error
+    handleEditProduct, error,
+    availableCategories
   } = useEditProduct();
 
   return (
@@ -29,12 +30,32 @@ const EditProductSection: React.FC = () => {
       <NumberInput label="Discounted Price" value={discPrice} callbackFunc={e => setDiscPrice(Number(e.target.value))} />
       <NumberInput label="Biz Discounted Price" value={discBizPrice} callbackFunc={e => setDiscBizPrice(Number(e.target.value))} />
 
-      {/* Categories: simple comma-separated edit, or replace with multi-select dropdown */}
-      <TextInput
-        label="Category IDs (comma-separated)"
-        value={categoryIds.join(',')}
-        onChange={e => setCategoryIds(e.target.value.split(',').map(s => Number(s.trim())))}
-      />
+      {/* <div
+      className='flex w-[60%]'>
+        <label
+        className="whitespace-nowrap font-medium text-xs tablet:text-sm desktop:text-md mr-5">
+            Category
+        </label>
+        <select
+          value={categoryIds[0] || ""} // use first selected category as current
+          onChange={(e) => {
+            const val = Number(e.target.value);
+            if (!isNaN(val)) {
+              setCategoryIds([val]); // replace with new selection
+            }
+          }}
+          className="border rounded-md p-2 w-full"
+        >
+          <option value="" disabled>
+            Select a category
+          </option>
+          {availableCategories.map((cat) => (
+            <option key={cat.category_id} value={cat.category_id}>
+              {cat.category_name}
+            </option>
+          ))}
+        </select>
+      </div> */}
 
       {/* Colors & inventory */}
       <div className="space-y-2">

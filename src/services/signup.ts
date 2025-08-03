@@ -10,7 +10,7 @@ export const signupReq = async (email: string|undefined, password:string|undefin
             "accType": accType,
             "firstName":firstName,
             "lastName":lastName,
-            "mobile":phone,
+            "phone":phone,
             "countryCode": countryCode
         }); 
         return promise

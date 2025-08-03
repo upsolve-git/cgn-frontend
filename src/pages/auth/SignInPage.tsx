@@ -68,11 +68,15 @@ const SignInPage: React.FC<SignInPageProps> = ()=>{
                 error={loginErr}
                 label="Login Now!"
                 callbackFunc={loginHandler}/>
-                <p
-                className="text-darkgray block text-xxs tablet:text-xs desktop:text-sm">
-                    or continue with 
-                </p>
-                <GoogleAuthButton/>
+                {
+                    accType === 'Personal' &&
+                    <div>
+                        <p
+                            className="text-darkgray block text-xs">or continue with 
+                        </p>
+                        <GoogleAuthButton />
+                    </div>
+                }
                 <p
                 className="text-xxs tablet:text-xs desktop:text-sm">
                     Forgot password?

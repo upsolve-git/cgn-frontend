@@ -36,11 +36,14 @@ const CartPage: React.FC<CartPageProps> = () => {
         if(localStorage.getItem('isMember')==='true'){
             console.log('its a business profile')
             sumTotal = sumTotal + item.quantity * item.discounted_business_price
+            
         }else{
             console.log('not business profile')
             sumTotal = sumTotal + item.quantity * item.price
         }
     }
+
+    let finalPrice = Math.round((sumTotal + taxTotal + deliveryFee)*1e2)/1e2
 
     return (
         <div className="bg-secondary space-y-16 my-6 tablet:my-8 desktop:my-12">
@@ -94,7 +97,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                     <div className="flex space-x-2">
                         <div className="w-[30%] space-y-1">
                             <p className="text-md">Country</p>
-                            <input type="text" className="w-full rounded bg-lightgray" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} />
+                            <input type="text" className="w-full rounded bg-lightgray" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} readOnly={true}/>
                         </div>
                         <div className="w-[70%] space-y-1">
                             <p className="text-md">Phone number</p>
@@ -110,6 +113,9 @@ const CartPage: React.FC<CartPageProps> = () => {
                                 value={address.state}
                                 onChange={(e) => { setAddress({ ...address, state: e.target.value }); setTaxTotal(Math.round(sumTotal * (updateTaxPercent(e.target.value))) / 100) }}
                             >
+                                <option value="" disabled>
+                                    Select a state
+                                </option>
                                 {stateDropdownItems.map((state, index) => (
                                     <option key={index} value={state}>
                                         {state}
@@ -180,7 +186,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                             <p
                                 className='text-darkgray text-md'>Total</p>
                             <p
-                                className='font-semibold text-primary text-md'>${sumTotal + taxTotal + deliveryFee}</p>
+                                className='font-semibold text-primary text-md'>${finalPrice}</p>
                         </div>
                         <div className='h-[0.07rem] bg-midgray my-6'></div>
                     </div>
@@ -188,7 +194,7 @@ const CartPage: React.FC<CartPageProps> = () => {
                     {/* <button onClick={() => { handlePlaceOrder("123456"); handleGenrateInvoice() }}>Order</button> */}
                     {/* <PaymentButton/> */}
                     <PaymentDetailsSection 
-                    totalAmount={sumTotal + taxTotal + deliveryFee}
+                    totalAmount={finalPrice}
                     placeOrderHandler={handlePlaceOrder}
                     handleInvoice={handleGenrateInvoice}
                     isAddressValid={isAddressValid}

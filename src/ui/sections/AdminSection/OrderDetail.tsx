@@ -86,7 +86,7 @@ const OrderDetail: React.FC<OrderDetailSectionProps> = ({order, setId, setIsAddr
                         order.status === "confirmed" && <CommonButton label="Shipped" primaryColor="primary" secondaryColor="white" callBack={() => shipOrder(order.order_id)} />
                     }
                     {
-                        order.status === "shipped" && <CommonButton label="Dlivered" primaryColor="primary" secondaryColor="white" callBack={() => deliverOrder(order.order_id)} />
+                        order.status === "shipped" && <CommonButton label="Delivered" primaryColor="primary" secondaryColor="white" callBack={() => deliverOrder(order.order_id)} />
                     }
                     {
                         !expand && <button onClick={()=> setExpand(true)}><FaChevronRight className="text-xs"/></button>

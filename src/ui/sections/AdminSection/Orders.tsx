@@ -66,7 +66,7 @@ const Orders: React.FC<OrdersProps> = ()=>{
                     <NavButton label="Shipped Orders" 
                     onClick={()=>{setNewOrders(false); setConfirmOrders(false); setShippedOrders(true); setDeliveredOrders(false); filterOrders("shipped")}}
                     isActive={shippedOrders}/>
-                    <NavButton label="Delivred Orders" 
+                    <NavButton label="Delivered Orders" 
                     onClick={()=>{setNewOrders(false); setConfirmOrders(false); setShippedOrders(false); setDeliveredOrders(true); filterOrders("delivered")}}
                     isActive={deliveredOrders}/>
             </div> 
