@@ -33,6 +33,7 @@ const OrderSuccessPage: React.FC<OrderSuccessPageProps> = () => {
             console.log("calling get orders", id);
             try {
                 const res = await getOrderReq(Number(id));
+                console.log("Order data:", res?.data);
                 setOrders(res?.data); // assuming res?.data is an array of orders
                 setDisplay(true);
             } catch (err) {

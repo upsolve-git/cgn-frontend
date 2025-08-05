@@ -35,14 +35,14 @@ const CartPage: React.FC<CartPageProps> = () => {
         fullPrice = fullPrice + item.quantity * item.price
         if(localStorage.getItem('isMember')==='true'){
             console.log('its a business profile')
-            sumTotal = sumTotal + item.quantity * item.discounted_business_price
+            sumTotal = Math.round((sumTotal + item.quantity * item.discounted_business_price)*1e2)/1e2
             
         }else{
             console.log('not business profile')
-            sumTotal = sumTotal + item.quantity * item.price
+            sumTotal = Math.round((sumTotal + item.quantity * item.price)*1e2)/1e2
         }
     }
-
+    fullPrice = Math.round((fullPrice)*1e2)/1e2
     let finalPrice = Math.round((sumTotal + taxTotal + deliveryFee)*1e2)/1e2
 
     return (
