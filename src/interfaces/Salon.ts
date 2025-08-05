@@ -6,16 +6,24 @@
 //     description: string;
 // }
 
-export interface Salon{
-    salonId: number,
-    salonName: string,
-    location: string,
-    description: string,
-    image: string,
-    ownerName: string,
-    contactEmail: string,
-    contactMobile: string,
-    bankAccount: string,
-    numberOfSystems: number,
-    pricePerSystem: number,
+// export interface Salon{
+//     salonId: number,
+//     salonName: string,
+//     location: string,
+//     description: string,
+//     image: string,
+//     ownerName: string,
+//     contactEmail: string,
+//     contactMobile: string,
+//     bankAccount: string,
+//     numberOfSystems: number,
+//     pricePerSystem: number,
+// }
+
+export interface Salon {
+    id:number;
+    name: string;
+    email: string;
+    contact: string;
+    address: string;
 }

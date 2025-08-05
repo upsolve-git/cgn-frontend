@@ -52,19 +52,22 @@ const SalonListItem: React.FC<SalonListItemProps> = ({ salon }) => {
             // onClick={() => navigate(`/salonDetail/${salon.salonName}`, { state: { salon } })}
         >
             <p className="text-lg font-semibold text-center mb-2">
-                {salon.salonName}
+                {/* {salon.salonName} */}
+                {salon.name}
             </p>
             <p className="text-sm text-gray-600 text-center">
-                {salon.contactEmail}
+                {/* {salon.contactEmail} */}
+                {salon.email}
             </p>
             <p className="text-sm text-gray-600 text-center">
-                {salon.contactMobile}
+                {/* {salon.contactMobile} */}
+                {salon.contact}
             </p>
             <p className="text-sm text-gray-600 text-center">
-                {/* {salon.address} */}
-                PO Box 2900 Station A,
+                {salon.address}
+                {/* PO Box 2900 Station A,
                 Sudbury, ON
-                P3A 5J3
+                P3A 5J3 */}
             </p>
         </div>
     );

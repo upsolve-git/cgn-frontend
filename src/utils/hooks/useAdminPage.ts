@@ -11,7 +11,7 @@ import { Color } from "../../interfaces/Color";
 import axios from "axios";
 
 export const useAdminPage = ()=>{
-    const menuItems = ["Products", "Add Products", "Edit Product", "Delete Product", "Users", "Orders", "Memberships"];
+    const menuItems = ["Products", "Add Products", "Edit Product", "Delete Product", "Users", "Orders", "Memberships", "Salons"];
     let [selectedMenuItem, setSelectedMenuItem] = useState<string>('') 
     let [category, setCategory] = useState<Category>({category_id:1, category_name:""})
     let [name, setName] = useState<string>('')

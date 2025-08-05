@@ -27,6 +27,8 @@ export const useCartPage = () => {
   };
 
   const [address, setAddress] = useState<Address>(defaultAddress);
+  console.log("default address", address);
+  console.log(Object.keys(address).length)
   const [orders, setOrders] = useState<Order[]>([])
   const stateDropdownItems = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Quebec", "Prince Edward Island", "Saskatchewan", "Yukon"]
   const updateTaxPercent = (state : string) : number => {
@@ -86,7 +88,11 @@ export const useCartPage = () => {
 
         // Fetch user default address
         const addressRes = await getUserDefaultAddressReq();
-        setAddress(addressRes.data ? addressRes.data : defaultAddress);
+        const fetched =
+          addressRes.data && Array.isArray(addressRes.data) && addressRes.data.length > 0
+            ? addressRes.data[0]
+            : defaultAddress;
+        setAddress(fetched);
 
         const ordersRes = await getOrdersReq();
         console.log("orders", ordersRes)
@@ -121,7 +127,7 @@ export const useCartPage = () => {
   const handleDeleteFromCart = async (product_id: number, color_id: number) => {
     try {
       const res = await deleteFromUsersCartReq(product_id, color_id);
-      if(res?.status==200){
+      if(res?.status===200){
         // setCartItems(cartItems.filter(item=>item.product_id!==product_id))
         const filteredItems = cartItems.filter(item => !(item.product_id === product_id && item.color_id === color_id) );
         console.log("Filtered items:", filteredItems); 
@@ -153,6 +159,8 @@ export const useCartPage = () => {
   const isNonEmptyString = (val: any) => typeof val === 'string' && val.trim() !== '';
   
   const isAddressValid = (): boolean => {
+    console.log("checking address validity", address.country);
+    console.log("address", address);
     return (
       isNonEmptyString(address.full_name) &&
       isNonEmptyString(address.address_line1) &&
